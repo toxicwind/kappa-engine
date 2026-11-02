@@ -4,6 +4,14 @@ import { KappaNews } from "@/kappacode/components/kappa-news"
 
 const id = "internal:home-news"
 
+// kappacode_change start - advertiser nags off by default.
+// KappaNews renders server-pushed Kilo notifications (promos such as
+// "Try Kilo with Your Team · Free for 14 Days"). Opt-in only: set
+// KAPPA_NEWS_BANNER=1 to restore the home-screen news banner. The rest of
+// the Kilo ecosystem (gateway auth, model routing, /connect) is unaffected.
+const newsBannerEnabled = () => process.env.KAPPA_NEWS_BANNER === "1"
+// kappacode_change end
+
 const tui: TuiPlugin = async (api) => {
   api.keymap.registerLayer({
     commands: [
@@ -33,7 +41,7 @@ const tui: TuiPlugin = async (api) => {
         const hidden = createMemo(() => api.kv.get("news_hidden", false))
         return (
           <box width="100%" maxWidth={75} alignItems="center" paddingTop={2}>
-            <Show when={!hidden()}>
+            <Show when={newsBannerEnabled() && !hidden()}>
               <KappaNews />
             </Show>
           </box>
