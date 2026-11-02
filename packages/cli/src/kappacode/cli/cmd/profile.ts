@@ -82,7 +82,7 @@ export async function handle(args: Args) {
   const exit = args.exit ?? ((code: number) => (process.exitCode = code))
 
   if (!auth || auth.type !== "oauth") {
-    error("Not authenticated with Kappa Gateway")
+    error("Not authenticated with Kilo Gateway") // kappacode_change - brand is Kilo Gateway (kilo.ai/gateway)
     exit(1)
     return
   }

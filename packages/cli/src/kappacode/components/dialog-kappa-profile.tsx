@@ -1,5 +1,5 @@
 /**
- * Kappa Gateway Profile Dialog
+ * Kilo Gateway Profile Dialog
  *
  * Displays user profile information with a clickable usage details link.
  */
@@ -49,7 +49,7 @@ export function DialogKappaProfile(props: DialogKappaProfileProps) {
     <box paddingLeft={2} paddingRight={2} gap={1}>
       <box flexDirection="row" justifyContent="space-between">
         <text attributes={TextAttributes.BOLD} fg={theme.text}>
-          Kappa Gateway Profile
+          Kilo Gateway Profile
         </text>
         <text fg={theme.textMuted}>esc</text>
       </box>
