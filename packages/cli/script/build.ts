@@ -181,7 +181,7 @@ const workerText = await Bun.file(
 ).text()
 const treeSitterWorker = workerText
   .replace(/^import type \{[^}]+\} from\s+['"][^'"]+['"]\s*;?\s*$/gm, '')
-  .replace(/import type \{[\s\S]*?\} from\s+['"][^'"]+['"]\s*;?\s*/g, '')
+  .replace(/import type \{[\s\S]*?\} from\s*['"][^'"]+['"]\s*;?\s*/g, '')
 
 const allTargets: {
   os: string
