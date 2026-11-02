@@ -73,6 +73,15 @@
       "dependsOn": ["^build"],
       "outputs": [".artifacts/unit/junit.xml"],
       "passThroughEnv": ["*"]
+    },
+    "@opentui/core#typecheck": {
+      "dependsOn": []
+    },
+    "@opentui/keymap#typecheck": {
+      "dependsOn": ["@opentui/core#typecheck"]
+    },
+    "@opentui/solid#typecheck": {
+      "dependsOn": ["@opentui/core#typecheck"]
     }
   }
 }
