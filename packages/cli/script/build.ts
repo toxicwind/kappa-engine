@@ -179,7 +179,10 @@ async function smokeModels(binaryPath: string) {
 const workerText = await Bun.file(
   path.resolve(dir, "../vendor/@opentui/core/src/lib/tree-sitter/parser.worker.ts")
 ).text()
-const treeSitterWorkerDest = path.resolve(dir, "/tmp/opentui-tree-sitter-worker.ts")
+const treeSitterWorkerDest = path.resolve(
+  dir,
+  "../vendor/@opentui/core/src/lib/tree-sitter/_opentui-tree-sitter-worker.ts",
+)
 await Bun.write(treeSitterWorkerDest, workerText)
 const { outputs: workerOutputs } = await Bun.build({
   entrypoints: [treeSitterWorkerDest],
