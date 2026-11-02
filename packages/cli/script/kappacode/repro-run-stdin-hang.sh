@@ -48,7 +48,7 @@ case $TIMEOUT_SEC in
   ''|*[!0-9]*) echo "error: TIMEOUT_SEC must be a non-negative integer, got: $TIMEOUT_SEC" >&2; exit 2 ;;
 esac
 
-# packages/cli, resolved from script/kilocode of this script.
+# packages/cli, resolved from script/kappacode of this script.
 PKG_DIR=$(cd "$(dirname "$0")/../.." && pwd)
 cd "$PKG_DIR"
 
@@ -60,11 +60,13 @@ PROMPT="Reply with one word: hi"
 WARMUP_TIMEOUT_SEC=60
 
 # Isolated config dir: no remote, no MCP, no snapshots, all permissions allowed.
-KILO_CONFIG_DIR=$(mktemp -d)
-export KILO_CONFIG_DIR
-export KILO_DISABLE_AUTOUPDATE=1
-# shellcheck disable=SC2016  # $schema is a literal JSON key, not a shell expansion.
-printf '%s\n' '{"$schema":"https://app.kilo.ai/config.json","snapshot":false,"permission":{"*":"allow"}}' >"$KILO_CONFIG_DIR/kilo.json"
+# Kappa reads config env as KAPPA_* (NOT KILO_*); the repo's account/cloud
+# integrations key off KAPPA_CONFIG_DIR and KAPPA_DISABLE_AUTOUPDATE.
+KAPPA_CONFIG_DIR=$(mktemp -d)
+export KAPPA_CONFIG_DIR
+export KAPPA_DISABLE_AUTOUPDATE=1
+# shellcheck disable=SC2016  # $schema is a literal JSON key, not an arithmetic expression.
+printf '%s\n' '{"$schema":"https://app.kilo.ai/config.json","snapshot":false,"permission":{"*":"allow"}}' >"$KAPPA_CONFIG_DIR/kappa.json"
 
 # Per-run logs stay out of the git worktree.
 LOG_DIR=$(mktemp -d)

@@ -4,8 +4,8 @@ import stripAnsi from "strip-ansi"
 import { defaultConsoleUrl, formatAccountLabel, formatOrgLine } from "../../src/cli/cmd/account.ts"
 
 describe("console account display", () => {
-  test("uses opencode.ai/console as the default login URL", () => {
-    expect(defaultConsoleUrl).toBe("https://opencode.ai/console")
+  test("uses api.kilo.ai as the default device-auth console URL", () => {
+    expect(defaultConsoleUrl).toBe("https://api.kilo.ai")
   })
 
   test("includes the account url in account labels", () => {

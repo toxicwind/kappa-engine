@@ -501,7 +501,7 @@ export const SessionApi = HttpApi.make("session")
   )
   .annotateMerge(
     OpenApi.annotations({
-      title: "opencode experimental HttpApi",
+      title: "kappa experimental HttpApi", // kappacode_change
       version: "0.0.1",
       description: "Experimental HttpApi surface for selected instance routes.",
     }),
