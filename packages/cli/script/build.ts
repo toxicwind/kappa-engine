@@ -179,23 +179,14 @@ async function smokeModels(binaryPath: string) {
 const workerText = await Bun.file(
   path.resolve(dir, "../vendor/@opentui/core/src/lib/tree-sitter/parser.worker.ts")
 ).text()
-const treeSitterWorker = stripTSSyntax(workerText)
-
-function stripTSSyntax(text: string): string {
-  let result = text
-  result = result.replace(/import\s+type\s*\{[\s\S]*?\}\s*from\s*["'][^"']+["'];?/g, "")
-  result = result.replace(/import\s+type\s+\w+\s+from\s*["'][^"']+["'];?/g, "")
-  result = result.replace(
-    /import\s*\{[\s\S]*?\}\s*from\s*["'][^"']+["'];?/g,
-    (m) =>
-      m
-        .replace(/,\s*\btype\b\s+\w+/g, "")
-        .replace(/\btype\b\s+\w+,\s*/g, "")
-        .replace(/\btype\b\s+\w+\s+from/g, "from")
-  )
-  result = result.replace(/^\s*type\s+\w+\s*=[\s\S]*?;\s*/gm, "")
-  return result
-}
+const treeSitterWorkerDest = path.resolve(dir, "/tmp/opentui-tree-sitter-worker.ts")
+await Bun.write(treeSitterWorkerDest, workerText)
+const { outputs: workerOutputs } = await Bun.build({
+  entrypoints: [treeSitterWorkerDest],
+  outdir: path.resolve(dir, "/tmp/opentui-worker-out"),
+  splitting: false,
+})
+const treeSitterWorker = workerOutputs[0].contents
 
 const allTargets: {
   os: string
