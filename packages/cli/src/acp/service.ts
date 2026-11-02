@@ -104,7 +104,7 @@ export function make(input: {
     if (params.clientCapabilities?._meta?.["terminal-auth"] === true) {
       authMethod._meta = {
         "terminal-auth": {
-          command: "opencode",
+          command: "kappa", // kappacode_change - ACP client must spawn kappa, not opencode
           args: ["auth", "login"],
           label: "Kappa Login",
         },
