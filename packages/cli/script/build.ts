@@ -188,6 +188,7 @@ const { outputs: workerOutputs } = await Bun.build({
   entrypoints: [treeSitterWorkerDest],
   outdir: path.resolve(dir, "/tmp/opentui-worker-out"),
   splitting: false,
+  target: "bun",
 })
 const treeSitterWorker = workerOutputs[0].contents
 
