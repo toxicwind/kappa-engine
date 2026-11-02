@@ -12,13 +12,16 @@
  *    listener to the fake (never fires); `setRawMode` is backed by a fresh
  *    /dev/tty fd (termios is terminal-scoped, so a non-fd-0 handle is a
  *    valid termios owner). The renderer never touches fd 0.
- *  - `startBunStdinPump(onChunk)` — PRIMARY: Bun's native stdin stream
- *    (`Bun.stdin.stream()`), a different, kernel-polled implementation from
- *    the broken Node-compat stream. Byte chunks are handed straight to the
- *    renderer's stdin parser.
- *  - `startFdPump(fd, onChunk)` — FALLBACK/test path: libuv threadpool
- *    reads for arbitrary fds (FIFO/pipe/tty). Used for non-stdin fds and
- *    wherever Bun's stream is unavailable.
+ *  - `startBunStdinPump(onChunk)` — PRIMARY on fd 0: a native fd-0 read loop
+ *    (libuv threadpool blocking `fs.read` via the generic engine). It is the
+ *    Bun-native stdin path — it reads fd 0 directly and never touches the
+ *    Node-compat `process.stdin` — and it delivers as soon as the tty driver
+ *    has bytes (no stream-level burst buffering). Deliberately does NOT use
+ *    `Bun.stdin.stream()`: that ReadableStream buffers TTY reads at the stream
+ *    level, causing perceived input lag in SSH/tmux sessions (see the 2026-11-01
+ *    SSH-lag fix that reverted it).
+ *  - `startFdPump(fd, onChunk)` — generic engine: libuv threadpool reads for
+ *    arbitrary fds (FIFO/pipe/tty). `startBunStdinPump` is this on fd 0.
  */
 import fs from "node:fs"
 import * as tty from "node:tty"
@@ -84,38 +87,14 @@ export function createFakeStdin(): NodeJS.ReadStream {
 }
 
 /**
- * PRIMARY: pump fd 0 through Bun's native stdin stream.
- * `Bun.stdin.stream()` is Bun's own implementation (kernel-polled) and is
- * not the Node-compat layer whose lazily-initialized tty pump never
- * subscribed. Returns a handle; call `stop()` on teardown.
+ * PRIMARY on fd 0: native fd-0 read loop via the generic engine.
+ * Reads fd 0 directly (never the Node-compat `process.stdin`) and delivers as
+ * soon as the tty driver has bytes — the low-latency path that fixed both the
+ * frozen-TUI (fd 0 unsubscribed) and the SSH burst-lag (stream buffering).
+ * Returns a handle; call `stop()` on teardown.
  */
 export function startBunStdinPump(onChunk: (chunk: Buffer) => void): TtyInputHandle {
-  let stopped = false
-  let fallback: TtyInputHandle | undefined
-  const ac = new AbortController()
-  void (async () => {
-    try {
-      for await (const chunk of Bun.stdin.stream()) {
-        if (stopped) break
-        onChunk(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk))
-      }
-    } catch (error) {
-      // Bun.stdin.stream() is a process-wide singleton: if another consumer
-      // locked it (readableStream locked, e.g. a test fixture or a library
-      // grabbing stdin), or the tty fd errored, hand off to the fd pump so
-      // input never silently dies.
-      if (!stopped) {
-        fallback = startFdPump(0, onChunk)
-      }
-    }
-  })().catch(() => {})
-  return {
-    stop() {
-      stopped = true
-      ac.abort()
-      fallback?.stop()
-    },
-  }
+	return startFdPump(0, onChunk)
 }
 
 /**
@@ -167,5 +146,8 @@ export function attachTtyInput(renderer: RawInputSink, fd = 0): TtyInputHandle {
       console.error("[tty-input] stdinListener failed", error)
     }
   }
-  return fd === 0 && typeof Bun !== "undefined" ? startFdPump(0, deliver) : startFdPump(fd, deliver)
+  // fd 0 gets the Bun-native primary (a real distinct branch now — the old
+  // ternary returned startFdPump in BOTH arms, silently dead-code-ing the
+  // documented PRIMARY pump). Non-stdin fds use the generic engine directly.
+  return fd === 0 ? startBunStdinPump(deliver) : startFdPump(fd, deliver)
 }
