@@ -167,5 +167,5 @@ export function attachTtyInput(renderer: RawInputSink, fd = 0): TtyInputHandle {
       console.error("[tty-input] stdinListener failed", error)
     }
   }
-  return fd === 0 && typeof Bun !== "undefined" ? startBunStdinPump(deliver) : startFdPump(fd, deliver)
+  return fd === 0 && typeof Bun !== "undefined" ? startFdPump(0, deliver) : startFdPump(fd, deliver)
 }
