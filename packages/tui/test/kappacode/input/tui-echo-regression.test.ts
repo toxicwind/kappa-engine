@@ -70,9 +70,13 @@ describe("TUI input regression gate", () => {
   test("mutation proof: the gate fails against a broken input binary", async () => {
     // Audit-of-the-audit: a gate that cannot fail is not a gate. A stub whose
     // stdin never reaches a TUI must trip the same assertion the real TUI
-    // passes, otherwise this test file proves nothing.
+    // passes, otherwise this test file proves nothing. The stub must ALSO
+    // disable the pty's terminal echo: bun-pty echoes typed input at the
+    // terminal level, so a bare `sleep` stub would display the probe via echo
+    // even though no process reads stdin — a false positive that makes the
+    // gate pass for the wrong reason.
     const stub = join(Bun.env.TMPDIR ?? "/tmp", `kappa-stub-${Date.now()}.sh`)
-    writeFileSync(stub, "#!/bin/sh\nsleep 30\n", { mode: 0o755 })
+    writeFileSync(stub, "#!/bin/sh\nstty -echo 2>/dev/null; sleep 30\n", { mode: 0o755 })
     try {
       let screen = ""
       const proc: Proc = spawn(
