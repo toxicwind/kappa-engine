@@ -45,10 +45,6 @@
       "import": "./src/opentui.ts",
       "types": "./src/opentui.ts"
     },
-    "./react": {
-      "import": "./src/react/index.ts",
-      "types": "./src/react/index.ts"
-    },
     "./solid": {
       "import": "./src/solid/index.ts",
       "types": "./src/solid/index.ts"

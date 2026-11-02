@@ -6,7 +6,7 @@ import os from "os" // kappacode_change
 import path from "path"
 import { fileURLToPath } from "url"
 import { createSolidTransformPlugin } from "@opentui/solid/bun-plugin"
-import { createRequire } from "module" // kappacode_change
+import { createRequire } from "module"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -172,13 +172,19 @@ async function smokeModels(binaryPath: string) {
 //   ].join("\n")
 // }
 // kappacode_change end
-
-const treeSitterWorker = await Bun.file(fileURLToPath(import.meta.resolve("@opentui/core/parser.worker"))).text()
-// kappacode_change - vendor: resolve worker from local vendor/ so the build doesn't
-// depend on the npm-published sidecar package.
-const vendorWorkerPath = path.resolve(dir, "../../vendor/@opentui/core/src/platform/node-assets.ts")
-const vendorCorePath = path.resolve(dir, "../../vendor/@opentui/core/src")
-const vendorTreeSitterWorker = vendorWorkerPath // resolved via node-assets.ts which exports the worker path
+// kappacode_change: strip `import type` lines before bundling as .js
+// The vendor's parser.worker.ts has `import type {...} from "web-tree-sitter"`
+// and `import type {...}` across multiple lines — not valid JS.
+// Strip ALL `import type` lines (including multi-line).
+const treeSitterWorker = await Bun.file(
+  fileURLToPath(import.meta.resolve("@opentui/core/parser.worker")),
+).text().then(t => {
+  // Strip single-line `import type` lines
+  let result = t.replace(/^import type \{[^}]+\} from\s+['"][^'"]+['"];\s*$/gm, "")
+  // Strip multi-line `import type` blocks
+  result = result.replace(/import type \{[\s\S]*?\} from\s+['"][^'"]+['"];\s*/g, "")
+  return result
+})
 
 const allTargets: {
   os: string
