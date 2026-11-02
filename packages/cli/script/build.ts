@@ -177,11 +177,10 @@ async function smokeModels(binaryPath: string) {
 // and `import type {...}` across multiple lines — not valid JS.
 // Strip ALL `import type` lines (including multi-line).
 const treeSitterWorker = await Bun.file(
-  fileURLToPath(import.meta.resolve("@opentui/core/parser.worker")),
-).text().then(t => {
-  let r = t.replace(/^import type \{[^}]+\} from\s+['"][^'"]+['"]\s*;?\s*$/gm, '')
-  return r.replace(/import type \{[\s\S]*?\} from\s+['"][^'"]+['"]\s*;?\s*/g, '')
-})
+  path.resolve(dir, "../../vendor/@opentui/core/src/lib/tree-sitter/parser.worker.ts")
+).text()
+  .replace(/^import type \{[^}]+\} from\s+['"][^'"]+['"]\s*;?\s*$/gm, '')
+  .replace(/import type \{[\s\S]*?\} from\s+['"][^'"]+['"]\s*;?\s*/g, '')
 
 const allTargets: {
   os: string
