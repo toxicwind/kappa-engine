@@ -105,6 +105,63 @@ async function buildKappaConsole() {
   if (code !== 0) throw new Error(`Kappa Console build failed with exit code ${code}`)
   return out
 }
+
+// Vendored @opentui packages are tracked as source; their dist bundles are
+// generated (npm-publish-style) and referenced by package.json exports. The
+// main binary build resolves `@opentui/core` / `@opentui/solid` to these
+// prebuilt bundles — bun --compile with multiple entrypoints + splitting:false
+// fails on plain-source vendored modules ("The superclass is not a
+// constructor" in class extends). Build them before bundling.
+async function buildVendoredOpentui() {
+  const kit = [
+    {
+      cwd: path.resolve(dir, "../vendor/@opentui/core"),
+      script: "build:lib",
+      marker: "dist/index.bun.js",
+    },
+    {
+      cwd: path.resolve(dir, "../vendor/@opentui/solid"),
+      script: "build",
+      marker: "dist/index.bun.js",
+    },
+    {
+      cwd: path.resolve(dir, "../vendor/@opentui/keymap"),
+      script: "build",
+      marker: "dist/src/index.js",
+    },
+  ]
+  for (const item of kit) {
+    const marker = path.join(item.cwd, item.marker)
+    if (fs.existsSync(marker)) {
+      const markerStat = await fs.promises.stat(marker)
+      const src = path.join(item.cwd, "src")
+      let stale = false
+      if (fs.existsSync(src)) {
+        const glob = new Bun.Glob("**/*.{ts,tsx,json}")
+        for await (const file of glob.scan({ cwd: src })) {
+          const fileStat = await fs.promises.stat(path.join(src, file))
+          if (fileStat.mtimeMs > markerStat.mtimeMs) {
+            stale = true
+            break
+          }
+        }
+      }
+      if (!stale) {
+        console.log(`reusing vendored @opentui dist at ${marker}`)
+        continue
+      }
+    }
+    console.log(`building vendored @opentui (${path.basename(item.cwd)})`)
+    const proc = Bun.spawn([process.execPath, "run", item.script], {
+      cwd: item.cwd,
+      stdout: "inherit",
+      stderr: "inherit",
+      windowsHide: true,
+    })
+    const code = await proc.exited
+    if (code !== 0) throw new Error(`Vendored @opentui build failed (${item.cwd}) with exit code ${code}`)
+  }
+}
 // kappacode_change end
 
 async function copyKappaConsole(input: string, outputDir: string) {
@@ -278,6 +335,7 @@ const targets = singleFlag
 
 // kappacode_change start
 await $`rm -rf dist`
+await buildVendoredOpentui()
 const [kappaConsoleDist, kappaSandboxWorker, kappaSandboxNetwork] = await Promise.all([
   buildKappaConsole(),
   KappaSandboxWorker.bundle(),

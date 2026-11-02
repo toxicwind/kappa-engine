@@ -78,3 +78,6 @@ packages/*/.kilo/tui.jsonc
 packages/*/.artifacts/
 .kappa/
 .kappacode/
+
+# Generated during vendor build (build.ts copies + bun-bundles parser.worker.ts)
+packages/vendor/@opentui/core/src/lib/tree-sitter/_opentui-tree-sitter-worker.ts

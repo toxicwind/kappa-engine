@@ -23,34 +23,40 @@
   },
   "exports": {
     ".": {
-      "types": "./index.ts",
-      "import": "./index.ts"
+      "types": "./dist/index.d.ts",
+      "bun": "./dist/index.bun.js",
+      "import": "./dist/index.js"
     },
     "./preload": {
-      "import": "./scripts/preload.ts"
+      "bun": "./dist/scripts/preload.js",
+      "import": "./dist/scripts/preload.node.js"
     },
     "./bun-plugin": {
-      "import": "./scripts/solid-plugin.ts"
+      "types": "./dist/scripts/solid-plugin.d.ts",
+      "bun": "./dist/scripts/solid-plugin.js",
+      "import": "./dist/scripts/solid-plugin.node.js"
     },
     "./runtime-plugin-support": {
-      "types": "./scripts/runtime-plugin-support.ts",
-      "import": "./scripts/runtime-plugin-support.ts"
+      "types": "./dist/scripts/runtime-plugin-support.d.ts",
+      "bun": "./dist/scripts/runtime-plugin-support.js",
+      "import": "./dist/scripts/runtime-plugin-support.node.js"
     },
     "./runtime-plugin-support/configure": {
-      "types": "./scripts/runtime-plugin-support-configure.ts",
-      "import": "./scripts/runtime-plugin-support-configure.ts"
+      "types": "./dist/scripts/runtime-plugin-support-configure.d.ts",
+      "bun": "./dist/scripts/runtime-plugin-support-configure.js",
+      "import": "./dist/scripts/runtime-plugin-support-configure.node.js"
     },
     "./components": {
-      "types": "./components.ts",
-      "import": "./components.ts"
+      "types": "./dist/components.d.ts",
+      "import": "./dist/components.js"
     },
     "./jsx-runtime": {
-      "types": "./jsx-runtime.d.ts",
-      "import": "./jsx-runtime.ts"
+      "types": "./dist/jsx-runtime.d.ts",
+      "import": "./dist/jsx-runtime.js"
     },
     "./jsx-dev-runtime": {
-      "types": "./jsx-dev-runtime.d.ts",
-      "import": "./jsx-dev-runtime.ts"
+      "types": "./dist/jsx-dev-runtime.d.ts",
+      "import": "./dist/jsx-dev-runtime.js"
     }
   },
   "devDependencies": {

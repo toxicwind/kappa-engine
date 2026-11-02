@@ -86,46 +86,50 @@
   },
   "exports": {
     ".": {
-      "types": "./src/index.ts",
-      "bun": "./src/index.ts",
-      "node": "./src/index.ts",
-      "import": "./src/index.ts"
+      "types": "./dist/index.d.ts",
+      "bun": "./dist/index.bun.js",
+      "node": "./dist/index.node.js",
+      "import": "./dist/index.node.js"
     },
     "./testing": {
-      "types": "./src/testing.ts",
-      "bun": "./src/testing.ts",
-      "import": "./src/testing.ts"
+      "types": "./dist/testing.d.ts",
+      "bun": "./dist/testing.bun.js",
+      "import": "./dist/testing.js"
     },
     "./runtime-plugin": {
-      "types": "./src/runtime-plugin.ts",
-      "import": "./src/runtime-plugin.ts"
+      "types": "./dist/runtime-plugin.d.ts",
+      "bun": "./dist/runtime-plugin.js",
+      "import": "./dist/runtime-plugin.node.js"
     },
     "./runtime-plugin-support": {
-      "types": "./src/runtime-plugin-support.ts",
-      "import": "./src/runtime-plugin-support.ts"
+      "types": "./dist/runtime-plugin-support.d.ts",
+      "bun": "./dist/runtime-plugin-support.js",
+      "import": "./dist/runtime-plugin-support.node.js"
     },
     "./runtime-plugin-support/configure": {
-      "types": "./src/runtime-plugin-support-configure.ts",
-      "import": "./src/runtime-plugin-support-configure.ts"
+      "types": "./dist/runtime-plugin-support-configure.d.ts",
+      "bun": "./dist/runtime-plugin-support-configure.js",
+      "import": "./dist/runtime-plugin-support-configure.node.js"
     },
     "./yoga": {
-      "types": "./src/yoga.ts",
-      "bun": "./src/yoga.ts",
-      "import": "./src/yoga.ts"
+      "types": "./dist/yoga.d.ts",
+      "bun": "./dist/yoga.bun.js",
+      "import": "./dist/yoga.js"
     },
     "./tree-sitter/update-assets": {
-      "types": "./src/lib/tree-sitter/update-assets.ts",
-      "import": "./src/lib/tree-sitter/update-assets.ts"
+      "types": "./dist/lib/tree-sitter/update-assets.d.ts",
+      "bun": "./dist/lib/tree-sitter/update-assets.js",
+      "import": "./dist/lib/tree-sitter/update-assets.js"
     },
     "./parser.worker": {
-      "types": "./src/lib/tree-sitter/parser.worker.ts",
-      "bun": "./src/lib/tree-sitter/parser.worker.ts",
-      "node": "./src/lib/tree-sitter/parser.worker.ts",
-      "import": "./src/lib/tree-sitter/parser.worker.ts"
+      "types": "./dist/lib/tree-sitter/parser.worker.d.ts",
+      "bun": "./dist/parser.worker.js",
+      "node": "./dist/parser.worker.js",
+      "import": "./dist/parser.worker.js"
     },
     "./node-assets": {
-      "types": "./src/node-assets.ts",
-      "import": "./src/node-assets.ts"
+      "types": "./dist/node-assets.d.ts",
+      "import": "./dist/node-assets.js"
     }
   },
   "engines": {

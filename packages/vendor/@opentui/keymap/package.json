@@ -14,44 +14,44 @@
   "types": "src/index.ts",
   "exports": {
     ".": {
-      "import": "./src/index.ts",
-      "types": "./src/index.ts"
+      "import": "./dist/src/index.js",
+      "types": "./dist/src/index.d.ts"
     },
     "./extras": {
-      "import": "./src/extras/index.ts",
-      "types": "./src/extras/index.ts"
+      "import": "./dist/src/extras/index.js",
+      "types": "./dist/src/extras/index.d.ts"
     },
     "./extras/graph": {
-      "import": "./src/extras/graph.ts",
-      "types": "./src/extras/graph.ts"
+      "import": "./dist/src/extras/graph.js",
+      "types": "./dist/src/extras/graph.d.ts"
     },
     "./addons": {
-      "import": "./src/addons/index.ts",
-      "types": "./src/addons/index.ts"
+      "import": "./dist/src/addons/index.js",
+      "types": "./dist/src/addons/index.d.ts"
     },
     "./addons/opentui": {
-      "import": "./src/addons/opentui/index.ts",
-      "types": "./src/addons/opentui/index.ts"
+      "import": "./dist/src/addons/opentui/index.js",
+      "types": "./dist/src/addons/opentui/index.d.ts"
     },
     "./testing": {
-      "import": "./src/testing/index.ts",
-      "types": "./src/testing/index.ts"
+      "import": "./dist/src/testing/index.js",
+      "types": "./dist/src/testing/index.d.ts"
     },
     "./html": {
-      "import": "./src/html.ts",
-      "types": "./src/html.ts"
+      "import": "./dist/src/html.js",
+      "types": "./dist/src/html.d.ts"
     },
     "./opentui": {
-      "import": "./src/opentui.ts",
-      "types": "./src/opentui.ts"
+      "import": "./dist/src/opentui.js",
+      "types": "./dist/src/opentui.d.ts"
     },
     "./solid": {
-      "import": "./src/solid/index.ts",
-      "types": "./src/solid/index.ts"
+      "import": "./dist/src/solid/index.js",
+      "types": "./dist/src/solid/index.d.ts"
     },
     "./runtime-modules": {
-      "import": "./src/runtime-modules.ts",
-      "types": "./src/runtime-modules.ts"
+      "import": "./dist/src/runtime-modules.js",
+      "types": "./dist/src/runtime-modules.d.ts"
     }
   },
   "scripts": {

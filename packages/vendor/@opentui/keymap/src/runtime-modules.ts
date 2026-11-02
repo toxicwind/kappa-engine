@@ -3,7 +3,7 @@ import * as keymap from "@opentui/keymap"
 import * as keymapExtras from "@opentui/keymap/extras"
 import * as keymapGraphExtra from "@opentui/keymap/extras/graph"
 import * as keymapAddons from "@opentui/keymap/addons"
-import { loadKeymapOpenTuiAddons } from "@opentui/keymap/addons/opentui"
+import * as keymapOpenTuiAddons from "@opentui/keymap/addons/opentui"
 import * as keymapHtml from "@opentui/keymap/html"
 import * as keymapOpenTui from "@opentui/keymap/opentui"
 const loadKeymapSolid = async (): Promise<RuntimeModuleExports> => {
