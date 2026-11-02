@@ -179,9 +179,7 @@ async function smokeModels(binaryPath: string) {
 const workerText = await Bun.file(
   path.resolve(dir, "../vendor/@opentui/core/src/lib/tree-sitter/parser.worker.ts")
 ).text()
-const treeSitterWorker = workerText
-  .replace(/^import type \{[^}]+\} from\s+['"][^'"]+['"]\s*;?\s*$/gm, '')
-  .replace(/import type \{[\s\S]*?\} from\s*['"][^'"]+['"]\s*;?\s*/g, '')
+const { code: treeSitterWorker } = await Bun.transform(workerText, { loader: "ts" })
 
 const allTargets: {
   os: string
