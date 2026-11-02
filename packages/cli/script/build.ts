@@ -174,6 +174,11 @@ async function smokeModels(binaryPath: string) {
 // kappacode_change end
 
 const treeSitterWorker = await Bun.file(fileURLToPath(import.meta.resolve("@opentui/core/parser.worker"))).text()
+// kappacode_change - vendor: resolve worker from local vendor/ so the build doesn't
+// depend on the npm-published sidecar package.
+const vendorWorkerPath = path.resolve(dir, "../../vendor/@opentui/core/src/platform/node-assets.ts")
+const vendorCorePath = path.resolve(dir, "../../vendor/@opentui/core/src")
+const vendorTreeSitterWorker = vendorWorkerPath // resolved via node-assets.ts which exports the worker path
 
 const allTargets: {
   os: string
@@ -270,7 +275,6 @@ const [kappaConsoleDist, kappaSandboxWorker, kappaSandboxNetwork] = await Promis
 
 const binaries: Record<string, string> = {}
 if (!skipInstall) {
-  await $`bun install --os="*" --cpu="*" @opentui/core@${pkg.dependencies["@opentui/core"]}`
   await $`bun install --os="*" --cpu="*" @parcel/watcher@${pkg.dependencies["@parcel/watcher"]}`
   await $`bun install --os="*" --cpu="*" @ff-labs/fff-bun@${pkg.dependencies["@ff-labs/fff-bun"]}`
 }

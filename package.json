@@ -15,7 +15,7 @@
     "typecheck": "bun turbo typecheck",
     "upgrade-opentui": "bun run script/upgrade-opentui.ts",
     "postinstall": "bun run --cwd packages/core fix-node-pty && bun run script/setup-git.ts",
-    "prepare": "husky",
+    "prepare": "husky install 2>/dev/null || echo 'husky skip (non-tty build)'",
     "random": "echo 'Random script'",
     "sso": "aws sso login --sso-session=opencode --no-browser",
     "test": "echo 'do not run tests from root' && exit 1",
@@ -36,7 +36,8 @@
   "workspaces": {
     "packages": [
       "packages/*",
-      "packages/sdk/js"
+      "packages/sdk/js",
+      "packages/vendor/@opentui/*"
     ],
     "catalog": {
       "@effect/opentelemetry": "4.0.6",
@@ -46,8 +47,8 @@
       "@types/bun": "1.4.3",
       "@types/cross-spawn": "6.0.6",
       "@octokit/rest": "22.0.0",
-      "@opentui/core": "0.5.11",
-      "@opentui/solid": "0.5.11",
+      "@opentui/core": "*",
+      "@opentui/solid": "*",
       "ulid": "3.0.1",
       "@kobalte/core": "0.13.11",
       "@types/luxon": "3.7.1",
@@ -92,7 +93,7 @@
       "solid-js": "1.9.12",
       "vite-plugin-solid": "2.11.10",
       "@lydell/node-pty": "1.2.0-beta.12",
-      "@opentui/keymap": "0.5.11",
+      "@opentui/keymap": "*",
       "@effect/sql-sqlite-bun": "4.0.6",
       "@hono/standard-validator": "0.2.0",
       "@hono/zod-validator": "0.4.2",
@@ -171,10 +172,10 @@
     "dompurify": "3.4.16",
     "katex": "0.19.0",
     "happy-dom": "20.11.1",
-    "@opentui/core": "catalog:",
-    "@opentui/solid": "catalog:",
+    "@opentui/core": "*",
+    "@opentui/solid": "*",
     "solid-js": "catalog:",
-    "@opentui/keymap": "catalog:",
+    "@opentui/keymap": "*",
     "@ai-sdk/anthropic": "3.0.111"
   },
   "patchedDependencies": {
