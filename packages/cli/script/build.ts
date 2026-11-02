@@ -176,9 +176,12 @@ async function smokeModels(binaryPath: string) {
 // The vendor's parser.worker.ts has `import type {...} from "web-tree-sitter"`
 // and `import type {...}` across multiple lines — not valid JS.
 // Strip ALL `import type` lines (including multi-line).
-const treeSitterWorker = (await Bun.file(
+const treeSitterWorker = await Bun.file(
   fileURLToPath(import.meta.resolve("@opentui/core/parser.worker")),
-)).text().replace(/^import type \{[^}]+\} from\s+['"][^'"]+['"];\s*$/gm, '').replace(/import type \{[\s\S]*?\} from\s+['"][^'"]+['"];\s*/g, "")
+).text().then(t => {
+  let r = t.replace(/^import type \{[^}]+\} from\s+['"][^'"]+['"];\s*$/gm, '')
+  return r.replace(/import type \{[\s\S]*?\} from\s+['"][^'"]+['"];\s*/g, '')
+})
 
 const allTargets: {
   os: string
