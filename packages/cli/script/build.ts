@@ -113,15 +113,16 @@ async function buildKappaConsole() {
 // fails on plain-source vendored modules ("The superclass is not a
 // constructor" in class extends). Build them before bundling.
 async function buildVendoredOpentui() {
+  // Only packages whose class-extends/export ordering breaks under bun
+  // --compile+multi-entry (or that need prebuilt runtime modules) get dist
+  // prebuilt. @opentui/solid stays source-backed (its exports/props resolve
+  // against @opentui/core's ordered dist bundle at compile time), and its
+  // build/bootstrap scripts self-import @opentui/solid, so prebuilding it
+  // would deadlock.
   const kit = [
     {
       cwd: path.resolve(dir, "../vendor/@opentui/core"),
       script: "build:lib",
-      marker: "dist/index.bun.js",
-    },
-    {
-      cwd: path.resolve(dir, "../vendor/@opentui/solid"),
-      script: "build",
       marker: "dist/index.bun.js",
     },
     {
