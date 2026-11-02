@@ -1,5 +1,5 @@
 diff --git a/photon_rs.js b/photon_rs.js
-index ccf9c37..bf39002 100644
+index ccf9c37..0a23478 100644
 --- a/photon_rs.js
 +++ b/photon_rs.js
 @@ -1,6 +1,7 @@
@@ -273,13 +273,21 @@ index ccf9c37..bf39002 100644
      const table = wasm.__wbindgen_export_2;
      const offset = table.grow(4);
      table.set(0, undefined);
-@@ -4509,7 +4510,8 @@ module.exports.__wbindgen_init_externref_table = function() {
+@@ -4509,7 +4510,16 @@ module.exports.__wbindgen_init_externref_table = function() {
      ;
  };
  
 -const path = require('path').join(__dirname, 'photon_rs_bg.wasm');
-+// Allow Kilo's Bun compiled binary to point photon-node at its embedded wasm asset.
-+const path = globalThis.__KILOCODE_PHOTON_WASM_PATH || require('path').join(__dirname, 'photon_rs_bg.wasm');
++// Auto-shim (backward compatible): pick the running binary's embedded wasm
++// asset from any brand-prefixed global — property form (kappacode/opencode/
++// kilo-code) or bare identifier injected via --define by older builds — then
++// fall back to the on-disk file. Resists future cross-product renames.
++const __photonWasmPath =
++  globalThis.__KAPPACODE_PHOTON_WASM_PATH ||
++  globalThis.__OPENCODE_PHOTON_WASM_PATH ||
++  globalThis.__KILOCODE_PHOTON_WASM_PATH ||
++  (typeof __KILOCODE_PHOTON_WASM_PATH !== "undefined" ? __KILOCODE_PHOTON_WASM_PATH : undefined);
++const path = __photonWasmPath || require('path').join(__dirname, 'photon_rs_bg.wasm');
  const bytes = require('fs').readFileSync(path);
  
  const wasmModule = new WebAssembly.Module(bytes);
