@@ -17,6 +17,9 @@ import { NotifyUserTool } from "./notify-user.ts"
 import { OpenPlanTool } from "./open-plan.ts"
 import { ScheduleWakeupTool } from "./schedule-wakeup.ts"
 import { SendFileTool } from "./send-file.ts"
+import { WorktreeTool } from "./worktree.ts"
+import { PrTool } from "./pr.ts"
+import { StatsTool } from "./stats.ts"
 import * as Tool from "../../tool/tool.ts"
 import { Flag } from "@opencode-ai/core/flag/flag"
 import { Effect } from "effect"
@@ -112,6 +115,9 @@ export namespace KappaToolRegistry {
       const openPlan = yield* OpenPlanTool
       const send = yield* SendFileTool
       const linkPr = yield* LinkPrTool
+      const worktree = yield* WorktreeTool
+      const pr = yield* PrTool
+      const stats = yield* StatsTool
       // Wakeup.Service is provided by Wakeup.node in the tool-registry node graph.
       const schedule = yield* ScheduleWakeupTool
       const cancel = yield* CancelWakeupTool
@@ -139,6 +145,9 @@ export namespace KappaToolRegistry {
           openPlan,
           send,
           linkPr,
+          worktree,
+          pr,
+          stats,
           schedule,
           cancel,
           cronCreate,
@@ -165,6 +174,9 @@ export namespace KappaToolRegistry {
         openPlan,
         send,
         linkPr,
+        worktree,
+        pr,
+        stats,
         schedule,
         cancel,
         cronCreate,
@@ -193,6 +205,9 @@ export namespace KappaToolRegistry {
       openPlan?: Tool.Info
       send: Tool.Info
       linkPr: Tool.Info
+      worktree: Tool.Info
+      pr: Tool.Info
+      stats: Tool.Info
       schedule?: Tool.Info
       cancel?: Tool.Info
       cronCreate?: Tool.Info

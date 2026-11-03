@@ -36,6 +36,7 @@ import { KappaCodeMode } from "../kappacode/tool/code-mode.ts" // kappacode_chan
 import { Notebook } from "@/kappacode/notebook/service" // kappacode_change
 import { AgentManager } from "@/kappacode/agent-manager/service" // kappacode_change
 import { Wakeup } from "@/kappacode/wakeup" // kappacode_change
+import { Worktree } from "@/worktree/index" // kappacode_change - provide Worktree.Service so the worktree tool's init resolves
 import { SessionDrain } from "@/kappacode/session/drain" // kappacode_change
 import { RepoOverviewTool } from "@/kappacode/tool/repo-overview" // kappacode_change
 import { ContextInfoTool, CompactTool } from "@/kappacode/tool/context" // kappacode_change
@@ -572,6 +573,7 @@ export const node = LayerNode.suspend(() =>
       RepositoryCache.node,
       KappaSessions.node,
       Wakeup.node, // kappacode_change - provides Wakeup.Service to the schedule_wakeup/cancel_wakeup tools
+      Worktree.node, // kappacode_change - provides Worktree.Service to the worktree tool
     ],
   }),
 )
