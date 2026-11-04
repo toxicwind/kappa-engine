@@ -44,7 +44,28 @@ function cap(ms: number) {
   return Math.min(ms, RETRY_MAX_DELAY)
 }
 
-export function delay(attempt: number, error?: SessionV1.APIError, random = Math.random()) {
+export function delay(attempt: number, error?: SessionV1.APIError, random = Math.random(), shed = false) {
+  // kappacode_change start — a concurrency shed (local 429 throttle, e.g.
+  // rhodochrosite/Thresher) is NOT a real provider rate limit: honor its
+  // retry-after only up to a short bound so a busy router doesn't stall the
+  // agent for tens of seconds. Real provider rate limits still get their full
+  // retry-after (they carry provider-specific headers).
+  const shedCap = 5_000 // 5s max wait on a local concurrency shed
+  if (shed && error) {
+    const headers = error.data.responseHeaders
+    const retryAfterMs = headers?.["retry-after-ms"]
+    if (retryAfterMs) {
+      const parsedMs = Number.parseFloat(retryAfterMs)
+      if (!Number.isNaN(parsedMs)) return cap(Math.min(parsedMs, shedCap))
+    }
+    const retryAfter = headers?.["retry-after"]
+    if (retryAfter) {
+      const parsedSeconds = Number.parseFloat(retryAfter)
+      if (!Number.isNaN(parsedSeconds)) return cap(Math.min(Math.ceil(parsedSeconds * 1000), shedCap))
+    }
+    return cap(Math.min(exponential(attempt, random), shedCap))
+  }
+  // kappacode_change end
   if (error) {
     const headers = error.data.responseHeaders
     if (headers) {
@@ -83,9 +104,11 @@ function exponential(attempt: number, random: number) {
 }
 
 // kappacode_change - Kappa does not emit OpenCode Go actions
-export function retryable(error: Err, _provider?: string): Retryable | undefined {
+export function retryable(error: Err, provider?: string): Retryable | undefined {
   // context overflow errors should not be retried
   if (SessionV1.ContextOverflowError.isInstance(error)) return undefined
+  const overloaded = (m: string) =>
+    `Provider is overloaded${provider ? ` (${provider})` : ""} — retrying with backoff`
   if (SessionV1.APIError.isInstance(error)) {
     const status = error.data.statusCode
     // kappacode_change start - Current Kappa errors require user action (login/signup), don't retry
@@ -114,14 +137,14 @@ export function retryable(error: Err, _provider?: string): Retryable | undefined
     // because the retry loop holds a stale model ref.
     if (error.data.responseBody?.includes("FreeUsageLimitError")) return undefined
     // kappacode_change end
-    return { message: error.data.message.includes("Overloaded") ? "Provider is overloaded" : error.data.message }
+    return { message: error.data.message.includes("Overloaded") ? overloaded(error.data.message) : error.data.message }
   }
 
   const message = isRecord(error.data) ? error.data.message : undefined
   if (typeof message !== "string") return undefined
   const lower = message.toLowerCase()
   if (lower.includes("too_many_requests")) return { message: "Too Many Requests" }
-  if (lower.includes("exhausted") || lower.includes("unavailable")) return { message: "Provider is overloaded" }
+  if (lower.includes("exhausted") || lower.includes("unavailable")) return { message: overloaded(message) }
   if (matchesRetryableMessage(message)) return { message }
   return undefined
 }
@@ -212,7 +235,7 @@ export function policy(opts: {
         if (opts.limit === undefined && attempt > RETRY_MAX_RETRIES && !unlimitedShed) return yield* Cause.done(attempt)
         // kappacode_change end
         // kappacode_change end
-        const wait = delay(attempt, SessionV1.APIError.isInstance(error) ? error : undefined) // kappacode_change
+        const wait = delay(attempt, SessionV1.APIError.isInstance(error) ? error : undefined, Math.random(), isConcurrencyShed(error)) // kappacode_change
         const now = yield* Clock.currentTimeMillis
         yield* opts.set({
           attempt, // kappacode_change
