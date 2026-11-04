@@ -332,7 +332,7 @@ it.live(
             await $`git commit -m baseline`.cwd(dir).quiet()
           }),
       })
-      const previous = process.env["KAPPA_SNAPSHOT_MATERIALIZE_IDLE_MS"]
+      const previous = kiloEnv("SNAPSHOT_MATERIALIZE_IDLE_MS")
       // The quiet period has to outlast the gap between the two snapshots with room to
       // spare. The second snapshot must land while the first wait is still pending (a
       // materialization that has already started is not restarted), and the "restarted"

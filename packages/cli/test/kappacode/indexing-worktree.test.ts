@@ -18,7 +18,7 @@ const cfg: Partial<Config.Info> = {
   },
 }
 
-const configDir = process.env["KAPPA_CONFIG_DIR"]
+const configDir = kiloEnv("CONFIG_DIR")
 const indexed = {
   state: "Complete" as const,
   message: "Index up-to-date.",

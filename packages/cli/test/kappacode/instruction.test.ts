@@ -56,7 +56,7 @@ const withConfigDir =
   (value: string | undefined) =>
   <A, E, R>(self: Effect.Effect<A, E, R>) =>
     Effect.gen(function* () {
-      const original = process.env["KAPPA_CONFIG_DIR"]
+      const original = kiloEnv("CONFIG_DIR")
       if (value === undefined) delete process.env["KAPPA_CONFIG_DIR"]
       else process.env["KAPPA_CONFIG_DIR"] = value
       yield* Effect.addFinalizer(() =>

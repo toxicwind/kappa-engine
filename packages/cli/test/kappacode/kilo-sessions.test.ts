@@ -764,7 +764,7 @@ describe("KappaSessions.setInstanceAdvertisement (K1 W1 / DEF-1)", () => {
 
   test("per-session platform resolution matches meta() order — env var fallback", async () => {
     // The getSessions closure's platform field is computed as:
-    //   KappaSession.resolvePlatform(id) || process.env["KAPPA_PLATFORM"] || "cli"
+    //   KappaSession.resolvePlatform(id) || kiloEnv("PLATFORM") || "cli"
     // For an id with no override, the env var (when set) wins over the default.
     process.env["KAPPA_PLATFORM"] = "vscode"
     await using tmp = await tmpdir({ git: true })
@@ -780,7 +780,7 @@ describe("KappaSessions.setInstanceAdvertisement (K1 W1 / DEF-1)", () => {
         expect(payload.type).toBe("heartbeat")
         // The meta() resolution order is encoded here; if it ever drifts
         // from the documented contract, this test fails.
-        const expectedPlatform = process.env["KAPPA_PLATFORM"] || "cli"
+        const expectedPlatform = kiloEnv("PLATFORM") || "cli"
         expect(expectedPlatform).toBe("vscode")
       },
     })

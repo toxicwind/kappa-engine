@@ -80,9 +80,9 @@ const staleKappa: Partial<Config.Info> = {
     vectorStore: "qdrant",
   },
 }
-const configDir = process.env["KAPPA_CONFIG_DIR"]
-const disabled = process.env["KAPPA_DISABLE_CODEBASE_INDEXING"]
-const platform = process.env["KAPPA_PLATFORM"]
+const configDir = kiloEnv("CONFIG_DIR")
+const disabled = kiloEnv("DISABLE_CODEBASE_INDEXING")
+const platform = kiloEnv("PLATFORM")
 const error = new Error("test indexing initialization failed")
 
 function inline(directory: string, root: string, hooks: IndexingWorker.Hooks): IndexingWorker.Driver {

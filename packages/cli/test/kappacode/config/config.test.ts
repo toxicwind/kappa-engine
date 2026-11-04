@@ -1511,7 +1511,7 @@ describe("linked worktree config", () => {
     await $`git worktree add -b config-explicit-worktree ${worktree}`.cwd(primary.path).quiet()
     await Bun.write(path.join(primary.path, ".kappa", "kappa.jsonc"), JSON.stringify({ username: "primary-dir" }))
     await Bun.write(path.join(explicit.path, "kappa.jsonc"), JSON.stringify({ username: "explicit-dir" }))
-    const previous = process.env["KAPPA_CONFIG_DIR"]
+    const previous = kiloEnv("CONFIG_DIR")
     process.env["KAPPA_CONFIG_DIR"] = explicit.path
 
     try {

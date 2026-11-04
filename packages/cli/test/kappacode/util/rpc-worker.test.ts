@@ -73,7 +73,7 @@ describe("worker rpc against a real worker", () => {
 
   test("reports readiness as false when the worker stays blocked", async () => {
     using fixture = await gated()
-    const previous = process.env["KAPPA_RPC_HANDSHAKE_TIMEOUT"]
+    const previous = kiloEnv("RPC_HANDSHAKE_TIMEOUT")
     process.env["KAPPA_RPC_HANDSHAKE_TIMEOUT"] = "200"
     try {
       // Gate is never released, so the worker never installs its handler.

@@ -39,6 +39,32 @@ describe("session.retry.delay", () => {
     expect(delays).toStrictEqual([2000, 4000, 8000, 16000, 30000, 30000, 30000, 30000, 30000, 30000])
   })
 
+  // kappacode_change start — concurrency-shed delay cap (2026-11-04)
+  // A local concurrency shed (rhodochrosite/Thresher 429 with no real provider
+  // rate-limit header) must not stall the agent for tens of seconds. When the
+  // `shed` flag is set, retry-after and exponential backoff are capped at 5s.
+  test("caps a large retry-after to 5s on a concurrency shed", () => {
+    const error = apiError({ "retry-after": "22" })
+    expect(SessionRetry.delay(1, error, 0, true)).toBe(5000)
+  })
+
+  test("caps retry-after-ms to 5s on a concurrency shed", () => {
+    const error = apiError({ "retry-after-ms": "22000" })
+    expect(SessionRetry.delay(1, error, 0, true)).toBe(5000)
+  })
+
+  test("caps exponential backoff to 5s on a concurrency shed", () => {
+    const error = apiError()
+    const delays = Array.from({ length: 10 }, (_, index) => SessionRetry.delay(index + 1, error, 0, true))
+    expect(delays).toStrictEqual([2000, 4000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000])
+  })
+
+  test("honors a large retry-after when NOT a concurrency shed", () => {
+    const error = apiError({ "retry-after": "22" })
+    expect(SessionRetry.delay(1, error, 0, false)).toBe(22000)
+  })
+  // kappacode_change end
+
   test("adds jitter to exponential delays", () => {
     const error = apiError()
     expect(SessionRetry.delay(1, error, 0)).toBe(2000)
@@ -220,7 +246,7 @@ describe("session.retry.retryable", () => {
 
   test("retries serialized overloaded provider codes", () => {
     const error = wrap(JSON.stringify({ code: "resource_exhausted" }))
-    expect(SessionRetry.retryable(error, retryProvider)).toEqual({ message: "Provider is overloaded" })
+    expect(SessionRetry.retryable(error, retryProvider)).toEqual({ message: "Provider is overloaded (test) — retrying with backoff" })
   })
 
   test("retries serialized rate_limit messages", () => {
@@ -292,7 +318,7 @@ describe("session.retry.retryable", () => {
 
   test("retries hyphenated service-unavailable errors", () => {
     expect(SessionRetry.retryable(wrap("service-unavailable"), retryProvider)).toEqual({
-      message: "Provider is overloaded",
+      message: "Provider is overloaded (test) — retrying with backoff",
     })
   })
 

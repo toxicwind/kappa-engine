@@ -189,7 +189,7 @@ describe("kappacode tool registry indexing", () => {
   it.live("follows VS Code project consent for semantic_search without config enablement", () =>
     Effect.acquireUseRelease(
       Effect.sync(() => {
-        const prev = process.env["KAPPA_PLATFORM"]
+        const prev = kiloEnv("PLATFORM")
         process.env["KAPPA_PLATFORM"] = "vscode"
         return prev
       }),
@@ -228,7 +228,7 @@ describe("kappacode tool registry indexing", () => {
     it.live(`omits interactive_terminal from ${client} tool definitions`, () =>
       Effect.acquireUseRelease(
         Effect.sync(() => {
-          const prev = process.env["KAPPA_CLIENT"]
+          const prev = kiloEnv("CLIENT")
           process.env["KAPPA_CLIENT"] = client
           return prev
         }),
@@ -365,7 +365,7 @@ describe("kappacode tool registry indexing", () => {
   )
 
   test("conditionally includes Kappa registry extras", () => {
-    const prev = process.env["KAPPA_CLIENT"]
+    const prev = kiloEnv("CLIENT")
     const def = (id: string): Tool.Def => ({
       id,
       description: id,
@@ -529,7 +529,7 @@ describe("kappacode tool registry indexing", () => {
   })
 
   test("logs indexing bootstrap failures without blocking session bootstrap", async () => {
-    const platform = process.env["KAPPA_PLATFORM"]
+    const platform = kiloEnv("PLATFORM")
     process.env["KAPPA_PLATFORM"] = "cli"
     const logger = Log.create({ service: "kappacode-bootstrap" })
     const err = new Error("indexing init failed")

@@ -476,7 +476,7 @@ setInterval(() => {}, 1_000)
 `,
         ),
       )
-      const client = process.env["KAPPA_CLIENT"]
+      const client = kiloEnv("CLIENT")
       process.env["KAPPA_CLIENT"] = "vscode"
 
       try {
@@ -512,8 +512,8 @@ setInterval(() => {}, 1_000)
 `,
         ),
       )
-      const client = process.env["KAPPA_CLIENT"]
-      const scans = process.env["KAPPA_BACKGROUND_PROCESS_PORTS"]
+      const client = kiloEnv("CLIENT")
+      const scans = kiloEnv("BACKGROUND_PROCESS_PORTS")
       process.env["KAPPA_CLIENT"] = "cli"
       process.env["KAPPA_BACKGROUND_PROCESS_PORTS"] = "true"
 
@@ -557,8 +557,8 @@ setInterval(() => {}, 1_000)
 `,
         ),
       )
-      const client = process.env["KAPPA_CLIENT"]
-      const scans = process.env["KAPPA_BACKGROUND_PROCESS_PORTS"]
+      const client = kiloEnv("CLIENT")
+      const scans = kiloEnv("BACKGROUND_PROCESS_PORTS")
       process.env["KAPPA_CLIENT"] = "cli"
       delete process.env["KAPPA_BACKGROUND_PROCESS_PORTS"]
 
@@ -597,7 +597,7 @@ setInterval(() => {}, 1_000)
 `,
         ),
       )
-      const client = process.env["KAPPA_CLIENT"]
+      const client = kiloEnv("CLIENT")
       process.env["KAPPA_CLIENT"] = "vscode"
 
       try {

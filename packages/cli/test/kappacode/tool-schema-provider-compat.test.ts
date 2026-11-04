@@ -30,7 +30,7 @@ describe("advertised tool schemas stay provider-compatible", () => {
     provideTmpdirInstance(
       () =>
         Effect.gen(function* () {
-          const prev = process.env["KAPPA_CLIENT"]
+          const prev = kiloEnv("CLIENT")
           // vscode advertises the widest tool set, including the Agent Manager tools.
           process.env["KAPPA_CLIENT"] = "vscode"
 

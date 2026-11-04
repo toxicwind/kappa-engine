@@ -32,7 +32,7 @@ function channel() {
 
 /** Scope a KAPPA_RPC_HANDSHAKE_TIMEOUT override to one test. */
 function bound(value: string) {
-  const previous = process.env["KAPPA_RPC_HANDSHAKE_TIMEOUT"]
+  const previous = kiloEnv("RPC_HANDSHAKE_TIMEOUT")
   process.env["KAPPA_RPC_HANDSHAKE_TIMEOUT"] = value
   return {
     [Symbol.dispose]() {
