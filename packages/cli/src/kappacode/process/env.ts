@@ -11,5 +11,8 @@ export function model(extra?: NodeJS.ProcessEnv | null): Record<string, string> 
   delete env.KAPPA_CONFIG
   delete env.KAPPA_CONFIG_CONTENT
   delete env.KAPPA_CONFIG_DIR
+  // kappacode_change: hook every spawned bash through the kairos 2s shim so
+  // agent commands get the latency-first enforcement (BASH_ENV sources it).
+  env.BASH_ENV ??= "/home/toxic/pens/olympus/products/kairos/shim.sh"
   return env
 }
