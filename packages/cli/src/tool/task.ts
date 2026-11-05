@@ -21,6 +21,7 @@ import { KappaSession } from "../kappacode/session/index.ts" // kappacode_change
 import { KappaSessionSoftSteering } from "../kappacode/session/soft-steering.ts" // kappacode_change
 import { KappaBackgrounder } from "../kappacode/tool/backgrounder.ts" // kappacode_change
 import { resumeHint } from "../kappacode/task-resume.ts" // kappacode_change
+import { TaskResult } from "../kappacode/tool/task-result.ts" // kappacode_change
 import { errorMessage } from "@/util/error" // kappacode_change
 import { generateSeed, formatSeed } from "../kappacode/orchestrator-seed.ts" // kappacode_change: precompaction seed
 import { Effect, Exit, Schema, Scope } from "effect"
@@ -363,7 +364,8 @@ export const TaskTool = Tool.define(
             parts,
           })
           yield* drain.wait(nextSession.id)
-          const latest = (yield* sessions.messages({ sessionID: nextSession.id, limit: 1 })).at(-1)
+          const recent = yield* sessions.messages({ sessionID: nextSession.id, limit: 8 })
+          const latest = recent.at(-1)
           const result = latest?.info.role === "assistant" && latest.info.id > initial.info.id ? latest : initial
           // kappacode_change end
           // kappacode_change start - expose terminal child assistant errors through the task tool boundary,
@@ -376,11 +378,14 @@ export const TaskTool = Tool.define(
             return yield* Effect.fail(new Error(`${failed.state.error}\n${resumeHint(nextSession.id)}`))
           }
           // kappacode_change end
-          // kappacode_change start - ignore synthetic/ignored/empty text parts (e.g. the memory marker) when picking the task result (#13469)
-          return (
-            result.parts
-              .filter((item): item is MessageV2.TextPart => item.type === "text")
-              .findLast((item) => !item.synthetic && !item.ignored && item.text.length > 0)?.text ?? ""
+          // kappacode_change start - task-result extraction via kappacode/tool/task-result.ts
+          // (#13469 sibling): walk-back over recent messages + fail-loud diagnostic.
+          // Never returns an empty <task_result> — the resumable session id is
+          // always visible so the parent can continue the subagent.
+          return TaskResult.orDiagnostic(
+            nextSession.id,
+            next.name,
+            TaskResult.extract(result, recent),
           )
           // kappacode_change end
         },
