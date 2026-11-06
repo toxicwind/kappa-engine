@@ -1,9 +1,10 @@
 import path from "path"
 import { Effect, Schema } from "effect"
 import { InstanceState } from "@/effect/instance-state"
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import { Ripgrep } from "@opencode-ai/core/ripgrep"
+import { FSUtil } from "@toxicwind/core/fs-util"
+import { Ripgrep } from "@toxicwind/core/ripgrep"
 import * as KappaGrep from "@/kappacode/tool/grep-signal-controls" // kappacode_change
+import { argosGrep } from "@/kappacode/argos-grep" // kappacode_change
 import { assertExternalDirectoryEffect } from "./external-directory.ts"
 import DESCRIPTION from "./grep.txt"
 import * as Tool from "./tool.ts"
@@ -66,6 +67,28 @@ export const GrepTool = Tool.define(
           const info = yield* fs.stat(search).pipe(Effect.catch(() => Effect.succeed(undefined)))
           if (!info || (info.type !== "File" && info.type !== "Directory")) return empty // kappacode_change
           const cwd = info?.type === "Directory" ? search : path.dirname(search)
+          // kappacode_change start - argos-first grep for broad pens searches
+          const argosHits = yield* Effect.promise(() => argosGrep(params.pattern, search, ctx.abort)).pipe(
+            Effect.catch(() => Effect.succeed(null)),
+          )
+          if (argosHits && argosHits.length > 0) {
+            const lines = [`Found ${argosHits.length} matches (argos pens-corpus):`]
+            let current = ""
+            for (const hit of argosHits) {
+              if (current !== hit.path) {
+                if (current !== "") lines.push("")
+                current = hit.path
+                lines.push(`${hit.path}:`)
+              }
+              if (hit.title) lines.push(`  ${hit.title}`)
+            }
+            return {
+              title: params.pattern,
+              metadata: { matches: argosHits.length, truncated: false },
+              output: lines.join("\n"),
+            }
+          }
+          // kappacode_change end
           const result = yield* ripgrep.grep({
             cwd,
             file: info?.type === "File" ? path.basename(search) : undefined, // kappacode_change - constrain exact-file searches
