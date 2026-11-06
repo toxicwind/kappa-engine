@@ -196,6 +196,50 @@ export async function writeInternalUri(rawUri: string, content: string, cwd: str
       const subcmd = String(args.subcmd ?? "grep")
       const query = String(args.query ?? "")
       const root = String(args.root ?? cwd)
+      // grep routes through the argos pens-corpus index first (fast, ranked,
+      // sees private-skills that raw rg misses), then falls back to ffs for
+      // the raw file scan when argos is down or the root is outside pens.
+      if (subcmd === "grep" && root.startsWith("/home/toxic/pens")) {
+        try {
+          const res = await fetch("http://127.0.0.1:25254/pens-corpus/_search", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              query: {
+                bool: {
+                  should: [
+                    { match_phrase: { text: query } },
+                    { match: { text: query } },
+                  ],
+                  minimum_should_match: 1,
+                },
+              },
+              _source: ["ax_path", "pen", "product", "title"],
+              size: 30,
+            }),
+            signal: AbortSignal.timeout(8000),
+          })
+          if (res.ok) {
+            const doc = (await res.json()) as {
+              hits?: { hits?: Array<{ _source?: { ax_path?: string; title?: string } }> }
+            }
+            const hits = doc?.hits?.hits ?? []
+            if (hits.length > 0) {
+              return [
+                `argos pens-corpus (${hits.length} hits):`,
+                ...hits.map((h) => {
+                  const src = h._source ?? {}
+                  const p = src.ax_path ?? "?"
+                  const title = src.title ?? ""
+                  return `  ${p}${title ? ` — ${title}` : ""}`
+                }),
+              ].join("\n")
+            }
+          }
+        } catch {
+          /* argos down — fall through to ffs */
+        }
+      }
       const ffsArgs = [subcmd, ...(subcmd === "grep" ? ["--no-ignore"] : []), "--root", root, query]
       const proc = spawnSync("/home/toxic/.local/bin/ffs", ffsArgs, {
         encoding: "utf8",
