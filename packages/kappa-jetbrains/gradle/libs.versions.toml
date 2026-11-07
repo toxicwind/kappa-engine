@@ -2,7 +2,12 @@
 intellij-platform = "2026.1"
 intellij-gradle-plugin = "2.19.0"
 intellij-rpc-plugin = "2.4.0-RC-0.1"
-kotlin-jvm-plugin = "2.4.21"
+# Pinned at 2.4.0: the rpc compiler plugin above was built against the
+# Kotlin 2.4.0 compiler internals — 2.4.21 removes
+# AnnotationCodegen$Companion.getAnnotationClass, so :shared:compileKotlin
+# fails with NoSuchMethodError (PR #22, 2026-11-07). Bump only together
+# with a newer rpc plugin release.
+kotlin-jvm-plugin = "2.4.0"
 kotlin-serialization-plugin = "2.4.0"
 kotlin-serialization = "1.12.0"
 kotlinx-coroutines = "1.11.0"
