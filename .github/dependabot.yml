@@ -112,10 +112,18 @@ updates:
         # The Kotlin *compiler plugins* (jvm, serialization) change the
         # compiler ABI even on minor bumps: 2.3.20 -> 2.4.21 broke
         # :shared:compileKotlin with a ClassCastException in
-        # intellij-rpc-plugin's RpcComponentRegistrar (built against 2.3).
+        # intellij-rpc-plugin's RpcComponentRegistrar (built against 2.3),
+        # and 2.4.0 -> 2.4.21 re-broke it (PR #22, 2026-11-07) with a
+        # NoSuchMethodError on AnnotationCodegen$Companion.getAnnotationClass
+        # in the Fleet RPC compiler plugin (built against 2.4.0).
         # Bump compiler plugins by hand, on purpose, together with the
         # rpc plugin version. Library deps (kotlinx-*) stay auto-bumped.
+        # Dependabot names the JVM plugin "org.jetbrains.kotlin.jvm"
+        # (no ".gradle.plugin" suffix), so the old "*gradle.plugin*"
+        # pattern never matched it — that is why PR #22 slipped through.
+        # The exact name below is the operative exclusion.
         exclude-patterns:
+          - "org.jetbrains.kotlin.jvm"
           - "*gradle.plugin*"
           - "*plugin.serialization*"
         update-types:
@@ -149,9 +157,13 @@ updates:
         # broke :shared:compileKotlin with a ClassCastException in
         # intellij-rpc-plugin's RpcComponentRegistrar (built vs 2.3);
         # the 00:10Z jetbrains-minor-patch bump re-broke typecheck-jetbrains
-        # the same way. Bump compiler plugins by hand, on purpose,
-        # together with the rpc plugin version.
+        # the same way, and PR #22 (2026-11-07) did it a third time with
+        # a NoSuchMethodError — the old "*gradle.plugin*" pattern never
+        # matched Dependabot's name "org.jetbrains.kotlin.jvm", so the
+        # exact name below is the operative exclusion. Bump compiler
+        # plugins by hand, on purpose, together with the rpc plugin version.
         exclude-patterns:
+          - "org.jetbrains.kotlin.jvm"
           - "*gradle.plugin*"
           - "*plugin.serialization*"
         update-types:
