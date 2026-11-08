@@ -1,11 +1,12 @@
-import type { NamedError } from "@opencode-ai/core/util/error"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import type { NamedError } from "@toxicwind/core/util/error"
+import { SessionV1 } from "@toxicwind/core/v1/session"
 import { Cause, Clock, Duration, Effect, Schedule } from "effect"
 import { MessageV2 } from "./message-v2.ts"
 import { isKappaError } from "@/kappacode/kappa-errors" // kappacode_change
 import { SessionNetwork } from "./network.ts" // kappacode_change
 import { iife } from "@/util/iife"
 import { isRecord } from "@/util/record"
+import { classify } from "@/kappacode/retry-classify" // kappacode_change
 
 export type Err = ReturnType<NamedError["toObject"]>
 
@@ -21,6 +22,14 @@ export type Retryable = {
     label: string
     link?: string
   }
+  // kappacode_change start — model-switch optimization: when the provider lane
+  // is overloaded ("Provider is overloaded (freeinference)"), the retry loop
+  // holds a stale model ref and retries the SAME overloaded lane with backoff.
+  // Instead, signal the caller to SWITCH to a less-loaded model (the estate has
+  // 3: qwen3.6-35b / glm-5.3-flash / deepseek-v4-flash) — breaking the backoff
+  // loop and using the freeinference lane maximally.
+  switchModel?: boolean
+  // kappacode_change end
 }
 
 export const RETRY_INITIAL_DELAY = 2000
@@ -137,14 +146,33 @@ export function retryable(error: Err, provider?: string): Retryable | undefined 
     // because the retry loop holds a stale model ref.
     if (error.data.responseBody?.includes("FreeUsageLimitError")) return undefined
     // kappacode_change end
-    return { message: error.data.message.includes("Overloaded") ? overloaded(error.data.message) : error.data.message }
+    // kappacode_change start — error taxonomy (F6): quota/spend/blocked are
+    // TERMINAL classes — zero retries. Only transient classes retry. This
+    // prevents the router from retrying a 1d14h quota reset as if it were a
+    // 22s overload shed. `unknown` (no status/body to classify) is NOT a veto —
+    // it falls through to the existing retryable-message logic.
+    const verdict = classify({
+      status,
+      headers: error.data.responseHeaders ?? {},
+      body: error.data.responseBody,
+      message: error.data.message,
+      providerRateLimitHeaders: !!(error.data.responseHeaders?.["retry-after"] ?? error.data.responseHeaders?.["retry-after-ms"]),
+    })
+    if (verdict.class === "quota-daily" || verdict.class === "spend-cap" || verdict.class === "account-blocked") return undefined
+    // kappacode_change end
+    return {
+      message: error.data.message.includes("Overloaded") ? overloaded(error.data.message) : error.data.message,
+      // Model-switch optimization: an overloaded freeinference lane should
+      // trigger a model switch (not a same-lane retry with backoff).
+      ...(error.data.message.includes("Overloaded") ? { switchModel: true } : {}),
+    }
   }
 
   const message = isRecord(error.data) ? error.data.message : undefined
   if (typeof message !== "string") return undefined
   const lower = message.toLowerCase()
   if (lower.includes("too_many_requests")) return { message: "Too Many Requests" }
-  if (lower.includes("exhausted") || lower.includes("unavailable")) return { message: overloaded(message) }
+  if (lower.includes("exhausted") || lower.includes("unavailable")) return { message: overloaded(message), switchModel: true }
   if (matchesRetryableMessage(message)) return { message }
   return undefined
 }
