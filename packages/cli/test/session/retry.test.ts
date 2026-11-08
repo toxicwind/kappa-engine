@@ -1,18 +1,18 @@
 import { describe, expect, test } from "bun:test"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
-import type { NamedError } from "@opencode-ai/core/util/error"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
+import { SessionV1 } from "@toxicwind/core/v1/session"
+import type { NamedError } from "@toxicwind/core/util/error"
 import { APICallError } from "ai"
 import { setTimeout as sleep } from "node:timers/promises"
 import { Effect, Schedule, Schema } from "effect"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { CrossSpawnSpawner } from "@toxicwind/core/cross-spawn-spawner"
 import { SessionRetry } from "../../src/session/retry.ts"
 import { MessageV2 } from "../../src/session/message-v2.ts"
 import { ProviderError } from "../../src/provider/error.ts"
 import { SessionID } from "../../src/session/schema.ts"
 import { SessionStatus } from "../../src/session/status.ts"
 import { testEffect } from "../lib/effect.ts"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { ProviderV2 } from "@toxicwind/core/provider"
 
 const providerID = ProviderV2.ID.make("test")
 const retryProvider = "test"
@@ -246,7 +246,7 @@ describe("session.retry.retryable", () => {
 
   test("retries serialized overloaded provider codes", () => {
     const error = wrap(JSON.stringify({ code: "resource_exhausted" }))
-    expect(SessionRetry.retryable(error, retryProvider)).toEqual({ message: "Provider is overloaded (test) — retrying with backoff" })
+    expect(SessionRetry.retryable(error, retryProvider)).toEqual({ message: "Provider is overloaded (test) — retrying with backoff", switchModel: true })
   })
 
   test("retries serialized rate_limit messages", () => {
@@ -319,6 +319,7 @@ describe("session.retry.retryable", () => {
   test("retries hyphenated service-unavailable errors", () => {
     expect(SessionRetry.retryable(wrap("service-unavailable"), retryProvider)).toEqual({
       message: "Provider is overloaded (test) — retrying with backoff",
+      switchModel: true,
     })
   })
 
