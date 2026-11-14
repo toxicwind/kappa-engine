@@ -23,6 +23,7 @@ import {
   GenerateCommand,
   GithubCommand,
   ImportCommand,
+  MarketplaceCommand,
   McpCommand,
   ModelsCommand,
   PluginCommand,
@@ -121,6 +122,7 @@ let cli = yargs(args) // kappacode_change
   .command(SessionCommand)
   .command(PluginCommand)
   .command(DbCommand)
+  .command(MarketplaceCommand)
 
 // kappacode_change start - register Kappa-specific commands after the upstream chain
 cli = KappaCli.register(cli)
