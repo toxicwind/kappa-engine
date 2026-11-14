@@ -4,8 +4,8 @@
  */
 
 import { Cause, Context, Effect, Schema } from "effect"
-import * as Log from "@opencode-ai/core/util/log"
-import { Global } from "@opencode-ai/core/global"
+import * as Log from "@toxicwind/core/util/log"
+import { Global } from "@toxicwind/core/global"
 import { existsSync, readFileSync, writeFileSync, renameSync, mkdirSync } from "node:fs"
 import { join } from "node:path"
 const log = Log.create({ service: "kappacode.flail-gate" })
@@ -240,6 +240,193 @@ function saveNotebook(nb: Notebook): void {
   writeFileSync(tmp, JSON.stringify(nb, null, 2))
   renameSync(tmp, NOTEBOOK_FILE)
   notebook = nb
+}
+
+// ── Obligation Guard ─────────────────────────────────────────────────
+//
+// A human correction ("stop using head", "use blackbird for GitHub") is a
+// chat turn that the runtime forgets. The flail gate already owns the
+// run-scoped guards, so this is where a compiled correction belongs: it is
+// checked against the run's own tool-call record and, on a violation, the
+// turn is redirected.
+//
+// The check is structural, not textual: the forbidden program must occupy a
+// *program position* in the command. `git log | head -20` violates; `echo
+// head` does not — `head` there is a word, not a program.
+
+/** A correction compiled into a rule. */
+export interface CompiledObligation {
+  /** The prohibited subject: a program, a scope, a symbol. */
+  subject: string
+  /** The obligation family. */
+  kind: "method" | "scope" | "artifact" | "symbol" | "assertion"
+  /** The human's original words. */
+  raw: string
+}
+
+/** Input for the obligation guard. */
+export interface ObligationInput {
+  /** Active obligations for this run. */
+  obligations: CompiledObligation[]
+  /** The tool calls made in this run. */
+  toolCalls: Array<{ name: string; args?: Record<string, unknown> }>
+}
+
+/** Programs whose use can be prohibited. */
+const TRACKED_METHODS = new Set([
+  "head", "tail", "find", "cat", "sed", "awk", "grep", "ls", "cut", "sort", "uniq", "wc", "tr", "tee", "xargs",
+])
+
+/** Shell words that are never a program position. */
+const SHELL_WORDS = new Set([
+  "if", "then", "else", "elif", "fi", "for", "while", "until", "do", "done", "case", "esac", "function",
+  "echo", "printf", "export", "local", "readonly", "declare", "typeset", "return", "break", "continue",
+  "shift", "source", "eval", "exec", "exit", "set", "unset", "test",
+])
+
+/**
+ * The programs invoked by a shell command, in program position only.
+ *
+ * A pipeline stage's first word is a program; every other word is an
+ * argument. That distinction is what makes `echo head` different from
+ * `head -20`, and it is why this is not a substring test.
+ */
+function invokedPrograms(command: string): Set<string> {
+  const programs = new Set<string>()
+  // Split on pipeline and list separators, then take each stage's first word.
+  const stages = command.split(/\|\||\||&&|;|\n/)
+  for (const rawStage of stages) {
+    const stage = rawStage.trim()
+    if (!stage) continue
+    // Strip a leading env assignment (`FOO=1 head x`): the program follows it.
+    const withoutEnv = stage.replace(/^(?:[A-Za-z_][A-Za-z0-9_]*=\S*\s+)+/, "")
+    const first = withoutEnv.split(/\s+/)[0]
+    if (!first) continue
+    const base = first.replace(/^["'`]|["'`]$/g, "")
+    if (!/^[A-Za-z][\w.-]*$/.test(base)) continue
+    if (SHELL_WORDS.has(base.toLowerCase())) continue
+    programs.add(base.toLowerCase())
+  }
+  return programs
+}
+
+/** Extracts the shell command from a tool call's arguments. */
+function commandOf(call: { name: string; args?: Record<string, unknown> }): string | undefined {
+  if (!/^(bash|shell|exec|run)$/.test(call.name)) return undefined
+  const args = call.args
+  if (!args) return undefined
+  const command = args.command ?? args.cmd ?? args.script
+  return typeof command === "string" ? command : undefined
+}
+
+/**
+ * Checks the run's tool calls against the active obligations.
+ *
+ * Never aborts: the guard injects a notice so the model can correct course
+ * within the same run.
+ */
+export function obligationGuard(input: ObligationInput): GuardResult {
+  const cfg = loadGate()
+  const methodObligations = input.obligations.filter((o) => o.kind === "method")
+  if (methodObligations.length === 0) {
+    return { action: "accept", reason: "no-obligation" }
+  }
+
+  for (const call of input.toolCalls) {
+    const command = commandOf(call)
+    if (!command) continue
+    const programs = invokedPrograms(command)
+    for (const obligation of methodObligations) {
+      const subject = obligation.subject.toLowerCase()
+      if (!TRACKED_METHODS.has(subject)) continue
+      if (!programs.has(subject)) continue
+      return {
+        action: "continue",
+        reason: "obligation",
+        inject:
+          `OBLIGATION_VIOLATION: the human said "${obligation.raw}" — \`${subject}\` was invoked in ` +
+          `program position by \`${command}\`. Use the permitted method instead, or explain why the ` +
+          `obligation no longer applies.`,
+      }
+    }
+  }
+
+  // Budget is checked by the budget guard; the obligation guard only reports
+  // violations. `cfg` is read so the gate configuration stays the single
+  // source of truth for the run's policy surface.
+  void cfg
+  return { action: "accept", reason: "no-violation" }
+}
+
+// ── Budget Guard ─────────────────────────────────────────────────────
+//
+// "Maximalize" without a ceiling is a loop wearing a productivity costume.
+// The budget guard measures *novelty*: did this action surface a fact that
+// was not already known? A repeated structural fingerprint is zero novelty,
+// however many times it is produced.
+//
+// When the rate collapses the guard redirects — it does not block. The
+// injection names the rate, the floor, and the count of actions that
+// produced nothing.
+
+/** What one action produced. */
+export interface ActionNovelty {
+  /** Structural fingerprints (AST fingerprints, symbol sets). */
+  fingerprints: string[]
+  /** Identifiers of facts that were not previously known. */
+  evidence: string[]
+}
+
+/** Input for the budget guard. */
+export interface BudgetInput {
+  /** The tool calls made in this run. */
+  toolCalls: Array<{ name: string; args?: Record<string, unknown> }>
+  /** The novelty each action produced, in order. */
+  novelty: ActionNovelty[]
+  /** The novelty rate below which the run is redirected. */
+  floor: number
+}
+
+/**
+ * Computes the novelty rate over the run, treating a repeated fingerprint or
+ * evidence id as no novelty at all.
+ */
+export function noveltyRate(novelty: ActionNovelty[]): { rate: number; zero: number } {
+  if (novelty.length === 0) return { rate: 1, zero: 0 }
+  const seenFingerprints = new Set<string>()
+  const seenEvidence = new Set<string>()
+  let novelCount = 0
+  for (const signal of novelty) {
+    let novel = false
+    for (const fingerprint of signal.fingerprints) {
+      if (seenFingerprints.has(fingerprint)) continue
+      seenFingerprints.add(fingerprint)
+      novel = true
+    }
+    for (const evidence of signal.evidence) {
+      if (seenEvidence.has(evidence)) continue
+      seenEvidence.add(evidence)
+      novel = true
+    }
+    if (novel) novelCount += 1
+  }
+  return { rate: novelCount / novelty.length, zero: novelty.length - novelCount }
+}
+
+/** Redirects the run when it stops producing new evidence. */
+export function budgetGuard(input: BudgetInput): GuardResult {
+  const { rate, zero } = noveltyRate(input.novelty)
+  if (rate >= input.floor) {
+    return { action: "accept", reason: "within-budget" }
+  }
+  return {
+    action: "continue",
+    reason: "budget",
+    inject:
+      `BUDGET_GUARD: novelty ${rate.toFixed(3)} is below the floor ${input.floor.toFixed(3)}; ` +
+      `${zero} of the last ${input.novelty.length} actions produced no new evidence. ` +
+      `Change the axis (different host, artifact, or time window) or state the stop criterion.`,
+  }
 }
 
 // ── Narration Guard ──────────────────────────────────────────────────
