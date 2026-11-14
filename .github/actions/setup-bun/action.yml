@@ -102,6 +102,26 @@ runs:
         fi
       shell: bash
 
+    # kilocode_change start - vendored @opentui packages are tracked as source;
+    # their dist bundles are generated (gitignored) and referenced by package.json
+    # exports, so a fresh checkout cannot resolve @opentui/core, @opentui/keymap
+    # or @opentui/solid (types) until they are prebuilt. The CLI binary build
+    # prebuilds core+keymap itself, but typecheck/test/dev flows never do, so
+    # main has been red since vendoring (typecheck-js TS2307, unit tests
+    # "Cannot find package '@opentui/keymap'"). Build them here, once, so every
+    # workflow that installs dependencies gets working vendored packages.
+    # @opentui/solid stays source-backed at runtime (its exports import points
+    # at ./index.ts); only its declarations are prebuilt (build:types) so
+    # consumers typecheck against dist/*.d.ts instead of pulling solid source
+    # into their own program (which fails on jsx/Element mismatches).
+    - name: Prebuild vendored @opentui dist
+      run: |
+        cd packages/vendor/@opentui/core && bun run build:lib
+        cd ../keymap && bun run build
+        cd ../solid && bun run build:types
+      shell: bash
+    # kilocode_change end
+
     # Do not upload a Windows cache that Windows jobs intentionally never restore. # kilocode_change
     - name: Save Bun dependencies
       if: runner.os != 'Windows' && steps.bun-cache.outputs.cache-hit != 'true' && github.event_name != 'pull_request' && github.event_name != 'pull_request_target' # kilocode_change

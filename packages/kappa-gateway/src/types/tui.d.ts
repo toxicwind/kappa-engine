@@ -31,14 +31,6 @@ declare module "@tui/util/clipboard" {
   export const Clipboard: any
 }
 
-declare module "@opentui/core" {
-  export const TextAttributes: any
-}
-
-declare module "@opentui/solid" {
-  export function useKeyboard(handler: (evt: any) => void): void
-}
-
 // OpenTUI JSX intrinsic elements
 declare namespace JSX {
   interface IntrinsicElements {
