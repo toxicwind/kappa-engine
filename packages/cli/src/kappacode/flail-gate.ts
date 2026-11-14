@@ -242,6 +242,58 @@ function saveNotebook(nb: Notebook): void {
   notebook = nb
 }
 
+
+// ── Ledger Integration ─────────────────────────────────────────────────
+
+// The kappa notebook already owns a `ledger` field: an unbounded list of
+// unknown records the flail gate appends its own history to. The obligation
+// ledger belongs in that list rather than in a parallel file — two ledgers is
+// how a rule gets enforced in one place and forgotten in another.
+//
+// The entry shape is the notebook's own: a typed record with a kind, so a
+// reader can tell an obligation from a probe from a budget reading.
+
+/** A record in the flail gate's ledger. */
+export type LedgerEntry =
+  | {
+      kind: "obligation"
+      at: number
+      /** The prohibited or required subject: a program, a scope, a symbol. */
+      subject: string
+      /** The obligation family. */
+      obligationKind: "method" | "scope" | "artifact" | "symbol" | "assertion"
+      /** The human's original words. */
+      raw: string
+      /** Whether the obligation is still in force. */
+      state: "active" | "satisfied" | "superseded"
+    }
+  | {
+      kind: "budget"
+      at: number
+      /** Tool calls charged so far. */
+      toolCalls: number
+      /** The novelty rate at the time of the reading. */
+      noveltyRate: number
+      /** The floor the rate was measured against. */
+      floor: number
+      /** What the governor decided. */
+      verdict: "continue" | "redirect" | "exhausted"
+    }
+
+/** The most entries the ledger keeps. Older ones are dropped. */
+export const MAX_LEDGER_ENTRIES = 200
+
+/** Appends an entry to the ledger, stamping it and bounding the list. */
+export function appendLedgerEntry(
+  ledger: LedgerEntry[],
+  entry: Omit<LedgerEntry, "at"> & { at?: number },
+): void {
+  ledger.push({ ...entry, at: entry.at ?? Date.now() } as LedgerEntry)
+  while (ledger.length > MAX_LEDGER_ENTRIES) {
+    ledger.shift()
+  }
+}
+
 // ── Obligation Guard ─────────────────────────────────────────────────
 //
 // A human correction ("stop using head", "use blackbird for GitHub") is a
