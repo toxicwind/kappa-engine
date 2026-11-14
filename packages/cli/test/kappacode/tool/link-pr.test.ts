@@ -293,6 +293,9 @@ describe("link_pr tool", () => {
           notify: info("notify_user"),
           send: info("send_file"),
           linkPr,
+          worktree: info("worktree"),
+          pr: info("pr"),
+          stats: info("stats"),
         }
         return yield* KappaToolRegistry.build(infos, { agent: agents, truncate, indexing: false })
       }).pipe(Effect.provide(layer)),

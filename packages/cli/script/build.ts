@@ -248,7 +248,7 @@ const { outputs: workerOutputs } = await Bun.build({
   splitting: false,
   target: "bun",
 })
-const treeSitterWorker = new TextDecoder().decode(workerOutputs[0].contents)
+const treeSitterWorker = await workerOutputs[0].text()
 
 const allTargets: {
   os: string

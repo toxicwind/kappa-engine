@@ -119,8 +119,8 @@ describe("worktree tool", () => {
 
   test("asks for worktree permission on every action", async () => {
     const tool = await init()
-    const asks: { permission: string; patterns: string[] }[] = []
-    const askCtx = { ...ctx, ask: (req: { permission: string; patterns: string[] }) => Effect.sync(() => asks.push(req)) }
+    const asks: { permission: string; patterns: readonly string[] }[] = []
+    const askCtx = { ...ctx, ask: (req: { permission: string; patterns: readonly string[] }) => Effect.sync(() => asks.push(req)) }
     await runtime.runPromise(tool.execute({ action: "create", name: "feature" }, askCtx))
     expect(asks.length).toBe(1)
     expect(asks[0]!.permission).toBe("worktree")
