@@ -19,7 +19,8 @@ import { Effect, Option, Schema } from "effect"
  */
 
 /** Stable namespaced identity for one independently refreshable context source. */
-export const Key = Schema.String.check(Schema.isPattern(/^[a-z0-9][a-z0-9._-]*\/[a-z0-9][a-z0-9._/-]*$/)).pipe(
+const keyPattern = /^[a-z0-9][a-z0-9._-]*\/[a-z0-9][a-z0-9._/-]*$/
+export const Key = Schema.String.check(Schema.isPattern(keyPattern)).pipe(
   Schema.brand("SystemContext.Key"),
 )
 export type Key = typeof Key.Type
@@ -52,8 +53,22 @@ export const SourceSnapshot = Schema.Struct({
 })
 export type SourceSnapshot = typeof SourceSnapshot.Type
 
-/** Durable structured comparison state for one active context generation. */
-export const Snapshot = Schema.Record(Key, SourceSnapshot)
+/**
+ * Durable structured comparison state for one active context generation.
+ *
+ * Decoded over plain string keys with an explicit namespaced-key check:
+ * `Schema.Record(Key, ...)` silently drops entries whose keys fail the `Key`
+ * pattern instead of rejecting them, so a stored snapshot with a bare key
+ * like `date` decoded to `{}` rather than failing. The filter below makes
+ * that a decode error, which surfaces as `ContextSnapshotDecodeError`.
+ */
+export const Snapshot = Schema.Record(Schema.String, SourceSnapshot).check(
+  Schema.makeFilter((record) =>
+    Object.keys(record).every((key) => keyPattern.test(key))
+      ? undefined
+      : "Snapshot keys must be namespaced SystemContext keys (namespace/name)",
+  ),
+)
 export type Snapshot = Readonly<Record<string, SourceSnapshot>>
 
 export interface Generation {
