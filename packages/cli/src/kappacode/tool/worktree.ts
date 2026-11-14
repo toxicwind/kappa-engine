@@ -104,7 +104,7 @@ export const WorktreeTool = Tool.define<
             output: `Reset worktree at ${params.directory} to the default branch.`,
             metadata: { reset: true },
           }
-        }),
+        }).pipe(Effect.orDie),
     }
   }),
 )

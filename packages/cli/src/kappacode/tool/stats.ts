@@ -40,6 +40,8 @@ export const StatsTool = Tool.define<
 >(
   "stats",
   Effect.gen(function* () {
+    const database = yield* Database.Service
+    const session = yield* Session.Service
     return {
       description:
         "Report token usage and cost statistics for the current project. Use to see how many sessions, messages, tokens, and how much cost has been spent. Optionally filter to the last N days.",
@@ -49,7 +51,10 @@ export const StatsTool = Tool.define<
         Effect.gen(function* () {
           yield* ctx.ask({ permission: "stats", patterns: ["*"], always: ["*"], metadata: {} })
           const instance = yield* InstanceState.context
-          const stats = yield* aggregateSessionStats(params.days ?? undefined, "", instance.project)
+          const stats = yield* aggregateSessionStats(params.days ?? undefined, "", instance.project).pipe(
+            Effect.provideService(Database.Service, database),
+            Effect.provideService(Session.Service, session),
+          )
           const meta: Meta = {
             totalSessions: stats.totalSessions,
             totalMessages: stats.totalMessages,
@@ -74,7 +79,7 @@ export const StatsTool = Tool.define<
             ].join("\n"),
             metadata: meta,
           }
-        }),
+        }).pipe(Effect.orDie),
     }
   }),
 )
