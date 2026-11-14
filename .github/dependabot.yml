@@ -95,6 +95,18 @@ updates:
       - dependency-name: "*"
         update-types:
           - "version-update:semver-major"
+      # The Kotlin *compiler plugins* (jvm, serialization) are ignored
+      # outright, not just excluded from groups: group exclude-patterns only
+      # ungroup a dependency — Dependabot still opens a standalone PR for it,
+      # which is how PR #24 (kotlin-jvm 2.4.0 -> 2.4.21) was created
+      # 2026-11-14 despite the 2026-11-06 group exclusion. The bump is
+      # unlandable right now: the Fleet RPC compiler plugin calls a Kotlin
+      # compiler internal (AnnotationCodegen$Companion.getAnnotationClass)
+      # removed in 2.4.21, and no rpc-plugin version for Kotlin 2.4.21 exists
+      # (latest is 2.4.0-RC-0.1, built for 2.4.0). Bump compiler plugins by
+      # hand, on purpose, together with the rpc plugin version.
+      - dependency-name: "org.jetbrains.kotlin.jvm"
+      - dependency-name: "org.jetbrains.kotlin.plugin.serialization"
     # One bad update must not block the rest, and coupled artifacts must move
     # together (same "-minor-patch" suffix and first-match rules as above).
     groups:
