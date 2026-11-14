@@ -401,6 +401,46 @@ describe("deps", () => {
     expect(result.components.map((item) => item.name)).toContain("nested")
   })
 
+  test("follows a scoped workspace package at a scoped path and its platform natives", () => {
+    // Regression: the vendored `@opentui/core` lives at
+    // `packages/vendor/@opentui/core`, so its lockfile specifier is
+    // `@opentui/core@workspace:packages/vendor/@opentui/core` -- a second `@`
+    // inside the version. Splitting on the last `@` misread the name and
+    // version, the workspace branch never ran, and the `@opentui/core-*`
+    // platform packages never entered the closure (SBOM host lookup failed).
+    const scoped: Deps.Lock = {
+      lockfileVersion: 1,
+      workspaces: {
+        "": { name: "root" },
+        "packages/app": {
+          name: "@kappa/app",
+          version: "1.0.0",
+          dependencies: { "@kappa/native": "workspace:*" },
+        },
+        "packages/vendor/@kappa/native": {
+          name: "@kappa/native",
+          version: "0.5.11",
+          optionalDependencies: { "@kappa/native-linux-x64": "0.5.11", "@kappa/native-darwin-arm64": "0.5.11" },
+        },
+      },
+      packages: {
+        "@kappa/native": ["@kappa/native@workspace:packages/vendor/@kappa/native"],
+        "@kappa/native-linux-x64": ["@kappa/native-linux-x64@0.5.11", "", { os: ["linux"], cpu: ["x64"] }, "sha512-native-linux"],
+        "@kappa/native-darwin-arm64": ["@kappa/native-darwin-arm64@0.5.11", "", { os: ["darwin"], cpu: ["arm64"] }, "sha512-native-darwin"],
+      },
+    }
+    const linux = Deps.closure({ lock: scoped, workspace: "packages/app", platform: { os: "linux", arch: "x64" } })
+    const workspace = linux.components.find((item) => item.name === "@kappa/native")
+    expect(workspace).toMatchObject({ version: "0.5.11", supplier: "Kilo Code", properties: { origin: "workspace" } })
+    expect(workspace?.purl).toBeUndefined()
+    expect(linux.components.map((item) => item.name)).toContain("@kappa/native-linux-x64")
+    expect(linux.components.map((item) => item.name)).not.toContain("@kappa/native-darwin-arm64")
+
+    const darwin = Deps.closure({ lock: scoped, workspace: "packages/app", platform: { os: "darwin", arch: "arm64" } })
+    expect(darwin.components.map((item) => item.name)).toContain("@kappa/native-darwin-arm64")
+    expect(darwin.components.map((item) => item.name)).not.toContain("@kappa/native-linux-x64")
+  })
+
   test("keeps only the optional native packages for the target platform", () => {
     const linux = Deps.closure({ lock, workspace: "packages/app", platform: { os: "linux", arch: "x64" } })
     expect(linux.components.map((item) => item.name)).toContain("native-linux")

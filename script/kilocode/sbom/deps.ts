@@ -82,9 +82,15 @@ export function segments(key: string) {
 }
 
 function identifier(value: string) {
-  const at = value.lastIndexOf("@")
-  if (at <= 0) return { name: value, version: "" }
-  return { name: value.slice(0, at), version: value.slice(at + 1) }
+  // Split at the `@` after the package name, not the last `@`: a scoped
+  // workspace path such as `workspace:packages/vendor/@opentui/core` contains
+  // its own `@`, and lastIndexOf mis-split it into name
+  // `@opentui/core@workspace:packages/vendor/` + version `opentui/core`,
+  // so the workspace branch never ran and the package's own dependencies
+  // (e.g. the `@opentui/core-*` platform natives) never entered the closure.
+  const match = value.match(/^(?<name>@[^/]+\/[^@]+|[^@/]+)@(?<version>.+)$/)
+  if (!match?.groups) return { name: value, version: "" }
+  return { name: match.groups.name!, version: match.groups.version! }
 }
 
 function entry(lock: Lock, key: string): Resolved | undefined {
