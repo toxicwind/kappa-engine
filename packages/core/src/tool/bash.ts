@@ -191,7 +191,7 @@ const layer = Layer.effectDiscard(
                         isTimeout(error) ? Effect.succeed(undefined) : Effect.fail(error),
                       ),
                     )
-                  if (run === undefined) return ""
+                  if (run === undefined) return "[timeout]"
                   const notice = run.outputTruncated ? "\n[output capture truncated at the in-memory safety limit]" : ""
                   return `${run.output?.toString("utf8") || "(no output)"}${notice}\n[exit ${run.exitCode}]`
                 }),
@@ -207,16 +207,22 @@ const layer = Layer.effectDiscard(
                 }
               }
               const completed = info.status !== "error"
-              const output = info.output || info.error || "(no output)"
+              if (completed && info.output === "[timeout]") {
+                return {
+                  output: `Command exceeded timeout of ${timeout} ms. Retry with a larger timeout if the command is expected to take longer.`,
+                  truncated: false,
+                  timeout: true,
+                  ...(warnings.length ? { warnings } : {}),
+                }
+              }
+              const match = completed ? info.output?.match(/\n\[exit (\d+)\]$/) : undefined
+              const output =
+                match && info.output ? info.output.slice(0, match.index) : (info.output || info.error || "(no output)")
               const failed = info.status === "error" ? ` (job failed: ${info.error ?? "unknown"})` : ""
               return {
-                exit: completed
-                  ? info.output?.match(/\[exit (\d+)\]$/)?.[1]
-                    ? Number(info.output.match(/\[exit (\d+)\]$/)?.[1])
-                    : 0
-                  : 1,
+                exit: completed ? (match?.[1] ? Number(match[1]) : 0) : 1,
                 output: `${output}${failed}`,
-                truncated: false,
+                truncated: completed && output.includes("[output capture truncated"),
                 ...(warnings.length ? { warnings } : {}),
               }
             }).pipe(Effect.mapError(() => new ToolFailure({ message: `Unable to execute command: ${input.command}` }))),
