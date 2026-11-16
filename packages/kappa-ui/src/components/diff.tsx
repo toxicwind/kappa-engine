@@ -1,4 +1,4 @@
-import { sampledChecksum } from "@opencode-ai/core/util/encode"
+import { sampledChecksum } from "@toxicwind/core/util/encode"
 import {
   FileDiff,
   type FileDiffMetadata,
@@ -11,8 +11,8 @@ import { createMediaQuery } from "@solid-primitives/media"
 import { createComputed, createEffect, createMemo, createSignal, on, onCleanup, splitProps, untrack } from "solid-js"
 import { createDefaultOptions, type DiffHandle, type DiffProps, styleVariables } from "../pierre"
 import { capture } from "../pierre/scroll"
-import { acquireVirtualizer, virtualMetrics } from "@opencode-ai/ui/pierre/virtualizer"
-import { getWorkerPool } from "@opencode-ai/ui/pierre/worker"
+import { acquireVirtualizer, virtualMetrics } from "@toxicwind/ui/pierre/virtualizer"
+import { getWorkerPool } from "@toxicwind/ui/pierre/worker"
 import { attachLineSelectionListeners, readSelectedLineRange } from "../pierre/selection"
 import { applyDiffCommentedLines, diffRowIndex } from "../pierre/diff-dom"
 import { fixDiffSelection } from "../pierre/selection-range"

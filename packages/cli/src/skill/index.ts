@@ -1,25 +1,25 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import path from "path"
 import { Effect, Layer, Context, Schema } from "effect"
-import { NamedError } from "@opencode-ai/core/util/error"
+import { NamedError } from "@toxicwind/core/util/error"
 import type { Agent } from "@/agent/agent"
 import { EventV2Bridge } from "@/event-v2-bridge"
 import { InstanceState } from "@/effect/instance-state"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@toxicwind/core/global"
 import { Permission } from "@/permission"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@toxicwind/core/fs-util"
 import { Config } from "@/config/config"
-import { FrontmatterError } from "@opencode-ai/core/v1/config/error"
+import { FrontmatterError } from "@toxicwind/core/v1/config/error"
 import { ConfigMarkdown } from "@/config/markdown"
 import { RuntimeFlags } from "@/effect/runtime-flags"
-import { Glob } from "@opencode-ai/core/util/glob"
+import { Glob } from "@toxicwind/core/util/glob"
 import { Discovery } from "./discovery.ts"
 import { BUILTIN_SKILLS } from "../kappacode/skills/builtin.ts" // kappacode_change
 import { primaryPaths } from "../kappacode/primary-worktree.ts" // kappacode_change
 import { Git } from "@/git" // kappacode_change
 import { ClaudeMigration } from "@/kappacode/config/claude-migration" // kappacode_change
 import { isRecord } from "@/util/record"
-import { Flag } from "@opencode-ai/core/flag/flag" // kappacode_change
+import { Flag } from "@toxicwind/core/flag/flag" // kappacode_change
 import { escapeHtml } from "@/util/html"
 import { trustedInProject } from "../kappacode/skill/trust.ts" // kappacode_change
 import * as SkillPaths from "../kappacode/skill/paths.ts" // kappacode_change

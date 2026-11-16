@@ -1,5 +1,5 @@
-import { Provider } from "@opencode-ai/schema/provider"
-import { Location } from "@opencode-ai/schema/location"
+import { Provider } from "@toxicwind/schema/provider"
+import { Location } from "@toxicwind/schema/location"
 import { Schema } from "effect"
 import { HttpApiEndpoint, HttpApiGroup, OpenApi } from "effect/http-api"
 import { ProviderNotFoundError, ServiceUnavailableError } from "../errors"

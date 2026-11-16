@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test"
 import { Provider } from "../../../src/provider/provider.ts"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
 import { filterPromptTrainingModels, nonEmptyProviders } from "../../../src/kappacode/provider/model-filter.ts"
 
 function model(id: string, training?: boolean): Provider.Model {

@@ -1,7 +1,7 @@
 /**
  * Language context
  * Provides i18n translations for kappa-ui components.
- * Merges UI translations from @opencode-ai/ui and Kappa overrides from @kappacode/kappa-i18n.
+ * Merges UI translations from @toxicwind/ui and Kappa overrides from @kappacode/kappa-i18n.
  *
  * Locale priority: user override → VS Code display language → browser language → "en"
  */

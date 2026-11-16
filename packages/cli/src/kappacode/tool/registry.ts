@@ -21,14 +21,14 @@ import { WorktreeTool } from "./worktree.ts"
 import { PrTool } from "./pr.ts"
 import { StatsTool } from "./stats.ts"
 import * as Tool from "../../tool/tool.ts"
-import { Flag } from "@opencode-ai/core/flag/flag"
+import { Flag } from "@toxicwind/core/flag/flag"
 import { Effect } from "effect"
 import * as Network from "@/kappacode/sandbox/network"
 import { Notebook } from "@/kappacode/notebook/service"
 import { AgentManager, HostError } from "@/kappacode/agent-manager/service"
 import { KappaSessions } from "@/kappa-sessions/kappa-sessions"
 import { enabled as prEnabled } from "@/kappa-sessions/pr-link"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import type { Config } from "@/config/config"
 import type { RuntimeFlags } from "@/effect/runtime-flags"
 import { BoardEnabled } from "@/kappacode/board/enabled"
@@ -54,7 +54,7 @@ export namespace KappaToolRegistry {
   ): boolean | undefined {
     // VS Code enables indexing from project consent, not from config. Build the tool here and let
     // applyVisibility check consent on each turn, because consent can change after the registry is built.
-    if (process.env["KAPPA_PLATFORM"] === "vscode") return true
+    if (kiloEnv("PLATFORM") === "vscode") return true
     return config.indexing?.enabled ?? global?.indexing?.enabled
   }
 
@@ -74,7 +74,7 @@ export namespace KappaToolRegistry {
   }
 
   export function usePatch(input: { modelID: string; family?: string }) {
-    if (process.env["KAPPA_E2E_LLM_URL"]) return true
+    if (kiloEnv("E2E_LLM_URL")) return true
 
     const id = input.modelID.toLowerCase()
     const family = input.family?.toLowerCase()
@@ -440,7 +440,7 @@ export namespace KappaToolRegistry {
         })
       : false
     const semantic =
-      process.env["KAPPA_PLATFORM"] === "vscode" && tools.some((tool) => tool.id === "semantic_search")
+      kiloEnv("PLATFORM") === "vscode" && tools.some((tool) => tool.id === "semantic_search")
         ? yield* consented(ctx.directory)
         : true
     return tools.flatMap((tool) => {

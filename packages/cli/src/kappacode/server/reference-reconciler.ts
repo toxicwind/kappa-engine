@@ -3,10 +3,10 @@ import { InstanceRef } from "@/effect/instance-ref"
 import { isInterrupted } from "@/kappacode/effect/cause"
 import * as KappaReference from "@/kappacode/reference"
 import { InstanceStore } from "@/project/instance-store"
-import { LocationServiceMap } from "@opencode-ai/core/location-services"
-import { Location } from "@opencode-ai/core/location"
-import { PluginV2 } from "@opencode-ai/core/plugin" // kappacode_change
-import { ReferenceReconciler } from "@opencode-ai/server/kappacode/reference-reconciler"
+import { LocationServiceMap } from "@toxicwind/core/location-services"
+import { Location } from "@toxicwind/core/location"
+import { PluginV2 } from "@toxicwind/core/plugin" // kappacode_change
+import { ReferenceReconciler } from "@toxicwind/server/kappacode/reference-reconciler"
 import { Effect, Layer } from "effect"
 
 const reconcile = Effect.gen(function* () {

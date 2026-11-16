@@ -2,7 +2,7 @@
 import { $ } from "bun"
 import { join } from "node:path"
 import { existsSync } from "node:fs"
-import { Script } from "@opencode-ai/script"
+import { Script } from "@toxicwind/script"
 import { Manifest, Policy } from "../../../script/kappacode/sbom/index"
 import { upload } from "../../../script/kappacode/release"
 import { CHECKSUMS } from "./sbom"

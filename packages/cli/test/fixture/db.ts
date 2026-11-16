@@ -1,5 +1,5 @@
 import { rm } from "fs/promises"
-import { Database } from "@opencode-ai/core/database/database"
+import { Database } from "@toxicwind/core/database/database"
 import { disposeAllInstances } from "./fixture.ts"
 
 export async function resetDatabase() {

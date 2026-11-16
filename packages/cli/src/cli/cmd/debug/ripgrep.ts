@@ -1,6 +1,6 @@
 import { EOL } from "os"
 import { Effect } from "effect"
-import { Ripgrep } from "@opencode-ai/core/ripgrep"
+import { Ripgrep } from "@toxicwind/core/ripgrep"
 import { effectCmd } from "../../effect-cmd.ts"
 import { cmd } from "../cmd.ts"
 import { InstanceRef } from "@/effect/instance-ref"

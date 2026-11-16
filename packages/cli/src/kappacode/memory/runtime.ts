@@ -1,5 +1,5 @@
-import { Global } from "@opencode-ai/core/global"
-import * as Log from "@opencode-ai/core/util/log"
+import { Global } from "@toxicwind/core/global"
+import * as Log from "@toxicwind/core/util/log"
 import { MemoryInstance } from "@kappacode/kappa-memory/effect/instance"
 import { MemoryLog } from "@kappacode/kappa-memory/effect/log"
 import { MemoryPaths } from "@kappacode/kappa-memory/effect/paths"

@@ -1,7 +1,7 @@
 // kilocode_change - new file — Phase 2: tool wrappers re-pointed to core memory service
 import { Effect, Option, Schema } from "effect"
 import * as Tool from "@/tool/tool"
-import { Service, type MemoryEntry } from "@opencode-ai/core/memory"
+import { Service, type MemoryEntry } from "@toxicwind/core/memory"
 
 const SaveParams = Schema.Struct({
   text: Schema.String.annotate({ description: "Memory text to save. Be concise and durable." }),

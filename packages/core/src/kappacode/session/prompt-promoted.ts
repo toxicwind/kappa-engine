@@ -1,4 +1,4 @@
-import { PromptPromoted } from "@opencode-ai/schema/kappacode/durable-event"
+import { PromptPromoted } from "@toxicwind/schema/kappacode/durable-event"
 import { Effect } from "effect"
 import { Database } from "../../database/database"
 import { SessionEvent } from "../../session/event"

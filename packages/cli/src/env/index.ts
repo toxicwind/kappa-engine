@@ -1,6 +1,6 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import { Context, Effect, Layer } from "effect"
-import { serviceUse } from "@opencode-ai/core/effect/service-use"
+import { serviceUse } from "@toxicwind/core/effect/service-use"
 import { InstanceState } from "@/effect/instance-state"
 import { resolveAllProviderKeys } from "@/kappacode/secrets"
 

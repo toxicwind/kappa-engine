@@ -2,7 +2,7 @@ import { expect } from "bun:test"
 import { Effect, Layer, Context } from "effect"
 import { InstanceRef } from "../../src/effect/instance-ref.ts"
 import { makeRuntime } from "../../src/effect/run-service.ts"
-import { ProjectV2 } from "@opencode-ai/core/project"
+import { ProjectV2 } from "@toxicwind/core/project"
 import { it } from "../lib/effect.ts"
 
 class Shared extends Context.Service<Shared, { readonly id: number }>()("@test/Shared") {}

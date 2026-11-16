@@ -1,6 +1,6 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { ProviderIcon } from "@opencode-ai/ui/provider-icon"
+import { ProviderIcon } from "@toxicwind/ui/provider-icon"
 
 const meta: Meta<typeof ProviderIcon> = {
   title: "Components/ProviderIcon",

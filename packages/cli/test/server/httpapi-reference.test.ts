@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, test } from "bun:test"
 import path from "path"
 import { Server } from "../../src/server/server.ts"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@toxicwind/core/global"
 import { resetDatabase } from "../fixture/db.ts"
 import { disposeAllInstances, tmpdir } from "../fixture/fixture.ts"
 import { Effect } from "effect"

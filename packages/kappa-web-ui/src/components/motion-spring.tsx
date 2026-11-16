@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/motion-spring"
+export * from "@toxicwind/ui/motion-spring"

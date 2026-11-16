@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@toxicwind/core/fs-util"
 
 describe("kappacode filesystem containment", () => {
   test("keeps dot-prefixed child names internal", () => {

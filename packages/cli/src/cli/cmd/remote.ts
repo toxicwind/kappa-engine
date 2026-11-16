@@ -38,7 +38,7 @@ export const RemoteCommand = cmd({
       // trace on Ctrl-C. Capture the live instance context here and restore it
       // around the teardown.
       const instance = context.use()
-      const log = (await import("@opencode-ai/core/util/log")).Log.create({ service: "remote" })
+      const log = (await import("@toxicwind/core/util/log")).Log.create({ service: "remote" })
       const shutdown = async () => {
         try {
           await context.provide(instance, async () => {

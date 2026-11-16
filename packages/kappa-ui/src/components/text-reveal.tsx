@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/text-reveal"
+export * from "@toxicwind/ui/text-reveal"

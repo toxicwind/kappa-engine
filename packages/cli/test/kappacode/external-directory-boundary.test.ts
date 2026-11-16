@@ -9,7 +9,7 @@ import { SessionID, MessageID } from "../../src/session/schema.ts"
 import { assertExternalDirectory } from "../../src/tool/external-directory.ts"
 import type { Tool } from "../../src/tool/tool.ts"
 import { Filesystem } from "../../src/util/filesystem.ts"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@toxicwind/core/fs-util"
 import { tmpdir } from "../fixture/fixture.ts"
 
 const base: Omit<Tool.Context, "ask"> = {

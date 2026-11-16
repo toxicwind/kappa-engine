@@ -1,9 +1,9 @@
 import { Cause, Context, Effect, Layer } from "effect"
 import { EffectBridge } from "@/effect/bridge"
 import { KappaSessions } from "@/kappa-sessions/kappa-sessions"
-import * as Log from "@opencode-ai/core/util/log"
-import { Global } from "@opencode-ai/core/global"
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
+import * as Log from "@toxicwind/core/util/log"
+import { Global } from "@toxicwind/core/global"
+import { InstallationVersion } from "@toxicwind/core/installation/version"
 import path from "node:path"
 import { Bus } from "@/bus"
 import { Config } from "@/config/config"
@@ -17,14 +17,14 @@ import { InstanceRef } from "@/effect/instance-ref"
 import { Identity } from "@kappacode/kappa-telemetry"
 import { MemoryLifecycle } from "@/kappacode/memory/turn"
 import { MemoryService } from "@kappacode/kappa-memory/effect/service"
-import { Memory } from "@opencode-ai/core/memory"
+import { Memory } from "@toxicwind/core/memory"
 import { MemoryEvents } from "@/kappacode/memory/events"
 import { installMemoryRuntime } from "@/kappacode/memory/runtime"
 import { KappaToolRegistry } from "@/kappacode/tool/registry"
 import { Wakeup } from "@/kappacode/wakeup"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import { KappacodeWatcher } from "@/kappacode/watcher"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kappacode_change
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder" // kappacode_change
 import { initializeFlailGate } from "@/kappacode/flail-gate"
 
 const log = Log.create({ service: "kappacode-bootstrap" })
@@ -108,7 +108,7 @@ export namespace KappacodeBootstrap {
             Effect.sync(() => log.warn("session export bootstrap failed", { err: Cause.squash(cause) })),
           ),
         )
-        if (process.env["KAPPA_PLATFORM"] !== "vscode") {
+        if (kiloEnv("PLATFORM") !== "vscode") {
           yield* EffectBridge.fromPromise(() =>
             import("@/kappacode/indexing").then((mod) => mod.KappaIndexing.init()),
           ).pipe(

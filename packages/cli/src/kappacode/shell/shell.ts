@@ -1,1 +1,1 @@
-export { args, PowerShell } from "@opencode-ai/core/kappacode/powershell"
+export { args, PowerShell } from "@toxicwind/core/kappacode/powershell"

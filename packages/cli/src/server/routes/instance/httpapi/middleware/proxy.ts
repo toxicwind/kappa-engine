@@ -1,5 +1,5 @@
 import { ProxyUtil } from "@/server/proxy-util"
-import { runRaw } from "@opencode-ai/core/util/socket-run-raw" // kilocode_change - effect 4 removed Socket.runRaw
+import { runRaw } from "@toxicwind/core/util/socket-run-raw" // kilocode_change - effect 4 removed Socket.runRaw
 import { Effect, Stream } from "effect"
 import { HttpBody, HttpClient, HttpClientRequest, HttpServerRequest, HttpServerResponse } from "effect/http"
 import * as Socket from "effect/socket/Socket"

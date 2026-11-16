@@ -1,11 +1,11 @@
 import { describe, expect, test } from "bun:test"
-import { SessionEvent } from "@opencode-ai/core/session/event"
-import { EventManifest as SchemaEventManifest } from "@opencode-ai/schema/event-manifest"
+import { SessionEvent } from "@toxicwind/core/session/event"
+import { EventManifest as SchemaEventManifest } from "@toxicwind/schema/event-manifest"
 import { Todo } from "@/session/todo"
 import { EventManifest } from "@/event-manifest"
-import { Drained, Interrupted } from "@opencode-ai/schema/kappacode/session-drain" // kappacode_change
-import { Pending as WakeupPending } from "@opencode-ai/schema/kappacode/wakeup-event" // kappacode_change
-import { AuthUrl } from "@opencode-ai/schema/mcp-event" // kappacode_change
+import { Drained, Interrupted } from "@toxicwind/schema/kappacode/session-drain" // kappacode_change
+import { Pending as WakeupPending } from "@toxicwind/schema/kappacode/wakeup-event" // kappacode_change
+import { AuthUrl } from "@toxicwind/schema/mcp-event" // kappacode_change
 
 describe("public event manifest", () => {
   test("contains every latest public wire type once", () => {

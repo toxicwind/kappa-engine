@@ -2,7 +2,7 @@ import { createHash, randomUUID } from "node:crypto"
 import fs from "node:fs/promises"
 import { realpathSync } from "node:fs"
 import path from "node:path"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@toxicwind/core/global"
 
 export namespace SandboxPreference {
   export const root = path.join(realpathSync.native(path.dirname(Global.Path.state)), "kappa-sandbox-preference")

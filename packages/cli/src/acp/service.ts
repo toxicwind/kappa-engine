@@ -29,8 +29,8 @@ import {
   type SetSessionModeRequest,
   type SetSessionModeResponse,
 } from "@agentclientprotocol/sdk"
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { InstallationVersion } from "@toxicwind/core/installation/version"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
 import type { AssistantMessage, Message, KappaClient, SessionMessageResponse } from "@kappacode/sdk/v2"
 import { Context, Effect, Layer, ManagedRuntime } from "effect"
 import * as ACPError from "./error.ts"
@@ -41,8 +41,8 @@ import { ACPEvent } from "./event.ts"
 import { ACPSession } from "./session.ts"
 import { UsageService } from "./usage.ts"
 import { ACPProfile } from "./profile.ts"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
 import { Provider } from "@/provider/provider"
 import type { Command } from "@/command"
 

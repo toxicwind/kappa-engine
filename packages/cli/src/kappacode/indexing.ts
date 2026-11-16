@@ -8,7 +8,7 @@ import { hasIndexingPlugin } from "@kappacode/kappa-indexing/detect"
 import { IndexingStatus, disabledIndexingStatus } from "@kappacode/kappa-indexing/status"
 import { Telemetry } from "@kappacode/kappa-telemetry"
 import { fetchKappaEmbeddingModelCatalog } from "@kappacode/kappa-gateway"
-import { allowed, message } from "@opencode-ai/core/kappacode/fff"
+import { allowed, message } from "@toxicwind/core/kappacode/fff"
 import { Instance, provide as provideInstance } from "@/kappacode/instance"
 import { Bus } from "@/bus"
 import { Config } from "@/config/config"
@@ -16,10 +16,10 @@ import { AppRuntime } from "@/effect/app-runtime"
 import { Auth } from "@/auth"
 import { makeRuntime } from "@/effect/run-service"
 import { registerDisposer } from "@/effect/instance-registry"
-import { Global } from "@opencode-ai/core/global"
-import * as Log from "@opencode-ai/core/util/log"
-import { NamedError } from "@opencode-ai/core/util/error"
-import type { WorkspaceV2 } from "@opencode-ai/core/workspace"
+import { Global } from "@toxicwind/core/global"
+import * as Log from "@toxicwind/core/util/log"
+import { NamedError } from "@toxicwind/core/util/error"
+import type { WorkspaceV2 } from "@toxicwind/core/workspace"
 import { WorkspaceContext } from "@/control-plane/workspace-context"
 import { Event as IndexingEvent, Warning as IndexingWarningEvent } from "./indexing-event.ts"
 import { indexingWarningKey, type IndexingWarning } from "./indexing-warning.ts"
@@ -270,12 +270,12 @@ export namespace KappaIndexing {
 
   const boot = async (hit: Cache): Promise<Entry> => {
     const dir = Instance.directory
-    if (process.env["KAPPA_DISABLE_CODEBASE_INDEXING"] === "vscode-no-workspace") {
+    if (kiloEnv("DISABLE_CODEBASE_INDEXING") === "vscode-no-workspace") {
       return track(hit, await inert(() => noWorkspace()))
     }
     try {
-      // kappacode_change start - estate home IS the workspace; opt-in allows indexing there.
-      const homeAllowed = process.env["KAPPA_ALLOW_HOME_INDEXING"] === "1"
+      // kappacode_change start - Pens home IS the workspace; opt-in allows indexing there.
+      const homeAllowed = kiloEnv("ALLOW_HOME_INDEXING") === "1"
       if (!homeAllowed && !allowed(realpathSync.native(dir))) return track(hit, await inert(() => unsafeRoot()))
       // kappacode_change end
     } catch (err) {
@@ -293,7 +293,7 @@ export namespace KappaIndexing {
     const cfg = startup.cfg
     const project = (await AppRuntime.runPromise(primaryWorktree(dir))) ?? dir
     projects.set(dir, project)
-    if (process.env["KAPPA_PLATFORM"] === "vscode" && !consent.get(project)) {
+    if (kiloEnv("PLATFORM") === "vscode" && !consent.get(project)) {
       return track(hit, await inert(() => noConsent()))
     }
     if (!hasIndexingPlugin(cfg.plugin)) {
@@ -310,7 +310,7 @@ export namespace KappaIndexing {
     try {
       cfgInput = await model(
         enrichKappa(
-          input({ ...merged, enabled: process.env["KAPPA_PLATFORM"] === "vscode" ? true : merged.enabled }, global),
+          input({ ...merged, enabled: kiloEnv("PLATFORM") === "vscode" ? true : merged.enabled }, global),
           auth,
         ),
         auth,
@@ -482,7 +482,7 @@ export namespace KappaIndexing {
       let ok = false
       try {
         // kappacode_change start - same home opt-in as the project-root guard
-        ok = process.env["KAPPA_ALLOW_HOME_INDEXING"] === "1" || allowed(realpathSync.native(root))
+        ok = kiloEnv("ALLOW_HOME_INDEXING") === "1" || allowed(realpathSync.native(root))
         // kappacode_change end
       } catch {
         ok = false
@@ -571,7 +571,7 @@ export namespace KappaIndexing {
 
   /** VS Code supplies machine-local project consent before indexing can start. */
   export async function setConsent(enabled: boolean) {
-    if (process.env["KAPPA_PLATFORM"] !== "vscode") return
+    if (kiloEnv("PLATFORM") !== "vscode") return
     const dir = Instance.directory
     const project = (await AppRuntime.runPromise(primaryWorktree(dir))) ?? dir
     if (consent.get(project) === enabled) return

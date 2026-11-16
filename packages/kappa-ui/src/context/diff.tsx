@@ -1,5 +1,5 @@
 import type { ValidComponent } from "solid-js"
-import { createSimpleContext } from "@opencode-ai/ui/context/helper"
+import { createSimpleContext } from "@toxicwind/ui/context/helper"
 
 const ctx = createSimpleContext<ValidComponent, { component: ValidComponent }>({
   name: "DiffComponent",

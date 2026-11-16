@@ -1,6 +1,6 @@
 import * as fs from "fs"
 import * as path from "path"
-import { exists, message } from "@opencode-ai/core/kappacode/spotlight"
+import { exists, message } from "@toxicwind/core/kappacode/spotlight"
 
 const marker = ".metadata_never_index"
 

@@ -6,7 +6,7 @@ import { AppRuntime } from "../../src/effect/app-runtime.ts"
 import { provideTestInstance } from "../fixture/fixture.ts"
 import { Filesystem } from "../../src/util/filesystem.ts"
 import { disposeAllInstances, tmpdir } from "../fixture/fixture.ts"
-import { Flag } from "@opencode-ai/core/flag/flag"
+import { Flag } from "@toxicwind/core/flag/flag"
 
 const load = () => AppRuntime.runPromise(Config.Service.use((svc) => svc.get()))
 const warnings = () => AppRuntime.runPromise(Config.Service.use((svc) => svc.warnings()))

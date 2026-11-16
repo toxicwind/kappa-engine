@@ -1,7 +1,7 @@
 import type { TuiPluginApi } from "@kappacode/plugin/tui"
 import type { Event } from "@kappacode/sdk/v2"
 import { createMemo, createResource, createSignal, onCleanup, onMount, Show } from "solid-js"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import { route } from "@/kappacode/cli/cmd/tui/memory-command"
 import { MemoryTuiMeta } from "@/kappacode/cli/cmd/tui/memory-meta"
 import { MemoryTuiState } from "@/kappacode/cli/cmd/tui/memory-state"

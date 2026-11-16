@@ -1,4 +1,4 @@
-import { Flock } from "@opencode-ai/core/util/flock"
+import { Flock } from "@toxicwind/core/util/flock"
 
 export class CodexAuthExpiredError extends Error {
   constructor(

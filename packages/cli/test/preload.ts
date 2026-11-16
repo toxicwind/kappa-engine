@@ -105,11 +105,11 @@ installMemoryRuntime() // kappacode_change
 // that would silently point tests at the real database under ~/.local/share/kappa.
 // (Do not name the database file here: database-reset-safety.test.ts scans test sources
 // for the file name next to removal calls, and this file legitimately contains fs.rm.)
-if (process.env["KAPPA_DB"] !== ":memory:") {
-  throw new Error(`unit test preload: KAPPA_DB must be ":memory:", got "${process.env["KAPPA_DB"]}"`)
+if (kiloEnv("DB") !== ":memory:") {
+  throw new Error(`unit test preload: KAPPA_DB must be ":memory:", got "${kiloEnv("DB")}"`)
 }
 {
-  const { Database } = await import("@opencode-ai/core/database/database")
+  const { Database } = await import("@toxicwind/core/database/database")
   const resolved = Database.path()
   if (resolved !== ":memory:") {
     throw new Error(`unit test preload: database path must resolve to ":memory:", got "${resolved}"`)

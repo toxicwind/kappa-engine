@@ -2,8 +2,8 @@ import { describe, expect, test } from "bun:test"
 import { Database } from "bun:sqlite"
 import { accessSync, chmodSync, constants } from "fs"
 import path from "path"
-import { DbPreflight } from "@opencode-ai/core/kappacode/db-preflight"
-import { Database as KappaDatabase } from "@opencode-ai/core/database/database"
+import { DbPreflight } from "@toxicwind/core/kappacode/db-preflight"
+import { Database as KappaDatabase } from "@toxicwind/core/database/database"
 import { tmpdir } from "../fixture/tmpdir"
 
 const writable = (file: string) => {

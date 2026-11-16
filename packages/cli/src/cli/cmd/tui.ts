@@ -4,15 +4,15 @@ import path from "path"
 import { text as streamText } from "node:stream/consumers"
 import { fileURLToPath } from "url"
 import { UI } from "@/cli/ui"
-import { errorMessage } from "@opencode-ai/tui/util/error"
+import { errorMessage } from "@toxicwind/tui/util/error"
 import { withTimeout } from "@/util/timeout"
 import { withNetworkOptions, resolveNetworkOptionsNoConfig, hasArg } from "@/cli/network"
 import { Filesystem } from "@/util/filesystem"
 import type { GlobalEvent } from "@kappacode/sdk/v2"
-import type { EventSource } from "@opencode-ai/tui/context/sdk"
+import type { EventSource } from "@toxicwind/tui/context/sdk"
 import { writeHeapSnapshot } from "v8"
 import type { StartInput } from "@/kappacode/cli/cmd/tui/thread" // kappacode_change - runtime imports deferred into handlers
-import { win32InstallCtrlCGuard } from "@opencode-ai/tui/terminal-win32"
+import { win32InstallCtrlCGuard } from "@toxicwind/tui/terminal-win32"
 import { validate as validateSession } from "@/kappacode/cli/cmd/tui" // kappacode_change
 // kappacode_change start - correlate the TUI worker with its parent process
 import {
@@ -20,10 +20,10 @@ import {
   KAPPA_RUN_ID,
   ensureRunID,
   sanitizedProcessEnv,
-} from "@opencode-ai/core/util/opencode-process"
+} from "@toxicwind/core/util/opencode-process"
 // kappacode_change end
 import type { RemoteExitBridgeClient } from "@/kappacode/cli/cmd/tui/remote-exit-bridge" // kappacode_change - runtime import deferred
-import type { Exit } from "@opencode-ai/tui/context/exit" // kappacode_change
+import type { Exit } from "@toxicwind/tui/context/exit" // kappacode_change
 import { KappaRpc } from "@/kappacode/util/rpc" // kappacode_change - gates requests on worker readiness
 
 declare global {

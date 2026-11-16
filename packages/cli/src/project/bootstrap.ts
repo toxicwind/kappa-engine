@@ -1,4 +1,4 @@
-import { makeGlobalNode } from "@opencode-ai/core/effect/app-node"
+import { makeGlobalNode } from "@toxicwind/core/effect/app-node"
 import { Plugin } from "../plugin/index.ts"
 import { Format } from "../format/index.ts"
 import { LSP } from "@/lsp/lsp"

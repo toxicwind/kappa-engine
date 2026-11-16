@@ -1,6 +1,6 @@
 import { Schema } from "effect"
-import { NamedError } from "@opencode-ai/core/util/error"
-import { IdeEvent } from "@opencode-ai/schema/ide-event"
+import { NamedError } from "@toxicwind/core/util/error"
+import { IdeEvent } from "@toxicwind/schema/ide-event"
 
 const SUPPORTED_IDES = [
   { name: "Windsurf" as const, cmd: "windsurf" },
@@ -29,7 +29,7 @@ export function ide() {
 }
 
 export function alreadyInstalled() {
-  return process.env["KAPPA_CALLER"] === "vscode" || process.env["KAPPA_CALLER"] === "vscode-insiders"
+  return kiloEnv("CALLER") === "vscode" || kiloEnv("CALLER") === "vscode-insiders"
 }
 
 // kappacode_change start - Kappa's VS Code extension bundles the CLI; auto-install from CLI is not applicable

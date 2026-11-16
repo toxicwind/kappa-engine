@@ -1,6 +1,6 @@
 import { expect } from "bun:test"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { httpClient } from "@opencode-ai/core/effect/app-node-platform"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
+import { httpClient } from "@toxicwind/core/effect/app-node-platform"
 import { Duration, Effect, Layer, Option, Schema } from "effect"
 import { sql } from "drizzle-orm"
 import { HttpClient, HttpClientError, HttpClientResponse } from "effect/http"
@@ -19,7 +19,7 @@ import {
   RefreshToken,
   UserCode,
 } from "../../src/account/schema.ts"
-import { Database } from "@opencode-ai/core/database/database"
+import { Database } from "@toxicwind/core/database/database"
 import { testEffect } from "../lib/effect.ts"
 
 const truncate = Layer.effectDiscard(

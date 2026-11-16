@@ -1,6 +1,6 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { Font } from "@opencode-ai/ui/font"
+import { Font } from "@toxicwind/ui/font"
 
 const meta: Meta = {
   title: "Components/Font",

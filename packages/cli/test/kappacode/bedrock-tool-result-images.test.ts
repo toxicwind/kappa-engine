@@ -1,5 +1,5 @@
 import { expect, test } from "bun:test"
-import type { SessionV1 } from "@opencode-ai/core/v1/session"
+import type { SessionV1 } from "@toxicwind/core/v1/session"
 import { MessageV2 } from "../../src/session/message-v2.ts"
 import type { Provider } from "../../src/provider/provider.ts"
 

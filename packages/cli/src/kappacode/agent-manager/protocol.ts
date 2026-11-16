@@ -1,6 +1,6 @@
 import { BusEvent } from "@/bus/bus-event"
 import { SessionID } from "@/session/schema"
-import { NonNegativeInt } from "@opencode-ai/core/schema"
+import { NonNegativeInt } from "@toxicwind/core/schema"
 import { Schema } from "effect"
 
 export const RequestID = Schema.String.pipe(Schema.brand("AgentManagerRequestID")).annotate({

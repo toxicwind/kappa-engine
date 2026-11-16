@@ -4,7 +4,7 @@
 // through src/tool/lsp.ts (diagnostics switch-case at lines 116-139) using
 // Layer.succeed for LSP.Service with custom diagnostics.
 import { afterEach, describe, expect, test } from "bun:test"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import { Effect, Layer } from "effect"
 import path from "path"
 import fs from "fs/promises"
@@ -12,8 +12,8 @@ import { LSP } from "@/lsp/lsp"
 import type { LSPClient } from "@/lsp/client"
 import { LspTool } from "../../src/tool/lsp.ts"
 import { disposeAllInstances, TestInstance, withTmpdirInstance } from "../fixture/fixture.ts"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { CrossSpawnSpawner } from "@toxicwind/core/cross-spawn-spawner"
+import { FSUtil } from "@toxicwind/core/fs-util"
 import { Truncate } from "@/tool/truncate"
 import { Agent } from "@/agent/agent"
 

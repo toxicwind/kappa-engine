@@ -6,7 +6,7 @@ import { Session } from "@/session/session"
 import { WorktreeDiff } from "@/kappacode/review/worktree-diff" // kappacode_change
 import { SessionID } from "@/session/schema"
 import { Worktree } from "@/worktree"
-import { NonNegativeInt } from "@opencode-ai/core/schema"
+import { NonNegativeInt } from "@toxicwind/core/schema"
 import { Schema } from "effect"
 import { HttpApi, HttpApiEndpoint, HttpApiError, HttpApiGroup, HttpApiSchema, OpenApi } from "effect/http-api"
 import { Authorization } from "../middleware/authorization.ts"
@@ -18,8 +18,8 @@ import {
 } from "../middleware/workspace-routing.ts"
 import { described } from "./metadata.ts"
 import { QueryBoolean } from "./query.ts"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
 
 const ConsoleStateResponse = Schema.Struct({
   consoleManagedProviders: Schema.mutable(Schema.Array(Schema.String)),

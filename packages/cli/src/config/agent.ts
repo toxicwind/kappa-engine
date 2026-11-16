@@ -1,16 +1,16 @@
 export * as ConfigAgent from "./agent.ts"
 
 import path from "path"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import { Exit, Schema } from "effect"
-import { Glob } from "@opencode-ai/core/util/glob"
-import { ConfigAgentV1 } from "@opencode-ai/core/v1/config/agent"
+import { Glob } from "@toxicwind/core/util/glob"
+import { ConfigAgentV1 } from "@toxicwind/core/v1/config/agent"
 import { configEntryNameFromPath } from "./entry-name.ts"
 import * as ConfigMarkdown from "./markdown.ts"
 import { ConfigParse } from "./parse.ts"
 import { ConfigVariable } from "./variable.ts" // kappacode_change
 // kappacode_change start
-import { ConfigErrorV1 as ConfigError, FrontmatterError } from "@opencode-ai/core/v1/config/error"
+import { ConfigErrorV1 as ConfigError, FrontmatterError } from "@toxicwind/core/v1/config/error"
 import { KappacodeConfig } from "@/kappacode/config/config"
 import { report } from "@/kappacode/config/report"
 import type { Warning } from "./config.ts"

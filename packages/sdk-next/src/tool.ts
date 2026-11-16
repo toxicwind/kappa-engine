@@ -1,2 +1,2 @@
-export { Failure, RegistrationError, make } from "@opencode-ai/core/tool/tool"
-export type { AnyTool, Content, Context, Definition } from "@opencode-ai/core/tool/tool"
+export { Failure, RegistrationError, make } from "@toxicwind/core/tool/tool"
+export type { AnyTool, Content, Context, Definition } from "@toxicwind/core/tool/tool"

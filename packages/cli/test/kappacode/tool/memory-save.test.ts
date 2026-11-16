@@ -5,7 +5,7 @@ import type { Tool } from "@/tool/tool"
 import * as Truncate from "@/tool/truncate"
 import { MemorySaveTool } from "@/kappacode/tool/memory-save"
 import { MessageID, SessionID } from "@/session/schema"
-import { Service as CoreMemory, type Interface as CoreMemoryInterface, type MemoryEntry } from "@opencode-ai/core/memory"
+import { Service as CoreMemory, type Interface as CoreMemoryInterface, type MemoryEntry } from "@toxicwind/core/memory"
 
 const info = {
   name: "code",

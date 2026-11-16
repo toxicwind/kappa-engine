@@ -7,7 +7,7 @@
 // exactly one host query serves the whole group. This is the only place the
 // host is queried; the session hot path never is.
 import { Process } from "@/util/process"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import {
   clearSessionLink,
   enabled,

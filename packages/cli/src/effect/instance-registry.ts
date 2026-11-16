@@ -1,4 +1,4 @@
-import type { WorkspaceV2 } from "@opencode-ai/core/workspace" // kappacode_change
+import type { WorkspaceV2 } from "@toxicwind/core/workspace" // kappacode_change
 import { dispose } from "@/kappacode/effect/instance-registry" // kappacode_change
 
 const disposers = new Set<(directory: string, workspaceID?: WorkspaceV2.ID) => Promise<void>>() // kappacode_change

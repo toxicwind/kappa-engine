@@ -1,7 +1,7 @@
 import path from "path"
 import { existsSync } from "fs"
 import { readFile, stat } from "fs/promises"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 
 export namespace ConsoleAssets {
   const log = Log.create({ service: "console.assets" })

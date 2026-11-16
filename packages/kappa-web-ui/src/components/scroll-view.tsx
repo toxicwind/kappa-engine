@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/scroll-view"
+export * from "@toxicwind/ui/scroll-view"

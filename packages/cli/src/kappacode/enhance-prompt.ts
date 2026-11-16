@@ -5,7 +5,7 @@ import { Provider } from "@/provider/provider"
 import { ProviderTransform } from "@/provider/transform"
 import { AppRuntime } from "@/effect/app-runtime"
 import { Effect } from "effect"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import { opencodeSessionHeaders } from "@/kappacode/provider/opencode-session-headers"
 
 const log = Log.create({ service: "enhance-prompt" })

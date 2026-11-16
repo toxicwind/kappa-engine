@@ -1,4 +1,4 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import { Config } from "@/config/config"
 import { Context, Effect, Layer, Ref, Semaphore } from "effect"
 

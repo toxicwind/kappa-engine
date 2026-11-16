@@ -2,16 +2,16 @@
 //
 // Tests for the git-based diff generator that replaced the JS Myers path.
 
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
 import { $ } from "bun"
 import { describe, expect } from "bun:test"
 import { parsePatch } from "diff"
 import { Effect, Layer } from "effect"
 import path from "path"
-import * as CrossSpawnSpawner from "@opencode-ai/core/cross-spawn-spawner"
+import * as CrossSpawnSpawner from "@toxicwind/core/cross-spawn-spawner"
 import { DiffFull } from "../../src/kappacode/snapshot/diff-full.ts"
 import { Filesystem } from "../../src/util/filesystem.ts"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import { tmpdirScoped } from "../fixture/fixture.ts"
 import { testEffect } from "../lib/effect.ts"
 

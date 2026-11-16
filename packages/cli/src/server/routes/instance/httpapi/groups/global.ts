@@ -1,9 +1,9 @@
-import { ConfigV1 } from "@opencode-ai/core/v1/config/config"
-import { EventV2 } from "@opencode-ai/core/event"
+import { ConfigV1 } from "@toxicwind/core/v1/config/config"
+import { EventV2 } from "@toxicwind/core/event"
 import { EventManifest } from "@/event-manifest"
 import { InstanceDisposed } from "@/server/event"
 import { BusEvent } from "@/bus/bus-event" // kappacode_change - include legacy Kappa events until they migrate to EventV2
-import "@opencode-ai/core/account"
+import "@toxicwind/core/account"
 import "@/server/event"
 import "@/kappacode/indexing-event" // kappacode_change - register indexing.status before HttpApi event schemas
 import { Schema } from "effect"

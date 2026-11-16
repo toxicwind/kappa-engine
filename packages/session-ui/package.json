@@ -1,5 +1,5 @@
 {
-  "name": "@opencode-ai/session-ui",
+  "name": "@toxicwind/session-ui",
   "version": "7.8.10",
   "private": true,
   "type": "module",
@@ -39,9 +39,9 @@
   },
   "dependencies": {
     "@kobalte/core": "catalog:",
-    "@opencode-ai/core": "workspace:*",
+    "@toxicwind/core": "workspace:*",
     "@kappacode/sdk": "workspace:*",
-    "@opencode-ai/ui": "workspace:*",
+    "@toxicwind/ui": "workspace:*",
     "@pierre/diffs": "catalog:",
     "@shikijs/stream": "catalog:",
     "@shikijs/transformers": "3.9.2",
@@ -65,7 +65,7 @@
     "solid-js": "catalog:",
     "solid-list": "catalog:",
     "strip-ansi": "7.1.2",
-    "@opencode-ai/client": "workspace:*"
+    "@toxicwind/client": "workspace:*"
   },
   "peerDependencies": {}
 }

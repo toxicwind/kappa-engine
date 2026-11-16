@@ -1,11 +1,11 @@
-import { Location } from "@opencode-ai/core/location"
-import { LocationServiceMap } from "@opencode-ai/core/location-services"
-import { AbsolutePath } from "@opencode-ai/core/schema"
-import { WorkspaceV2 } from "@opencode-ai/core/workspace"
+import { Location } from "@toxicwind/core/location"
+import { LocationServiceMap } from "@toxicwind/core/location-services"
+import { AbsolutePath } from "@toxicwind/core/schema"
+import { WorkspaceV2 } from "@toxicwind/core/workspace"
 import { Effect, Layer } from "effect"
 import { HttpServerRequest } from "effect/http"
 import { HttpApiMiddleware } from "effect/http-api"
-import { InvalidRequestError } from "@opencode-ai/protocol/errors" // kappacode_change
+import { InvalidRequestError } from "@toxicwind/protocol/errors" // kappacode_change
 
 export type LocationServices = Layer.Success<ReturnType<(typeof LocationServiceMap.Service)["get"]>>
 

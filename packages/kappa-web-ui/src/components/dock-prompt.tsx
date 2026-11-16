@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/dock-prompt"
+export * from "@toxicwind/ui/dock-prompt"

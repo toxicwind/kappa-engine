@@ -1,4 +1,4 @@
-import { Location } from "@opencode-ai/core/location"
+import { Location } from "@toxicwind/core/location"
 import { Effect } from "effect"
 import { HttpApiBuilder } from "effect/http-api"
 import { Api } from "../api"

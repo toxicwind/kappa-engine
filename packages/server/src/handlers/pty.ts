@@ -1,21 +1,21 @@
-import { Pty } from "@opencode-ai/core/pty"
-import { PtyProtocol } from "@opencode-ai/core/pty/protocol"
-import { PtyTicket } from "@opencode-ai/core/pty/ticket"
-import { runRaw } from "@opencode-ai/core/util/socket-run-raw" // kilocode_change - effect 4 removed Socket.runRaw
-import { Location } from "@opencode-ai/core/location"
+import { Pty } from "@toxicwind/core/pty"
+import { PtyProtocol } from "@toxicwind/core/pty/protocol"
+import { PtyTicket } from "@toxicwind/core/pty/ticket"
+import { runRaw } from "@toxicwind/core/util/socket-run-raw" // kilocode_change - effect 4 removed Socket.runRaw
+import { Location } from "@toxicwind/core/location"
 import { Effect, Queue } from "effect"
 import { HttpServerRequest, HttpServerResponse } from "effect/http"
 import { HttpApiBuilder, HttpApiSchema } from "effect/http-api"
 import * as Socket from "effect/socket/Socket"
 import { Api } from "../api"
 import { CorsConfig, isAllowedRequestOrigin } from "../cors"
-import { ForbiddenError, PtyNotFoundError } from "@opencode-ai/protocol/errors"
+import { ForbiddenError, PtyNotFoundError } from "@toxicwind/protocol/errors"
 import {
   PTY_CONNECT_TICKET_QUERY,
   PTY_CONNECT_TOKEN_HEADER,
   PTY_CONNECT_TOKEN_HEADER_VALUE,
   PTY_REPLAY_EXITED_QUERY,
-} from "@opencode-ai/protocol/groups/pty"
+} from "@toxicwind/protocol/groups/pty"
 import { response } from "../location"
 import { PtyEnvironment } from "../pty-environment"
 

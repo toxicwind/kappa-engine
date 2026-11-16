@@ -1,4 +1,4 @@
-import type { NamedError } from "@opencode-ai/core/util/error"
+import type { NamedError } from "@toxicwind/core/util/error"
 import { isRecord } from "@/util/record"
 
 export const KAPPA_ERROR_CODES = {

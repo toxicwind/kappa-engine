@@ -2,16 +2,16 @@ import * as InstanceState from "@/effect/instance-state"
 import { registerDisposer } from "@/effect/instance-registry"
 import { InstanceRef, WorkspaceRef } from "@/effect/instance-ref"
 import { Plugin } from "@/plugin"
-import { Pty } from "@opencode-ai/core/pty"
-import { PtyProtocol } from "@opencode-ai/core/pty/protocol"
-import { PtyID } from "@opencode-ai/core/pty/schema"
-import { PtyTicket } from "@opencode-ai/core/pty/ticket"
-import { runRaw } from "@opencode-ai/core/util/socket-run-raw" // kilocode_change - effect 4 removed Socket.runRaw
-import { LocationServiceMap } from "@opencode-ai/core/location-services" // kappacode_change - reuse the server location map
-import { Location } from "@opencode-ai/core/location"
-import { AbsolutePath } from "@opencode-ai/core/schema"
-import { Shell } from "@opencode-ai/core/shell"
-import { CorsConfig, isAllowedRequestOrigin, type CorsOptions } from "@opencode-ai/server/cors"
+import { Pty } from "@toxicwind/core/pty"
+import { PtyProtocol } from "@toxicwind/core/pty/protocol"
+import { PtyID } from "@toxicwind/core/pty/schema"
+import { PtyTicket } from "@toxicwind/core/pty/ticket"
+import { runRaw } from "@toxicwind/core/util/socket-run-raw" // kilocode_change - effect 4 removed Socket.runRaw
+import { LocationServiceMap } from "@toxicwind/core/location-services" // kappacode_change - reuse the server location map
+import { Location } from "@toxicwind/core/location"
+import { AbsolutePath } from "@toxicwind/core/schema"
+import { Shell } from "@toxicwind/core/shell"
+import { CorsConfig, isAllowedRequestOrigin, type CorsOptions } from "@toxicwind/server/cors"
 import {
   PTY_CONNECT_TICKET_QUERY,
   PTY_CONNECT_TOKEN_HEADER,

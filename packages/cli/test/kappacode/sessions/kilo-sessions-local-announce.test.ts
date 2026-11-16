@@ -16,8 +16,8 @@ process.env["KAPPA_DISABLE_SESSION_INGEST"] = "0"
 delete process.env["KAPPA_REMOTE"]
 
 import { afterEach, beforeEach, describe, expect, mock, spyOn } from "bun:test"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
+import { CrossSpawnSpawner } from "@toxicwind/core/cross-spawn-spawner"
 import { Effect, Fiber, Layer } from "effect"
 import { Auth } from "../../../src/auth/index.ts"
 import { Bus } from "../../../src/bus/index.ts"

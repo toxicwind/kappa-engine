@@ -1,4 +1,4 @@
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@toxicwind/core/fs-util"
 import { Process } from "@/util/process"
 import { arch, homedir } from "node:os"
 import path from "path"

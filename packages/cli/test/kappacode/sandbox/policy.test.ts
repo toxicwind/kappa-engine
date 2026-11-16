@@ -1,14 +1,14 @@
 import fs from "node:fs/promises"
 import path from "node:path"
 import { describe, expect, test } from "bun:test"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@toxicwind/core/global"
 import { assertWrite, run as runSandbox } from "@kappacode/sandbox"
 import { Effect, Exit } from "effect"
 import { profile } from "@/kappacode/sandbox/policy"
 import { SandboxPreference } from "@/kappacode/sandbox/preference"
 import { SandboxStore } from "@/kappacode/sandbox/store"
 import type { InstanceContext } from "@/project/instance-context"
-import { ProjectV2 } from "@opencode-ai/core/project"
+import { ProjectV2 } from "@toxicwind/core/project"
 import { tmpdir } from "../../fixture/fixture.ts"
 
 const kappa = [

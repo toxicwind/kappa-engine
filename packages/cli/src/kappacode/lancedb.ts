@@ -1,4 +1,4 @@
-import { Npm } from "@opencode-ai/core/npm"
+import { Npm } from "@toxicwind/core/npm"
 
 export namespace LanceDBRuntime {
   export const env = "KAPPA_LANCEDB_PATH"

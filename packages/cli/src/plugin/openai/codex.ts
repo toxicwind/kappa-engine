@@ -1,7 +1,7 @@
 import type { Hooks, PluginInput } from "@kappacode/plugin"
-import * as Log from "@opencode-ai/core/util/log" // kappacode_change
+import * as Log from "@toxicwind/core/util/log" // kappacode_change
 import { escapeHtml } from "@/util/html"
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
+import { InstallationVersion } from "@toxicwind/core/installation/version"
 import { OAUTH_DUMMY_KEY } from "../../auth/index.ts"
 import os from "os"
 import { setTimeout as sleep } from "node:timers/promises"

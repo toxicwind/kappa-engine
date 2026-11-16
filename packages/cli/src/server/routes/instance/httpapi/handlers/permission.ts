@@ -1,5 +1,5 @@
 import { AllowEverythingPermission } from "@/kappacode/permission/allow-everything" // kappacode_change
-import { PermissionV1 } from "@opencode-ai/core/v1/permission"
+import { PermissionV1 } from "@toxicwind/core/v1/permission"
 import { Permission } from "@/permission"
 // kappacode_change start
 import { SessionID } from "@/session/schema"

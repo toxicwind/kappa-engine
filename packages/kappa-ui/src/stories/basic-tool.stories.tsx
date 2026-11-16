@@ -1,6 +1,6 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { BasicTool, GenericTool } from "@opencode-ai/ui/basic-tool"
+import { BasicTool, GenericTool } from "@toxicwind/ui/basic-tool"
 
 const meta: Meta = {
   title: "Components/BasicTool",

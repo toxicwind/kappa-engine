@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/tooltip"
+export * from "@toxicwind/ui/tooltip"

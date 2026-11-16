@@ -6,7 +6,7 @@
 // forks the generated OpenAPI surface into duplicate variants. Keyed on event type and applied only
 // where rows enter and leave SQL, so the wire contract stays upstream's.
 import { Schema } from "effect"
-import { StoredToolContent } from "@opencode-ai/llm"
+import { StoredToolContent } from "@toxicwind/llm"
 
 const decodeContent = Schema.decodeUnknownSync(Schema.Array(StoredToolContent))
 const encodeContent = Schema.encodeUnknownSync(Schema.Array(StoredToolContent))

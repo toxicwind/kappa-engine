@@ -1,10 +1,10 @@
-import { SessionMessage } from "@opencode-ai/schema/session-message"
-import { SessionInput } from "@opencode-ai/schema/session-input"
-import { PromptInput } from "@opencode-ai/schema/prompt-input"
-import { Session } from "@opencode-ai/schema/session"
-import { Project } from "@opencode-ai/schema/project"
-import { AbsolutePath, NonNegativeInt, PositiveInt, RelativePath, statics } from "@opencode-ai/schema/schema"
-import { Workspace } from "@opencode-ai/schema/workspace"
+import { SessionMessage } from "@toxicwind/schema/session-message"
+import { SessionInput } from "@toxicwind/schema/session-input"
+import { PromptInput } from "@toxicwind/schema/prompt-input"
+import { Session } from "@toxicwind/schema/session"
+import { Project } from "@toxicwind/schema/project"
+import { AbsolutePath, NonNegativeInt, PositiveInt, RelativePath, statics } from "@toxicwind/schema/schema"
+import { Workspace } from "@toxicwind/schema/workspace"
 import { Context, Effect, Result, Schema, Struct } from "effect"
 import { Base64Url } from "effect/encoding"
 import { HttpApiEndpoint, HttpApiGroup, HttpApiMiddleware, HttpApiSchema, OpenApi } from "effect/http-api"
@@ -17,12 +17,12 @@ import {
   SessionNotFoundError,
   UnknownError,
 } from "../errors"
-import { Agent } from "@opencode-ai/schema/agent"
-import { Model } from "@opencode-ai/schema/model"
-import { Location } from "@opencode-ai/schema/location"
-import { Revert } from "@opencode-ai/schema/revert"
-import { SessionEvent } from "@opencode-ai/schema/session-event"
-import { SessionDurable } from "@opencode-ai/schema/durable-event-manifest" // kappacode_change - released history keys
+import { Agent } from "@toxicwind/schema/agent"
+import { Model } from "@toxicwind/schema/model"
+import { Location } from "@toxicwind/schema/location"
+import { Revert } from "@toxicwind/schema/revert"
+import { SessionEvent } from "@toxicwind/schema/session-event"
+import { SessionDurable } from "@toxicwind/schema/durable-event-manifest" // kappacode_change - released history keys
 
 const SessionsQueryFields = {
   workspace: Workspace.ID.pipe(Schema.optional),

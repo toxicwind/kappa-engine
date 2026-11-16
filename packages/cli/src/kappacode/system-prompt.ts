@@ -1,6 +1,6 @@
 // kappacode_change - new file
 
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@toxicwind/core/global"
 import { Effect } from "effect"
 import { staticEnvLines, type EditorContext } from "@/kappacode/editor-context"
 import { KappaMemory } from "@kappacode/kappa-memory/effect"
@@ -8,7 +8,7 @@ import type { MemoryPaths } from "@kappacode/kappa-memory/effect/paths"
 import { MemoryMarker } from "@/kappacode/memory/marker"
 import type { Provider } from "@/provider/provider"
 import type { InstanceContext } from "@/project/instance-context"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 
 const log = Log.create({ service: "kappacode.system-prompt" })
 

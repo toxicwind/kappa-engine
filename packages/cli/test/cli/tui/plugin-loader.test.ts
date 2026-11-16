@@ -7,12 +7,12 @@ import type { TuiAttentionSoundPack } from "@kappacode/plugin/tui"
 import { tmpdir } from "../../fixture/fixture.ts"
 import { createTuiPluginApi } from "../../fixture/tui-plugin.ts"
 import { createTuiResolvedConfig, mockTuiRuntime } from "../../fixture/tui-runtime.ts"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@toxicwind/core/global"
 import { TuiConfig } from "../../../src/config/tui.ts"
 import { Filesystem } from "@/util/filesystem"
 import { PluginLoader } from "../../../src/plugin/loader.ts"
 
-const { allThemes, addTheme } = await import("@opencode-ai/tui/context/theme")
+const { allThemes, addTheme } = await import("@toxicwind/tui/context/theme")
 const { TuiPluginRuntime } = await import("../../../src/plugin/tui/runtime")
 
 type Row = Record<string, unknown>

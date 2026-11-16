@@ -4,17 +4,17 @@
 // transitively load flag.ts to ensure the env is captured at load time.
 process.env.KAPPA_SESSION_RETRY_LIMIT = "2"
 
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { SessionProjector } from "@opencode-ai/core/session/projector"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
+import { SessionProjector } from "@toxicwind/core/session/projector"
+import { SessionV1 } from "@toxicwind/core/v1/session"
 import { NodeFileSystem } from "@effect/platform-node"
 import { afterEach, describe, expect, spyOn, test } from "bun:test"
 import { APICallError } from "ai"
 import { Context, Effect, Exit, Fiber, Layer, Schedule } from "effect"
 import * as TestClock from "effect/testing/TestClock"
 import * as Stream from "effect/Stream"
-import type { LLMEvent } from "@opencode-ai/llm"
-import { Database } from "@opencode-ai/core/database/database"
+import type { LLMEvent } from "@toxicwind/llm"
+import { Database } from "@toxicwind/core/database/database"
 import path from "path"
 import { Agent as AgentSvc } from "../../src/agent/agent.ts"
 import { Bus } from "../../src/bus/index.ts"
@@ -25,8 +25,8 @@ import { Image } from "../../src/image/image.ts"
 import { Permission } from "../../src/permission/index.ts"
 import { Plugin } from "../../src/plugin/index.ts"
 import type { Provider } from "../../src/provider/provider.ts"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
 import { Session } from "../../src/session/session.ts"
 import { LLM } from "../../src/session/llm.ts"
 import { MessageV2 } from "../../src/session/message-v2.ts"
@@ -39,8 +39,8 @@ import { SessionStatus } from "../../src/session/status.ts"
 import { SessionSummary } from "../../src/session/summary.ts"
 import { Snapshot } from "../../src/snapshot/index.ts"
 import { SyncEvent } from "../../src/sync/index.ts"
-import * as Log from "@opencode-ai/core/util/log"
-import * as CrossSpawnSpawner from "@opencode-ai/core/cross-spawn-spawner"
+import * as Log from "@toxicwind/core/util/log"
+import * as CrossSpawnSpawner from "@toxicwind/core/cross-spawn-spawner"
 import { provideTmpdirProject } from "../fixture/fixture.ts"
 import { testEffect } from "../lib/effect.ts"
 
@@ -351,7 +351,7 @@ describe("session processor retry limit", () => {
 
   it.effect("only positive integers enable the limit", () =>
     Effect.promise(async () => {
-      const { Flag } = await import("@opencode-ai/core/flag/flag")
+      const { Flag } = await import("@toxicwind/core/flag/flag")
 
       delete process.env.KAPPA_SESSION_RETRY_LIMIT
       expect(Flag.KAPPA_SESSION_RETRY_LIMIT).toBeUndefined()
@@ -372,7 +372,7 @@ describe("session processor retry limit", () => {
 
   it.effect("reads env at access time (dynamic getter)", () =>
     Effect.promise(async () => {
-      const { Flag } = await import("@opencode-ai/core/flag/flag")
+      const { Flag } = await import("@toxicwind/core/flag/flag")
       delete process.env.KAPPA_SESSION_RETRY_LIMIT
       expect(Flag.KAPPA_SESSION_RETRY_LIMIT).toBeUndefined()
       process.env.KAPPA_SESSION_RETRY_LIMIT = "5"

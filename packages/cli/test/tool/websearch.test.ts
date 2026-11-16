@@ -5,7 +5,7 @@ import { selectWebSearchProvider, webSearchModelName, webSearchProviderLabel } f
 
 import { webSearchEnabled } from "../../src/tool/registry.ts"
 import { it } from "../lib/effect.ts"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { ProviderV2 } from "@toxicwind/core/provider"
 
 const SESSION_ID = "ses_0196aabbccddeeff001122334455"
 

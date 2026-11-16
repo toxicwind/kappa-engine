@@ -1,6 +1,6 @@
 import path from "path"
-import * as Log from "@opencode-ai/core/util/log"
-import { Global } from "@opencode-ai/core/global"
+import * as Log from "@toxicwind/core/util/log"
+import { Global } from "@toxicwind/core/global"
 import z from "zod"
 import { Filesystem } from "@/util/filesystem"
 import { isRecord } from "@/util/record"

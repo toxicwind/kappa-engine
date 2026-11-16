@@ -7,7 +7,7 @@ import type { Provider } from "@/provider/provider"
 // breaking other test files, we spread real exports and only override what
 // this test needs.
 
-const realLog = await import("@opencode-ai/core/util/log")
+const realLog = await import("@toxicwind/core/util/log")
 const realAgent = await import("@/agent/agent")
 
 let mockStreamText = "feat(src): add hello world logging"
@@ -38,7 +38,7 @@ mock.module("@/agent/agent", () => ({
   Agent: {},
 }))
 
-mock.module("@opencode-ai/core/util/log", () => ({
+mock.module("@toxicwind/core/util/log", () => ({
   ...realLog,
   create: () => ({
     info: () => {},

@@ -4,7 +4,7 @@ import { describe, expect } from "bun:test"
 import { Context, Effect, Layer, Queue } from "effect"
 import { FetchHttpClient, HttpClient, HttpServer, HttpServerRequest, HttpServerResponse } from "effect/http"
 import * as Socket from "effect/socket/Socket"
-import { runRaw, runString } from "@opencode-ai/core/util/socket-run-raw" // kilocode_change
+import { runRaw, runString } from "@toxicwind/core/util/socket-run-raw" // kilocode_change
 import { HttpApiProxy } from "../../src/server/routes/instance/httpapi/middleware/proxy.ts"
 import { testEffect } from "../lib/effect.ts"
 

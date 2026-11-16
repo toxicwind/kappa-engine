@@ -50,7 +50,13 @@ const profiles: Record<string, Record<string, ModelProfile>> = {
     "openai/text-embedding-3-large": { dimension: 3072, scoreThreshold: 0.4 },
     "google/gemini-embedding-2-preview": { dimension: 3072, scoreThreshold: 0.35 },
   },
-  "openai-compatible": {},
+  "openai-compatible": {
+    // bge-oracle: the Pens's canonical BGE-M3 embedding lane (freeinference
+    // direct, dimension 1024). Registered here so kappa indexing resolves it
+    // instead of failing on an empty profile (anomaly #79/#81).
+    "bge-m3": { dimension: 1024, scoreThreshold: 0.3 },
+    "bge-oracle": { dimension: 1024, scoreThreshold: 0.3 },
+  },
   "vercel-ai-gateway": {
     "text-embedding-3-small": { dimension: 1536, scoreThreshold: 0.4 },
   },
@@ -65,7 +71,7 @@ const defaults: Record<string, string> = {
   voyage: "voyage-code-3",
   bedrock: "amazon.titan-embed-text-v2:0",
   openrouter: "openai/text-embedding-3-small",
-  "openai-compatible": "",
+  "openai-compatible": "bge-m3",
   "vercel-ai-gateway": "text-embedding-3-small",
 }
 

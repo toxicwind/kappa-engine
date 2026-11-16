@@ -1,5 +1,5 @@
-import { EventV2 } from "@opencode-ai/core/event"
-import { KappaEvent } from "@opencode-ai/protocol/groups/event" // kappacode_change - encode the full Kappa event bus
+import { EventV2 } from "@toxicwind/core/event"
+import { KappaEvent } from "@toxicwind/protocol/groups/event" // kappacode_change - encode the full Kappa event bus
 import { Effect, Schema, Stream } from "effect"
 import { HttpServerResponse } from "effect/http"
 import { HttpApiBuilder } from "effect/http-api"

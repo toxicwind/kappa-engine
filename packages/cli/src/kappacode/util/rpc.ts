@@ -39,7 +39,7 @@
  * `util/rpc.ts` stays byte-identical to upstream and never conflicts on a fork merge.
  */
 
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 
 type Definition = {
   [method: string]: (input: any) => any
@@ -54,7 +54,7 @@ const DEFAULT_TIMEOUT = 30_000
  * and either would fire the bound on the next tick and fail every call at startup.
  */
 function timeout() {
-  const value = Number(process.env["KAPPA_RPC_HANDSHAKE_TIMEOUT"])
+  const value = Number(kiloEnv("RPC_HANDSHAKE_TIMEOUT"))
   return Number.isFinite(value) && value > 0 ? value : DEFAULT_TIMEOUT
 }
 

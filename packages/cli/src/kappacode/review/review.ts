@@ -1,5 +1,5 @@
 import { $ } from "bun"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import { Instance } from "@/kappacode/instance"
 
 const log = Log.create({ service: "review" })

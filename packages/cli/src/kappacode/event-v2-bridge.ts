@@ -1,7 +1,7 @@
-import type { EventV2 } from "@opencode-ai/core/event"
-import { Location } from "@opencode-ai/core/location"
-import { Project } from "@opencode-ai/core/project"
-import { AbsolutePath } from "@opencode-ai/core/schema"
+import type { EventV2 } from "@toxicwind/core/event"
+import { Location } from "@toxicwind/core/location"
+import { Project } from "@toxicwind/core/project"
+import { AbsolutePath } from "@toxicwind/core/schema"
 import { Effect } from "effect"
 import { InstanceRef, WorkspaceRef } from "@/effect/instance-ref"
 

@@ -1,12 +1,12 @@
 import { Layer } from "effect"
 import { FetchHttpClient, HttpMiddleware, HttpRouter, HttpServer } from "effect/http"
-import { CorsConfig, isAllowedCorsOrigin, type CorsOptions } from "@opencode-ai/server/cors"
+import { CorsConfig, isAllowedCorsOrigin, type CorsOptions } from "@toxicwind/server/cors"
 import { compressionLayer } from "@/server/routes/instance/httpapi/middleware/compression"
 import { corsVaryFix } from "@/server/routes/instance/httpapi/middleware/cors-vary"
 import { errorLayer } from "@/server/routes/instance/httpapi/middleware/error"
 import { fenceLayer } from "@/server/routes/instance/httpapi/middleware/fence"
 import * as AnacondaDesktop from "@/kappacode/anaconda-desktop/service"
-import { EffectFlock } from "@opencode-ai/core/util/effect-flock"
+import { EffectFlock } from "@toxicwind/core/util/effect-flock"
 import { AppNodeBuilderV1 } from "@/effect/app-node-builder-v1" // kappacode_change - defaultLayer aliases are gone
 
 import { KappaViewers } from "@/kappacode/presence/service" // kappacode_change

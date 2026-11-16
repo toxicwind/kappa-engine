@@ -1,18 +1,18 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { httpClient } from "@opencode-ai/core/effect/app-node-platform"
-import { serviceUse } from "@opencode-ai/core/effect/service-use"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
+import { httpClient } from "@toxicwind/core/effect/app-node-platform"
+import { serviceUse } from "@toxicwind/core/effect/service-use"
 import path from "path"
 import { pathToFileURL } from "url"
 import os from "os"
 import { mergeDeep } from "remeda"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@toxicwind/core/global"
 import fsNode from "fs/promises"
-import { Flag } from "@opencode-ai/core/flag/flag"
-import { notices } from "@opencode-ai/core/kappacode/fff" // kappacode_change
+import { Flag } from "@toxicwind/core/flag/flag"
+import { notices } from "@toxicwind/core/kappacode/fff" // kappacode_change
 import { Auth } from "../auth/index.ts"
 import { Env } from "../env/index.ts"
 import { applyEdits, findNodeAtLocation, modify, parseTree } from "jsonc-parser" // kappacode_change - parseTree/findNodeAtLocation used in patchJsonc
-import { InstallationLocal, InstallationVersion } from "@opencode-ai/core/installation/version"
+import { InstallationLocal, InstallationVersion } from "@toxicwind/core/installation/version"
 import { existsSync } from "fs"
 // kappacode_change start
 import { GlobalBus } from "@/bus/global"
@@ -20,17 +20,17 @@ import { Event } from "../server/event.ts"
 // kappacode_change end
 import { Account } from "@/account/account"
 import { isRecord } from "@/util/record"
-import type { ConsoleState } from "@opencode-ai/core/v1/config/console-state"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import type { ConsoleState } from "@toxicwind/core/v1/config/console-state"
+import { FSUtil } from "@toxicwind/core/fs-util"
 import { InstanceState } from "@/effect/instance-state"
 import { Context, Duration, Effect, Fiber, Layer, Option, Schema } from "effect"
 import { HttpClient, HttpClientRequest } from "effect/http"
-import { EffectFlock } from "@opencode-ai/core/util/effect-flock"
+import { EffectFlock } from "@toxicwind/core/util/effect-flock"
 import { containsPath, type InstanceContext } from "../project/instance-context.ts"
-import { ConfigV1 } from "@opencode-ai/core/v1/config/config"
-import { RemoteAuthError } from "@opencode-ai/core/v1/config/error"
-import { ConfigPermissionV1 } from "@opencode-ai/core/v1/config/permission"
-import { ConfigPluginV1 } from "@opencode-ai/core/v1/config/plugin"
+import { ConfigV1 } from "@toxicwind/core/v1/config/config"
+import { RemoteAuthError } from "@toxicwind/core/v1/config/error"
+import { ConfigPermissionV1 } from "@toxicwind/core/v1/config/permission"
+import { ConfigPluginV1 } from "@toxicwind/core/v1/config/plugin"
 import { ConfigAgent } from "./agent.ts"
 import { ConfigCommand } from "./command.ts"
 import { ConfigManaged } from "./managed.ts"
@@ -39,10 +39,10 @@ import { ConfigPaths } from "./paths.ts"
 import { ConfigPlugin } from "./plugin.ts"
 import { ConfigVariable } from "./variable.ts"
 import { ConfigV2Compat } from "./v2-compat.ts"
-import { Npm } from "@opencode-ai/core/npm"
+import { Npm } from "@toxicwind/core/npm"
 import z from "zod" // kappacode_change - Kappa config compatibility schemas
 // kappacode_change start
-import { ZodOverride } from "@opencode-ai/core/effect-zod"
+import { ZodOverride } from "@toxicwind/core/effect-zod"
 import { KappacodeConfig } from "../kappacode/config/config.ts"
 import { Excess } from "../kappacode/config/excess.ts"
 import { sanitizeProjectMcpHeaders } from "../kappacode/config/mcp-headers.ts"
@@ -64,7 +64,7 @@ import { unique } from "remeda"
 import { installLocalPluginDependency, needsLocalPluginDependency } from "@/kappacode/config/plugin-deps"
 // kappacode_change end
 import { withTransientReadRetry } from "@/util/effect-http-client"
-import * as Log from "@opencode-ai/core/util/log" // kappacode_change
+import * as Log from "@toxicwind/core/util/log" // kappacode_change
 
 const log = Log.create({ service: "config" }) // kappacode_change
 

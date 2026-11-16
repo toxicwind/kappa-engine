@@ -1,5 +1,5 @@
-import type { PermissionV1 } from "@opencode-ai/core/v1/permission"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import type { PermissionV1 } from "@toxicwind/core/v1/permission"
+import { FSUtil } from "@toxicwind/core/fs-util"
 // kappacode_change start - use Kappa CLI branding
 // CLI entry point for `kappa run` and `kappa --mini`.
 //

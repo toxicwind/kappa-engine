@@ -1,6 +1,6 @@
 import { cmd } from "./cmd.ts"
 import { UI } from "@/cli/ui"
-import { errorMessage } from "@opencode-ai/tui/util/error"
+import { errorMessage } from "@toxicwind/tui/util/error"
 import { validateSession } from "../tui/validate-session.ts"
 import { ServerAuth } from "@/server/auth"
 // kappacode_change start - Kappa implementations (sdk client, cloud-session) are

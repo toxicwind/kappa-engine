@@ -1,7 +1,7 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
 import { Diff } from "@kappacode/kappa-ui/diff-ssr"
-import { WorkerPoolProvider } from "@opencode-ai/ui/context/worker-pool"
+import { WorkerPoolProvider } from "@toxicwind/ui/context/worker-pool"
 
 const meta: Meta = {
   title: "Components/DiffSSR",

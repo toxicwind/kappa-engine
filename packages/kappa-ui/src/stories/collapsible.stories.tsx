@@ -1,6 +1,6 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { Collapsible } from "@opencode-ai/ui/collapsible"
+import { Collapsible } from "@toxicwind/ui/collapsible"
 
 const meta: Meta = {
   title: "Components/Collapsible",

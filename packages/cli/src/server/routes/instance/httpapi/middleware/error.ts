@@ -1,5 +1,5 @@
-import { NamedError } from "@opencode-ai/core/util/error"
-import { ConfigErrorV1 } from "@opencode-ai/core/v1/config/error"
+import { NamedError } from "@toxicwind/core/util/error"
+import { ConfigErrorV1 } from "@toxicwind/core/v1/config/error"
 import { busyMessage, isBusy } from "@/kappacode/database/sqlite-error" // kappacode_change
 import { Cause, Effect } from "effect"
 import { HttpRouter, HttpServerError, HttpServerRespondable, HttpServerResponse } from "effect/http"

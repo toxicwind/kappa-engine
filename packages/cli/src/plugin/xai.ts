@@ -1,7 +1,7 @@
 import type { Hooks, PluginInput } from "@kappacode/plugin"
 import { OAUTH_DUMMY_KEY } from "../auth/index.ts"
 import { createServer } from "http"
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
+import { InstallationVersion } from "@toxicwind/core/installation/version"
 import { escapeHtml } from "@/util/html" // kappacode_change - retained OAuth error page uses escaped diagnostics
 
 // Public Grok-CLI OAuth client. xAI's auth server rejects loopback OAuth from

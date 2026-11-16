@@ -10,8 +10,8 @@ import type { SessionProcessor } from "@/session/processor"
 import { MessageID, PartID, type SessionID } from "@/session/schema"
 import type { Session } from "@/session/session"
 import { Token } from "@/util/token"
-import * as Log from "@opencode-ai/core/util/log"
-import { Database } from "@opencode-ai/core/database/database"
+import * as Log from "@toxicwind/core/util/log"
+import { Database } from "@toxicwind/core/database/database"
 
 type Update = <T extends MessageV2.Part>(part: T) => Effect.Effect<T>
 type UpdateMessage = <T extends MessageV2.Info>(msg: T) => Effect.Effect<T>

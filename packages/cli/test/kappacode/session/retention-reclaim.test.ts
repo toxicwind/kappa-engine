@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test"
 import { Effect } from "effect"
 import { statSync } from "node:fs"
-import { Database } from "@opencode-ai/core/database/database"
+import { Database } from "@toxicwind/core/database/database"
 import { KappaSessionRetention } from "../../../src/kappacode/session/retention.ts"
 import { tmpdir } from "../../fixture/fixture.ts"
 

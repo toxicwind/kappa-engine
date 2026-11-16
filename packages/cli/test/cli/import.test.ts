@@ -8,7 +8,7 @@ import {
   shouldAttachShareAuthHeaders,
   type ShareData,
 } from "../../src/cli/cmd/import.ts"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@toxicwind/core/fs-util"
 import { PlatformError } from "effect"
 
 test("formats import file errors", () => {

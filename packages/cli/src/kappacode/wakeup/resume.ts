@@ -1,6 +1,6 @@
 import { Instance, provide } from "@/kappacode/instance"
 import { InstanceRef } from "@/effect/instance-ref"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import type { InstanceContext } from "@/project/instance-context"
 import { GoalLink } from "@/kappacode/session/goal/link"
 import { GoalState } from "@/kappacode/session/goal/state"

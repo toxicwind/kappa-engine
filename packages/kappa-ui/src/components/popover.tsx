@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/popover"
+export * from "@toxicwind/ui/popover"

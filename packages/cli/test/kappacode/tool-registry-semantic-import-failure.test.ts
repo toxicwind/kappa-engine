@@ -1,6 +1,6 @@
 import { describe, expect, spyOn, test } from "bun:test"
 import { Effect, Schema } from "effect"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import { KappaToolRegistry } from "../../src/kappacode/tool/registry.ts"
 import { Agent } from "../../src/agent/agent.ts"
 import * as Truncate from "../../src/tool/truncate.ts"

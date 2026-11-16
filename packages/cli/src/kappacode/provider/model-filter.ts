@@ -1,5 +1,5 @@
 import type { Provider } from "@/provider/provider"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { ProviderV2 } from "@toxicwind/core/provider"
 export function filterPromptTrainingModels(providers: Record<string, Provider.Info>, hide: boolean) {
   if (!hide) return providers
   return Object.fromEntries(

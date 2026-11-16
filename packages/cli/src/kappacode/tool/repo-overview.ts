@@ -1,6 +1,6 @@
 import path from "path"
 import { Effect, Schema } from "effect"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@toxicwind/core/fs-util"
 import { Git } from "@/git"
 import { assertExternalDirectoryEffect } from "@/tool/external-directory"
 import DESCRIPTION from "./repo-overview.txt"

@@ -1,4 +1,4 @@
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 
 const log = Log.create({ service: "parent-watchdog" })
 
@@ -17,7 +17,7 @@ const log = Log.create({ service: "parent-watchdog" })
  * Returns a function that stops the watchdog.
  */
 export function startParentWatchdog(onOrphan: () => void, intervalMs = 1000): () => void {
-  const configured = Number(process.env["KAPPA_PARENT_PID"])
+  const configured = Number(kiloEnv("PARENT_PID"))
   if (!Number.isInteger(configured) || configured <= 0) return () => {}
   const initial = process.ppid
   log.info("watching parent process", { parent: configured, ppid: initial, intervalMs })

@@ -1,38 +1,38 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kappacode_change
-import { PermissionV1 } from "@opencode-ai/core/v1/permission"
-import { Slug } from "@opencode-ai/core/util/slug"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
-import { serviceUse } from "@opencode-ai/core/effect/service-use"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder" // kappacode_change
+import { PermissionV1 } from "@toxicwind/core/v1/permission"
+import { Slug } from "@toxicwind/core/util/slug"
+import { SessionV1 } from "@toxicwind/core/v1/session"
+import { serviceUse } from "@toxicwind/core/effect/service-use"
 import path from "path"
 import { BackgroundJob } from "@/background/job"
 import { Decimal } from "decimal.js"
-import type { ProviderMetadata, Usage } from "@opencode-ai/llm"
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
-import { Database } from "@opencode-ai/core/database/database"
-import { makeRuntime } from "@opencode-ai/core/effect/runtime"
+import type { ProviderMetadata, Usage } from "@toxicwind/llm"
+import { InstallationVersion } from "@toxicwind/core/installation/version"
+import { Database } from "@toxicwind/core/database/database"
+import { makeRuntime } from "@toxicwind/core/effect/runtime"
 import { EventV2Bridge } from "@/event-v2-bridge"
-import { EventV2 } from "@opencode-ai/core/event"
-import { SessionV2 } from "@opencode-ai/core/session"
-import { SessionExecution } from "@opencode-ai/core/session/execution"
+import { EventV2 } from "@toxicwind/core/event"
+import { SessionV2 } from "@toxicwind/core/session"
+import { SessionExecution } from "@toxicwind/core/session/execution"
 
 import { NotFoundError } from "@/storage/storage"
 import { eq, and, gte, isNull, desc, like, sql, inArray, lt, or } from "drizzle-orm"
 import type { SQL } from "drizzle-orm"
-import { PartTable, SessionTable } from "@opencode-ai/core/session/sql"
-import { ProjectTable } from "@opencode-ai/core/project/sql"
+import { PartTable, SessionTable } from "@toxicwind/core/session/sql"
+import { ProjectTable } from "@toxicwind/core/project/sql"
 import { MessageV2 } from "./message-v2.ts"
 import type { InstanceContext } from "../project/instance-context.ts"
 import { InstanceState } from "@/effect/instance-state"
 import { Snapshot } from "@/snapshot"
-import { ProjectV2 } from "@opencode-ai/core/project"
-import { WorkspaceV2 } from "@opencode-ai/core/workspace"
+import { ProjectV2 } from "@toxicwind/core/project"
+import { WorkspaceV2 } from "@toxicwind/core/workspace"
 import { SessionID, MessageID, PartID } from "./schema.ts"
-import { SessionMessage } from "@opencode-ai/core/session/message" // kappacode_change - shared Revert.State brand
+import { SessionMessage } from "@toxicwind/core/session/message" // kappacode_change - shared Revert.State brand
 
 import type { Provider } from "@/provider/provider"
 import { Permission } from "@/permission"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@toxicwind/core/global"
 // kappacode_change start - Kappa session behavior extensions
 import { BackgroundProcess } from "@/kappacode/background-process"
 import * as SandboxInheritance from "@/kappacode/sandbox/inheritance"
@@ -46,11 +46,11 @@ import * as SandboxPolicy from "@/kappacode/sandbox/policy"
 import { carryForkDiff } from "@/kappacode/session-portability/cumulative-diff" // kappacode_change
 // kappacode_change end
 import { Effect, Layer, Option, Context, Schema, Types } from "effect"
-import { NonNegativeInt, optionalOmitUndefined } from "@opencode-ai/core/schema"
-import { AbsolutePath } from "@opencode-ai/core/schema" // kappacode_change
+import { NonNegativeInt, optionalOmitUndefined } from "@toxicwind/core/schema"
+import { AbsolutePath } from "@toxicwind/core/schema" // kappacode_change
 import { RuntimeFlags } from "@/effect/runtime-flags"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
 
 const runtime = makeRuntime(Database.Service, AppNodeBuilder.build(Database.node))
 

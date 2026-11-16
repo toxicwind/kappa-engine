@@ -7,7 +7,7 @@ import { Authorization } from "../middleware/authorization.ts"
 import { InstanceContextMiddleware } from "../middleware/instance-context.ts"
 import { WorkspaceRoutingMiddleware, WorkspaceRoutingQuery } from "../middleware/workspace-routing.ts"
 import { described } from "./metadata.ts"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { ProviderV2 } from "@toxicwind/core/provider"
 
 const root = "/provider"
 

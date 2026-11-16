@@ -1,8 +1,8 @@
 import * as path from "path"
 import os from "os"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import type { Config } from "../config/config.ts"
-import type { ConfigPermissionV1 as ConfigPermission } from "@opencode-ai/core/v1/config/permission"
+import type { ConfigPermissionV1 as ConfigPermission } from "@toxicwind/core/v1/config/permission"
 
 export namespace IgnoreMigrator {
   const log = Log.create({ service: "kappacode.ignore-migrator" })

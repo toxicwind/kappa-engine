@@ -113,6 +113,8 @@ export interface TreeSitterClientOptions {
   dataPath: string // Directory for storing downloaded parsers and queries
   workerPath?: string | URL
   initTimeout?: number // Timeout in milliseconds for worker initialization, defaults to 10000
+  initRetries?: number // Number of retry attempts on initialization timeout or failure, defaults to 3
+  initRetryDelayMs?: number // Delay in milliseconds between retry attempts, defaults to 1000
 }
 
 export interface Edit {

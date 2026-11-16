@@ -3,7 +3,7 @@ import path from "path"
 import fs from "fs/promises"
 import { describe, expect, test } from "bun:test"
 import { ConfigProtection } from "../../../src/kappacode/permission/config-paths.ts"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@toxicwind/core/global"
 import { KappacodePaths } from "../../../src/kappacode/paths.ts"
 import { tmpdir } from "../../fixture/fixture.ts"
 

@@ -1,5 +1,5 @@
 import { describe, test, expect } from "bun:test"
-import type { SessionV1 } from "@opencode-ai/core/v1/session"
+import type { SessionV1 } from "@toxicwind/core/v1/session"
 import { TaskResult } from "@/kappacode/tool/task-result"
 
 // Real-contract tests: no mocks. Parts are built as plain objects matching the

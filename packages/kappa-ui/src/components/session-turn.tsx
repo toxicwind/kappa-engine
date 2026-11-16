@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/session-turn"
+export * from "@toxicwind/ui/session-turn"

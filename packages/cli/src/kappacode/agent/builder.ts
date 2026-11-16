@@ -1,7 +1,7 @@
 import path from "path"
 import fs from "fs/promises"
 import z from "zod"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@toxicwind/core/global"
 import { Filesystem } from "@/util/filesystem"
 
 export namespace AgentBuilder {

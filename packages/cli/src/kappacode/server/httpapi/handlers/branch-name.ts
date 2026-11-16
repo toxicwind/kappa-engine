@@ -1,4 +1,4 @@
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import { generate, messages } from "@/kappacode/branch-name"
 import { Session } from "@/session/session"
 import { SessionID } from "@/session/schema"

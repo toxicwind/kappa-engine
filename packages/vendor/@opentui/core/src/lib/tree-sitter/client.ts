@@ -308,9 +308,56 @@ export class TreeSitterClient extends EventEmitter<TreeSitterClientEvents> {
 
   private async initializeClient(generation: number, worker: TreeSitterWorkerHandle): Promise<void> {
     const treeSitterWasmPath = await resolveTreeSitterWasm()
-    this.assertCurrentInitialization(generation, worker)
+    const workerPath = this.resolveWorkerPath()
+    console.log("TreeSitter client: resolved worker path", workerPath)
+    console.log("TreeSitter client: resolved tree-sitter wasm path", treeSitterWasmPath)
+
+    const initRetries = this.options.initRetries ?? 3
+    const initRetryDelayMs = this.options.initRetryDelayMs ?? 1000
+    const initTimeoutMs = this.options.initTimeout ?? 30000
+
+    let lastError: Error | undefined
+
+    for (let attempt = 0; attempt <= initRetries; attempt++) {
+      const currentWorker = this.worker ?? this.startWorker() ?? this.worker!
+      this.assertCurrentInitialization(generation, currentWorker)
+
+      try {
+        await this.waitForInitResponse(currentWorker, treeSitterWasmPath, initTimeoutMs)
+        this.assertCurrentInitialization(generation, this.worker!)
+        await this.registerDefaultParsers(generation, this.worker!)
+        this.assertCurrentInitialization(generation, this.worker!)
+        this.initialized = true
+        return
+      } catch (error) {
+        lastError = error instanceof Error ? error : new Error(String(error))
+        try {
+          this.assertCurrentInitialization(generation, currentWorker)
+        } catch {
+          throw lastError
+        }
+        if (attempt < initRetries) {
+          console.warn("TreeSitter client: initialization failed, retrying", {
+            attempt: attempt + 1,
+            retries: initRetries,
+            error: lastError.message,
+          })
+          await new Promise<void>((resolve) => {
+            setTimeout(resolve, initRetryDelayMs * (attempt + 1))
+          })
+        }
+      }
+    }
+
+    throw lastError ?? new Error("Worker initialization failed")
+  }
+
+  private async waitForInitResponse(
+    worker: TreeSitterWorkerHandle,
+    treeSitterWasmPath: string,
+    timeoutMs: number,
+  ): Promise<void> {
     await new Promise<void>((resolve, reject) => {
-      const timeoutMs = this.options.initTimeout ?? 10000 // Default to 10 seconds
       const timeoutId = setTimeout(() => {
         const error = new Error("Worker initialization timed out")
         console.error("TreeSitter client:", error.message)
@@ -325,11 +372,6 @@ export class TreeSitterClient extends EventEmitter<TreeSitterClientEvents> {
         treeSitterWasmPath,
       })
     })
-
-    this.assertCurrentInitialization(generation, worker)
-    await this.registerDefaultParsers(generation, worker)
-    this.assertCurrentInitialization(generation, worker)
-    this.initialized = true
   }
 
   private async registerDefaultParsers(

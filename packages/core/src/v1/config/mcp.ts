@@ -1,9 +1,9 @@
 export * as ConfigMCPV1 from "./mcp"
 
 import { Schema, SchemaGetter } from "effect" // kappacode_change
-import { zod } from "@opencode-ai/core/effect-zod" // kappacode_change
+import { zod } from "@toxicwind/core/effect-zod" // kappacode_change
 import { PositiveInt } from "../../schema"
-import { withStatics } from "@opencode-ai/core/schema" // kappacode_change
+import { withStatics } from "@toxicwind/core/schema" // kappacode_change
 
 const LocalCanonical = Schema.Struct({
   // kappacode_change

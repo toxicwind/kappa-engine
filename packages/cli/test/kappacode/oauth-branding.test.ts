@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test"
 import path from "path"
-import { KappaOauthCallbackPage } from "@opencode-ai/core/kappacode/oauth/page"
+import { KappaOauthCallbackPage } from "@toxicwind/core/kappacode/oauth/page"
 
 const root = path.join(__dirname, "..", "..")
 

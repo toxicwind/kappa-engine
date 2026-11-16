@@ -1,16 +1,16 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { httpClient } from "@opencode-ai/core/effect/app-node-platform"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
+import { httpClient } from "@toxicwind/core/effect/app-node-platform"
 import path from "path"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import { SessionV1 } from "@toxicwind/core/v1/session"
 import { Effect, Layer, Context } from "effect"
 import { FetchHttpClient, HttpClient, HttpClientRequest } from "effect/http"
 import { Config } from "@/config/config"
 import { InstanceState } from "@/effect/instance-state"
 import { RuntimeFlags } from "@/effect/runtime-flags"
-import { Flag } from "@opencode-ai/core/flag/flag"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { Flag } from "@toxicwind/core/flag/flag"
+import { FSUtil } from "@toxicwind/core/fs-util"
 import { withTransientReadRetry } from "@/util/effect-http-client"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@toxicwind/core/global"
 import { KappacodeInstruction } from "@/kappacode/session/instruction" // kappacode_change
 import { ClaudeMigration } from "@/kappacode/config/claude-migration" // kappacode_change
 import type { KappacodeMarkdown } from "@/kappacode/config/markdown" // kappacode_change

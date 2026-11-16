@@ -1,8 +1,8 @@
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
 import { afterEach, describe, expect } from "bun:test"
-import * as CrossSpawnSpawner from "@opencode-ai/core/cross-spawn-spawner"
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import * as AppProcess from "@opencode-ai/core/process"
+import * as CrossSpawnSpawner from "@toxicwind/core/cross-spawn-spawner"
+import { FSUtil } from "@toxicwind/core/fs-util"
+import * as AppProcess from "@toxicwind/core/process"
 import {
   mutate,
   run as sandbox,

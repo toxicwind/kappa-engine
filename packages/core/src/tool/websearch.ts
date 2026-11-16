@@ -1,11 +1,11 @@
 export * as WebSearchTool from "./websearch"
 
-import { ToolFailure } from "@opencode-ai/llm"
+import { ToolFailure } from "@toxicwind/llm"
 import { Context, Duration, Effect, Layer, Schema } from "effect"
 import { HttpClient, HttpClientRequest } from "effect/http"
 import { makeLocationNode } from "../effect/app-node"
 import { LayerNodePlatform } from "../effect/app-node-platform"
-import { truthy } from "../flag/flag"
+import { kiloTruthy } from "../flag/flag"
 import { InstallationVersion } from "../installation/version"
 import { PositiveInt } from "../schema"
 import { PermissionV2 } from "../permission"
@@ -76,8 +76,8 @@ export const defaultConfigLayer = Layer.sync(ConfigService, () =>
       process.env.KAPPA_WEBSEARCH_PROVIDER === "exa" || process.env.KAPPA_WEBSEARCH_PROVIDER === "parallel"
         ? process.env.KAPPA_WEBSEARCH_PROVIDER
         : undefined,
-    enableExa: truthy("KAPPA_EXPERIMENTAL") || truthy("KAPPA_ENABLE_EXA") || truthy("KAPPA_EXPERIMENTAL_EXA"),
-    enableParallel: truthy("KAPPA_ENABLE_PARALLEL") || truthy("KAPPA_EXPERIMENTAL_PARALLEL"),
+    enableExa: kiloTruthy("EXPERIMENTAL") || kiloTruthy("ENABLE_EXA") || kiloTruthy("EXPERIMENTAL_EXA"),
+    enableParallel: kiloTruthy("ENABLE_PARALLEL") || kiloTruthy("EXPERIMENTAL_PARALLEL"),
     exaApiKey: process.env.EXA_API_KEY,
     parallelApiKey: process.env.PARALLEL_API_KEY,
   }),

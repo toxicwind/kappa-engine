@@ -50,9 +50,9 @@
 
 - Updated dependencies [[`0a5c6df`](https://github.com/Kappa-Org/kappacode/commit/0a5c6df3486d897d142752173545a1d153b8cdaa)]:
   - @kappacode/kappa-indexing@7.8.9
-  - @opencode-ai/core@7.8.9
+  - @toxicwind/core@7.8.9
   - @kappacode/kappa-ui@7.8.9
-  - @opencode-ai/ui@7.8.9
+  - @toxicwind/ui@7.8.9
 
 ## 7.8.8
 
@@ -158,9 +158,9 @@
 - Updated dependencies [[`07b18a1`](https://github.com/Kappa-Org/kappacode/commit/07b18a1a250ac7b1b257e4571e7b6050e3abd092), [`ab04799`](https://github.com/Kappa-Org/kappacode/commit/ab047999c7aa94d63d9743831d5d3a3a44862dee)]:
   - @kappacode/kappa-gateway@7.8.4
   - @kappacode/kappa-ui@7.8.4
-  - @opencode-ai/core@7.8.4
+  - @toxicwind/core@7.8.4
   - @kappacode/kappa-indexing@7.8.4
-  - @opencode-ai/ui@7.8.4
+  - @toxicwind/ui@7.8.4
 
 ## 7.8.2
 
@@ -202,9 +202,9 @@
 
 - Updated dependencies [[`463cbed`](https://github.com/Kappa-Org/kappacode/commit/463cbedaa6f17ebf6f4fbcc276a338259f348b63)]:
   - @kappacode/kappa-indexing@7.8.2
-  - @opencode-ai/core@7.8.2
+  - @toxicwind/core@7.8.2
   - @kappacode/kappa-ui@7.8.2
-  - @opencode-ai/ui@7.8.2
+  - @toxicwind/ui@7.8.2
 
 ## 7.8.1
 
@@ -264,8 +264,8 @@
   - @kappacode/sdk@7.8.0
   - @kappacode/kappa-ui@7.7.10
   - @kappacode/plugin@7.7.10
-  - @opencode-ai/ui@7.7.10
-  - @opencode-ai/core@7.7.10
+  - @toxicwind/ui@7.7.10
+  - @toxicwind/core@7.7.10
   - @kappacode/kappa-gateway@7.7.10
   - @kappacode/kappa-indexing@7.7.10
 
@@ -303,8 +303,8 @@
   - @kappacode/sdk@7.7.8
   - @kappacode/kappa-ui@7.7.8
   - @kappacode/plugin@7.7.8
-  - @opencode-ai/ui@7.7.8
-  - @opencode-ai/core@7.7.8
+  - @toxicwind/ui@7.7.8
+  - @toxicwind/core@7.7.8
   - @kappacode/kappa-gateway@7.7.8
   - @kappacode/kappa-indexing@7.7.8
 
@@ -376,8 +376,8 @@
   - @kappacode/sdk@7.7.5
   - @kappacode/kappa-ui@7.7.5
   - @kappacode/plugin@7.7.5
-  - @opencode-ai/ui@7.7.5
-  - @opencode-ai/core@7.7.5
+  - @toxicwind/ui@7.7.5
+  - @toxicwind/core@7.7.5
   - @kappacode/kappa-gateway@7.7.5
   - @kappacode/kappa-indexing@7.7.5
 
@@ -456,11 +456,11 @@
 - Updated dependencies [[`3eaf47b`](https://github.com/Kappa-Org/kappacode/commit/3eaf47ba52179d385a1945c0be323c5d8fa2b4ee)]:
   - @kappacode/kappa-gateway@8.0.0
   - @kappacode/sdk@8.0.0
-  - @opencode-ai/core@7.7.3
+  - @toxicwind/core@7.7.3
   - @kappacode/kappa-indexing@7.7.3
   - @kappacode/kappa-ui@7.7.3
   - @kappacode/plugin@7.7.3
-  - @opencode-ai/ui@7.7.3
+  - @toxicwind/ui@7.7.3
 
 ## 7.7.2
 
@@ -684,8 +684,8 @@
   - @kappacode/kappa-ui@7.6.0
   - @kappacode/sdk@8.0.0
   - @kappacode/plugin@7.5.17
-  - @opencode-ai/ui@7.5.17
-  - @opencode-ai/core@7.5.17
+  - @toxicwind/ui@7.5.17
+  - @toxicwind/core@7.5.17
   - @kappacode/kappa-gateway@7.5.17
   - @kappacode/kappa-indexing@7.5.17
 
@@ -863,9 +863,9 @@
   - @kappacode/kappa-gateway@7.5.10
   - @kappacode/sdk@7.6.0
   - @kappacode/kappa-ui@7.5.10
-  - @opencode-ai/core@7.5.10
+  - @toxicwind/core@7.5.10
   - @kappacode/plugin@7.5.10
-  - @opencode-ai/ui@7.5.10
+  - @toxicwind/ui@7.5.10
 
 ## 7.5.9
 
@@ -923,8 +923,8 @@
   - @kappacode/sdk@7.6.0
   - @kappacode/kappa-ui@7.5.7
   - @kappacode/plugin@7.5.7
-  - @opencode-ai/ui@7.5.7
-  - @opencode-ai/core@7.5.7
+  - @toxicwind/ui@7.5.7
+  - @toxicwind/core@7.5.7
   - @kappacode/kappa-gateway@7.5.7
   - @kappacode/kappa-indexing@7.5.7
 
@@ -989,10 +989,10 @@
 - [#13422](https://github.com/Kappa-Org/kappacode/pull/13422) [`83e2772`](https://github.com/Kappa-Org/kappacode/commit/83e27728e56d461d8c749ba60722836c4bcad1f6) - Recognize sessions discovered in managed Agent Manager worktrees during orchestration actions.
 
 - Updated dependencies [[`13a9673`](https://github.com/Kappa-Org/kappacode/commit/13a9673d08cfc69eebb89898861a1ee80278f226), [`b382a3b`](https://github.com/Kappa-Org/kappacode/commit/b382a3b838e317acc284442361b9bae2f39c992e), [`f5a7a1d`](https://github.com/Kappa-Org/kappacode/commit/f5a7a1d61bf7eaaa7bc307a976f6f56150fa6264), [`f9ddb78`](https://github.com/Kappa-Org/kappacode/commit/f9ddb78b17714075ab4f5d1ccb26f2cdbcd644bf), [`34b10a6`](https://github.com/Kappa-Org/kappacode/commit/34b10a672b3048ed53477a1019f08832b522db2d), [`8cb1931`](https://github.com/Kappa-Org/kappacode/commit/8cb1931275b1df6d145b8a283cef550ae2851e29)]:
-  - @opencode-ai/ui@7.5.6
+  - @toxicwind/ui@7.5.6
   - @kappacode/kappa-ui@7.5.6
   - @kappacode/sdk@7.5.6
-  - @opencode-ai/core@7.5.6
+  - @toxicwind/core@7.5.6
   - @kappacode/kappa-indexing@7.5.6
   - @kappacode/plugin@7.5.6
   - @kappacode/kappa-gateway@7.5.6
@@ -1014,7 +1014,7 @@
 - [#13459](https://github.com/Kappa-Org/kappacode/pull/13459) [`f9606d8`](https://github.com/Kappa-Org/kappacode/commit/f9606d8def5010fea7801722759eab621346bb46) - Restore the session title and branch subtitle immediately when opening an existing session in a worktree.
 
 - Updated dependencies [[`e4003da`](https://github.com/Kappa-Org/kappacode/commit/e4003da9e1842e0bc8f49777619faa3284b24f95)]:
-  - @opencode-ai/ui@7.5.1
+  - @toxicwind/ui@7.5.1
   - @kappacode/kappa-ui@7.5.1
 
 ## 7.5.0
@@ -1203,10 +1203,10 @@
 - [#13179](https://github.com/Kappa-Org/kappacode/pull/13179) [`2477bde`](https://github.com/Kappa-Org/kappacode/commit/2477bde2c25e46a46489be436de0c332f195837b) - Open `/sessions` on a git worktree with the Worktree history filter selected by default.
 
 - Updated dependencies [[`97abdab`](https://github.com/Kappa-Org/kappacode/commit/97abdab66cf0bc01c8f3364e5f640dadde15b7d3), [`cba6ebc`](https://github.com/Kappa-Org/kappacode/commit/cba6ebc6fa7ba313bc0aae51550389626621d9c5), [`f39e163`](https://github.com/Kappa-Org/kappacode/commit/f39e1631855859222966350bd5fae373b9877297), [`e1bcb32`](https://github.com/Kappa-Org/kappacode/commit/e1bcb320d94efe6ed8abf7c33fe6475a67a2e1e7)]:
-  - @opencode-ai/core@7.4.23
+  - @toxicwind/core@7.4.23
   - @kappacode/kappa-ui@7.4.23
   - @kappacode/kappa-gateway@8.0.0
-  - @opencode-ai/ui@7.4.23
+  - @toxicwind/ui@7.4.23
   - @kappacode/kappa-indexing@7.4.23
 
 ## 7.4.22
@@ -1386,9 +1386,9 @@
   - @kappacode/kappa-ui@7.4.21
   - @kappacode/kappa-memory@7.4.21
   - @kappacode/kappa-gateway@7.4.21
-  - @opencode-ai/core@7.4.21
+  - @toxicwind/core@7.4.21
   - @kappacode/kappa-indexing@7.4.21
-  - @opencode-ai/ui@7.4.21
+  - @toxicwind/ui@7.4.21
 
 ## 7.4.20
 
@@ -1589,8 +1589,8 @@
   - @kappacode/sdk@7.5.0
   - @kappacode/kappa-gateway@7.4.16
   - @kappacode/plugin@7.4.16
-  - @opencode-ai/ui@7.4.16
-  - @opencode-ai/core@7.4.16
+  - @toxicwind/ui@7.4.16
+  - @toxicwind/core@7.4.16
   - @kappacode/kappa-indexing@7.4.16
 
 ## 7.4.15
@@ -1646,9 +1646,9 @@
 - Updated dependencies [[`084bcea`](https://github.com/Kappa-Org/kappacode/commit/084bceadaedf193568ccf71256bd299c0d11e90c), [`c081f58`](https://github.com/Kappa-Org/kappacode/commit/c081f582abecaba98a303069140d014a9ee90ca9), [`ff703fb`](https://github.com/Kappa-Org/kappacode/commit/ff703fba621e35a4a5d8e4801620502228cca5bf)]:
   - @kappacode/kappa-gateway@7.4.12
   - @kappacode/kappa-indexing@7.5.0
-  - @opencode-ai/core@7.4.12
+  - @toxicwind/core@7.4.12
   - @kappacode/kappa-ui@7.4.12
-  - @opencode-ai/ui@7.4.12
+  - @toxicwind/ui@7.4.12
 
 ## 7.4.11
 
@@ -1671,10 +1671,10 @@
   - @kappacode/kappa-ui@7.4.10
   - @kappacode/kappa-memory@7.5.0
   - @kappacode/sdk@7.5.0
-  - @opencode-ai/core@7.4.10
+  - @toxicwind/core@7.4.10
   - @kappacode/kappa-indexing@7.4.10
   - @kappacode/plugin@7.4.10
-  - @opencode-ai/ui@7.4.10
+  - @toxicwind/ui@7.4.10
 
 ## 7.4.9
 
@@ -1725,8 +1725,8 @@
   - @kappacode/kappa-indexing@7.4.8
   - @kappacode/kappa-ui@7.4.8
   - @kappacode/plugin@7.4.8
-  - @opencode-ai/ui@7.4.8
-  - @opencode-ai/core@7.4.8
+  - @toxicwind/ui@7.4.8
+  - @toxicwind/core@7.4.8
   - @kappacode/kappa-gateway@7.4.8
 
 ## 7.4.7
@@ -1772,9 +1772,9 @@
   - @kappacode/sdk@7.5.0
   - @kappacode/kappa-ui@7.4.6
   - @kappacode/plugin@7.4.6
-  - @opencode-ai/ui@7.4.6
+  - @toxicwind/ui@7.4.6
   - @kappacode/kappa-gateway@7.4.6
-  - @opencode-ai/core@7.4.6
+  - @toxicwind/core@7.4.6
 
 ## 7.4.4
 
@@ -1786,10 +1786,10 @@
   - @kappacode/sdk@7.5.0
   - @kappacode/kappa-ui@7.4.4
   - @kappacode/plugin@7.4.4
-  - @opencode-ai/ui@7.4.4
+  - @toxicwind/ui@7.4.4
   - @kappacode/kappa-gateway@7.4.4
   - @kappacode/kappa-indexing@7.4.4
-  - @opencode-ai/core@7.4.4
+  - @toxicwind/core@7.4.4
 
 ## 7.4.3
 
@@ -1848,8 +1848,8 @@
   - @kappacode/kappa-gateway@7.4.2
   - @kappacode/kappa-ui@7.4.2
   - @kappacode/plugin@7.4.2
-  - @opencode-ai/ui@7.4.2
-  - @opencode-ai/core@7.4.2
+  - @toxicwind/ui@7.4.2
+  - @toxicwind/core@7.4.2
 
 ## 7.4.1
 
@@ -2004,7 +2004,7 @@
   - @kappacode/kappa-gateway@7.3.55
   - @kappacode/kappa-ui@7.3.55
   - @kappacode/plugin@7.3.55
-  - @opencode-ai/ui@7.3.55
+  - @toxicwind/ui@7.3.55
   - @kappacode/kappa-indexing@7.3.55
 
 ## 7.3.54
@@ -2019,7 +2019,7 @@
   - @kappacode/kappa-gateway@7.3.53
   - @kappacode/kappa-indexing@7.3.53
   - @kappacode/kappa-ui@7.3.53
-  - @opencode-ai/ui@7.3.53
+  - @toxicwind/ui@7.3.53
 
 ## 7.3.52
 
@@ -2100,7 +2100,7 @@
   - @kappacode/kappa-indexing@7.3.50
   - @kappacode/kappa-ui@7.3.50
   - @kappacode/plugin@7.3.50
-  - @opencode-ai/ui@7.3.50
+  - @toxicwind/ui@7.3.50
 
 ## 7.3.49
 
@@ -2271,7 +2271,7 @@
   - @kappacode/sdk@7.4.0
   - @kappacode/kappa-ui@7.3.47
   - @kappacode/plugin@7.3.47
-  - @opencode-ai/ui@7.3.47
+  - @toxicwind/ui@7.3.47
   - @kappacode/kappa-gateway@7.3.47
 
 ## 7.3.46
@@ -2366,7 +2366,7 @@
   - @kappacode/kappa-indexing@7.4.0
   - @kappacode/kappa-ui@7.3.43
   - @kappacode/kappa-gateway@7.3.43
-  - @opencode-ai/ui@7.3.43
+  - @toxicwind/ui@7.3.43
 
 ## 7.3.42
 
@@ -2485,7 +2485,7 @@
   - @kappacode/kappa-ui@7.3.23
   - @kappacode/sdk@7.3.23
   - @kappacode/kappa-gateway@7.3.23
-  - @opencode-ai/ui@7.3.23
+  - @toxicwind/ui@7.3.23
   - @kappacode/kappa-indexing@7.3.23
 
 ## 7.3.21
@@ -2542,7 +2542,7 @@
 - [#9796](https://github.com/Kappa-Org/kappacode/pull/9796) [`663fbdb`](https://github.com/Kappa-Org/kappacode/commit/663fbdb58547ac5b946ba4610918239b8a7e336f) Thanks [@ale-saglia](https://github.com/ale-saglia)! - Support Italian as a display language in the VS Code extension.
 
 - Updated dependencies [[`663fbdb`](https://github.com/Kappa-Org/kappacode/commit/663fbdb58547ac5b946ba4610918239b8a7e336f)]:
-  - @opencode-ai/ui@7.3.16
+  - @toxicwind/ui@7.3.16
   - @kappacode/kappa-ui@7.3.16
   - @kappacode/kappa-i18n@7.3.16
 
@@ -2590,7 +2590,7 @@
   - @kappacode/sdk@7.3.13
   - @kappacode/kappa-gateway@7.4.0
   - @kappacode/kappa-ui@7.3.13
-  - @opencode-ai/ui@7.3.13
+  - @toxicwind/ui@7.3.13
 
 ## 7.3.11
 
@@ -2620,7 +2620,7 @@
 
 - Updated dependencies [[`6415432`](https://github.com/Kappa-Org/kappacode/commit/6415432d225d696f29e030a84780e91011c1cf25), [`0ec80b0`](https://github.com/Kappa-Org/kappacode/commit/0ec80b0c6f401253fc05a7bd5c876e94320dfaa1)]:
   - @kappacode/kappa-ui@7.3.11
-  - @opencode-ai/ui@7.3.11
+  - @toxicwind/ui@7.3.11
 
 ## 7.3.10
 
@@ -2659,7 +2659,7 @@
 - Updated dependencies [[`205e22e`](https://github.com/Kappa-Org/kappacode/commit/205e22ee4672305d3cb2e0c34b607a4950f8f4e8), [`9067de0`](https://github.com/Kappa-Org/kappacode/commit/9067de039ed820eab757d1e798abe264315c6f02)]:
   - @kappacode/kappa-indexing@7.3.5
   - @kappacode/kappa-ui@7.3.5
-  - @opencode-ai/ui@7.3.5
+  - @toxicwind/ui@7.3.5
 
 ## 7.3.3
 
@@ -2758,7 +2758,7 @@
   - @kappacode/kappa-ui@7.2.53
   - @kappacode/sdk@7.3.0
   - @kappacode/kappa-gateway@7.3.0
-  - @opencode-ai/ui@7.2.53
+  - @toxicwind/ui@7.2.53
   - @kappacode/kappa-indexing@7.2.53
 
 ## 7.2.51
@@ -2879,7 +2879,7 @@
 - [#9917](https://github.com/Kappa-Org/kappacode/pull/9917) [`42e43c4`](https://github.com/Kappa-Org/kappacode/commit/42e43c4e44a5ae783ca6eae51c05d28c2ef3cedf) - Capture the active VS Code terminal when using `@terminal` in Agent Manager.
 
 - Updated dependencies [[`3095efc`](https://github.com/Kappa-Org/kappacode/commit/3095efcc4c141a2532f48dc77b38cf0309125c82), [`9886674`](https://github.com/Kappa-Org/kappacode/commit/98866740afd7f6c2fd06fecda1ffc69c1703974e), [`e5e9d0b`](https://github.com/Kappa-Org/kappacode/commit/e5e9d0ba37bd1065aea5a9a83834c6749121e5bd)]:
-  - @opencode-ai/ui@7.2.43
+  - @toxicwind/ui@7.2.43
   - @kappacode/sdk@7.3.0
   - @kappacode/kappa-ui@7.2.43
   - @kappacode/kappa-indexing@7.2.43
@@ -2911,7 +2911,7 @@
 - [#9824](https://github.com/Kappa-Org/kappacode/pull/9824) [`b7657d1`](https://github.com/Kappa-Org/kappacode/commit/b7657d1aef37cefefe1557b981822535e41ea82c) - Add a Display setting for adjusting the Kappa webview UI font size.
 
 - Updated dependencies [[`40a4d5e`](https://github.com/Kappa-Org/kappacode/commit/40a4d5eae254a78d4f46a075557343ac5ae8de5a)]:
-  - @opencode-ai/ui@7.2.41
+  - @toxicwind/ui@7.2.41
   - @kappacode/kappa-ui@7.2.41
 
 ## 7.2.39
@@ -3062,7 +3062,7 @@
 - [#9341](https://github.com/Kappa-Org/kappacode/pull/9341) [`00ec003`](https://github.com/Kappa-Org/kappacode/commit/00ec003c11476d995556d2b975b4da058f8b958c) - Significantly speed up LLM token streaming in long sessions. The chat view now stays responsive while the model streams a reply, even in sessions with hundreds of messages. Previously, each SSE batch produced ~1.3 seconds of visible freeze (roughly 80 dropped frames); streaming ticks are now inside a single animation frame.
 
 - Updated dependencies [[`00ec003`](https://github.com/Kappa-Org/kappacode/commit/00ec003c11476d995556d2b975b4da058f8b958c)]:
-  - @opencode-ai/ui@7.2.21
+  - @toxicwind/ui@7.2.21
   - @kappacode/kappa-ui@7.2.21
 
 ## 7.2.19
@@ -3134,7 +3134,7 @@
 - [`f270639`](https://github.com/Kappa-Org/kappacode/commit/f27063987765bba2443f559629bc8c05fad996df) - Show an inline error in the Settings save bar when the configuration fails to save (for example, due to an invalid value) so the user can correct the config and retry instead of losing their unsaved changes silently.
 
 - Updated dependencies [[`eac2dba`](https://github.com/Kappa-Org/kappacode/commit/eac2dbafa009adedeb4b44016956f2c6cd96b715)]:
-  - @opencode-ai/ui@7.2.13
+  - @toxicwind/ui@7.2.13
   - @kappacode/kappa-ui@7.2.13
 
 ## 7.2.12

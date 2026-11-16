@@ -5,7 +5,7 @@ import { PrTool } from "../../src/kappacode/tool/pr.ts"
 import { Tool } from "../../src/tool/tool.ts"
 import { Truncate } from "../../src/tool/truncate.ts"
 import { Agent } from "../../src/agent/agent.ts"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
 import * as ToolJsonSchema from "../../src/tool/json-schema.ts"
 
 const agent: Agent.Info = {

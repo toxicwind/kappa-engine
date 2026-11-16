@@ -8,7 +8,7 @@ import {
   WorkspaceRoutingQueryFields,
 } from "@/server/routes/instance/httpapi/middleware/workspace-routing"
 import { described } from "@/server/routes/instance/httpapi/groups/metadata"
-import { ProviderUsage } from "@opencode-ai/schema/kappacode/provider-usage"
+import { ProviderUsage } from "@toxicwind/schema/kappacode/provider-usage"
 import { AnacondaDesktopApi } from "./anaconda-desktop.ts"
 import {
   Failure as AgentManagerFailure,
@@ -39,8 +39,8 @@ import {
   MarketplaceRemoveResult,
 } from "@/kappacode/marketplace/schema"
 import { CommandFiles } from "@/kappacode/command-files"
-import { Token } from "@opencode-ai/schema/kappacode/session-drain"
-import { PendingInfo as WakeupPending } from "@opencode-ai/schema/kappacode/wakeup-event"
+import { Token } from "@toxicwind/schema/kappacode/session-drain"
+import { PendingInfo as WakeupPending } from "@toxicwind/schema/kappacode/wakeup-event"
 
 const root = "/kappacode"
 const Scope = Schema.Literals(["global", "project"])

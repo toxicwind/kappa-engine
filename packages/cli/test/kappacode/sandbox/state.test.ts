@@ -1,13 +1,13 @@
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
 import fs from "node:fs/promises"
 import os from "node:os"
 import path from "node:path"
 import { expect, test } from "bun:test"
 import { Deferred, Effect, Exit, Fiber, Layer } from "effect"
 import { ChildProcess, ChildProcessSpawner } from "effect/process"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
-import { Flag } from "@opencode-ai/core/flag/flag"
-import { Database } from "@opencode-ai/core/database/database"
+import { CrossSpawnSpawner } from "@toxicwind/core/cross-spawn-spawner"
+import { Flag } from "@toxicwind/core/flag/flag"
+import { Database } from "@toxicwind/core/database/database"
 import { assertNetwork, assertWrite, enabled as sandboxed } from "@kappacode/sandbox"
 import { Bus } from "@/bus"
 import { GlobalBus } from "@/bus/global"
@@ -42,8 +42,8 @@ test("refreshes the session snapshot after a backend restart", async () => {
   const script = [
     'import { Effect, Layer } from "effect"',
     'import { Config } from "@/config/config"',
-    'import { Database } from "@opencode-ai/core/database/database"',
-    'import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"',
+    'import { Database } from "@toxicwind/core/database/database"',
+    'import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"',
     'import { InstanceRef } from "@/effect/instance-ref"',
     'import * as SandboxPolicy from "@/kappacode/sandbox/policy"',
     'import { SandboxStore } from "@/kappacode/sandbox/store"',
@@ -155,8 +155,8 @@ linux("reports configured network namespace availability", async () => {
   const script = [
     'import { Effect, Layer } from "effect"',
     'import { Config } from "@/config/config"',
-    'import { Database } from "@opencode-ai/core/database/database"',
-    'import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"',
+    'import { Database } from "@toxicwind/core/database/database"',
+    'import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"',
     'import { InstanceRef } from "@/effect/instance-ref"',
     'import * as SandboxPolicy from "@/kappacode/sandbox/policy"',
     'import { SessionID } from "@/session/schema"',

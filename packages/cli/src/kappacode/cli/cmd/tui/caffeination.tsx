@@ -1,5 +1,5 @@
 import { createEffect, createMemo, createSignal, onCleanup } from "solid-js"
-import { createCaffeinationDriver } from "@opencode-ai/core/kappacode/caffeination"
+import { createCaffeinationDriver } from "@toxicwind/core/kappacode/caffeination"
 import { useEvent } from "@tui/context/event"
 import { useKV } from "@tui/context/kv"
 import { useProject } from "@tui/context/project"

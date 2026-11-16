@@ -1,7 +1,7 @@
 import path from "path"
 import { Context, Duration, Effect, Layer, Logger, Option, Schedule, Schema } from "effect" // kappacode_change
 import { FetchHttpClient, HttpClient, HttpClientRequest } from "effect/http"
-import { ModelsDev } from "@opencode-ai/schema/models-dev"
+import { ModelsDev } from "@toxicwind/schema/models-dev"
 import { Global } from "./global"
 import { Flag } from "./flag/flag"
 import { Flock } from "./util/flock"

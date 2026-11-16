@@ -17,12 +17,14 @@ if (!semver.satisfies(process.versions.bun, expectedBunVersionRange)) {
   throw new Error(`This script requires bun@${expectedBunVersionRange}, but you are using bun@${process.versions.bun}`)
 }
 // kappacode_change start
+const envOf = (key: string) =>
+  process.env[`KAPPA_${key}`] ?? process.env[`KILO_${key}`] ?? process.env[`OPENCODE_${key}`] ?? process.env[`_KAPPA_${key}`]
 const env = {
-  KAPPA_CHANNEL: process.env["KAPPA_CHANNEL"],
-  KAPPA_BUMP: process.env["KAPPA_BUMP"],
-  KAPPA_VERSION: process.env["KAPPA_VERSION"],
-  KAPPA_RELEASE: process.env["KAPPA_RELEASE"],
-  KAPPA_PRE_RELEASE: process.env["KAPPA_PRE_RELEASE"],
+  KAPPA_CHANNEL: envOf("CHANNEL"),
+  KAPPA_BUMP: envOf("BUMP"),
+  KAPPA_VERSION: envOf("VERSION"),
+  KAPPA_RELEASE: envOf("RELEASE"),
+  KAPPA_PRE_RELEASE: envOf("PRE_RELEASE"),
 }
 // kappacode_change end
 const CHANNEL = await (async () => {

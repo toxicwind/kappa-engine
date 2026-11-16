@@ -1,8 +1,8 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
 import { For } from "solid-js"
-import { AppIcon } from "@opencode-ai/ui/app-icon"
-import type { IconName } from "@opencode-ai/ui/icons/app"
+import { AppIcon } from "@toxicwind/ui/app-icon"
+import type { IconName } from "@toxicwind/ui/icons/app"
 
 const meta: Meta = {
   title: "Components/AppIcon",

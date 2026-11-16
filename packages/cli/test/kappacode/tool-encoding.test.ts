@@ -3,18 +3,18 @@
 // Tests exercise the real tool pipeline rather than the Encoding helper
 // directly so we validate end-to-end behaviour.
 
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
 import { afterEach, describe, expect } from "bun:test"
 import { Effect, Exit, Layer } from "effect"
 import path from "path"
 import fs from "fs/promises"
 import iconv from "iconv-lite"
 import { Agent } from "../../src/agent/agent.ts"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@toxicwind/core/fs-util"
 import { ApplyPatchTool } from "../../src/tool/apply_patch.ts"
 import { Bus } from "../../src/bus/index.ts"
 import { EventV2Bridge } from "../../src/event-v2-bridge.ts"
-import * as CrossSpawnSpawner from "@opencode-ai/core/cross-spawn-spawner"
+import * as CrossSpawnSpawner from "@toxicwind/core/cross-spawn-spawner"
 import { EditTool } from "../../src/tool/edit.ts"
 import { Format } from "../../src/format/index.ts"
 import { Instance } from "../../src/kappacode/instance.ts"

@@ -1,4 +1,4 @@
-// Kappa-specific replacement for the shared `@opencode-ai/ui/pierre/worker`
+// Kappa-specific replacement for the shared `@toxicwind/ui/pierre/worker`
 // module (wired up by the pierre-worker-alias plugin in esbuild.js).
 //
 // The upstream module loads Pierre's Shiki worker through a Vite-only
@@ -14,7 +14,7 @@
 // which is why review surfaces pass hunk-bounded patches instead of full files.
 import { LINE_DIFF_TYPE } from "@kappacode/kappa-ui/pierre"
 import { WorkerPoolManager } from "@pierre/diffs/worker"
-import { ensureKappaDiffTheme, KAPPA_DIFF_THEME } from "@opencode-ai/ui/pierre/kappa-diff-theme"
+import { ensureKappaDiffTheme, KAPPA_DIFF_THEME } from "@toxicwind/ui/pierre/kappa-diff-theme"
 
 // Register the "Kappa" theme before any pool initializes. resolveThemes([theme])
 // runs on the main thread during initialize() and throws "resolveTheme: No valid

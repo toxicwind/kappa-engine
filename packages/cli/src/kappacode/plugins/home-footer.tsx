@@ -8,7 +8,7 @@
  */
 import type { TuiPlugin, TuiPluginApi, TuiPluginModule } from "@kappacode/plugin/tui"
 import { createMemo, Match, Show, Switch } from "solid-js"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@toxicwind/core/global"
 import { RemoteIndicator } from "@/kappacode/remote-tui"
 
 const id = "internal:kappa-home-footer"

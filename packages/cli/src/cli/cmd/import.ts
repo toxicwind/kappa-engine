@@ -1,15 +1,15 @@
 import type { Session as SDKSession, Message, Part } from "@kappacode/sdk/v2"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import { SessionV1 } from "@toxicwind/core/v1/session"
 import { Session } from "@/session/session"
 import { CliError, effectCmd } from "../effect-cmd.ts"
-import { Database } from "@opencode-ai/core/database/database"
-import { SessionTable, MessageTable, PartTable } from "@opencode-ai/core/session/sql"
+import { Database } from "@toxicwind/core/database/database"
+import { SessionTable, MessageTable, PartTable } from "@toxicwind/core/session/sql"
 import { InstanceRef } from "@/effect/instance-ref"
 import { EOL } from "os"
 import path from "path"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@toxicwind/core/fs-util"
 import { Effect, Schema } from "effect"
-import * as Log from "@opencode-ai/core/util/log" // kappacode_change
+import * as Log from "@toxicwind/core/util/log" // kappacode_change
 import type { InstanceContext } from "@/project/instance-context"
 
 const log = Log.create({ service: "import" }) // kappacode_change
@@ -165,7 +165,7 @@ const runImport = Effect.fn("Cli.import.body")(function* (file: string, ctx: Ins
       return
     }
 
-    const base = process.env["KAPPA_SESSION_INGEST_URL"] ?? "https://ingest.kappasessions.ai"
+    const base = kiloEnv("SESSION_INGEST_URL") ?? "https://ingest.kappasessions.ai"
     const response = yield* Effect.tryPromise({
       try: () => fetch(`${base}/session/${encodeURIComponent(slug)}`),
       catch: (e) =>

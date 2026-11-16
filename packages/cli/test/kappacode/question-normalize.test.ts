@@ -1,6 +1,6 @@
 import { expect, test } from "bun:test"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
+import { CrossSpawnSpawner } from "@toxicwind/core/cross-spawn-spawner"
 import { Effect, Fiber, Queue, Schema } from "effect"
 import { EventV2Bridge } from "../../src/event-v2-bridge.ts"
 import { KappaQuestion } from "../../src/kappacode/question/index.ts"

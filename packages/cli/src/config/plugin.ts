@@ -1,5 +1,5 @@
-import { Glob } from "@opencode-ai/core/util/glob"
-import { ConfigPluginV1 } from "@opencode-ai/core/v1/config/plugin"
+import { Glob } from "@toxicwind/core/util/glob"
+import { ConfigPluginV1 } from "@toxicwind/core/v1/config/plugin"
 import { pathToFileURL } from "url"
 import { isPathPluginSpec, parsePluginSpecifier, resolvePathPluginTarget } from "@/plugin/shared"
 import { LEGACY_DISCOVERY_GLOBS, normalizeLegacyKiloSpec } from "@/kappacode/config/legacy-kilo" // kappacode_change - legacy kilo plugin compat

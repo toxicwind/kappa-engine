@@ -1,5 +1,5 @@
 import { Effect } from "effect"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import { SessionV1 } from "@toxicwind/core/v1/session"
 import { Agent } from "@/agent/agent"
 import { Permission } from "@/permission"
 import { PartID } from "@/session/schema"

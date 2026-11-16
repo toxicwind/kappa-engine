@@ -1,15 +1,15 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kappacode_change
-import { ConfigPermissionV1 } from "@opencode-ai/core/v1/config/permission"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder" // kappacode_change
+import { ConfigPermissionV1 } from "@toxicwind/core/v1/config/permission"
 import * as Config from "@/config/config" // kappacode_change
 import { InstanceState } from "@/effect/instance-state"
-import { Wildcard } from "@opencode-ai/core/util/wildcard"
+import { Wildcard } from "@toxicwind/core/util/wildcard"
 import { Deferred, Effect, Layer, Context } from "effect"
 import os from "os"
 import z from "zod" // kappacode_change
-import { zod } from "@opencode-ai/core/effect-zod" // kappacode_change
-import { PermissionV1 } from "@opencode-ai/core/v1/permission"
-import { Database } from "@opencode-ai/core/database/database" // kappacode_change
+import { zod } from "@toxicwind/core/effect-zod" // kappacode_change
+import { PermissionV1 } from "@toxicwind/core/v1/permission"
+import { Database } from "@toxicwind/core/database/database" // kappacode_change
 import { EventV2Bridge } from "@/event-v2-bridge"
 import { SessionID } from "@/session/schema" // kappacode_change - used by AllowEverythingInput
 // kappacode_change start

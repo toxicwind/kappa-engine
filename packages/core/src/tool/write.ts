@@ -8,7 +8,7 @@
 // kappacode_change - preserve named-reference mutation constraint documentation
 export * as WriteTool from "./write"
 
-import { ToolFailure } from "@opencode-ai/llm"
+import { ToolFailure } from "@toxicwind/llm"
 import { Effect, Layer, Schema } from "effect"
 import { makeLocationNode } from "../effect/app-node"
 import { FileMutation } from "../file-mutation"

@@ -55,7 +55,7 @@ for (const dir of [...packageDirs].sort()) {
   }
   if (!hasTc) continue
 
-  // Run each package's typecheck serially — with BASH_ENV unset so the estate
+  // Run each package's typecheck serially — with BASH_ENV unset so the Pens
   // kairos 2s shim does NOT SIGINT the long subprocess.
   const proc = Bun.spawn(["bun", "--cwd", dir, "run", "typecheck"], {
     stdout: "pipe",

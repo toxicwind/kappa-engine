@@ -2,7 +2,7 @@
 // Git's own `index.lock` is left to git: a command that cannot take it fails with a non-zero exit
 // and says so on stderr, which the call sites log.
 import { Effect } from "effect"
-import type { EffectFlock } from "@opencode-ai/core/util/effect-flock"
+import type { EffectFlock } from "@toxicwind/core/util/effect-flock"
 
 export namespace KappaSnapshotLock {
   /**

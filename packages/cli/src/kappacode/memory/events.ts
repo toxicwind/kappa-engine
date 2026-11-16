@@ -1,7 +1,7 @@
 import { Bus } from "@/bus"
 import { BusEvent } from "@/bus/bus-event"
 import { capture as captureInstance } from "@/kappacode/instance"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import { MemoryEvents as Core } from "@kappacode/kappa-memory/effect/events"
 
 const log = Log.create({ service: "memory.events" })

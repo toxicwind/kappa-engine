@@ -2,7 +2,7 @@
 /**
  * kmake-test — run kappa's bun test suites live in a tmux grid.
  *
- * Why tmux: the estate box shells source a bash-2s-shim that SIGKILLs any
+ * Why tmux: the Pens box shells source a bash-2s-shim that SIGKILLs any
  * command past the 2s run-fast deadline, killing long `bun test` runs.
  * tmux-server-spawned panes are NOT wrapped by that shim, so each suite runs
  * to completion in its own pane while you watch or scrape.

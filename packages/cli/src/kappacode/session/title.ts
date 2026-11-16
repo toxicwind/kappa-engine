@@ -1,6 +1,6 @@
 import type { ModelMessage } from "ai"
 import { Effect, Scope } from "effect"
-import { Database } from "@opencode-ai/core/database/database"
+import { Database } from "@toxicwind/core/database/database"
 import { MessageV2 } from "@/session/message-v2"
 import { Session } from "@/session/session"
 import type { SessionID } from "@/session/schema"

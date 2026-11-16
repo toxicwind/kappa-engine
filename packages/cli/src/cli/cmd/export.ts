@@ -1,5 +1,5 @@
 import { Session } from "@/session/session"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import { SessionV1 } from "@toxicwind/core/v1/session"
 import { MessageV2 } from "../../session/message-v2.ts"
 import { SessionID } from "../../session/schema.ts"
 import { effectCmd, fail } from "../effect-cmd.ts"

@@ -1,6 +1,6 @@
 import { Effect, Schema } from "effect"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
-import { ProjectV2 } from "@opencode-ai/core/project"
+import { SessionV1 } from "@toxicwind/core/v1/session"
+import { ProjectV2 } from "@toxicwind/core/project"
 import { Instance } from "@/kappacode/instance"
 import { Session } from "@/session/session"
 import { MessageID, SessionID } from "@/session/schema"

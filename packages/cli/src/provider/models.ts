@@ -2,13 +2,13 @@
 import { Config } from "@/config/config"
 import { Auth } from "@/auth"
 import { ModelCache } from "./model-cache.ts"
-import * as Core from "@opencode-ai/core/models-dev"
+import * as Core from "@toxicwind/core/models-dev"
 import { Context, Effect, Layer } from "effect"
 import { AI_SDK_PROVIDERS, KAPPA_OPENROUTER_BASE, PROMPTS } from "@kappacode/kappa-gateway"
 import { overlay } from "@/kappacode/anaconda-desktop/provider"
 import { compatible, organization, token } from "@/kappacode/provider/catalog"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kappacode_change
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder" // kappacode_change
 
 export const Model = Core.Model
 export type Model = Core.Model

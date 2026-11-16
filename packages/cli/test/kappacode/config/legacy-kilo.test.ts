@@ -41,7 +41,7 @@ describe("legacy kilo spec normalization", () => {
   })
 
   test("specifiers without kilo are untouched", () => {
-    expect(normalizeLegacyKiloSpec("@opencode-ai/plugin")).toBe("@opencode-ai/plugin")
+    expect(normalizeLegacyKiloSpec("@toxicwind/plugin")).toBe("@toxicwind/plugin")
   })
 })
 

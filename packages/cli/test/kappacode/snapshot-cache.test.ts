@@ -4,7 +4,7 @@ import { Effect } from "effect"
 import { Snapshot } from "../../src/snapshot/index.ts"
 import { provideTestInstance } from "../fixture/fixture.ts"
 import { Filesystem } from "../../src/util/filesystem.ts"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import { tmpdir } from "../fixture/fixture.ts"
 
 void Log.init({ print: false })

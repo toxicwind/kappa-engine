@@ -1,6 +1,6 @@
 import { Context, Effect, Exit, Fiber, Option } from "effect"
 import { WorkspaceContext } from "@/control-plane/workspace-context"
-import type { WorkspaceV2 } from "@opencode-ai/core/workspace"
+import type { WorkspaceV2 } from "@toxicwind/core/workspace"
 import { InstanceRef, WorkspaceRef } from "./instance-ref.ts"
 import { attachWith } from "./run-service.ts"
 import { Instance, type InstanceContext } from "@/kappacode/instance" // kappacode_change

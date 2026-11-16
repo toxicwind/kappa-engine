@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test"
-import { SessionMemory, MentalModelStore } from "@opencode-ai/core/memory"
+import { SessionMemory, MentalModelStore } from "@toxicwind/core/memory"
 
 describe("SessionMemory", () => {
   test("starts with empty recalled and retained sets", () => {

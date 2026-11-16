@@ -1,6 +1,6 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { SessionReview } from "@opencode-ai/ui/session-review"
+import { SessionReview } from "@toxicwind/ui/session-review"
 import { FileComponentProvider } from "@kappacode/kappa-ui/context/file"
 import { File } from "@kappacode/kappa-ui/file"
 

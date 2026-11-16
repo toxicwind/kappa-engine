@@ -32,7 +32,7 @@ import { DaemonCommand } from "./cli/cmd/daemon.ts"
 import { KappaConsoleCommand } from "./cli/cmd/console.ts"
 import { CloudCommand } from "./cli/cmd/cloud.ts"
 import { HelpCommand } from "./help-command.ts"
-import { InstallationBuildKind } from "@opencode-ai/core/installation/version"
+import { InstallationBuildKind } from "@toxicwind/core/installation/version"
 
 // Synthetic entry for the yargs built-in .completion() command so that
 // generateHelp --all and cli-reference.md include it automatically.

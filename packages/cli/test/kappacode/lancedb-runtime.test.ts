@@ -2,9 +2,9 @@ import { afterEach, beforeEach, describe, expect, mock, test } from "bun:test"
 
 const entry = "file:///tmp/kappa-cache/node_modules/@lancedb/lancedb/dist/index.js"
 const add = mock(async () => ({ directory: "/tmp/kappa-cache", entrypoint: entry }))
-const real = await import("@opencode-ai/core/npm")
+const real = await import("@toxicwind/core/npm")
 
-mock.module("@opencode-ai/core/npm", () => ({
+mock.module("@toxicwind/core/npm", () => ({
   ...real,
   Npm: {
     ...real.Npm,

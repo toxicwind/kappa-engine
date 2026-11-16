@@ -1,7 +1,7 @@
 import { applyEdits, findNodeAtLocation, modify, parseTree } from "jsonc-parser"
 import { mkdir, stat } from "fs/promises"
 import path from "path"
-import { ConfigErrorV1 } from "@opencode-ai/core/v1/config/error"
+import { ConfigErrorV1 } from "@toxicwind/core/v1/config/error"
 import { Config } from "@/config/config"
 import { ConfigParse } from "@/config/parse"
 import { ConfigV2Compat } from "@/config/v2-compat"

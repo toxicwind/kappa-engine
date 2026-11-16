@@ -1,9 +1,9 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import path from "path"
 import { Effect, Layer, Record, Result, Schema, Context } from "effect"
-import { NonNegativeInt } from "@opencode-ai/core/schema"
-import { Global } from "@opencode-ai/core/global"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { NonNegativeInt } from "@toxicwind/core/schema"
+import { Global } from "@toxicwind/core/global"
+import { FSUtil } from "@toxicwind/core/fs-util"
 import { Telemetry } from "@kappacode/kappa-telemetry" // kappacode_change
 
 export const OAUTH_DUMMY_KEY = "kappa-oauth-dummy-key" // kappacode_change

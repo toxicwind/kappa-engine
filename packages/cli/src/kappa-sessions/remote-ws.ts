@@ -1,5 +1,5 @@
 import { RemoteProtocol } from "@/kappa-sessions/remote-protocol"
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
+import { InstallationVersion } from "@toxicwind/core/installation/version"
 
 export namespace RemoteWS {
   export type SessionInfo = RemoteProtocol.SessionInfo

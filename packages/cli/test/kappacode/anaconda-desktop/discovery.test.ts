@@ -1,5 +1,5 @@
 import { expect } from "bun:test"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@toxicwind/core/fs-util"
 import { FetchHttpClient } from "effect/http"
 import { Effect, Layer, Redacted } from "effect"
 import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises"

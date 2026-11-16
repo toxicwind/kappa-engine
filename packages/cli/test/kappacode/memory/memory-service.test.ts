@@ -3,7 +3,7 @@ import * as fs from "fs"
 import * as os from "os"
 import * as path from "path"
 import { Effect, Layer } from "effect"
-import { Memory } from "@opencode-ai/core/memory"
+import { Memory } from "@toxicwind/core/memory"
 
 function withTestHome<T>(dir: string, fn: () => T | Promise<T>): Promise<T> {
   const prior = process.env.KAPPA_TEST_HOME

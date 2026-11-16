@@ -1,5 +1,5 @@
 import { Effect } from "effect"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@toxicwind/core/fs-util"
 import type { Resolved } from "@/kappacode/reference"
 
 export namespace KappaReference {

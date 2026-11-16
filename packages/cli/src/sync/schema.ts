@@ -1,7 +1,7 @@
 import { Schema } from "effect"
 
 import { Identifier } from "@/id/id"
-import { statics } from "@opencode-ai/core/schema"
+import { statics } from "@toxicwind/core/schema"
 
 export const EventID = Schema.String.check(Schema.isStartingWith("evt")).pipe(
   Schema.brand("EventID"),

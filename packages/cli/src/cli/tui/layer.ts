@@ -1,6 +1,6 @@
-import { run as runTui, type TuiInput } from "@opencode-ai/tui"
-import { Global } from "@opencode-ai/core/global"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { run as runTui, type TuiInput } from "@toxicwind/tui"
+import { Global } from "@toxicwind/core/global"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
 import { Effect } from "effect"
 
 export function run(input: TuiInput) {

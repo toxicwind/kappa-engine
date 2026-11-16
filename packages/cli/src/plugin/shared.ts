@@ -4,7 +4,7 @@ import npa from "npm-package-arg"
 import semver from "semver"
 import { Filesystem } from "@/util/filesystem"
 import { isRecord } from "@/util/record"
-import { Npm } from "@opencode-ai/core/npm"
+import { Npm } from "@toxicwind/core/npm"
 import { isGitPluginSpec, resolveGitPluginTarget } from "@/kappacode/plugin/git-source" // kappacode_change
 import { normalizeLegacyKiloSpec } from "@/kappacode/config/legacy-kilo" // kappacode_change - legacy kilo plugin compat
 

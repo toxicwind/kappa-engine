@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test"
-import type { SessionV1 } from "@opencode-ai/core/v1/session"
+import type { SessionV1 } from "@toxicwind/core/v1/session"
 import { Effect, Exit } from "effect"
 import { SessionID } from "@/session/schema"
 import { GoalLink } from "@/kappacode/session/goal/link"

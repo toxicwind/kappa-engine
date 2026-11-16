@@ -1,5 +1,5 @@
 import { Provider } from "@/provider/provider"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { ProviderV2 } from "@toxicwind/core/provider"
 import { Tool } from "@/tool/tool"
 import { Effect, Schema } from "effect"
 import { matchesQuery } from "./model-search.ts"

@@ -1,5 +1,5 @@
 import WebSocket from "ws"
-import * as Log from "@opencode-ai/core/util/log" // kappacode_change
+import * as Log from "@toxicwind/core/util/log" // kappacode_change
 import { ProviderError } from "@/provider/error"
 import { isRecord } from "@/util/record"
 import { OpenAIWebSocket } from "./ws.ts"

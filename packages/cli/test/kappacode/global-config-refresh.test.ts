@@ -1,11 +1,11 @@
 import { afterEach, describe, expect, test } from "bun:test"
 import path from "path"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@toxicwind/core/global"
 import { Permission } from "../../src/permission/index.ts"
 import { GlobalBus } from "../../src/bus/global.ts"
 import { Server } from "../../src/server/server.ts"
 import { registerDisposer } from "../../src/effect/instance-registry.ts"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import { resetDatabase } from "../fixture/db.ts"
 import { disposeAllInstances, tmpdir } from "../fixture/fixture.ts"
 

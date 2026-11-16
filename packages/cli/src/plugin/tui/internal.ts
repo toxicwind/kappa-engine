@@ -1,4 +1,4 @@
-import { createBuiltinPlugins, type BuiltinTuiPlugin } from "@opencode-ai/tui/builtins"
+import { createBuiltinPlugins, type BuiltinTuiPlugin } from "@toxicwind/tui/builtins"
 import type { RuntimeFlags } from "@/effect/runtime-flags"
 import { withKappaTuiPlugins } from "@/kappacode/plugins/internal" // kappacode_change
 

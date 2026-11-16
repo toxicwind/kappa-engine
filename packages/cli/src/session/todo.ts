@@ -1,13 +1,13 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import { SessionID } from "./schema.ts"
 import { Effect, Layer, Context } from "effect"
-import { Database } from "@opencode-ai/core/database/database"
+import { Database } from "@toxicwind/core/database/database"
 import { eq } from "drizzle-orm"
 import { asc } from "drizzle-orm"
-import { TodoTable } from "@opencode-ai/core/session/sql"
+import { TodoTable } from "@toxicwind/core/session/sql"
 import { EventV2Bridge } from "@/event-v2-bridge"
-import { SessionTodo } from "@opencode-ai/schema/session-todo"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kappacode_change
+import { SessionTodo } from "@toxicwind/schema/session-todo"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder" // kappacode_change
 
 export const Info = SessionTodo.Info
 export type Info = SessionTodo.Info

@@ -1,8 +1,8 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
 import { Dialog as Kobalte } from "@kobalte/core/dialog"
-import { ImagePreview } from "@opencode-ai/ui/image-preview"
-import { Button } from "@opencode-ai/ui/button"
+import { ImagePreview } from "@toxicwind/ui/image-preview"
+import { Button } from "@toxicwind/ui/button"
 
 const meta: Meta = {
   title: "Components/ImagePreview",

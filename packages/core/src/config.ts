@@ -4,7 +4,7 @@ import { makeLocationNode } from "./effect/app-node"
 import path from "path"
 import { type ParseError, parse } from "jsonc-parser"
 import { Context, Effect, Layer, Option, Schema } from "effect"
-import { Permission } from "@opencode-ai/schema/permission"
+import { Permission } from "@toxicwind/schema/permission"
 import { FSUtil } from "./fs-util"
 import { Flag } from "./flag/flag" // kappacode_change
 import { Global } from "./global"

@@ -1,6 +1,6 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { RadioGroup } from "@opencode-ai/ui/radio-group"
+import { RadioGroup } from "@toxicwind/ui/radio-group"
 
 const meta: Meta = {
   title: "Components/RadioGroup",

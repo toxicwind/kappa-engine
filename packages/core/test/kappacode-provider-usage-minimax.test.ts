@@ -1,7 +1,7 @@
 import { describe, expect, mock, test } from "bun:test"
 import { decode } from "../src/kappacode/provider-usage/minimax/native"
 import { direct, normalize, query, type Candidate } from "../src/kappacode/provider-usage/minimax/usage"
-import type { ProviderUsage } from "@opencode-ai/schema/kappacode/provider-usage"
+import type { ProviderUsage } from "@toxicwind/schema/kappacode/provider-usage"
 
 const native = (row: Record<string, unknown>) =>
   decode({

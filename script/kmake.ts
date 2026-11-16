@@ -32,7 +32,7 @@ const help =
   "  run <task>       run a task under the 2s run-fast deadline\n" +
   "  lint             oxlint"
 
-// Clean env: the estate shell rc (BASH_ENV) can pollute module resolution and
+// Clean env: the Pens shell rc (BASH_ENV) can pollute module resolution and
 // cause spurious tsgo failures. Unset BASH_ENV to match CI.
 async function spawnClean(args: string[], env: Record<string, string> = {}): Promise<number> {
   const child = await Bun.spawn(args, {

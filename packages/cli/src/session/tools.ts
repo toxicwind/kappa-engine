@@ -4,7 +4,7 @@ import { GoalPolicy } from "@/kappacode/session/goal/policy" // kappacode_change
 import type { Goal } from "@/kappacode/session/goal/runner" // kappacode_change
 import { MemoryMarker } from "@/kappacode/memory/marker" // kappacode_change
 import { BoardNotice } from "@/kappacode/board/notice" // kappacode_change
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import { SessionV1 } from "@toxicwind/core/v1/session"
 import { Provider } from "@/provider/provider"
 import { ProviderTransform } from "@/provider/transform"
 import { MCP } from "@/mcp"
@@ -25,8 +25,8 @@ import { SessionProcessor } from "./processor.ts"
 import { PartID } from "./schema.ts"
 import { EffectBridge } from "@/effect/bridge"
 import * as SandboxPolicy from "@/kappacode/sandbox/policy" // kappacode_change
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
 // kappacode_change start
 import { Config } from "@/config/config"
 import { PermissionProvenance } from "@/kappacode/permission/provenance"

@@ -1,7 +1,7 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { HoverCard } from "@opencode-ai/ui/hover-card"
-import { Avatar } from "@opencode-ai/ui/avatar"
+import { HoverCard } from "@toxicwind/ui/hover-card"
+import { Avatar } from "@toxicwind/ui/avatar"
 
 const meta: Meta = {
   title: "Components/HoverCard",

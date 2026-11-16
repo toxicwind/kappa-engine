@@ -1,6 +1,6 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { Favicon } from "@opencode-ai/ui/favicon"
+import { Favicon } from "@toxicwind/ui/favicon"
 
 const meta: Meta = {
   title: "Components/Favicon",

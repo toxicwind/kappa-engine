@@ -2,7 +2,7 @@ import { expect } from "bun:test"
 import { Server } from "@modelcontextprotocol/sdk/server/index.js"
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js"
 import { ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import { Deferred, Effect, Fiber, Layer, Option } from "effect" // kappacode_change - Fiber drives external auth tests
 import { Config } from "../../src/config/config.ts"
 import { EventV2Bridge } from "../../src/event-v2-bridge.ts"

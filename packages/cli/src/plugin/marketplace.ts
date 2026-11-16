@@ -9,7 +9,7 @@
 // config key and appends it to the registry; `marketplace-remove` deletes from
 // both; `marketplace-list` prints configured + known sources.
 import path from "path"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@toxicwind/core/global"
 import { Filesystem } from "@/util/filesystem"
 import type { MarketplaceEntry, MarketplaceEntrySchema } from "@/config/marketplace"
 

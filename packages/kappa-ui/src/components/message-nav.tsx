@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/message-nav"
+export * from "@toxicwind/ui/message-nav"

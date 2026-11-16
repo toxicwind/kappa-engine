@@ -1,4 +1,4 @@
-import { Binary } from "@opencode-ai/core/util/binary"
+import { Binary } from "@toxicwind/core/util/binary"
 import type { SuggestionRequest } from "@kappacode/sdk/v2"
 
 type RemovedEvent = {

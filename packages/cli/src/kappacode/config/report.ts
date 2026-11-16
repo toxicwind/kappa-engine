@@ -1,5 +1,5 @@
 import { Effect } from "effect"
-import { NamedError } from "@opencode-ai/core/util/error"
+import { NamedError } from "@toxicwind/core/util/error"
 import { InstanceRef } from "@/effect/instance-ref"
 import type { InstanceContext } from "@/project/instance-context"
 

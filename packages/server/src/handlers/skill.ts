@@ -1,4 +1,4 @@
-import { SkillV2 } from "@opencode-ai/core/skill"
+import { SkillV2 } from "@toxicwind/core/skill"
 import { HttpApiBuilder } from "effect/http-api"
 import { Api } from "../api"
 import { response } from "../location"

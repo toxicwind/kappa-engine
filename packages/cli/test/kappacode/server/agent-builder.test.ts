@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, test } from "bun:test"
 import path from "path"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import { Server } from "../../../src/server/server.ts"
 import { GlobalBus, type GlobalEvent } from "../../../src/bus/global.ts"
 import { resetDatabase } from "../../fixture/db.ts"

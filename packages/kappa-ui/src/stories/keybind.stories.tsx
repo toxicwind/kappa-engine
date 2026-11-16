@@ -1,6 +1,6 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { Keybind } from "@opencode-ai/ui/keybind"
+import { Keybind } from "@toxicwind/ui/keybind"
 
 const meta: Meta<typeof Keybind> = {
   title: "Components/Keybind",

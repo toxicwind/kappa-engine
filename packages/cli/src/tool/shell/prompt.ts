@@ -1,6 +1,6 @@
 import { Schema } from "effect"
 import DESCRIPTION from "./shell.txt"
-import { PositiveInt } from "@opencode-ai/core/schema"
+import { PositiveInt } from "@toxicwind/core/schema"
 import { sessionTmp } from "@/kappacode/tool/shell-tmp" // kappacode_change
 import { ShellID } from "./id.ts"
 

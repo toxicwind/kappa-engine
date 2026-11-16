@@ -1,6 +1,6 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { Select } from "@opencode-ai/ui/select"
+import { Select } from "@toxicwind/ui/select"
 
 const meta: Meta = {
   title: "Components/Select",

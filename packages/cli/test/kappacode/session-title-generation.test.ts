@@ -1,8 +1,8 @@
 import { describe, expect, test } from "bun:test"
 import type { Model } from "@/provider/provider"
 import { ProviderTransform } from "@/provider/transform"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
 import { SessionID } from "@/session/schema"
 import { KappaSessionPrompt } from "@/kappacode/session/prompt"
 

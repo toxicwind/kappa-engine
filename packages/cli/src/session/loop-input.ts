@@ -1,5 +1,5 @@
 import { Schema } from "effect"
-import { zod } from "@opencode-ai/core/effect-zod"
+import { zod } from "@toxicwind/core/effect-zod"
 import { SessionID, MessageID } from "./schema.ts"
 
 /**

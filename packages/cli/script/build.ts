@@ -17,7 +17,7 @@ process.chdir(dir)
 
 const generated = await import("./generate.ts")
 
-import { Script } from "@opencode-ai/script"
+import { Script } from "@toxicwind/script"
 import pkg from "../package.json"
 // kappacode_change start
 import { stageBubblewrap } from "./kappacode/bubblewrap.ts"

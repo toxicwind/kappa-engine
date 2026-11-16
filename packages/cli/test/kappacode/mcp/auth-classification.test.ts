@@ -1,5 +1,5 @@
 import { expect } from "bun:test"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import { Cause, Effect, Exit, Layer } from "effect"
 import { Config } from "@/config/config"
 import { EventV2Bridge } from "@/event-v2-bridge"

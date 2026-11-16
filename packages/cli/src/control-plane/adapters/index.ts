@@ -1,4 +1,4 @@
-import type { ProjectV2 } from "@opencode-ai/core/project"
+import type { ProjectV2 } from "@toxicwind/core/project"
 import type { WorkspaceAdapter, WorkspaceAdapterEntry } from "../types.ts"
 import { WorktreeAdapter } from "./worktree.ts"
 

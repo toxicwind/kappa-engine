@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test"
-import { ModelV2 } from "@opencode-ai/core/model"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
+import { ProviderV2 } from "@toxicwind/core/provider"
 import { ProviderTransform } from "../../../src/provider/transform.ts"
 import type { Provider } from "../../../src/provider/provider.ts"
 

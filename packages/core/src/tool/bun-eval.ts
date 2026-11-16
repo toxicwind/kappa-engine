@@ -3,7 +3,7 @@ export * as BunEvalTool from "./bun-eval"
 import path from "path"
 import { Duration, Effect, Layer, Schema } from "effect"
 import { ChildProcess } from "effect/process"
-import { ToolFailure } from "@opencode-ai/llm"
+import { ToolFailure } from "@toxicwind/llm"
 import { Config } from "../config"
 import { BackgroundJob } from "../background-job"
 import { makeLocationNode } from "../effect/app-node"
@@ -67,7 +67,7 @@ const layer = Layer.effectDiscard(
       .register({
         [name]: Tool.make({
           description:
-            "Evaluate a bun-native JS/TS expression (the estate's default-to-bun eval lane). " +
+            "Evaluate a bun-native JS/TS expression (the Pens's default-to-bun eval lane). " +
             "Prefer this over bash for computation, JSON handling, and fetch — it avoids shell-quoting traps and runs typed JS/TS with async support. " +
             "The active Location is the default working directory.",
           input: Input,

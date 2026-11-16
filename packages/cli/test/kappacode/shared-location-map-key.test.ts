@@ -1,8 +1,8 @@
 import { describe, expect, test } from "bun:test"
 import { Equal, Hash } from "effect"
 import { readFileSync } from "node:fs"
-import { Location } from "@opencode-ai/core/location"
-import { AbsolutePath } from "@opencode-ai/core/schema"
+import { Location } from "@toxicwind/core/location"
+import { AbsolutePath } from "@toxicwind/core/schema"
 
 const opencode = new URL("../../src/", import.meta.url)
 const server = new URL("../../../server/src/", import.meta.url)

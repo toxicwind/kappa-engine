@@ -1,6 +1,6 @@
-import type { ProviderMetadata } from "@opencode-ai/llm"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import type { ProviderMetadata } from "@toxicwind/llm"
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
 export namespace KappaRoutedModel {
   const ns = "kappacode"
   const key = "routedModelID"

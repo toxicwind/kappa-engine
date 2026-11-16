@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/theme/loader"
+export * from "@toxicwind/ui/theme/loader"

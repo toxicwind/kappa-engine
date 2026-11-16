@@ -1,10 +1,10 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import path from "path"
-import { serviceUse } from "@opencode-ai/core/effect/service-use"
-import { Global } from "@opencode-ai/core/global"
+import { serviceUse } from "@toxicwind/core/effect/service-use"
+import { Global } from "@toxicwind/core/global"
 import { Effect, Layer, Context, Option, Schema } from "effect"
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import { EffectFlock } from "@opencode-ai/core/util/effect-flock"
+import { FSUtil } from "@toxicwind/core/fs-util"
+import { EffectFlock } from "@toxicwind/core/util/effect-flock"
 import * as Invalidation from "../kappacode/mcp/invalidation.ts" // kappacode_change
 
 export const Tokens = Schema.Struct({

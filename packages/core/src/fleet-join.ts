@@ -17,7 +17,7 @@ export interface KappaSessionMeta {
 export function autoJoinSquawkFleet(info: KappaSessionMeta): void {
 	void (async () => {
 		try {
-			const tokenFile = Bun.file(`${process.env.HOME}/.config/estate-chat-token`);
+			const tokenFile = Bun.file(`${process.env.HOME}/.config/Pens-chat-token`);
 			if (!(await tokenFile.exists())) return;
 			const token = (await tokenFile.text()).trim();
 

@@ -1,19 +1,19 @@
 import type { ChildProcessWithoutNullStreams } from "child_process"
 import path from "path"
 import os from "os"
-import { Global } from "@opencode-ai/core/global"
-import * as Log from "@opencode-ai/core/util/log" // kappacode_change
+import { Global } from "@toxicwind/core/global"
+import * as Log from "@toxicwind/core/util/log" // kappacode_change
 import { text } from "node:stream/consumers"
 import fs from "fs/promises"
 import { Filesystem } from "@/util/filesystem"
 import type { InstanceContext } from "../project/instance-context.ts"
-import { Flag } from "@opencode-ai/core/flag/flag"
+import { Flag } from "@toxicwind/core/flag/flag"
 import { Archive } from "@/util/archive"
 import { Process } from "@/util/process"
-import { which } from "@opencode-ai/core/util/which"
-import { Module } from "@opencode-ai/core/util/module"
+import { which } from "@toxicwind/core/util/which"
+import { Module } from "@toxicwind/core/util/module"
 import { spawn } from "./launch.ts"
-import { Npm } from "@opencode-ai/core/npm"
+import { Npm } from "@toxicwind/core/npm"
 import { TsCheck } from "../kappacode/ts-check.ts" // kappacode_change
 import type { RuntimeFlags } from "@/effect/runtime-flags"
 

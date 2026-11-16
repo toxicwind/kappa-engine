@@ -2,7 +2,7 @@ import { Tool } from "@/tool/tool"
 import { Instance } from "@/kappacode/instance"
 import { enabled as prEnabled, linkMatchesWorktree, parsePrUrl } from "@/kappa-sessions/pr-link"
 import { Effect, Schema } from "effect"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import DESCRIPTION from "./link-pr.txt"
 
 const log = Log.create({ service: "link-pr-tool" })

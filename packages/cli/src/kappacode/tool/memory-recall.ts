@@ -1,7 +1,7 @@
 // kilocode_change - new file — Phase 2: tool wrappers re-pointed to core memory service
 import { Effect, Option, Schema } from "effect"
 import * as Tool from "@/tool/tool"
-import { Service, type RecallResult } from "@opencode-ai/core/memory"
+import { Service, type RecallResult } from "@toxicwind/core/memory"
 
 const memoryPermission = "kilo_memory_recall"
 

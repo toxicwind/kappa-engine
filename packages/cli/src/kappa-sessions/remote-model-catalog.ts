@@ -1,6 +1,6 @@
 import type { ProviderListResponse } from "@kappacode/sdk/v2/client"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
 import { Provider } from "@/provider/provider"
 import z from "zod"
 

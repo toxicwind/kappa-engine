@@ -2,9 +2,9 @@ import { afterEach, beforeEach, describe, expect, spyOn, test } from "bun:test"
 import { Effect } from "effect"
 import path from "node:path"
 import { simpleGit } from "simple-git"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
+import { FSUtil } from "@toxicwind/core/fs-util"
+import { CrossSpawnSpawner } from "@toxicwind/core/cross-spawn-spawner"
 import {
   clearSessionLink,
   enabled,

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "@opencode-ai/client",
+  "name": "@toxicwind/client",
   "private": true,
   "type": "module",
   "license": "MIT",
@@ -17,8 +17,8 @@
     "test:ci": "mkdir -p .artifacts/unit && bun test --timeout 10000 --reporter=junit --reporter-outfile=.artifacts/unit/junit.xml"
   },
   "dependencies": {
-    "@opencode-ai/schema": "workspace:*",
-    "@opencode-ai/protocol": "workspace:*"
+    "@toxicwind/schema": "workspace:*",
+    "@toxicwind/protocol": "workspace:*"
   },
   "peerDependencies": {
     "effect": "4.0.6"
@@ -32,9 +32,9 @@
     "@types/bun": "^1.4.4",
     "bun-types": "^1.4.4",
     "@effect/platform-node": "catalog:",
-    "@opencode-ai/core": "workspace:*",
-    "@opencode-ai/httpapi-codegen": "workspace:*",
-    "@opencode-ai/server": "workspace:*",
+    "@toxicwind/core": "workspace:*",
+    "@toxicwind/httpapi-codegen": "workspace:*",
+    "@toxicwind/server": "workspace:*",
     "@tsconfig/bun": "catalog:",
     "@types/bun": "catalog:",
     "@typescript/native-preview": "catalog:",

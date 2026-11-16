@@ -3,8 +3,8 @@ import { Effect } from "effect"
 import type { Part, StepFinishPart } from "@kappacode/sdk/v2"
 import { RoutedModelMeta } from "../../src/kappacode/cli/cmd/tui/routes/session/routed-model-meta.tsx"
 import { KappaRoutedModel } from "../../src/kappacode/session/routed-model.ts"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
 import { LLMAISDK } from "../../src/session/llm/ai-sdk.ts"
 
 describe("session routed model", () => {

@@ -2,20 +2,20 @@
 // the same parent assistant message. Without the internal lock, parallel
 // subagent completions race on read-modify-write and lose deltas (#6321).
 
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import { afterEach, describe, expect } from "bun:test"
 import { Effect } from "effect"
 import { Bus } from "../../src/bus/index.ts"
-import * as CrossSpawnSpawner from "@opencode-ai/core/cross-spawn-spawner"
+import * as CrossSpawnSpawner from "@toxicwind/core/cross-spawn-spawner"
 import { KappaCostPropagation } from "../../src/kappacode/session/cost-propagation.ts"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
-import { SessionProjector } from "@opencode-ai/core/session/projector"
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
+import { SessionProjector } from "@toxicwind/core/session/projector"
 import { Session } from "../../src/session/session.ts"
 import { MessageV2 } from "../../src/session/message-v2.ts"
 import { MessageID } from "../../src/session/schema.ts"
-import { Database } from "@opencode-ai/core/database/database"
-import * as Log from "@opencode-ai/core/util/log"
+import { Database } from "@toxicwind/core/database/database"
+import * as Log from "@toxicwind/core/util/log"
 import { disposeAllInstances, provideTmpdirInstance } from "../fixture/fixture.ts"
 import { testEffect } from "../lib/effect.ts"
 

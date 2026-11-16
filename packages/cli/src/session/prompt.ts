@@ -1,10 +1,10 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kappacode_change
-import { PermissionV1 } from "@opencode-ai/core/v1/permission"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder" // kappacode_change
+import { PermissionV1 } from "@toxicwind/core/v1/permission"
 import path from "path"
 import { LoopInput } from "./loop-input.ts" // kappacode_change: bind LoopInput locally (leaf module)
 import fs from "node:fs" // kappacode_change
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import { SessionV1 } from "@toxicwind/core/v1/session"
 import os from "os"
 import { KappaSessionPrompt } from "@/kappacode/session/prompt" // kappacode_change
 import { KappaAttachment } from "@/kappacode/session/attachment" // kappacode_change
@@ -28,8 +28,8 @@ import { CommandTimeout } from "@/kappacode/command-timeout" // kappacode_change
 import { Suggestion } from "@/kappacode/suggestion" // kappacode_change
 import { Question } from "@/question" // kappacode_change
 import { BUILTIN_COMMANDS } from "@/kappacode/session/builtin-commands" // kappacode_change
-import { zod } from "@opencode-ai/core/effect-zod" // kappacode_change
-import { withStatics } from "@opencode-ai/core/schema" // kappacode_change
+import { zod } from "@toxicwind/core/effect-zod" // kappacode_change
+import { withStatics } from "@toxicwind/core/schema" // kappacode_change
 import { SessionID, MessageID, PartID } from "./schema.ts"
 import type { NotFoundError } from "@/storage/storage"
 import { MessageV2 } from "./message-v2.ts"
@@ -44,35 +44,35 @@ import { SessionCompaction } from "./compaction.ts"
 import { SystemPrompt } from "./system.ts"
 import { Instruction } from "./instruction.ts"
 import { Plugin } from "../plugin/index.ts"
-import { MAX_STEPS_PROMPT } from "@opencode-ai/core/session/runner/max-steps"
+import { MAX_STEPS_PROMPT } from "@toxicwind/core/session/runner/max-steps"
 import { ToolRegistry } from "@/tool/registry"
 import { MCP } from "../mcp/index.ts"
 import { LSP } from "@/lsp/lsp"
 import { ulid } from "ulid"
 import { ChildProcess, ChildProcessSpawner } from "effect/process"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { CrossSpawnSpawner } from "@toxicwind/core/cross-spawn-spawner"
 import * as Stream from "effect/Stream"
 import { Command } from "../command/index.ts"
 import { pathToFileURL, fileURLToPath } from "url"
 import { Config } from "@/config/config"
 import { ConfigMarkdown } from "@/config/markdown"
 import { SessionSummary } from "./summary.ts"
-import { NamedError } from "@opencode-ai/core/util/error"
+import { NamedError } from "@toxicwind/core/util/error"
 import { SessionProcessor } from "./processor.ts"
 import { Tool } from "@/tool/tool"
 import { Permission } from "@/permission"
 import { SessionStatus } from "./status.ts"
 import { LLM } from "./llm.ts"
-import { Shell } from "@opencode-ai/core/shell"
+import { Shell } from "@toxicwind/core/shell"
 import { ShellID } from "@/tool/shell/id"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@toxicwind/core/fs-util"
 import { Truncate } from "@/tool/truncate"
 import { Image } from "@/image/image"
 import { decodeDataUrl } from "@/util/data-url"
 import { Cause, Effect, Exit, Latch, Layer, Option, Scope, Context, Schema, Types } from "effect"
 import * as DateTime from "effect/DateTime" // kappacode_change
-import { SessionEvent } from "@opencode-ai/core/session/event" // kappacode_change
-import { SessionMessage } from "@opencode-ai/core/session/message" // kappacode_change
+import { SessionEvent } from "@toxicwind/core/session/event" // kappacode_change
+import { SessionMessage } from "@toxicwind/core/session/message" // kappacode_change
 import { InstanceState } from "@/effect/instance-state"
 import { InstanceRef } from "@/effect/instance-ref"
 import { Instance } from "@/kappacode/instance"
@@ -83,16 +83,16 @@ import { SessionRunState } from "./run-state.ts"
 import { SessionDrain } from "@/kappacode/session/drain" // kappacode_change
 import { RuntimeFlags } from "@/effect/runtime-flags"
 import { EventV2Bridge } from "@/event-v2-bridge"
-import { Database } from "@opencode-ai/core/database/database"
-import { ModelV2 } from "@opencode-ai/core/model"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { Database } from "@toxicwind/core/database/database"
+import { ModelV2 } from "@toxicwind/core/model"
+import { ProviderV2 } from "@toxicwind/core/provider"
 import * as KappaConfiguredReference from "@/kappacode/reference" // kappacode_change
 import { eq } from "drizzle-orm"
-import { SessionTable } from "@opencode-ai/core/session/sql"
+import { SessionTable } from "@toxicwind/core/session/sql"
 import { SessionReminders } from "./reminders.ts"
 import { SessionTools } from "./tools.ts"
-import { LLMEvent } from "@opencode-ai/llm"
-import { RepositoryCache } from "@opencode-ai/core/repository-cache" // kappacode_change
+import { LLMEvent } from "@toxicwind/llm"
+import { RepositoryCache } from "@toxicwind/core/repository-cache" // kappacode_change
 import { SessionResume } from "@/kappacode/session-resume" // kappacode_change
 import { SessionResumeImport } from "@/kappacode/session-resume/import" // kappacode_change
 import { KappaSessionContinuation } from "@/kappacode/session/continuation" // kappacode_change

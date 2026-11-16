@@ -1,10 +1,10 @@
 import { describe, expect } from "bun:test"
 import { DateTime, Effect } from "effect"
-import { Credential } from "@opencode-ai/core/credential"
-import { Integration } from "@opencode-ai/core/integration"
-import { ModelV2 } from "@opencode-ai/core/model"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { SessionRunnerModel } from "@opencode-ai/core/session/runner/model"
+import { Credential } from "@toxicwind/core/credential"
+import { Integration } from "@toxicwind/core/integration"
+import { ModelV2 } from "@toxicwind/core/model"
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { SessionRunnerModel } from "@toxicwind/core/session/runner/model"
 import { it } from "../lib/effect"
 
 describe("SessionRunnerModel Kappa credentials", () => {

@@ -1,6 +1,6 @@
 #!/usr/bin/env bun
 /**
- * secretsmith-bun — CLI drop-in for the estate secretsmith, in pure Bun.
+ * secretsmith-bun — CLI drop-in for the Pens secretsmith, in pure Bun.
  *
  * Mirrors the Python CLI's surface: search / get / set / delete / list /
  * collections / lock / unlock, plus `--json`. Any Bun caller can also

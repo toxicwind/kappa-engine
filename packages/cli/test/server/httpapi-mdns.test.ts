@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, mock, test } from "bun:test"
-import { Flag } from "@opencode-ai/core/flag/flag"
+import { Flag } from "@toxicwind/core/flag/flag"
 import { withTimeout } from "../../src/util/timeout.ts"
 import { resetDatabase } from "../fixture/db.ts"
 import { disposeAllInstances } from "../fixture/fixture.ts"

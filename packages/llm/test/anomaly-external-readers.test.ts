@@ -3,7 +3,7 @@ import { describe, expect, test } from "bun:test"
 /**
  * Anomaly 8: External scheduled readers
  * Scheduled browser readers (architect's MacBook Claude Desktop tasks) hold persistent tunnel grants 
- * to estate.tailc9ac71.ts.net with NO on-box inventory. Observability stops at the box; 
+ * to Pens.tailc9ac71.ts.net with NO on-box inventory. Observability stops at the box; 
  * the grant inventory lives outside it.
  * Treat recurring 502 reports from external readers as route-contract drift until proven otherwise,
  * and keep a kill-switch/revoke path per grant. Unreachable remote hosts and flooded SSH 
@@ -15,15 +15,15 @@ import { describe, expect, test } from "bun:test"
 
 describe("Anomaly 8: External scheduled readers capability contract", () => {
   
-  test("scheduled browser readers hold persistent tunnel grants to estate.tailc9ac71.ts.net", () => {
+  test("scheduled browser readers hold persistent tunnel grants to Pens.tailc9ac71.ts.net", () => {
     const externalReaders = {
       source: "architect's MacBook Claude Desktop tasks",
-      target: "estate.tailc9ac71.ts.net",
+      target: "Pens.tailc9ac71.ts.net",
       grantType: "persistent tunnel",
       onBoxInventory: false // NO on-box inventory
     }
     
-    expect(externalReaders.target).toBe("estate.tailc9ac71.ts.net")
+    expect(externalReaders.target).toBe("Pens.tailc9ac71.ts.net")
     expect(externalReaders.onBoxInventory).toBe(false)
   })
   
@@ -49,7 +49,7 @@ describe("Anomaly 8: External scheduled readers capability contract", () => {
   test("keep kill-switch/revoke path per grant", () => {
     const grant = {
       id: "grant-123",
-      target: "estate.tailc9ac71.ts.net",
+      target: "Pens.tailc9ac71.ts.net",
       killSwitch: "/api/grants/grant-123/revoke",
       revokePath: true
     }
@@ -74,14 +74,14 @@ describe("Anomaly 8: External scheduled readers capability contract", () => {
 })
 
 describe("Anomaly 8: Capability-contract verification", () => {
-  test("grant inventory must be managed outside the estate box", () => {
+  test("grant inventory must be managed outside the Pens box", () => {
     const grantManagement = {
-      location: "outside estate box",
+      location: "outside Pens box",
       managedBy: "external system",
       estateHasReadOnlyView: true
     }
     
-    expect(grantManagement.location).toBe("outside estate box")
+    expect(grantManagement.location).toBe("outside Pens box")
     expect(grantManagement.estateHasReadOnlyView).toBe(true)
   })
   

@@ -13,7 +13,7 @@
 //      local sessions,
 //   4. runs the prompt queue until the footer closes.
 import { createKappaClient } from "@kappacode/sdk/v2"
-import { Flag } from "@opencode-ai/core/flag/flag"
+import { Flag } from "@toxicwind/core/flag/flag"
 import { MessageID } from "@/session/schema"
 import { createRunDemo } from "./demo.ts"
 import { resolveModelInfo, resolveRunTuiConfig, resolveSessionInfo } from "./runtime.boot.ts"

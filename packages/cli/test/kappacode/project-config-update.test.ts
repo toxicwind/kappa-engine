@@ -1,25 +1,25 @@
 // kappacode_change - new file
 
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
 import { expect, test } from "bun:test"
 import fs from "fs/promises"
 import path from "path"
 import { Effect, Layer, Option } from "effect"
 import { NodeFileSystem, NodePath } from "@effect/platform-node"
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import { EffectFlock } from "@opencode-ai/core/util/effect-flock"
+import { FSUtil } from "@toxicwind/core/fs-util"
+import { EffectFlock } from "@toxicwind/core/util/effect-flock"
 import { Config } from "../../src/config/config.ts"
 import { Auth } from "../../src/auth/index.ts"
 import { Account } from "../../src/account/account.ts"
 import { Env } from "../../src/env/index.ts"
 import { Git } from "../../src/git/index.ts"
-import { Npm } from "@opencode-ai/core/npm"
+import { Npm } from "@toxicwind/core/npm"
 import { provideTestInstance } from "../fixture/fixture.ts"
 import { Filesystem } from "../../src/util/filesystem.ts"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { CrossSpawnSpawner } from "@toxicwind/core/cross-spawn-spawner"
 import { HttpClient } from "effect/http"
 import { tmpdir } from "../fixture/fixture.ts"
-import { LayerNodePlatform } from "@opencode-ai/core/effect/app-node-platform"
+import { LayerNodePlatform } from "@toxicwind/core/effect/app-node-platform"
 
 const infra = AppNodeBuilder.build(CrossSpawnSpawner.node).pipe(
   Layer.provideMerge(Layer.mergeAll(NodeFileSystem.layer, NodePath.layer)),

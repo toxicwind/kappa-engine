@@ -2,8 +2,8 @@ import { APICallError } from "ai"
 import { STATUS_CODES } from "http"
 import { iife } from "@/util/iife"
 import * as KappaError from "@/kappacode/provider/error" // kappacode_change
-import type { ProviderV2 } from "@opencode-ai/core/provider"
-import { isContextOverflow } from "@opencode-ai/llm"
+import type { ProviderV2 } from "@toxicwind/core/provider"
+import { isContextOverflow } from "@toxicwind/llm"
 
 export class HeaderTimeoutError extends Error {
   public override readonly name = "ProviderHeaderTimeoutError"

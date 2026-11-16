@@ -1,12 +1,12 @@
 import { Config } from "@/config/config"
 import { GlobalBus, type GlobalEvent as GlobalBusEvent } from "@/bus/global"
 import { EffectBridge } from "@/effect/bridge"
-import { EventV2 } from "@opencode-ai/core/event"
+import { EventV2 } from "@toxicwind/core/event"
 import { Installation } from "@/installation"
 import { disconnect } from "@/kappacode/server/sse" // kappacode_change
 import { copied } from "@/kappacode/event-wire" // kappacode_change
 import { disposeAllInstancesAndEmitGlobalDisposed } from "@/server/global-lifecycle"
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
+import { InstallationVersion } from "@toxicwind/core/installation/version"
 import { Effect, Queue } from "effect"
 import * as Stream from "effect/Stream"
 import { HttpServerRequest, HttpServerResponse } from "effect/http" // kappacode_change - raw request needed for Kappa SSE

@@ -31,7 +31,7 @@ Kappa reads configuration from environment variables at startup. This page is th
 | `KAPPA_SERVER_USERNAME` | `string` | Username for the `kappa serve` HTTP server. |
 
 {% callout type="note" %}
-The port the serve daemon binds is set by the estate wrapper as `KAPPA_SERVER_PORT` (default `25159`). It is an estate-level wrapper variable, not a core CLI flag.
+The port the serve daemon binds is set by the Pens wrapper as `KAPPA_SERVER_PORT` (default `25159`). It is an Pens-level wrapper variable, not a core CLI flag.
 {% /callout %}
 
 ## Configuration & startup
@@ -77,4 +77,4 @@ The complete, source-verified list of `KAPPA_*` variables is kept in [`.env.exam
 
 ## Secrets handling
 
-The estate's `kappa serve` wrapper injects `KAPPA_SERVER_PASSWORD` from the secretsmith keyring (freedesktop Secret Service). It is never committed to the repository. See [Secrets](/docs/deploy-secure/deploy) for how to manage server secrets.
+The Pens's `kappa serve` wrapper injects `KAPPA_SERVER_PASSWORD` from the secretsmith keyring (freedesktop Secret Service). It is never committed to the repository. See [Secrets](/docs/deploy-secure/deploy) for how to manage server secrets.

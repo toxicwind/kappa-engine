@@ -2,8 +2,8 @@ import "./init-projectors"
 
 import { NodeHttpServer } from "@effect/platform-node"
 import { serverUrls } from "@/kappacode/cli/server-urls" // kappacode_change
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
-import { Pty } from "@opencode-ai/core/pty" // kappacode_change
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
+import { Pty } from "@toxicwind/core/pty" // kappacode_change
 import { ConfigProvider, Context, Effect, Exit, Layer, Scope } from "effect"
 import { HttpRouter, HttpServer } from "effect/http"
 import { OpenApi } from "effect/http-api"
@@ -13,7 +13,7 @@ import { HttpApiApp } from "./routes/instance/httpapi/server.ts"
 import { disposeMiddleware } from "./routes/instance/httpapi/lifecycle.ts"
 import { WebSocketTracker } from "./routes/instance/httpapi/websocket-tracker.ts"
 import { PublicApi } from "./routes/instance/httpapi/public.ts"
-import type { CorsOptions } from "@opencode-ai/server/cors"
+import type { CorsOptions } from "@toxicwind/server/cors"
 import { lazy } from "@/util/lazy"
 import * as KappaListener from "@/kappacode/server/listener" // kappacode_change
 

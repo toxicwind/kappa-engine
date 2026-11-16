@@ -1,7 +1,7 @@
 import { expect } from "bun:test"
 import { auth } from "@modelcontextprotocol/sdk/client/auth.js"
 import { OAuthClientMetadataSchema, type OAuthClientMetadata } from "@modelcontextprotocol/sdk/shared/auth.js"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import { Effect } from "effect"
 import { McpAuth } from "../../src/mcp/auth.ts"
 import { McpOAuthPendingProvider, McpOAuthProvider, type McpOAuthConfig } from "../../src/mcp/oauth-provider.ts"

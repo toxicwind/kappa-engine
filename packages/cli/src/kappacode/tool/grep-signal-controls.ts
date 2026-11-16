@@ -1,4 +1,4 @@
-import { NonNegativeInt, PositiveInt } from "@opencode-ai/core/schema"
+import { NonNegativeInt, PositiveInt } from "@toxicwind/core/schema"
 import { Schema } from "effect"
 
 export const DEFAULT_LIMIT = 100

@@ -1,13 +1,13 @@
 import { Telemetry } from "@kappacode/kappa-telemetry"
 import { Agent } from "@/agent/agent"
 import { TuiEvent } from "@/server/tui-event"
-import { Flag } from "@opencode-ai/core/flag/flag"
+import { Flag } from "@toxicwind/core/flag/flag"
 import { Identifier } from "@/id/id"
 import { Instance } from "@/kappacode/instance"
 import { KappacodeModelState } from "@/kappacode/config/model-state"
 import { Provider } from "@/provider/provider"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
 import { Question } from "@/question"
 import { Session } from "@/session/session"
 import { SessionID, MessageID, PartID } from "@/session/schema"
@@ -18,11 +18,11 @@ import { SessionStatus } from "@/session/status"
 import { Todo } from "@/session/todo"
 import { makeRuntime } from "@/effect/run-service"
 import { Effect } from "effect"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import { KappaSessionPromptQueue } from "@/kappacode/session/prompt-queue"
 import { lazy } from "@/util/lazy"
 import { PlanFile } from "@/kappacode/plan-file"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kappacode_change
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder" // kappacode_change
 
 const agents = lazy(() => makeRuntime(Agent.Service, AppNodeBuilder.build(Agent.node)))
 const todo = lazy(() => makeRuntime(Todo.Service, Todo.defaultLayer))

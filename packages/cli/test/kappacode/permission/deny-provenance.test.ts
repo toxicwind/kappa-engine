@@ -1,11 +1,11 @@
 import { describe, expect, test } from "bun:test"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
 import { Cause, Effect, Exit, Layer } from "effect"
 import { Bus } from "../../../src/bus/index.ts"
 import { Permission } from "../../../src/permission/index.ts"
 import { PermissionProvenance } from "../../../src/kappacode/permission/provenance.ts"
 import { SessionID } from "../../../src/session/schema.ts"
-import * as CrossSpawnSpawner from "@opencode-ai/core/cross-spawn-spawner"
+import * as CrossSpawnSpawner from "@toxicwind/core/cross-spawn-spawner"
 import { provideTmpdirInstance } from "../../fixture/fixture.ts"
 import { testEffect } from "../../lib/effect.ts"
 

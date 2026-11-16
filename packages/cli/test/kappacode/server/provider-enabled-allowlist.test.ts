@@ -1,6 +1,6 @@
 import { afterEach, expect } from "bun:test"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
-import { Flag } from "@opencode-ai/core/flag/flag"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
+import { Flag } from "@toxicwind/core/flag/flag"
 import { Effect, Layer } from "effect"
 import { Auth } from "../../../src/auth/index.ts"
 import { ModelCache } from "../../../src/provider/model-cache.ts"

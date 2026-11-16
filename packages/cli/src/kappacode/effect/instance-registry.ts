@@ -1,4 +1,4 @@
-import type { WorkspaceV2 } from "@opencode-ai/core/workspace"
+import type { WorkspaceV2 } from "@toxicwind/core/workspace"
 
 const before = new Set<(directory: string, workspaceID?: WorkspaceV2.ID) => undefined>()
 const closing = new Map<string, number>()

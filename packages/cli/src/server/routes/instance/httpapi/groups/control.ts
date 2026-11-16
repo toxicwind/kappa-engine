@@ -3,7 +3,7 @@ import { Auth } from "@/auth"
 import { Schema } from "effect"
 import { HttpApi, HttpApiEndpoint, HttpApiError, HttpApiGroup, OpenApi } from "effect/http-api"
 import { described } from "./metadata.ts"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { ProviderV2 } from "@toxicwind/core/provider"
 
 const AuthParams = Schema.Struct({
   providerID: ProviderV2.ID,

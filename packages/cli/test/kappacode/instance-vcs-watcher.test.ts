@@ -1,6 +1,6 @@
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
 import { describe, expect, test } from "bun:test"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { CrossSpawnSpawner } from "@toxicwind/core/cross-spawn-spawner"
 import { ConfigProvider, Context, Deferred, Effect, Fiber, Layer, LayerMap } from "effect"
 import * as TestConsole from "effect/testing/TestConsole"
 import { GlobalBus, type GlobalEvent } from "../../src/bus/global.ts"
@@ -13,8 +13,8 @@ import { KappacodeWatcher } from "../../src/kappacode/watcher.ts"
 import type { InstanceContext } from "../../src/project/instance-context.ts"
 import { tmpdirScoped } from "../fixture/fixture.ts"
 import { awaitWithTimeout, testEffect } from "../lib/effect.ts"
-import { Location } from "@opencode-ai/core/location"
-import { LocationServiceMap, type LocationServices } from "@opencode-ai/core/location-services"
+import { Location } from "@toxicwind/core/location"
+import { LocationServiceMap, type LocationServices } from "@toxicwind/core/location-services"
 
 const layer = Layer.mergeAll(
   AppNodeBuilder.build(InstanceStore.node, [[InstanceStore.bootstrapNode, InstanceBootstrap.node]]),

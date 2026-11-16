@@ -4,7 +4,7 @@ import { homedir } from "node:os";
 import { join } from "node:path";
 import { search, get, set, del, list, collections, lock, unlock, resolve, fromEnv } from "../src/index";
 
-// Keyring integration tests need the estate secretsmith binary; skip them on
+// Keyring integration tests need the Pens secretsmith binary; skip them on
 // runners and machines without one instead of failing the whole suite.
 const bin = ((): string | null => {
   if (process.platform !== "win32") {
@@ -12,7 +12,7 @@ const bin = ((): string | null => {
     const hit = r.stdout.toString().trim();
     if (hit) return hit;
   }
-  const paths = ["/home/toxic/pens/estate/ranch/secretsmith/bin/secretsmith", join(homedir(), ".local/bin/secretsmith")];
+  const paths = ["/home/toxic/pens/Pens/ranch/secretsmith/bin/secretsmith", join(homedir(), ".local/bin/secretsmith")];
   return paths.find((p) => existsSync(p)) ?? null;
 })();
 const skip = bin == null;

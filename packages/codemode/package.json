@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "@opencode-ai/codemode",
+  "name": "@toxicwind/codemode",
   "version": "7.8.10",
   "description": "Effect-native confined code execution over schema-described tools",
   "private": true,

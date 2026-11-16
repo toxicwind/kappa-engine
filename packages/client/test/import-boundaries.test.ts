@@ -10,7 +10,7 @@ const server = resolve(import.meta.dir, "../../server")
 
 describe("public import boundaries", () => {
   test("isolates each public entrypoint", async () => {
-    const root = await bundleInputs("@opencode-ai/client", "browser")
+    const root = await bundleInputs("@toxicwind/client", "browser")
 
     expect(dependency(root, "effect")).toEqual([]) // kappacode_change
     expect(within(root, schema)).toEqual([])
@@ -18,7 +18,7 @@ describe("public import boundaries", () => {
     expect(within(root, core)).toEqual([])
     expect(within(root, server)).toEqual([])
 
-    const network = await bundleInputs("@opencode-ai/client/effect", "browser")
+    const network = await bundleInputs("@toxicwind/client/effect", "browser")
 
     expect(dependency(network, "effect").length).toBeGreaterThan(0) // kappacode_change
     expect(within(network, schema).length).toBeGreaterThan(0)

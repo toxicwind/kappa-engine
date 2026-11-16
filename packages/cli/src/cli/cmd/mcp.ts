@@ -1,5 +1,5 @@
 import { cmd } from "./cmd.ts"
-import { ConfigV1 } from "@opencode-ai/core/v1/config/config"
+import { ConfigV1 } from "@toxicwind/core/v1/config/config"
 import { effectCmd } from "../effect-cmd.ts"
 import { Cause } from "effect"
 import { Client } from "@modelcontextprotocol/sdk/client/index.js"
@@ -12,16 +12,16 @@ import { MCP } from "../../mcp/index.ts"
 import { McpAuth } from "../../mcp/auth.ts"
 import { McpOAuthProvider } from "../../mcp/oauth-provider.ts"
 import { Config } from "@/config/config"
-import { ConfigMCPV1 } from "@opencode-ai/core/v1/config/mcp"
+import { ConfigMCPV1 } from "@toxicwind/core/v1/config/mcp"
 import { InstanceRef } from "@/effect/instance-ref"
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
+import { InstallationVersion } from "@toxicwind/core/installation/version"
 import path from "path"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@toxicwind/core/global"
 import { modify, applyEdits } from "jsonc-parser"
 // kappacode_change - KappacodeMcpConfig is dynamically imported in addMcpToConfig to keep startup fast
 import { Filesystem } from "@/util/filesystem"
 import { Effect } from "effect"
-import { Flag } from "@opencode-ai/core/flag/flag" // kappacode_change
+import { Flag } from "@toxicwind/core/flag/flag" // kappacode_change
 
 function getAuthStatusIcon(status: MCP.AuthStatus): string {
   switch (status) {

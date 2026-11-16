@@ -12,11 +12,19 @@ export type KappaEmbeddingModelCatalog = {
   aliases: Record<string, string>
 }
 
-export const EMPTY_KILO_EMBEDDING_MODEL_CATALOG: KappaEmbeddingModelCatalog = {
+export const EMPTY_KAPPA_EMBEDDING_MODEL_CATALOG: KappaEmbeddingModelCatalog = {
   defaultModel: "",
   models: [],
   aliases: {},
 }
+
+// Kilo/OpenCode backwards-compat aliases: kappa is a derivative of OpenCode/Kilo;
+// downstream consumers that still import the upstream `EMPTY_KILO_*` or
+// `EMPTY_OPENCODE_*` names keep resolving to the same canonical constant.
+export const EMPTY_KILO_EMBEDDING_MODEL_CATALOG: KappaEmbeddingModelCatalog =
+  EMPTY_KAPPA_EMBEDDING_MODEL_CATALOG
+export const EMPTY_OPENCODE_EMBEDDING_MODEL_CATALOG: KappaEmbeddingModelCatalog =
+  EMPTY_KAPPA_EMBEDDING_MODEL_CATALOG
 
 export function normalizeKappaEmbeddingModelId(model: string | undefined, catalog = EMPTY_KILO_EMBEDDING_MODEL_CATALOG) {
   if (!model) return undefined

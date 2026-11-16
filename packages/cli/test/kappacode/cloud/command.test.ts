@@ -1,4 +1,4 @@
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
 import { expect } from "bun:test"
 import { Agent } from "@/agent/agent"
 import { Auth } from "@/auth"

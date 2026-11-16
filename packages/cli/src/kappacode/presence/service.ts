@@ -1,7 +1,7 @@
 import { Auth } from "@/auth"
 import { EventServiceClient } from "@/kappacode/event-service/client"
 import { KAPPA_EVENT_SERVICE_URL } from "@kappacode/kappa-gateway"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import { Context, Effect, Layer } from "effect"
 import type { Platform } from "./context.ts"
 import {

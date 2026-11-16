@@ -11,8 +11,8 @@ import { provideTestInstance, tmpdir } from "../fixture/fixture.ts"
 import type { Tool } from "../../src/tool/tool.ts"
 import { SessionID, MessageID, PartID } from "../../src/session/schema.ts"
 import { RemoteSender } from "../../src/kappa-sessions/remote-sender.ts"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
 beforeEach(() => {
   spyOn(RemoteSender, "create").mockReturnValue({ handle() {}, dispose() {} })
 })

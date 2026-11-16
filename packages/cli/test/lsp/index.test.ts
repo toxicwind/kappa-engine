@@ -1,8 +1,8 @@
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
 import { describe, expect, spyOn, test } from "bun:test"
 import path from "path"
 import fs from "fs/promises"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import { Deferred, Effect, Layer } from "effect"
 import { EventV2Bridge } from "@/event-v2-bridge"
 import { Config } from "@/config/config"
@@ -10,11 +10,11 @@ import { RuntimeFlags } from "@/effect/runtime-flags"
 import { LSP } from "@/lsp/lsp"
 import * as LSPServer from "@/lsp/server"
 import * as launch from "../../src/lsp/launch.ts" // kappacode_change - spy on spawn
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { CrossSpawnSpawner } from "@toxicwind/core/cross-spawn-spawner"
 import { provideTestInstance, provideTmpdirInstance, TestInstance, tmpdir } from "../fixture/fixture.ts" // kappacode_change
 import { awaitWithTimeout, testEffect } from "../lib/effect.ts"
 import { type InstanceContext } from "../../src/project/instance-context.ts"
-import { Flag } from "@opencode-ai/core/flag/flag" // kappacode_change
+import { Flag } from "@toxicwind/core/flag/flag" // kappacode_change
 import { TsCheck } from "../../src/kappacode/ts-check.ts" // kappacode_change
 
 // kappacode_change - Typescript.spawn ignores ctx, so a cast is fine here.

@@ -14,7 +14,7 @@ import { it } from "../lib/effect"
 //   - default (any value except "chrome"): HONEST identification —
 //     `kappa/<version> (+https://github.com/toxicwind/kappa-code)`. Providers
 //     like freeinference ban fake user agents; live probes
-//     (estate/docs/freeinference-provider.md, 2026-10-19) show honest UA passes.
+//     (Pens/docs/freeinference-provider.md, 2026-10-19) show honest UA passes.
 //   - explicit "chrome": the legacy Chrome-aligned header set, kept ONLY for
 //     providers that re-enable Cloudflare-style header gating.
 //   - untagged requests pass through completely untouched.

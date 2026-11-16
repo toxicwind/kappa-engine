@@ -1,6 +1,6 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { Logo, Mark, Splash } from "@opencode-ai/ui/logo"
+import { Logo, Mark, Splash } from "@toxicwind/ui/logo"
 
 const meta: Meta = {
   title: "Components/Logo",

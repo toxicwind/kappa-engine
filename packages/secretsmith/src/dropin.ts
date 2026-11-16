@@ -4,9 +4,9 @@ import { join } from "node:path";
 import { homedir } from "node:os";
 
 /**
- * full-feature, production-grade Bun drop-in for the estate secretsmith.
+ * full-feature, production-grade Bun drop-in for the Pens secretsmith.
  *
- * The estate stores secrets in the freedesktop Secret Service keyring via
+ * The Pens stores secrets in the freedesktop Secret Service keyring via
  * `secretsmith` (a Python/libsecret CLI). This module is a first-class Bun port:
  * the same CRUD surface (`search/get/set/delete/list/lock/unlock/collections/
  * schema`) with the same semantic guarantees (no schema filter by default,
@@ -55,7 +55,7 @@ function locateBin(): string | null {
   if (binCache !== undefined) return binCache;
   const cands = [
     (() => { try { const r = Bun.spawnSync({ cmd: ["bash", "-lc", "command -v secretsmith"] }); const o = r.stdout.toString().trim(); return o || null; } catch { return null; } })(),
-    "/home/toxic/pens/estate/ranch/secretsmith/bin/secretsmith",
+    "/home/toxic/pens/Pens/ranch/secretsmith/bin/secretsmith",
     join(homedir(), ".local/bin/secretsmith"),
   ];
   binCache = cands.find((c) => c && existsSync(c)) ?? null;

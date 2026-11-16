@@ -7,10 +7,10 @@
 // for the process-exit path), so a wiring regression fails here.
 
 import { beforeEach, describe, expect, test } from "bun:test"
-import { ProjectV2 } from "@opencode-ai/core/project"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
-import * as Log from "@opencode-ai/core/util/log"
+import { ProjectV2 } from "@toxicwind/core/project"
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
+import * as Log from "@toxicwind/core/util/log"
 import { RemoteSender } from "../../../src/kappa-sessions/remote-sender.ts"
 import { RemoteSessionLog } from "../../../src/kappa-sessions/remote-session-log.ts"
 import type { RemoteWS } from "../../../src/kappa-sessions/remote-ws.ts"

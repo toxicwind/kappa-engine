@@ -11,17 +11,17 @@ import {
   HttpServerResponse,
 } from "effect/http"
 import * as Socket from "effect/socket/Socket"
-import { runRaw, runString } from "@opencode-ai/core/util/socket-run-raw" // kilocode_change
+import { runRaw, runString } from "@toxicwind/core/util/socket-run-raw" // kilocode_change
 import { HttpApi, HttpApiBuilder, HttpApiEndpoint, HttpApiGroup } from "effect/http-api"
 import Http from "node:http"
 import { mkdir } from "node:fs/promises"
 import path from "node:path"
 import { registerAdapter } from "../../src/control-plane/adapters/index.ts"
-import { WorkspaceV2 } from "@opencode-ai/core/workspace"
+import { WorkspaceV2 } from "@toxicwind/core/workspace"
 import type { WorkspaceAdapter } from "../../src/control-plane/types.ts"
 import { Workspace } from "../../src/control-plane/workspace.ts"
-import { WorkspaceTable } from "@opencode-ai/core/control-plane/workspace.sql"
-import { Database } from "@opencode-ai/core/database/database"
+import { WorkspaceTable } from "@toxicwind/core/control-plane/workspace.sql"
+import { Database } from "@toxicwind/core/database/database"
 import { Project } from "../../src/project/project.ts"
 import { Session } from "../../src/session/session.ts"
 import { WorkspacePaths } from "../../src/server/routes/instance/httpapi/groups/workspace.ts"

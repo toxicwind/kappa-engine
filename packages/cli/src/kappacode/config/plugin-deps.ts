@@ -1,6 +1,6 @@
 import { ConfigPlugin } from "@/config/plugin"
-import { Npm } from "@opencode-ai/core/npm"
-import { ConfigPluginV1 } from "@opencode-ai/core/v1/config/plugin"
+import { Npm } from "@toxicwind/core/npm"
+import { ConfigPluginV1 } from "@toxicwind/core/v1/config/plugin"
 import { Effect, Exit } from "effect"
 
 export function needsLocalPluginDependency(plugins: readonly ConfigPluginV1.Spec[]) {

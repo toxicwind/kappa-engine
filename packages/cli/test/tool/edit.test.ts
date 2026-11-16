@@ -1,12 +1,12 @@
 import { afterEach, describe, expect } from "bun:test"
 import path from "path"
 import fs from "fs/promises"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import { Cause, Deferred, Effect, Exit, Fiber, Layer } from "effect"
 import { EditTool } from "../../src/tool/edit.ts"
 import { disposeAllInstances, TestInstance } from "../fixture/fixture.ts"
 import { LSP } from "@/lsp/lsp"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@toxicwind/core/fs-util"
 import { Format } from "../../src/format/index.ts"
 import { Agent } from "../../src/agent/agent.ts"
 import { EventV2Bridge } from "../../src/event-v2-bridge.ts"
@@ -14,7 +14,7 @@ import { Truncate } from "@/tool/truncate"
 import { SessionID, MessageID } from "../../src/session/schema.ts"
 import * as Tool from "../../src/tool/tool.ts"
 import { testEffect } from "../lib/effect.ts"
-import { Watcher } from "@opencode-ai/core/filesystem/watcher"
+import { Watcher } from "@toxicwind/core/filesystem/watcher"
 
 const ctx = {
   sessionID: SessionID.make("ses_test-edit-session"),

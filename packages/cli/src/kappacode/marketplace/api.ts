@@ -1,5 +1,5 @@
 import { parse as parseYaml } from "yaml"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import type {
   AgentMarketplaceItem,
   McpMarketplaceItem,
@@ -33,7 +33,7 @@ const cache = new Map<string, CacheEntry>()
 // Read the base URL(s) per call (not at module load) so a test/enterprise override via
 // KAPPA_MARKETPLACE_BASE_URLS is honored regardless of import order.
 function baseUrls(opts: FetchOptions): string[] {
-  const explicit = opts.baseUrl ?? process.env["KAPPA_MARKETPLACE_BASE_URL"] ?? process.env["KAPPA_MARKETPLACE_BASE_URLS"]
+  const explicit = opts.baseUrl ?? kiloEnv("MARKETPLACE_BASE_URL") ?? kiloEnv("MARKETPLACE_BASE_URLS")
   const list = (explicit ?? DEFAULT_BASE_URL)
     .split(",")
     .map((s) => s.trim())

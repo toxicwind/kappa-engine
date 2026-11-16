@@ -11,9 +11,9 @@ import {
 } from "@pierre/diffs"
 import { ComponentProps, createEffect, createMemo, createSignal, onCleanup, onMount, Show, splitProps } from "solid-js"
 import { Portal } from "solid-js/web"
-import { createDefaultOptions, styleVariables } from "@opencode-ai/ui/pierre"
-import { getWorkerPool } from "@opencode-ai/ui/pierre/worker"
-import { Icon } from "@opencode-ai/ui/icon"
+import { createDefaultOptions, styleVariables } from "@toxicwind/ui/pierre"
+import { getWorkerPool } from "@toxicwind/ui/pierre/worker"
+import { Icon } from "@toxicwind/ui/icon"
 import { attachLineSelectionListeners, readSelectedLineRange } from "../pierre/selection"
 
 const VIRTUALIZE_BYTES = 500_000

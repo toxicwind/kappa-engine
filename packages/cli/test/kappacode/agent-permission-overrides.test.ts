@@ -1,6 +1,6 @@
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
 import { afterEach, expect, test } from "bun:test"
-import type { ConfigV1 } from "@opencode-ai/core/v1/config/config"
+import type { ConfigV1 } from "@toxicwind/core/v1/config/config"
 import { Effect } from "effect"
 import { Agent } from "../../src/agent/agent.ts"
 import { Permission } from "../../src/permission/index.ts"

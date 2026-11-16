@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test"
 import path from "path"
-import { Global } from "@opencode-ai/core/global"
-import { InstallationChannel } from "@opencode-ai/core/installation/version"
+import { Global } from "@toxicwind/core/global"
+import { InstallationChannel } from "@toxicwind/core/installation/version"
 import { Database } from "../../../src/storage/db.ts"
 import { tmpdir } from "../../fixture/fixture.ts"
 

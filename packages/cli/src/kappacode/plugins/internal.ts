@@ -1,4 +1,4 @@
-import type { BuiltinTuiPlugin } from "@opencode-ai/tui/builtins"
+import type { BuiltinTuiPlugin } from "@toxicwind/tui/builtins"
 import HomeNews from "@/kappacode/plugins/home-news"
 import HomeOnboarding from "@/kappacode/plugins/home-onboarding"
 import Attention from "@/kappacode/plugins/attention"

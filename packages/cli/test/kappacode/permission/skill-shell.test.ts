@@ -1,12 +1,12 @@
-import { PermissionV1 } from "@opencode-ai/core/v1/permission"
+import { PermissionV1 } from "@toxicwind/core/v1/permission"
 import { expect } from "bun:test"
 import { Cause, Effect, Exit, Fiber, Layer } from "effect"
-import * as CrossSpawnSpawner from "@opencode-ai/core/cross-spawn-spawner"
+import * as CrossSpawnSpawner from "@toxicwind/core/cross-spawn-spawner"
 import { Permission } from "@/permission"
 import { testEffect } from "../../lib/effect.ts"
 import { SessionID } from "@/session/schema"
 import * as Config from "@/config/config"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
 
 // skillShell forces a single up-front prompt over soft allow/deny/auto-approve
 // rules, but must never override a hard (plan-mode) veto, and must never be

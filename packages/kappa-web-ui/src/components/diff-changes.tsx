@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/diff-changes"
+export * from "@toxicwind/ui/diff-changes"

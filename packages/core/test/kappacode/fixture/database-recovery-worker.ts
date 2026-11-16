@@ -1,6 +1,6 @@
 import { Database as SQLite } from "bun:sqlite"
 import path from "path"
-import { Database } from "@opencode-ai/core/database/database"
+import { Database } from "@toxicwind/core/database/database"
 import { Effect, Layer } from "effect"
 
 const mode = process.argv[2]

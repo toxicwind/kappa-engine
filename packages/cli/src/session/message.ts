@@ -1,11 +1,11 @@
 import { Schema } from "effect"
 import { SessionID } from "./schema.ts"
 
-import { NonNegativeInt } from "@opencode-ai/core/schema"
+import { NonNegativeInt } from "@toxicwind/core/schema"
 import { MessageError } from "./message-error.ts"
 import { AuthError, OutputLengthError } from "./message-error.ts"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
 export { AuthError, OutputLengthError } from "./message-error.ts"
 
 export const ToolCall = Schema.Struct({

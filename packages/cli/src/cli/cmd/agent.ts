@@ -1,7 +1,7 @@
 import { cmd } from "./cmd.ts"
 import * as prompts from "@clack/prompts"
 import { UI } from "../ui.ts"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@toxicwind/core/global"
 import path from "path"
 import fs from "fs/promises"
 import { Filesystem } from "@/util/filesystem"

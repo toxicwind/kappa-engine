@@ -1,4 +1,4 @@
-import { isBusy } from "@opencode-ai/core/kappacode/sqlite-error"
+import { isBusy } from "@toxicwind/core/kappacode/sqlite-error"
 
 export { isBusy }
 

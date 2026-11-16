@@ -4,19 +4,19 @@ import { type SQLiteTransaction } from "drizzle-orm/sqlite-core"
 export * from "drizzle-orm"
 import { RuntimeFlags } from "@/effect/runtime-flags"
 import { LocalContext } from "@/util/local-context"
-import { Global } from "@opencode-ai/core/global"
-import { safeChannelToken } from "@opencode-ai/core/installation/version" // kappacode_change
-import { DbPreflight } from "@opencode-ai/core/kappacode/db-preflight" // kappacode_change
-import * as Log from "@opencode-ai/core/util/log"
-import { NamedError } from "@opencode-ai/core/util/error"
+import { Global } from "@toxicwind/core/global"
+import { safeChannelToken } from "@toxicwind/core/installation/version" // kappacode_change
+import { DbPreflight } from "@toxicwind/core/kappacode/db-preflight" // kappacode_change
+import * as Log from "@toxicwind/core/util/log"
+import { NamedError } from "@toxicwind/core/util/error"
 import path from "path"
 import { readFileSync, readdirSync, existsSync } from "fs"
-import { Flag } from "@opencode-ai/core/flag/flag"
-import { InstallationChannel } from "@opencode-ai/core/installation/version"
+import { Flag } from "@toxicwind/core/flag/flag"
+import { InstallationChannel } from "@toxicwind/core/installation/version"
 import { EffectBridge } from "@/effect/bridge"
 import { init } from "#db"
 import { Effect, Schema } from "effect"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kappacode_change
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder" // kappacode_change
 
 declare const KAPPA_MIGRATIONS: { sql: string; timestamp: number; name: string }[] | undefined
 

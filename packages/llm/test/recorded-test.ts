@@ -1,6 +1,6 @@
 import { NodeFileSystem } from "@effect/platform-node"
-import { HttpRecorder } from "@opencode-ai/http-recorder"
-import { HttpRecorderInternal } from "@opencode-ai/http-recorder/internal"
+import { HttpRecorder } from "@toxicwind/http-recorder"
+import { HttpRecorderInternal } from "@toxicwind/http-recorder/internal"
 import { Layer } from "effect"
 import { FetchHttpClient } from "effect/http"
 import * as path from "node:path"

@@ -1,5 +1,5 @@
 /* Wraps upstream styles and adds Kilo overrides */
-@import "@opencode-ai/ui/styles";
+@import "@toxicwind/ui/styles";
 
 /* Global design tokens, scrollbar, VS Code extension overrides */
 @import "./globals.css";

@@ -59,7 +59,7 @@ in the live `/v1/models` probe).
 ## Winner: Route 4 (circuit-breaker + token-bucket resurrection)
 
 **Evidence:** rhodochrosite's live `/v1/models` already reports
-`"circuit":"half_open"` per provider — the estate's router already speaks this
+`"circuit":"half_open"` per provider — the Pens's router already speaks this
 language. Route 4 is the only route that:
 1. Reuses the existing `isConcurrencyShed` detection (already in retry.ts).
 2. Matches rhodochrosite's circuit state (no new machinery).

@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, test } from "bun:test"
 import { NodeHttpServer, NodeServices } from "@effect/platform-node"
-import { PtyID } from "@opencode-ai/core/pty/schema"
+import { PtyID } from "@toxicwind/core/pty/schema"
 import { Server } from "../../src/server/server.ts"
 import { PtyPaths } from "../../src/server/routes/instance/httpapi/groups/pty.ts"
 import { resetDatabase } from "../fixture/db.ts"
@@ -9,9 +9,9 @@ import { Config, Effect, Layer, Queue, Schema } from "effect"
 import { HttpClient, HttpClientRequest, HttpRouter, HttpServer } from "effect/http"
 import * as Socket from "effect/socket/Socket"
 import { HttpApiApp } from "../../src/server/routes/instance/httpapi/server.ts"
-import { Pty } from "@opencode-ai/core/pty"
+import { Pty } from "@toxicwind/core/pty"
 import { testEffect } from "../lib/effect.ts"
-import { runRaw } from "@opencode-ai/core/util/socket-run-raw" // kilocode_change
+import { runRaw } from "@toxicwind/core/util/socket-run-raw" // kilocode_change
 
 const testPty = process.platform === "win32" ? test.skip : test
 

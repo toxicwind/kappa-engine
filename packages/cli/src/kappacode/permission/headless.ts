@@ -1,4 +1,4 @@
-import { Database } from "@opencode-ai/core/database/database"
+import { Database } from "@toxicwind/core/database/database"
 import { Effect } from "effect"
 import { sql } from "drizzle-orm"
 import type { SessionID } from "@/session/schema"

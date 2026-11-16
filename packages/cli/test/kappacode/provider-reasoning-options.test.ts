@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test"
 import { ProviderTransform } from "../../src/provider/transform.ts"
 import { Provider } from "../../src/provider/provider.ts"
 import { customProviderVariants } from "../../src/kappacode/provider/provider.ts"
-import type * as ModelsDev from "@opencode-ai/core/models-dev"
+import type * as ModelsDev from "@toxicwind/core/models-dev"
 
 function mockModel(overrides: Partial<any> = {}): any {
   return {

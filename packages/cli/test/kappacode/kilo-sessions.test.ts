@@ -1,14 +1,14 @@
 // kappacode_change - new file
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
-import * as Log from "@opencode-ai/core/util/log"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
+import * as Log from "@toxicwind/core/util/log"
 import { afterEach, beforeEach, describe, expect, mock, spyOn, test } from "bun:test"
 import { $ } from "bun"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@toxicwind/core/global"
 import * as fs from "fs/promises"
 import { dirname, join } from "node:path"
 import { tmpdir } from "../fixture/fixture.ts"
 import { Effect, Layer } from "effect"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { CrossSpawnSpawner } from "@toxicwind/core/cross-spawn-spawner"
 import { Auth } from "../../src/auth/index.ts"
 import { Bus } from "../../src/bus/index.ts"
 import { GlobalBus } from "../../src/bus/global.ts"
@@ -20,7 +20,7 @@ import * as PrLink from "../../src/kappa-sessions/pr-link.ts"
 import { RemoteWS } from "../../src/kappa-sessions/remote-ws.ts"
 import { RemoteSender } from "../../src/kappa-sessions/remote-sender.ts"
 import { RemoteSessionLog } from "../../src/kappa-sessions/remote-session-log.ts"
-import { ProjectV2 } from "@opencode-ai/core/project"
+import { ProjectV2 } from "@toxicwind/core/project"
 import { Session } from "../../src/session/session.ts"
 import { SessionID } from "../../src/session/schema.ts"
 import { SessionStatus } from "../../src/session/status.ts"
@@ -1068,7 +1068,7 @@ describe("KappaSessions heartbeat attention status (DEF-3)", () => {
 
         const { AppRuntime } = await import("@/effect/app-runtime")
         const { Permission } = await import("@/permission")
-        const { PermissionV1 } = await import("@opencode-ai/core/v1/permission")
+        const { PermissionV1 } = await import("@toxicwind/core/v1/permission")
         const requestID = PermissionV1.ID.make("permission_hb_perm")
 
         AppRuntime.runFork(
@@ -1132,7 +1132,7 @@ describe("KappaSessions heartbeat attention status (DEF-3)", () => {
         const { AppRuntime } = await import("@/effect/app-runtime")
         const { Permission } = await import("@/permission")
         const { Question } = await import("@/question")
-        const { PermissionV1 } = await import("@opencode-ai/core/v1/permission")
+        const { PermissionV1 } = await import("@toxicwind/core/v1/permission")
         const requestID = PermissionV1.ID.make("permission_hb_both")
 
         AppRuntime.runFork(Question.Service.use((svc) => svc.ask({ sessionID: id, questions: questionPrompt })))

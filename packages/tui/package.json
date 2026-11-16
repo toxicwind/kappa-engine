@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "@opencode-ai/tui",
+  "name": "@toxicwind/tui",
   "version": "7.8.10",
   "private": true,
   "type": "module",
@@ -49,10 +49,10 @@
     "./component/register-spinner": "./src/component/register-spinner.ts"
   },
   "dependencies": {
-    "@opencode-ai/core": "workspace:*",
+    "@toxicwind/core": "workspace:*",
     "@kappacode/plugin": "workspace:*",
     "@kappacode/sdk": "workspace:*",
-    "@opencode-ai/ui": "workspace:*",
+    "@toxicwind/ui": "workspace:*",
     "@opentui/core": "catalog:",
     "@opentui/keymap": "catalog:",
     "@opentui/solid": "catalog:",

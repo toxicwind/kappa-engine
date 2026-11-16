@@ -1,6 +1,6 @@
 import { afterEach, expect } from "bun:test"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
+import { FSUtil } from "@toxicwind/core/fs-util"
 import { Effect } from "effect"
 import { effectCmd } from "../../src/cli/effect-cmd.ts"
 import { EffectBridge } from "../../src/effect/bridge.ts"

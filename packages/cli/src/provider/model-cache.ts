@@ -6,12 +6,12 @@ import { Config } from "../config/config.ts"
 import { Auth } from "../auth/index.ts"
 import { compatible, organization, token } from "@/kappacode/provider/catalog"
 import { delay, retryable } from "@/kappacode/provider/catalog-recovery"
-import * as ModelsRefresh from "@opencode-ai/core/kappacode/models-refresh"
-import type { Provider } from "@opencode-ai/core/models-dev"
-import * as Log from "@opencode-ai/core/util/log"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kappacode_change
-import { httpClient } from "@opencode-ai/core/effect/app-node-platform" // kappacode_change
+import * as ModelsRefresh from "@toxicwind/core/kappacode/models-refresh"
+import type { Provider } from "@toxicwind/core/models-dev"
+import * as Log from "@toxicwind/core/util/log"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder" // kappacode_change
+import { httpClient } from "@toxicwind/core/effect/app-node-platform" // kappacode_change
 
 type Models = Provider["models"]
 type KappaOptions = NonNullable<Parameters<typeof fetchKappaModels>[0]>

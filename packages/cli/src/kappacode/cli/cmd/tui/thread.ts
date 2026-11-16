@@ -2,12 +2,12 @@ import { randomUUID } from "node:crypto"
 import { UI } from "@/cli/ui"
 import type { NetworkOptions } from "@/cli/network"
 import { ServerAuth } from "@/server/auth"
-import { Flag } from "@opencode-ai/core/flag/flag"
-import { errorMessage } from "@opencode-ai/tui/util/error"
+import { Flag } from "@toxicwind/core/flag/flag"
+import { errorMessage } from "@toxicwind/tui/util/error"
 import { validate as validateSession } from "@/kappacode/cli/cmd/tui"
 import { DaemonClient } from "@/kappacode/daemon/client"
 
-type TuiInput = import("@opencode-ai/tui").TuiInput
+type TuiInput = import("@toxicwind/tui").TuiInput
 export type StartInput = Omit<TuiInput, "pluginHost">
 
 type Args = NetworkOptions & {

@@ -1,5 +1,5 @@
 import { createEffect, onCleanup } from "solid-js"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import { useProject } from "@tui/context/project"
 import { useSDK } from "@tui/context/sdk"
 import { useToast } from "@tui/ui/toast"

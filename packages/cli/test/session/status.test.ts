@@ -1,7 +1,7 @@
 // kappacode_change - new file
 import { describe, expect, test } from "bun:test"
 import { Effect, Layer, ManagedRuntime } from "effect"
-import { EventV2 } from "@opencode-ai/core/event"
+import { EventV2 } from "@toxicwind/core/event"
 import { EventV2Bridge } from "../../src/event-v2-bridge.ts"
 import { InstanceRef } from "../../src/effect/instance-ref.ts"
 import { disposeInstance } from "../../src/effect/instance-registry.ts"

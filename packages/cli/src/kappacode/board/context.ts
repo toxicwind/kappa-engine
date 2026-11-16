@@ -1,5 +1,5 @@
 import { Cause, Effect } from "effect"
-import { Database } from "@opencode-ai/core/database/database"
+import { Database } from "@toxicwind/core/database/database"
 import { Config } from "@/config/config"
 import { Permission } from "@/permission"
 import { RuntimeFlags } from "@/effect/runtime-flags"

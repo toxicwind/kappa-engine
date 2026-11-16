@@ -1,7 +1,7 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kappacode_change
-import { SessionV1 } from "@opencode-ai/core/v1/session"
-import { ConfigV1 } from "@opencode-ai/core/v1/config/config"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder" // kappacode_change
+import { SessionV1 } from "@toxicwind/core/v1/session"
+import { ConfigV1 } from "@toxicwind/core/v1/config/config"
 import { Session } from "./session.ts"
 import { SessionID, MessageID, PartID } from "./schema.ts"
 import { Provider } from "@/provider/provider"
@@ -17,7 +17,7 @@ import { Effect, Layer, Context } from "effect"
 import * as DateTime from "effect/DateTime" // kappacode_change
 import { InstanceState } from "@/effect/instance-state"
 import { isOverflow as overflow, usable } from "./overflow.ts"
-import { serviceUse } from "@opencode-ai/core/effect/service-use"
+import { serviceUse } from "@toxicwind/core/effect/service-use"
 // kappacode_change start
 import { KappaSessionPromptQueue } from "@/kappacode/session/prompt-queue"
 import { KappaCompactionPayloadRecovery } from "@/kappacode/session/compaction-payload-recovery"
@@ -27,13 +27,13 @@ import { KappaSession } from "@/kappacode/session"
 // kappacode_change end
 import { RuntimeFlags } from "@/effect/runtime-flags"
 import { EventV2Bridge } from "@/event-v2-bridge"
-import { SessionEvent } from "@opencode-ai/core/session/event" // kappacode_change
-import { SessionMessage } from "@opencode-ai/core/session/message" // kappacode_change
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
-import { Database } from "@opencode-ai/core/database/database" // kappacode_change
-import { buildPrompt } from "@opencode-ai/core/session/compaction"
-import { SessionCompactionEvent } from "@opencode-ai/schema/session-compaction-event"
+import { SessionEvent } from "@toxicwind/core/session/event" // kappacode_change
+import { SessionMessage } from "@toxicwind/core/session/message" // kappacode_change
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
+import { Database } from "@toxicwind/core/database/database" // kappacode_change
+import { buildPrompt } from "@toxicwind/core/session/compaction"
+import { SessionCompactionEvent } from "@toxicwind/schema/session-compaction-event"
 
 export const Event = SessionCompactionEvent
 

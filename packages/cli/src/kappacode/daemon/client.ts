@@ -1,4 +1,4 @@
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import { Daemon } from "./daemon.ts"
 
 export namespace DaemonClient {

@@ -4,15 +4,15 @@ import { existsSync } from "fs"
 import { Effect, Schema } from "effect"
 import { applyEdits, modify, parse as parseJsonc, type ParseError } from "jsonc-parser"
 import { mergeDeep } from "remeda"
-import * as Log from "@opencode-ai/core/util/log"
-import { Global } from "@opencode-ai/core/global"
-import { NamedError } from "@opencode-ai/core/util/error"
-import type { FSUtil } from "@opencode-ai/core/fs-util"
+import * as Log from "@toxicwind/core/util/log"
+import { Global } from "@toxicwind/core/global"
+import { NamedError } from "@toxicwind/core/util/error"
+import type { FSUtil } from "@toxicwind/core/fs-util"
 import { InstanceRef } from "@/effect/instance-ref"
 import { isRecord } from "@/util/record"
-import { ConfigErrorV1 as ConfigError } from "@opencode-ai/core/v1/config/error"
+import { ConfigErrorV1 as ConfigError } from "@toxicwind/core/v1/config/error"
 import type { Config } from "../../config/config.ts"
-import type { ConfigAgentV1 } from "@opencode-ai/core/v1/config/agent"
+import type { ConfigAgentV1 } from "@toxicwind/core/v1/config/agent"
 import { ModesMigrator } from "../modes-migrator.ts"
 import { fetchOrganizationModes } from "@kappacode/kappa-gateway"
 import { RulesMigrator } from "../rules-migrator.ts"
@@ -403,7 +403,7 @@ export namespace KappacodeConfig {
     }
 
     // Load Kappacode MCP servers (skip global VSCode extension paths unless running in an editor or Console daemon)
-    const skipGlobal = process.env["KAPPA_PLATFORM"] !== "vscode" && process.env["KAPPACODE_FEATURE"] !== "daemon"
+    const skipGlobal = kiloEnv("PLATFORM") !== "vscode" && process.env["KAPPACODE_FEATURE"] !== "daemon"
     const mcp = await McpMigrator.loadMcpConfig(input.projectDir, skipGlobal)
     if (Object.keys(mcp).length > 0) {
       result = input.merge(result, { mcp })

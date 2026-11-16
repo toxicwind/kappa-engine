@@ -5,11 +5,11 @@ import { Provider } from "@/provider/provider"
 import { Session } from "@/session/session"
 import { KappaSession } from "@/kappacode/session"
 import { SessionID } from "@/session/schema"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
 import { MessageV2 } from "@/session/message-v2"
 import { Storage } from "@/storage/storage"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import { Auth } from "@/auth"
 import { makeRuntime } from "@/effect/run-service"
 import { IngestQueue } from "@/kappa-sessions/ingest-queue"
@@ -58,8 +58,8 @@ import { Permission } from "@/permission"
 import { withTimeout } from "@/util/timeout"
 import { Snapshot } from "@/snapshot"
 import { cumulativeSessionDiff } from "@/kappacode/session-portability/cumulative-diff"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kappacode_change
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder" // kappacode_change
 import { KappaShutdown } from "@/kappacode/cli/shutdown"
 
 async function provide<R>(input: { directory: string; fn: () => R }): Promise<R> {
@@ -133,7 +133,7 @@ export namespace KappaSessions {
   }
 
   function agentNotificationTimeoutMs(): number {
-    const value = process.env["KAPPA_AGENT_NOTIFICATION_TIMEOUT_MS"]
+    const value = kiloEnv("AGENT_NOTIFICATION_TIMEOUT_MS")
     return value ? Number(value) : 10_000
   }
 
@@ -203,7 +203,7 @@ export namespace KappaSessions {
       if (auth?.type === "oauth" && auth.access.length > 0) return auth.access
       if (auth?.type === "wellknown" && auth.token.length > 0) return auth.token
 
-      const key = process.env["KAPPA_API_KEY"]?.trim()
+      const key = kiloEnv("API_KEY")?.trim()
       if (key) return key
       return undefined
     })
@@ -250,7 +250,7 @@ export namespace KappaSessions {
       const valid = await authValid(token)
       if (!valid) return undefined
 
-      const base = process.env["KAPPA_SESSION_INGEST_URL"] ?? "https://ingest.kappasessions.ai"
+      const base = kiloEnv("SESSION_INGEST_URL") ?? "https://ingest.kappasessions.ai"
       const baseHeaders: Record<string, string> = {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -272,11 +272,11 @@ export namespace KappaSessions {
     })
   }
 
-  const shareDisabled = process.env["KAPPA_DISABLE_SHARE"] === "true" || process.env["KAPPA_DISABLE_SHARE"] === "1"
+  const shareDisabled = kiloEnv("DISABLE_SHARE") === "true" || kiloEnv("DISABLE_SHARE") === "1"
   const ingestDisabled =
-    process.env["KAPPA_DISABLE_SESSION_INGEST"] === "true" || process.env["KAPPA_DISABLE_SESSION_INGEST"] === "1"
+    kiloEnv("DISABLE_SESSION_INGEST") === "true" || kiloEnv("DISABLE_SESSION_INGEST") === "1"
   const debugIngest =
-    process.env["KAPPA_DEBUG_SESSION_INGEST"] === "true" || process.env["KAPPA_DEBUG_SESSION_INGEST"] === "1"
+    kiloEnv("DEBUG_SESSION_INGEST") === "true" || kiloEnv("DEBUG_SESSION_INGEST") === "1"
 
   const ingest = IngestQueue.create({
     getShare: async (sessionId) => get(sessionId).catch(() => undefined),
@@ -315,7 +315,7 @@ export namespace KappaSessions {
     return ingest.sync(sessionId, [{ type: "session_status", data: { status: "idle" } }])
   }
 
-  const remoteEnabled = process.env["KAPPA_REMOTE"] === "1"
+  const remoteEnabled = kiloEnv("REMOTE") === "1"
   let remote: { conn: RemoteWS.Connection; sender: RemoteSender.Sender } | undefined
   let enabling: Promise<void> | undefined
   let remoteSeq = 0
@@ -984,7 +984,7 @@ export namespace KappaSessions {
       }
       if (valid === undefined) throw new Error("Unable to enable remote: failed to verify Kappa credentials.")
 
-      const url = (process.env["KAPPA_SESSION_INGEST_URL"] ?? "https://ingest.kappasessions.ai")
+      const url = (kiloEnv("SESSION_INGEST_URL") ?? "https://ingest.kappasessions.ai")
         .replace(/^https:\/\//, "wss://")
         .replace(/^http:\/\//, "ws://")
 
@@ -1046,7 +1046,7 @@ export namespace KappaSessions {
                     // kappacode_change - K1 W1: per-session platform, mirrors
                     // meta()'s resolution order so the live value always agrees
                     // with the session's stored created_on_platform.
-                    platform: KappaSession.resolvePlatform(id) || process.env["KAPPA_PLATFORM"] || "cli",
+                    platform: KappaSession.resolvePlatform(id) || kiloEnv("PLATFORM") || "cli",
                   })),
                   Effect.orElseSucceed(() => undefined),
                 )
@@ -1841,7 +1841,7 @@ export namespace KappaSessions {
 
   async function meta(sessionId?: string, info?: Session.Info | null) {
     const override = sessionId ? KappaSession.resolvePlatform(sessionId) : undefined
-    const platform = override || process.env["KAPPA_PLATFORM"] || "cli"
+    const platform = override || kiloEnv("PLATFORM") || "cli"
     const orgId = await getOrgId(sessionId, info)
     // Repository metadata follows the session's own directory (a `kappa remote`
     // host launched outside the selected repository must still publish the
@@ -1869,7 +1869,7 @@ export namespace KappaSessions {
     const fromMeta = await resolveSessionOrg(sessionId, info)
     if (fromMeta) return fromMeta
 
-    const env = process.env["KAPPA_ORG_ID"]
+    const env = kiloEnv("ORG_ID")
     if (isUuid(env)) return env
 
     return withInFlightCache(orgKey, ttlMs, async () => {

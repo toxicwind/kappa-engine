@@ -1,7 +1,7 @@
 import path from "path"
 import { readdir } from "fs/promises"
 import { parse as parseJsonc } from "jsonc-parser"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import type { Skill } from "@/skill"
 import type { MarketplaceInstalledMetadata, Scope } from "./schema.ts"
 import * as Paths from "./paths.ts"

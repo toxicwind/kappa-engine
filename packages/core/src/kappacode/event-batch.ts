@@ -1,6 +1,6 @@
 import { Effect, Option, PubSub, Schema } from "effect"
 import { eq } from "drizzle-orm"
-import { Event, type Payload } from "@opencode-ai/schema/event"
+import { Event, type Payload } from "@toxicwind/schema/event"
 import type { Database } from "../database/database"
 import { InvalidDurableEventError, type Interface, type Subscriber } from "../event"
 import { EventSequenceTable, EventTable } from "../event/sql"

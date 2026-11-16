@@ -1,9 +1,9 @@
 import { describe, expect } from "bun:test"
 import path from "node:path"
 import { Effect } from "effect"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { Ripgrep } from "@opencode-ai/core/ripgrep"
-import { RipgrepBinary } from "@opencode-ai/core/ripgrep/binary"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
+import { Ripgrep } from "@toxicwind/core/ripgrep"
+import { RipgrepBinary } from "@toxicwind/core/ripgrep/binary"
 import { tmpdir } from "../fixture/tmpdir"
 import { testEffect } from "../lib/effect"
 

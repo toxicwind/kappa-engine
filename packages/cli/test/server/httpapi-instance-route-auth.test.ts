@@ -5,7 +5,7 @@ import { EventPaths } from "../../src/server/routes/instance/httpapi/groups/even
 import { PtyPaths } from "../../src/server/routes/instance/httpapi/groups/pty.ts"
 import { HttpApiApp } from "../../src/server/routes/instance/httpapi/server.ts"
 import { ServerAuth } from "../../src/server/auth.ts"
-import { PtyID } from "@opencode-ai/core/pty/schema"
+import { PtyID } from "@toxicwind/core/pty/schema"
 import { resetDatabase } from "../fixture/db.ts"
 import { disposeAllInstances, tmpdir } from "../fixture/fixture.ts"
 

@@ -1,5 +1,5 @@
 import { expect } from "bun:test"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@toxicwind/core/fs-util"
 import fs from "fs/promises"
 import path from "path"
 import { Effect, Layer } from "effect"

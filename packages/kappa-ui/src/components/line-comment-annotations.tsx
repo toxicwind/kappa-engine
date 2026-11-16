@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/line-comment-annotations"
+export * from "@toxicwind/ui/line-comment-annotations"

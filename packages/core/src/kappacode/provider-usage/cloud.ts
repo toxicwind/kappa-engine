@@ -6,7 +6,7 @@ import {
   type CodingPlanQuotaWindow,
   type CodingPlanSubscription,
 } from "@kappacode/kappa-gateway"
-import type { ProviderUsage } from "@opencode-ai/schema/kappacode/provider-usage"
+import type { ProviderUsage } from "@toxicwind/schema/kappacode/provider-usage"
 
 export { fetchByokEntries, fetchCodingPlanSubscriptions, fetchCodingPlanUsage }
 

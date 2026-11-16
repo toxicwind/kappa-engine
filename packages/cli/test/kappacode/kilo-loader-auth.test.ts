@@ -2,9 +2,9 @@
 // Tests that unauthenticated Kappa models are assembled with paid models and autoloaded anonymously.
 
 import { expect } from "bun:test"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@toxicwind/core/fs-util"
 import { ModelsDev } from "../../src/provider/models.ts"
-import * as CoreModels from "@opencode-ai/core/models-dev"
+import * as CoreModels from "@toxicwind/core/models-dev"
 import { Effect, Layer } from "effect"
 import { FetchHttpClient } from "effect/http"
 import { kappaCustomLoaders, patchKappaProviderPrivacy } from "../../src/kappacode/provider/provider.ts"

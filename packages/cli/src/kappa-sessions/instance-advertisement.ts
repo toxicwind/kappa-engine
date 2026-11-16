@@ -3,7 +3,7 @@
 // Used by both `kappa remote` (explicit CLI) and `enableRemote()` (covers `/remote`
 // and KAPPA_REMOTE / remote_control auto-enable) so all enable paths share
 // the same process identity.
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
+import { InstallationVersion } from "@toxicwind/core/installation/version"
 import os from "node:os"
 import path from "node:path"
 import { performance } from "node:perf_hooks"

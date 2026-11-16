@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/text-strikethrough"
+export * from "@toxicwind/ui/text-strikethrough"

@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test"
-import { ModelsDev } from "@opencode-ai/core/models-dev"
+import { ModelsDev } from "@toxicwind/core/models-dev"
 import type { Provider } from "@/provider/provider"
 import { ProviderTransform } from "@/provider/transform"
 

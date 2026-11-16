@@ -1,5 +1,5 @@
 import { Effect, Schema } from "effect"
-import { Database } from "@opencode-ai/core/database/database"
+import { Database } from "@toxicwind/core/database/database"
 import { Config } from "@/config/config"
 import { BackgroundJob } from "@/background/job"
 import { SessionStatus } from "@/session/status"

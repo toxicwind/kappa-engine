@@ -2,7 +2,7 @@ import type { ModelMessage, ToolResultPart } from "ai"
 import { mergeDeep, unique } from "remeda"
 import type { JSONSchema7 } from "@ai-sdk/provider"
 import type * as Provider from "./provider.ts"
-import type * as ModelsDev from "@opencode-ai/core/models-dev"
+import type * as ModelsDev from "@toxicwind/core/models-dev"
 import { iife } from "@/util/iife"
 import { kappaProviderOptions } from "@/kappacode/provider-options"
 import { isLing } from "@/kappacode/model-match" // kappacode_change

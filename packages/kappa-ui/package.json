@@ -99,7 +99,7 @@
     "./audio/*": "./src/assets/audio/*"
   },
   "peerDependencies": {
-    "@opencode-ai/ui": "workspace:*",
+    "@toxicwind/ui": "workspace:*",
     "solid-js": "catalog:"
   },
   "devDependencies": {
@@ -126,7 +126,7 @@
   "dependencies": {
     "@kappacode/sdk": "workspace:*",
     "@kobalte/core": "0.13.11",
-    "@opencode-ai/core": "workspace:*",
+    "@toxicwind/core": "workspace:*",
     "@pierre/diffs": "catalog:",
     "@solid-primitives/lifecycle": "0.1.2",
     "diff": "catalog:",

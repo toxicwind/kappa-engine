@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/tabs"
+export * from "@toxicwind/ui/tabs"

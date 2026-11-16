@@ -4,7 +4,7 @@ import { ConfigService } from "@/effect/config-service"
 const bool = (name: string) =>
   Config.String(name).pipe(
     // effect 4.0.6: Config.schema(Schema.Boolean) only accepts "true"|"false",
-    // but the estate sets KAPPA_* booleans as "1"/"0" (see core flag.truthy).
+    // but the Pens sets KAPPA_* booleans as "1"/"0" (see core flag.truthy).
     // Replicate that truthy semantics here so a missing/mismatched value can't
     // blow up config loading into a ConfigError.
     Config.map((value) => value.toLowerCase() === "true" || value === "1"),
@@ -55,8 +55,8 @@ export class Service extends ConfigService.Service<Service>()("@opencode/Runtime
   }).pipe(Config.map((flags) => flags.enabled || flags.legacy)),
   enableExperimentalModels: bool("KAPPA_ENABLE_EXPERIMENTAL_MODELS"),
   enableQuestionTool: bool("KAPPA_ENABLE_QUESTION_TOOL"),
-  experimentalScout: enabledByExperimental("KAPPA_EXPERIMENTAL_SCOUT"), // kappacode_change
-  experimentalReferences: enabledByExperimental("KAPPA_EXPERIMENTAL_REFERENCES"),
+  experimentalScout: enabledByExperimental("EXPERIMENTAL_SCOUT"), // kappacode_change
+  experimentalReferences: enabledByExperimental("EXPERIMENTAL_REFERENCES"),
   // kappacode_change start - enabled by default, with an opt-out kill switch
   experimentalBackgroundSubagents: boolDefaultTrue("KAPPA_EXPERIMENTAL_BACKGROUND_SUBAGENTS"),
   // kappacode_change - auto-promote a foreground subagent to background after this deadline (ms);
@@ -66,20 +66,20 @@ export class Service extends ConfigService.Service<Service>()("@opencode/Runtime
   foregroundSubagentDeadlineMs: positiveInteger("KAPPA_FOREGROUND_TASK_DEADLINE_MS").pipe(Config.withDefault(4_000)),
   // kappacode_change end
   experimentalLspTy: bool("KAPPA_EXPERIMENTAL_LSP_TY"),
-  experimentalLspTool: enabledByExperimental("KAPPA_EXPERIMENTAL_LSP_TOOL"),
+  experimentalLspTool: enabledByExperimental("EXPERIMENTAL_LSP_TOOL"),
   // kappacode_change start - self-context tools
-  experimentalContextTools: enabledByExperimental("KAPPA_EXPERIMENTAL_CONTEXT_TOOLS"),
+  experimentalContextTools: enabledByExperimental("EXPERIMENTAL_CONTEXT_TOOLS"),
   // kappacode_change end
-  experimentalOxfmt: enabledByExperimental("KAPPA_EXPERIMENTAL_OXFMT"),
-  experimentalCodeMode: enabledByExperimental("KAPPA_EXPERIMENTAL_CODE_MODE"),
-  experimentalEventSystem: enabledByExperimental("KAPPA_EXPERIMENTAL_EVENT_SYSTEM"),
-  experimentalSessionSwitcher: enabledByExperimental("KAPPA_EXPERIMENTAL_SESSION_SWITCHER"), // kappacode_change
+  experimentalOxfmt: enabledByExperimental("EXPERIMENTAL_OXFMT"),
+  experimentalCodeMode: enabledByExperimental("EXPERIMENTAL_CODE_MODE"),
+  experimentalEventSystem: enabledByExperimental("EXPERIMENTAL_EVENT_SYSTEM"),
+  experimentalSessionSwitcher: enabledByExperimental("EXPERIMENTAL_SESSION_SWITCHER"), // kappacode_change
   // kappacode_change start - enabled by default, with an opt-out kill switch
   experimentalSharedAgentBoard: boolDefaultTrue("KAPPA_EXPERIMENTAL_SHARED_AGENT_BOARD"),
   // kappacode_change end
-  experimentalWorkspaces: enabledByExperimental("KAPPA_EXPERIMENTAL_WORKSPACES"),
-  experimentalIconDiscovery: enabledByExperimental("KAPPA_EXPERIMENTAL_ICON_DISCOVERY"),
-  experimentalMcpApps: enabledByExperimental("KAPPA_EXPERIMENTAL_MCP_APPS"), // kappacode_change
+  experimentalWorkspaces: enabledByExperimental("EXPERIMENTAL_WORKSPACES"),
+  experimentalIconDiscovery: enabledByExperimental("EXPERIMENTAL_ICON_DISCOVERY"),
+  experimentalMcpApps: enabledByExperimental("EXPERIMENTAL_MCP_APPS"), // kappacode_change
   outputTokenMax: positiveInteger("KAPPA_EXPERIMENTAL_OUTPUT_TOKEN_MAX"),
   bashDefaultTimeoutMs: positiveInteger("KAPPA_EXPERIMENTAL_BASH_DEFAULT_TIMEOUT_MS"),
   experimentalNativeLlm: bool("KAPPA_EXPERIMENTAL_NATIVE_LLM"),
@@ -106,4 +106,4 @@ export const layer = (overrides: Partial<Info> = {}) =>
 export const node = LayerNode.make({ service: Service, layer: Service.layer.pipe(Layer.orDie), deps: [] })
 
 export * as RuntimeFlags from "./runtime-flags.ts"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"

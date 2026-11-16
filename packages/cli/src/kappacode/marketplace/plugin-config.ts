@@ -1,5 +1,5 @@
 import path from "path"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@toxicwind/core/global"
 import { parse, type ParseError } from "jsonc-parser"
 import { ConfigPaths } from "@/config/paths"
 import { patchPluginConfig, type PatchDeps, type PatchInput } from "@/plugin/install"

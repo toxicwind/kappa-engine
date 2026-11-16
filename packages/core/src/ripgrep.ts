@@ -3,7 +3,7 @@ export * as Ripgrep from "./ripgrep"
 import { Context, Duration, Effect, Fiber, Layer, Schema, Stream } from "effect"
 import { ChildProcess } from "effect/process"
 import { makeGlobalNode } from "./effect/app-node"
-import { Entry, Match } from "@opencode-ai/schema/filesystem"
+import { Entry, Match } from "@toxicwind/schema/filesystem"
 import * as KappaGlob from "./kappacode/ripgrep-glob" // kappacode_change
 import * as KappaGrep from "./kappacode/ripgrep-grep" // kappacode_change
 import * as SpawnExit from "./kappacode/spawn-exit" // kappacode_change

@@ -2,8 +2,8 @@ import { afterEach, describe, expect, mock, spyOn, test } from "bun:test"
 import fs from "fs/promises"
 import path from "path"
 import { fileURLToPath } from "node:url"
-import { spawn, type Exit } from "@opencode-ai/core/pty/driver"
-import { sanitizedProcessEnv } from "@opencode-ai/core/util/opencode-process"
+import { spawn, type Exit } from "@toxicwind/core/pty/driver"
+import { sanitizedProcessEnv } from "@toxicwind/core/util/opencode-process"
 import { tmpdir } from "../../../fixture/fixture.ts"
 import {
   embeddedRemoteExitClient,

@@ -1,11 +1,11 @@
 import * as InstanceState from "@/effect/instance-state"
 import { WorkspaceRef } from "@/effect/instance-ref" // kappacode_change - preserve the shared location key shape
-import { FileSystem } from "@opencode-ai/core/filesystem"
-import { LocationServiceMap } from "@opencode-ai/core/location-services" // kappacode_change - reuse the server location map
-import { Ripgrep } from "@opencode-ai/core/ripgrep"
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import { Location } from "@opencode-ai/core/location"
-import { AbsolutePath, RelativePath } from "@opencode-ai/core/schema"
+import { FileSystem } from "@toxicwind/core/filesystem"
+import { LocationServiceMap } from "@toxicwind/core/location-services" // kappacode_change - reuse the server location map
+import { Ripgrep } from "@toxicwind/core/ripgrep"
+import { FSUtil } from "@toxicwind/core/fs-util"
+import { Location } from "@toxicwind/core/location"
+import { AbsolutePath, RelativePath } from "@toxicwind/core/schema"
 import { Effect, Option } from "effect" // kappacode_change - location map is provided by the server
 import ignore from "ignore"
 import path from "path"

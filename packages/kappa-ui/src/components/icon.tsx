@@ -1,4 +1,4 @@
-import { Icon as Upstream, type IconProps as Props } from "@opencode-ai/ui/icon"
+import { Icon as Upstream, type IconProps as Props } from "@toxicwind/ui/icon"
 import { Show, splitProps } from "solid-js"
 
 const icons: Record<string, { path: string; viewBox: string }> = {

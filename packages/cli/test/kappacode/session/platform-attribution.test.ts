@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test"
 import path from "path"
 import { Effect } from "effect"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import { Bus } from "@/bus"
 import { Session as SessionNs } from "@/session/session"
 import { SessionPrompt } from "@/session/prompt"
@@ -9,8 +9,8 @@ import { AppRuntime, type AppServices } from "../../../src/effect/app-runtime.ts
 import { KappaSession } from "../../../src/kappacode/session/index.ts"
 import { provideTestInstance } from "../../fixture/fixture.ts"
 import { MessageID, type SessionID } from "../../../src/session/schema.ts"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
 const projectRoot = path.join(__dirname, "../../..")
 void Log.init({ print: false })
 

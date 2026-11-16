@@ -1,5 +1,5 @@
 import { Effect } from "effect"
-import { AgentV2 } from "@opencode-ai/core/agent"
+import { AgentV2 } from "@toxicwind/core/agent"
 import { isRecord } from "../../server/httpapi-exercise/assertions.ts"
 import { request } from "../../server/httpapi-exercise/backend.ts"
 import { pollWithTimeout } from "../../lib/effect.ts"

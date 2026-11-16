@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test"
-import { Usage } from "@opencode-ai/llm"
+import { Usage } from "@toxicwind/llm"
 import { Session as SessionNs } from "@/session/session"
 import type { Provider } from "@/provider/provider"
 

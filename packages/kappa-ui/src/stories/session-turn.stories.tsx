@@ -1,10 +1,10 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { SessionTurn } from "@opencode-ai/ui/session-turn"
-import { DataProvider } from "@opencode-ai/ui/context/data"
+import { SessionTurn } from "@toxicwind/ui/session-turn"
+import { DataProvider } from "@toxicwind/ui/context/data"
 import { FileComponentProvider } from "@kappacode/kappa-ui/context/file"
-import { DialogProvider } from "@opencode-ai/ui/context/dialog"
-import { MarkedProvider } from "@opencode-ai/ui/context/marked"
+import { DialogProvider } from "@toxicwind/ui/context/dialog"
+import { MarkedProvider } from "@toxicwind/ui/context/marked"
 import { File } from "@kappacode/kappa-ui/file"
 import type { UserMessage, AssistantMessage, TextPart, ToolPart } from "@kappacode/sdk/v2"
 

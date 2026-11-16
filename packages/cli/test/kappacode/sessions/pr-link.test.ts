@@ -1,7 +1,7 @@
 // kappacode_change - new file (moved from src/kappa-sessions/pr-link.test.ts so the
 // package test runner scans it; it previously sat under src/ and never ran).
 import { afterAll, afterEach, beforeEach, describe, expect, mock, spyOn, test } from "bun:test"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@toxicwind/core/global"
 import fs from "node:fs/promises"
 import os from "node:os"
 import path from "node:path"

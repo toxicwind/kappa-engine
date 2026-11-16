@@ -1,6 +1,6 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { Switch } from "@opencode-ai/ui/switch"
+import { Switch } from "@toxicwind/ui/switch"
 
 const meta: Meta<typeof Switch> = {
   title: "Components/Switch",

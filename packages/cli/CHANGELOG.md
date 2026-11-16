@@ -64,9 +64,9 @@
 
 - Updated dependencies [[`0a5c6df`](https://github.com/Kappa-Org/kappacode/commit/0a5c6df3486d897d142752173545a1d153b8cdaa)]:
   - @kappacode/kappa-indexing@7.8.9
-  - @opencode-ai/server@7.8.9
-  - @opencode-ai/tui@7.8.9
-  - @opencode-ai/ui@7.8.9
+  - @toxicwind/server@7.8.9
+  - @toxicwind/tui@7.8.9
+  - @toxicwind/ui@7.8.9
 
 ## 7.8.8
 
@@ -118,9 +118,9 @@
   - @kappacode/kappa-gateway@7.8.4
   - @kappacode/kappa-indexing@7.8.4
   - @kappacode/kappa-telemetry@7.8.4
-  - @opencode-ai/server@7.8.4
-  - @opencode-ai/tui@7.8.4
-  - @opencode-ai/ui@7.8.4
+  - @toxicwind/server@7.8.4
+  - @toxicwind/tui@7.8.4
+  - @toxicwind/ui@7.8.4
 
 ## 7.8.2
 
@@ -149,9 +149,9 @@
 - Updated dependencies [[`463cbed`](https://github.com/Kappa-Org/kappacode/commit/463cbedaa6f17ebf6f4fbcc276a338259f348b63), [`d6426d0`](https://github.com/Kappa-Org/kappacode/commit/d6426d047505e2a90bd910d13aab51f6eb4a2b6f)]:
   - @kappacode/kappa-indexing@7.8.2
   - @kappacode/kappa-telemetry@7.8.2
-  - @opencode-ai/server@7.8.2
-  - @opencode-ai/tui@7.8.2
-  - @opencode-ai/ui@7.8.2
+  - @toxicwind/server@7.8.2
+  - @toxicwind/tui@7.8.2
+  - @toxicwind/ui@7.8.2
 
 ## 7.8.1
 
@@ -200,12 +200,12 @@
 - Updated dependencies [[`c06228d`](https://github.com/Kappa-Org/kappacode/commit/c06228d6a0090307331a572d726348b7ad3df722)]:
   - @kappacode/sdk@7.8.0
   - @kappacode/plugin@7.7.10
-  - @opencode-ai/tui@7.7.10
-  - @opencode-ai/ui@7.7.10
+  - @toxicwind/tui@7.7.10
+  - @toxicwind/ui@7.7.10
   - @kappacode/kappa-gateway@7.7.10
   - @kappacode/kappa-indexing@7.7.10
   - @kappacode/plugin-atomic-chat@7.7.10
-  - @opencode-ai/server@7.7.10
+  - @toxicwind/server@7.7.10
   - @kappacode/kappa-telemetry@7.7.10
 
 ## 7.7.9
@@ -243,12 +243,12 @@
 - Updated dependencies [[`065bc5c`](https://github.com/Kappa-Org/kappacode/commit/065bc5c2e7a0779853f6231a215f2a1990c5fdd3)]:
   - @kappacode/sdk@7.7.8
   - @kappacode/plugin@7.7.8
-  - @opencode-ai/tui@7.7.8
-  - @opencode-ai/ui@7.7.8
+  - @toxicwind/tui@7.7.8
+  - @toxicwind/ui@7.7.8
   - @kappacode/kappa-gateway@7.7.8
   - @kappacode/kappa-indexing@7.7.8
   - @kappacode/plugin-atomic-chat@7.7.8
-  - @opencode-ai/server@7.7.8
+  - @toxicwind/server@7.7.8
   - @kappacode/kappa-telemetry@7.7.8
 
 ## 7.7.7
@@ -288,12 +288,12 @@
 - Updated dependencies [[`d8eaefd`](https://github.com/Kappa-Org/kappacode/commit/d8eaefdf1d84fa6779c8cb1634ef516948d76f06)]:
   - @kappacode/sdk@7.7.5
   - @kappacode/plugin@7.7.5
-  - @opencode-ai/tui@7.7.5
-  - @opencode-ai/ui@7.7.5
+  - @toxicwind/tui@7.7.5
+  - @toxicwind/ui@7.7.5
   - @kappacode/kappa-gateway@7.7.5
   - @kappacode/kappa-indexing@7.7.5
   - @kappacode/plugin-atomic-chat@7.7.5
-  - @opencode-ai/server@7.7.5
+  - @toxicwind/server@7.7.5
   - @kappacode/kappa-telemetry@7.7.5
 
 ## 7.7.4
@@ -346,9 +346,9 @@
   - @kappacode/kappa-indexing@7.7.3
   - @kappacode/kappa-telemetry@7.7.3
   - @kappacode/plugin@7.7.3
-  - @opencode-ai/tui@7.7.3
-  - @opencode-ai/ui@7.7.3
-  - @opencode-ai/server@7.7.3
+  - @toxicwind/tui@7.7.3
+  - @toxicwind/ui@7.7.3
+  - @toxicwind/server@7.7.3
   - @kappacode/plugin-atomic-chat@7.7.3
 
 ## 7.7.2
@@ -462,12 +462,12 @@
 - Updated dependencies [[`b5cf426`](https://github.com/Kappa-Org/kappacode/commit/b5cf426158d86573eb0eeb08d754231d813f2d64), [`4d2d800`](https://github.com/Kappa-Org/kappacode/commit/4d2d8001e550c39cfb871f83943b1d5411fd5234)]:
   - @kappacode/sdk@8.0.0
   - @kappacode/plugin@7.5.17
-  - @opencode-ai/tui@7.5.17
-  - @opencode-ai/ui@7.5.17
+  - @toxicwind/tui@7.5.17
+  - @toxicwind/ui@7.5.17
   - @kappacode/kappa-gateway@7.5.17
   - @kappacode/kappa-indexing@7.5.17
   - @kappacode/plugin-atomic-chat@7.5.17
-  - @opencode-ai/server@7.5.17
+  - @toxicwind/server@7.5.17
   - @kappacode/kappa-telemetry@7.5.17
 
 ## 7.5.16
@@ -560,9 +560,9 @@
   - @kappacode/sdk@7.6.0
   - @kappacode/kappa-telemetry@7.5.10
   - @kappacode/plugin@7.5.10
-  - @opencode-ai/tui@7.5.10
-  - @opencode-ai/ui@7.5.10
-  - @opencode-ai/server@7.5.10
+  - @toxicwind/tui@7.5.10
+  - @toxicwind/ui@7.5.10
+  - @toxicwind/server@7.5.10
   - @kappacode/plugin-atomic-chat@7.5.10
 
 ## 7.5.9
@@ -612,12 +612,12 @@
 - Updated dependencies [[`7c845aa`](https://github.com/Kappa-Org/kappacode/commit/7c845aa0ec8a0ff46f25cff26545260c0126c3f7), [`dd390c1`](https://github.com/Kappa-Org/kappacode/commit/dd390c1930d0cc548fe997ed20c0f2be7967fd30), [`6624c1a`](https://github.com/Kappa-Org/kappacode/commit/6624c1a2b07c0a7871532b0b5175d01a03c6e61e)]:
   - @kappacode/sdk@7.6.0
   - @kappacode/plugin@7.5.7
-  - @opencode-ai/tui@7.5.7
-  - @opencode-ai/ui@7.5.7
+  - @toxicwind/tui@7.5.7
+  - @toxicwind/ui@7.5.7
   - @kappacode/kappa-gateway@7.5.7
   - @kappacode/kappa-indexing@7.5.7
   - @kappacode/plugin-atomic-chat@7.5.7
-  - @opencode-ai/server@7.5.7
+  - @toxicwind/server@7.5.7
   - @kappacode/kappa-telemetry@7.5.7
 
 ## 7.5.6
@@ -653,12 +653,12 @@
 - [#13493](https://github.com/Kappa-Org/kappacode/pull/13493) [`bf7848c`](https://github.com/Kappa-Org/kappacode/commit/bf7848cb48cb30a5005189e10a0a4d4aeffd5aa5) Thanks [@maphew](https://github.com/maphew)! - Fix the task tool intermittently returning an empty result. Subagents that ran with memory context had a synthetic marker part appended after their answer, which was picked up as the final text part and surfaced as an empty `<task_result>` to the parent agent. The task tool now ignores synthetic, ignored, and empty text parts, and background jobs no longer let an empty run overwrite an earlier successful result, so resumed tasks keep their real output.
 
 - Updated dependencies [[`13a9673`](https://github.com/Kappa-Org/kappacode/commit/13a9673d08cfc69eebb89898861a1ee80278f226), [`f5a7a1d`](https://github.com/Kappa-Org/kappacode/commit/f5a7a1d61bf7eaaa7bc307a976f6f56150fa6264), [`f9ddb78`](https://github.com/Kappa-Org/kappacode/commit/f9ddb78b17714075ab4f5d1ccb26f2cdbcd644bf), [`34b10a6`](https://github.com/Kappa-Org/kappacode/commit/34b10a672b3048ed53477a1019f08832b522db2d), [`8cb1931`](https://github.com/Kappa-Org/kappacode/commit/8cb1931275b1df6d145b8a283cef550ae2851e29)]:
-  - @opencode-ai/ui@7.5.6
+  - @toxicwind/ui@7.5.6
   - @kappacode/sdk@7.5.6
   - @kappacode/kappa-indexing@7.5.6
-  - @opencode-ai/tui@7.5.6
+  - @toxicwind/tui@7.5.6
   - @kappacode/plugin@7.5.6
-  - @opencode-ai/server@7.5.6
+  - @toxicwind/server@7.5.6
   - @kappacode/kappa-gateway@7.5.6
   - @kappacode/plugin-atomic-chat@7.5.6
   - @kappacode/kappa-telemetry@7.5.6
@@ -678,8 +678,8 @@
 - [#13472](https://github.com/Kappa-Org/kappacode/pull/13472) [`7b9a84f`](https://github.com/Kappa-Org/kappacode/commit/7b9a84f63a4dd5cb2130810f2d1597a660e52146) - Prevent the CLI from opening to a blank terminal on startup.
 
 - Updated dependencies [[`e4003da`](https://github.com/Kappa-Org/kappacode/commit/e4003da9e1842e0bc8f49777619faa3284b24f95)]:
-  - @opencode-ai/ui@7.5.1
-  - @opencode-ai/tui@7.5.1
+  - @toxicwind/ui@7.5.1
+  - @toxicwind/tui@7.5.1
 
 ## 7.5.0
 
@@ -769,9 +769,9 @@
 
 - Updated dependencies [[`f39e163`](https://github.com/Kappa-Org/kappacode/commit/f39e1631855859222966350bd5fae373b9877297)]:
   - @kappacode/kappa-gateway@8.0.0
-  - @opencode-ai/server@7.4.23
-  - @opencode-ai/tui@7.4.23
-  - @opencode-ai/ui@7.4.23
+  - @toxicwind/server@7.4.23
+  - @toxicwind/tui@7.4.23
+  - @toxicwind/ui@7.4.23
   - @kappacode/kappa-indexing@7.4.23
   - @kappacode/kappa-telemetry@7.4.23
 
@@ -909,9 +909,9 @@
   - @kappacode/kappa-gateway@7.4.21
   - @kappacode/kappa-indexing@7.4.21
   - @kappacode/kappa-telemetry@7.4.21
-  - @opencode-ai/server@7.4.21
-  - @opencode-ai/tui@7.4.21
-  - @opencode-ai/ui@7.4.21
+  - @toxicwind/server@7.4.21
+  - @toxicwind/tui@7.4.21
+  - @toxicwind/ui@7.4.21
 
 ## 7.4.20
 
@@ -1097,12 +1097,12 @@
   - @kappacode/sdk@7.5.0
   - @kappacode/kappa-gateway@7.4.16
   - @kappacode/plugin@7.4.16
-  - @opencode-ai/tui@7.4.16
-  - @opencode-ai/ui@7.4.16
+  - @toxicwind/tui@7.4.16
+  - @toxicwind/ui@7.4.16
   - @kappacode/kappa-indexing@7.4.16
   - @kappacode/kappa-telemetry@7.4.16
   - @kappacode/plugin-atomic-chat@7.4.16
-  - @opencode-ai/server@7.4.16
+  - @toxicwind/server@7.4.16
 
 ## 7.4.15
 
@@ -1149,9 +1149,9 @@
   - @kappacode/kappa-gateway@7.4.12
   - @kappacode/kappa-indexing@7.5.0
   - @kappacode/kappa-telemetry@7.4.12
-  - @opencode-ai/server@7.4.12
-  - @opencode-ai/tui@7.4.9
-  - @opencode-ai/ui@7.4.12
+  - @toxicwind/server@7.4.12
+  - @toxicwind/tui@7.4.9
+  - @toxicwind/ui@7.4.12
 
 ## 7.4.11
 
@@ -1180,8 +1180,8 @@
   - @kappacode/kappa-indexing@7.4.10
   - @kappacode/kappa-telemetry@7.4.10
   - @kappacode/plugin@7.4.10
-  - @opencode-ai/ui@7.4.10
-  - @opencode-ai/server@7.4.10
+  - @toxicwind/ui@7.4.10
+  - @toxicwind/server@7.4.10
   - @kappacode/plugin-atomic-chat@7.4.10
 
 ## 7.4.9
@@ -1228,10 +1228,10 @@
   - @kappacode/sdk@7.4.8
   - @kappacode/kappa-indexing@7.4.8
   - @kappacode/plugin@7.4.8
-  - @opencode-ai/ui@7.4.8
+  - @toxicwind/ui@7.4.8
   - @kappacode/kappa-gateway@7.4.8
   - @kappacode/plugin-atomic-chat@7.4.8
-  - @opencode-ai/server@7.4.2
+  - @toxicwind/server@7.4.2
   - @kappacode/kappa-telemetry@7.4.8
 
 ## 7.4.7
@@ -1288,7 +1288,7 @@
   - @kappacode/kappa-indexing@7.4.6
   - @kappacode/sdk@7.5.0
   - @kappacode/plugin@7.4.6
-  - @opencode-ai/ui@7.4.6
+  - @toxicwind/ui@7.4.6
   - @kappacode/kappa-gateway@7.4.6
   - @kappacode/plugin-atomic-chat@7.4.6
   - @kappacode/kappa-telemetry@7.4.6
@@ -1304,7 +1304,7 @@
 - Updated dependencies [[`394af39`](https://github.com/Kappa-Org/kappacode/commit/394af39c64b2920fa8c84f14670f213820cef2ec)]:
   - @kappacode/sdk@7.5.0
   - @kappacode/plugin@7.4.4
-  - @opencode-ai/ui@7.4.4
+  - @toxicwind/ui@7.4.4
   - @kappacode/kappa-gateway@7.4.4
   - @kappacode/kappa-indexing@7.4.4
   - @kappacode/plugin-atomic-chat@7.4.4
@@ -1352,7 +1352,7 @@
   - @kappacode/kappa-indexing@7.4.2
   - @kappacode/kappa-gateway@7.4.2
   - @kappacode/plugin@7.4.2
-  - @opencode-ai/ui@7.4.2
+  - @toxicwind/ui@7.4.2
   - @kappacode/kappa-telemetry@7.4.2
   - @kappacode/plugin-atomic-chat@7.4.2
 
@@ -1460,7 +1460,7 @@
   - @kappacode/sdk@7.4.0
   - @kappacode/kappa-gateway@7.3.55
   - @kappacode/plugin@7.3.55
-  - @opencode-ai/ui@7.3.55
+  - @toxicwind/ui@7.3.55
   - @kappacode/kappa-indexing@7.3.55
   - @kappacode/kappa-telemetry@7.3.55
   - @kappacode/plugin-atomic-chat@7.3.55
@@ -1485,7 +1485,7 @@
   - @kappacode/kappa-gateway@7.3.53
   - @kappacode/kappa-indexing@7.3.53
   - @kappacode/kappa-telemetry@7.3.53
-  - @opencode-ai/ui@7.3.53
+  - @toxicwind/ui@7.3.53
 
 ## 7.3.52
 
@@ -1572,7 +1572,7 @@
   - @kappacode/kappa-indexing@7.3.50
   - @kappacode/kappa-telemetry@7.3.50
   - @kappacode/plugin@7.3.50
-  - @opencode-ai/ui@7.3.50
+  - @toxicwind/ui@7.3.50
   - @kappacode/plugin-atomic-chat@7.3.50
 
 ## 7.3.49
@@ -1733,7 +1733,7 @@
   - @kappacode/kappa-indexing@7.4.0
   - @kappacode/sdk@7.4.0
   - @kappacode/plugin@7.3.47
-  - @opencode-ai/ui@7.3.47
+  - @toxicwind/ui@7.3.47
   - @kappacode/kappa-gateway@7.3.47
   - @kappacode/plugin-atomic-chat@7.3.47
   - @kappacode/kappa-telemetry@7.3.47
@@ -1810,7 +1810,7 @@
   - @kappacode/kappa-indexing@7.4.0
   - @kappacode/kappa-gateway@7.3.43
   - @kappacode/kappa-telemetry@7.3.43
-  - @opencode-ai/ui@7.3.43
+  - @toxicwind/ui@7.3.43
 
 ## 7.3.42
 

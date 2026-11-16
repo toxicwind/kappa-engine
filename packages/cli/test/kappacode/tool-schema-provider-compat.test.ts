@@ -1,11 +1,11 @@
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
 import { afterEach, describe, expect } from "bun:test"
 import { Effect, Layer } from "effect"
 import { Agent } from "../../src/agent/agent.ts"
 import { ToolRegistry } from "../../src/tool/registry.ts"
 import * as ToolJsonSchema from "../../src/tool/json-schema.ts"
 import { disposeAllInstances, provideTmpdirInstance } from "../fixture/fixture.ts"
-import * as CrossSpawnSpawner from "@opencode-ai/core/cross-spawn-spawner"
+import * as CrossSpawnSpawner from "@toxicwind/core/cross-spawn-spawner"
 import { testEffect } from "../lib/effect.ts"
 
 const node = AppNodeBuilder.build(CrossSpawnSpawner.node)

@@ -4,17 +4,17 @@
 // Full migration of Kappa callers onto core EventV2 is tracked as a dedicated follow-up.
 import { Effect, Exit, Fiber, Layer, PubSub, Scope, Context, Stream, Schema, Option } from "effect" // kappacode_change
 import { EffectBridge } from "@/effect/bridge"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import { BusEvent } from "./bus-event.ts"
 import { GlobalBus } from "./global.ts"
 import { InstanceState } from "@/effect/instance-state"
 import { makeRuntime } from "@/effect/run-service"
-import { serviceUse } from "@opencode-ai/core/effect/service-use"
+import { serviceUse } from "@toxicwind/core/effect/service-use"
 import { Identifier } from "@/id/id"
 import { context as instanceContext, type InstanceContext } from "@/project/instance-context" // kappacode_change
 import { InstanceRef } from "@/effect/instance-ref"
 import { LocalContext } from "@/util/local-context" // kappacode_change
-import { LayerNode } from "@opencode-ai/core/effect/layer-node" // kappacode_change
+import { LayerNode } from "@toxicwind/core/effect/layer-node" // kappacode_change
 
 const log = Log.create({ service: "bus" })
 

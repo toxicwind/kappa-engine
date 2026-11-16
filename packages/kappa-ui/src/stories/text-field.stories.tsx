@@ -1,6 +1,6 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { TextField } from "@opencode-ai/ui/text-field"
+import { TextField } from "@toxicwind/ui/text-field"
 
 const meta: Meta<typeof TextField> = {
   title: "Components/TextField",

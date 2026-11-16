@@ -1,7 +1,7 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { PermissionV1 } from "@opencode-ai/core/v1/permission"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
+import { PermissionV1 } from "@toxicwind/core/v1/permission"
 import { Config } from "@/config/config"
-import { serviceUse } from "@opencode-ai/core/effect/service-use"
+import { serviceUse } from "@toxicwind/core/effect/service-use"
 import { Provider } from "@/provider/provider"
 
 import { generateObject, streamObject, type ModelMessage } from "ai"
@@ -17,7 +17,7 @@ import PROMPT_SUMMARY from "./prompt/summary.txt"
 import PROMPT_TITLE from "./prompt/title.txt"
 import { Permission } from "@/permission"
 import { mergeDeep, pipe, sortBy, values } from "remeda"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@toxicwind/core/global"
 import { KappacodePaths } from "@/kappacode/paths" // kappacode_change
 import path from "path"
 import { Plugin } from "@/plugin"
@@ -25,15 +25,15 @@ import { Skill } from "../skill/index.ts"
 import { Effect, Context, Layer, Schema } from "effect"
 import { InstanceState } from "@/effect/instance-state"
 import * as Option from "effect/Option"
-import type { DeepMutable } from "@opencode-ai/core/schema" // kappacode_change
+import type { DeepMutable } from "@toxicwind/core/schema" // kappacode_change
 // kappacode_change start
 import * as KappaAgent from "@/kappacode/agent"
 import { RuntimeFlags } from "@/effect/runtime-flags"
 import * as KappaReference from "@/kappacode/reference"
 // kappacode_change end
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
-import { LocationServiceMap, locationServiceMapLayer } from "@opencode-ai/core/location-services"
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
+import { LocationServiceMap, locationServiceMapLayer } from "@toxicwind/core/location-services"
 // kappacode_change
 
 export const Info = Schema.Struct({

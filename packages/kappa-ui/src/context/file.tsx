@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/context/file"
+export * from "@toxicwind/ui/context/file"

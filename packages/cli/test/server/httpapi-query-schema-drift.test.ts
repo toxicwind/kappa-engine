@@ -1,7 +1,7 @@
 import { afterEach, describe, expect } from "bun:test"
 import { Effect, Schema } from "effect"
 import { OpenApi } from "effect/http-api"
-import { Flag } from "@opencode-ai/core/flag/flag"
+import { Flag } from "@toxicwind/core/flag/flag"
 import { Server } from "../../src/server/server.ts"
 import { SessionID } from "../../src/session/schema.ts"
 import { PublicApi } from "../../src/server/routes/instance/httpapi/public.ts"
@@ -24,7 +24,7 @@ import {
   SessionPaths,
 } from "../../src/server/routes/instance/httpapi/groups/session.ts"
 import { PtyPaths } from "../../src/server/routes/instance/httpapi/groups/pty.ts"
-import { SessionMessagesQuery } from "@opencode-ai/protocol/groups/message"
+import { SessionMessagesQuery } from "@toxicwind/protocol/groups/message"
 import { QueryBoolean, QueryBooleanOpenApi } from "../../src/server/routes/instance/httpapi/groups/query.ts"
 import { resetDatabase } from "../fixture/db.ts"
 import { disposeAllInstances, tmpdir } from "../fixture/fixture.ts"

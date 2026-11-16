@@ -1,9 +1,9 @@
 import { expect, test } from "bun:test"
 import { SqliteClient } from "@effect/sql-sqlite-bun"
-import { EffectDrizzleSqlite } from "@opencode-ai/effect-drizzle-sqlite"
-import { DatabaseMigration } from "@opencode-ai/core/database/migration"
-import { migrations } from "@opencode-ai/core/database/migration.gen"
-import migration from "@opencode-ai/core/database/migration/20260907102000_kappacode_model_usage_index"
+import { EffectDrizzleSqlite } from "@toxicwind/effect-drizzle-sqlite"
+import { DatabaseMigration } from "@toxicwind/core/database/migration"
+import { migrations } from "@toxicwind/core/database/migration.gen"
+import migration from "@toxicwind/core/database/migration/20260907102000_kappacode_model_usage_index"
 import { sql } from "drizzle-orm"
 import { Effect } from "effect"
 

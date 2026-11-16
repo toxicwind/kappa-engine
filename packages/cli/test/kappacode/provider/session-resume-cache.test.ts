@@ -3,10 +3,10 @@ import path from "node:path"
 import { SessionResume } from "../../../src/kappacode/session-resume/index.ts"
 import { ProviderTransform } from "../../../src/provider/transform.ts"
 import { MessageV2 } from "../../../src/session/message-v2.ts"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
 import type { Provider } from "../../../src/provider/provider.ts"
-import type { Part as V1Part, WithParts } from "@opencode-ai/core/v1/session"
+import type { Part as V1Part, WithParts } from "@toxicwind/core/v1/session"
 
 function cacheType(message: { providerOptions?: unknown }) {
   const anthropic = message.providerOptions as { anthropic?: { cacheControl?: { type?: unknown } } } | undefined

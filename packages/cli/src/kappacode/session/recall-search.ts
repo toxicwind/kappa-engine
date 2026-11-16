@@ -1,16 +1,16 @@
 import path from "path"
 import { eq, inArray, sql } from "drizzle-orm"
 import { Cause, Effect } from "effect"
-import { Database } from "@opencode-ai/core/database/database"
-import { RecallPartIndex } from "@opencode-ai/core/kappacode/session/recall-part-index"
-import { RecallMessageIndex } from "@opencode-ai/core/kappacode/session/recall-message-index"
+import { Database } from "@toxicwind/core/database/database"
+import { RecallPartIndex } from "@toxicwind/core/kappacode/session/recall-part-index"
+import { RecallMessageIndex } from "@toxicwind/core/kappacode/session/recall-message-index"
 import type { MessageV2 } from "@/session/message-v2"
-import { SessionTable } from "@opencode-ai/core/session/sql"
+import { SessionTable } from "@toxicwind/core/session/sql"
 import type { MessageID, PartID, SessionID } from "@/session/schema"
 import { Filesystem } from "@/util/filesystem"
-import { ProjectTable } from "@opencode-ai/core/project/sql"
-import { ProjectV2 } from "@opencode-ai/core/project"
-import { AbsolutePath } from "@opencode-ai/core/schema"
+import { ProjectTable } from "@toxicwind/core/project/sql"
+import { ProjectV2 } from "@toxicwind/core/project"
+import { AbsolutePath } from "@toxicwind/core/schema"
 
 export namespace RecallSearch {
   const BATCH = 8_192

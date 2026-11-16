@@ -176,7 +176,7 @@ mock.module("@tui/context/permission", () => ({
 }))
 
 // Import the real Global to get the state path (set by test preload via XDG_STATE_HOME)
-const { Global } = await import("@opencode-ai/core/global")
+const { Global } = await import("@toxicwind/core/global")
 const modelJsonPath = path.join(Global.Path.state, "model.json")
 
 mock.module("@tui/context/runtime", () => ({

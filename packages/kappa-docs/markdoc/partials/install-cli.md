@@ -6,7 +6,7 @@ Use Kappa Code directly from your terminal for maximum flexibility.
 npm install -g @kappacode/cli
 ```
 
-### Install from source (estate / dev builds)
+### Install from source (Pens / dev builds)
 
 The fork's CLI is built locally through the `kappa-build` mise task, which is remote-cached by the Forge build daemon (`:25148`).
 

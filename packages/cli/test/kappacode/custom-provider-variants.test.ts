@@ -1,6 +1,6 @@
 import { expect } from "bun:test"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
+import { ProviderV2 } from "@toxicwind/core/provider"
 import { Effect } from "effect"
 import { Env } from "@/env"
 import { Plugin } from "@/plugin"

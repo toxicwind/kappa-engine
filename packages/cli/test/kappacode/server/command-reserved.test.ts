@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, setDefaultTimeout, test } from "bun:test"
 import path from "path"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import { Server } from "../../../src/server/server.ts"
 import type { Config } from "../../../src/config/config.ts"
 import { resetDatabase } from "../../fixture/db.ts"

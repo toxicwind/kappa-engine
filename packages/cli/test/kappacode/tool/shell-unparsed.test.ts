@@ -9,17 +9,17 @@
 // recovered nothing falls back to the raw command text (also covering ERROR
 // chunks without a command_name descendant, such as backtick escapes).
 
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
 import { describe, expect, test } from "bun:test"
 import { Cause, Effect, Exit, Layer } from "effect"
 import path from "path"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import type { PermissionV1 } from "@opencode-ai/core/v1/permission"
+import { CrossSpawnSpawner } from "@toxicwind/core/cross-spawn-spawner"
+import { FSUtil } from "@toxicwind/core/fs-util"
+import type { PermissionV1 } from "@toxicwind/core/v1/permission"
 import { Permission } from "../../../src/permission/index.ts"
 import { ShellPermission } from "../../../src/tool/shell.ts"
 import { ShellTool } from "../../../src/tool/shell.ts"
-import { Shell } from "@opencode-ai/core/shell"
+import { Shell } from "@toxicwind/core/shell"
 import { Config } from "../../../src/config/config.ts"
 import { Agent } from "../../../src/agent/agent.ts"
 import { Plugin } from "../../../src/plugin/index.ts"

@@ -1,6 +1,6 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { ContextMenu } from "@opencode-ai/ui/context-menu"
+import { ContextMenu } from "@toxicwind/ui/context-menu"
 
 const meta: Meta = {
   title: "Components/ContextMenu",

@@ -1,6 +1,6 @@
 import type { Hooks, PluginInput } from "@kappacode/plugin"
 import type { Model } from "@kappacode/sdk/v2"
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
+import { InstallationVersion } from "@toxicwind/core/installation/version"
 import { createServer } from "http"
 import open from "open"
 

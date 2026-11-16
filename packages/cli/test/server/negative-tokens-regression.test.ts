@@ -6,20 +6,20 @@
 // strict `NonNegativeInt` schema then made every load of the message list
 // fail to encode, killing Desktop boot for every user with such a row.
 import { describe, expect } from "bun:test"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import { Effect, Layer } from "effect"
 import { eq } from "drizzle-orm"
 
 import { SessionPaths } from "../../src/server/routes/instance/httpapi/groups/session.ts"
 import { Session } from "@/session/session"
 import { MessageID, PartID } from "../../src/session/schema.ts"
-import { Database } from "@opencode-ai/core/database/database"
-import { PartTable } from "@opencode-ai/core/session/sql"
+import { Database } from "@toxicwind/core/database/database"
+import { PartTable } from "@toxicwind/core/session/sql"
 import { resetDatabase } from "../fixture/db.ts"
 import { TestInstance } from "../fixture/fixture.ts"
 import { testEffect } from "../lib/effect.ts"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
 import { httpApiLayer, requestInDirectory } from "./httpapi-layer.ts"
 
 const it = testEffect(Layer.mergeAll(LayerNode.compile(LayerNode.group([Session.node, Database.node])), httpApiLayer))

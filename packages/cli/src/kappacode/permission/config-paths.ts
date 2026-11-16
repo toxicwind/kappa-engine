@@ -1,6 +1,6 @@
 import path from "path"
 import { existsSync, realpathSync } from "fs"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@toxicwind/core/global"
 import { KappacodePaths } from "@/kappacode/paths"
 
 export namespace ConfigProtection {

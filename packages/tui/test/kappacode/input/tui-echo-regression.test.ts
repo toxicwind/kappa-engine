@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test"
 import { writeFileSync } from "node:fs"
 import { join } from "node:path"
-import { spawn, type Proc } from "@opencode-ai/core/pty/driver"
+import { spawn, type Proc } from "@toxicwind/core/pty/driver"
 // Regression gate for the frozen-TUI bug (2026-10-31): a fresh TUI must
 // consume stdin and echo keystrokes within 1s. The original failure mode:
 // Bun's Node-compat process.stdin never subscribed fd 0 (kernel proof:

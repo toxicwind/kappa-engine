@@ -1,6 +1,6 @@
-import { Location } from "@opencode-ai/core/location"
-import { PluginV2 } from "@opencode-ai/core/plugin"
-import { Reference } from "@opencode-ai/core/reference"
+import { Location } from "@toxicwind/core/location"
+import { PluginV2 } from "@toxicwind/core/plugin"
+import { Reference } from "@toxicwind/core/reference"
 import { Context, Effect, Layer } from "effect"
 
 export class ReferenceReconciler extends Context.Service<

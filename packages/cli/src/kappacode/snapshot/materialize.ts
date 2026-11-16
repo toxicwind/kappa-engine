@@ -1,8 +1,8 @@
 import { Effect } from "effect"
 import path from "path"
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import * as Log from "@opencode-ai/core/util/log"
-import { Hash } from "@opencode-ai/core/util/hash"
+import { FSUtil } from "@toxicwind/core/fs-util"
+import * as Log from "@toxicwind/core/util/log"
+import { Hash } from "@toxicwind/core/util/hash"
 
 export namespace KappaSnapshotMaterialize {
   const log = Log.create({ service: "snapshot.materialize" })
@@ -31,7 +31,7 @@ export namespace KappaSnapshotMaterialize {
    * repository. Tests set `KAPPA_SNAPSHOT_MATERIALIZE_IDLE_MS=0` to materialize at once.
    */
   export const idle = () => {
-    const raw = Number(process.env["KAPPA_SNAPSHOT_MATERIALIZE_IDLE_MS"])
+    const raw = Number(kiloEnv("SNAPSHOT_MATERIALIZE_IDLE_MS"))
     return Number.isFinite(raw) && raw >= 0 ? raw : 10_000
   }
   const snapshotRef = (hash: string, time = Date.now()) => `refs/kappa/snapshots/${time}/${hash}`

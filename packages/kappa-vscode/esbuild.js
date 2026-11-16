@@ -305,7 +305,7 @@ const esbuildProblemMatcherPlugin = {
 }
 
 /**
- * Route the shared `@opencode-ai/ui/pierre/worker` module (and its relative
+ * Route the shared `@toxicwind/ui/pierre/worker` module (and its relative
  * variants) to the Kappa implementation in `webview-ui/pierre-worker.ts`.
  *
  * The upstream module loads Pierre's Shiki worker via a Vite-only

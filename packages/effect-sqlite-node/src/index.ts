@@ -17,8 +17,8 @@ import * as Statement from "effect/sql/Statement"
 
 const ATTR_DB_SYSTEM_NAME = "db.system.name"
 
-export const TypeId: TypeId = "~@opencode-ai/effect-sqlite-node/NodeSqliteClient"
-export type TypeId = "~@opencode-ai/effect-sqlite-node/NodeSqliteClient"
+export const TypeId: TypeId = "~@toxicwind/effect-sqlite-node/NodeSqliteClient"
+export type TypeId = "~@toxicwind/effect-sqlite-node/NodeSqliteClient"
 
 export interface SqliteClient extends Client.SqlClient {
   readonly [TypeId]: TypeId
@@ -27,7 +27,7 @@ export interface SqliteClient extends Client.SqlClient {
   readonly updateValues: never
 }
 
-export const SqliteClient = Context.Service<SqliteClient>("@opencode-ai/effect-sqlite-node/NodeSqliteClient")
+export const SqliteClient = Context.Service<SqliteClient>("@toxicwind/effect-sqlite-node/NodeSqliteClient")
 
 export interface SqliteClientConfig {
   readonly filename: string
@@ -149,7 +149,7 @@ export const make = (
         acquirer,
         compiler,
         transactionAcquirer,
-        driver: "@opencode-ai/effect-sqlite-node",
+        driver: "@toxicwind/effect-sqlite-node",
         spanAttributes: [
           ...(options.spanAttributes ? Object.entries(options.spanAttributes) : []),
           [ATTR_DB_SYSTEM_NAME, "sqlite"],

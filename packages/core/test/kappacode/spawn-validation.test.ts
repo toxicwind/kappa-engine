@@ -1,7 +1,7 @@
 import { expect, test } from "bun:test"
 import { Effect } from "effect"
 import { ChildProcess } from "effect/process"
-import * as SpawnValidation from "@opencode-ai/core/kappacode/spawn-validation"
+import * as SpawnValidation from "@toxicwind/core/kappacode/spawn-validation"
 
 test("spawn validation is command-scoped and consumed once", () => {
   const first = ChildProcess.make("first")

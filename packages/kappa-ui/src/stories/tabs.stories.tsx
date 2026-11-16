@@ -1,6 +1,6 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { Tabs } from "@opencode-ai/ui/tabs"
+import { Tabs } from "@toxicwind/ui/tabs"
 
 const meta: Meta = {
   title: "Components/Tabs",

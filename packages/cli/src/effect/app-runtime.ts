@@ -1,19 +1,19 @@
 import { Layer, ManagedRuntime } from "effect"
 import { attach } from "./run-service.ts"
-import * as Observability from "@opencode-ai/core/observability"
+import * as Observability from "@toxicwind/core/observability"
 
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import { Database } from "@opencode-ai/core/database/database"
-import { Credential } from "@opencode-ai/core/credential" // kappacode_change
+import { FSUtil } from "@toxicwind/core/fs-util"
+import { Database } from "@toxicwind/core/database/database"
+import { Credential } from "@toxicwind/core/credential" // kappacode_change
 import { Auth } from "@/auth"
 import { Account } from "@/account/account"
 import { Config } from "@/config/config"
 import { Git } from "@/git"
-import { Ripgrep } from "@opencode-ai/core/ripgrep"
+import { Ripgrep } from "@toxicwind/core/ripgrep"
 import { Storage } from "@/storage/storage"
 import { Snapshot } from "@/snapshot"
 import { Plugin } from "@/plugin"
-import { ModelsDev } from "@opencode-ai/core/models-dev"
+import { ModelsDev } from "@toxicwind/core/models-dev"
 import { ModelCache } from "@/provider/model-cache" // kappacode_change
 import { Provider } from "@/provider/provider"
 import { ProviderAuth } from "@/provider/auth"
@@ -47,11 +47,11 @@ import { Workspace } from "@/control-plane/workspace"
 import { Worktree } from "@/worktree"
 import { Installation } from "@/installation"
 import { MemoryService } from "@kappacode/kappa-memory/effect/service" // kappacode_change
-import { Memory } from "@opencode-ai/core/memory" // kilocode_change
+import { Memory } from "@toxicwind/core/memory" // kilocode_change
 import { ShareNext } from "@/share/share-next"
 import { SessionShare } from "@/share/session"
-import { Npm } from "@opencode-ai/core/npm"
-import { memoMap } from "@opencode-ai/core/effect/memo-map"
+import { Npm } from "@toxicwind/core/npm"
+import { memoMap } from "@toxicwind/core/effect/memo-map"
 import { BackgroundJob } from "@/background/job"
 import { RuntimeFlags } from "@/effect/runtime-flags"
 // kappacode_change start
@@ -61,15 +61,15 @@ import { AgentManager } from "@/kappacode/agent-manager/service"
 import { Wakeup } from "@/kappacode/wakeup"
 // kappacode_change end
 import { EventV2Bridge } from "@/event-v2-bridge"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import { AppNodeBuilderV1 } from "./app-node-builder-v1.ts"
-import { SessionProjector } from "@opencode-ai/core/session/projector"
-import { EventV2 } from "@opencode-ai/core/event" // kappacode_change
-import { ProjectV2 } from "@opencode-ai/core/project" // kappacode_change
-import { ProjectCopy } from "@opencode-ai/core/project/copy" // kappacode_change
-import { MoveSession } from "@opencode-ai/core/control-plane/move-session" // kappacode_change
-import { PtyTicket } from "@opencode-ai/core/pty/ticket" // kappacode_change
-import { Pty } from "@opencode-ai/core/pty" // kappacode_change
+import { SessionProjector } from "@toxicwind/core/session/projector"
+import { EventV2 } from "@toxicwind/core/event" // kappacode_change
+import { ProjectV2 } from "@toxicwind/core/project" // kappacode_change
+import { ProjectCopy } from "@toxicwind/core/project/copy" // kappacode_change
+import { MoveSession } from "@toxicwind/core/control-plane/move-session" // kappacode_change
+import { PtyTicket } from "@toxicwind/core/pty/ticket" // kappacode_change
+import { Pty } from "@toxicwind/core/pty" // kappacode_change
 
 // kappacode_change start - retain Kappa runtime services in the upstream node graph
 const memory = LayerNode.make({ service: MemoryService.Service, layer: MemoryService.layer, deps: [] })

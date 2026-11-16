@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test"
 import { homedir } from "node:os"
-import { allowed } from "@opencode-ai/core/kappacode/fff"
+import { allowed } from "@toxicwind/core/kappacode/fff"
 import { KappaIndexing } from "@/kappacode/indexing"
 import { toIndexingConfigInput } from "@kappacode/kappa-indexing/config"
 
@@ -21,9 +21,9 @@ describe("kappa indexing multi-root (indexing.roots)", () => {
   test("toIndexingConfigInput carries roots through to the engine input", () => {
     const input = toIndexingConfigInput({
       enabled: true,
-      roots: [`${HOME}/pens`, `${HOME}/estate`],
+      roots: [`${HOME}/pens`, `${HOME}/Pens`],
     })
-    expect(input.roots).toEqual([`${HOME}/pens`, `${HOME}/estate`])
+    expect(input.roots).toEqual([`${HOME}/pens`, `${HOME}/Pens`])
   })
 
   test("KappaIndexing.input keeps enabled + roots on the merged cfg input", () => {

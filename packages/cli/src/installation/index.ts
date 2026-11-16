@@ -1,18 +1,18 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
-import { httpClient } from "@opencode-ai/core/effect/app-node-platform"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
+import { httpClient } from "@toxicwind/core/effect/app-node-platform"
 import { Effect, Layer, Schema, Context, Stream } from "effect"
-import { serviceUse } from "@opencode-ai/core/effect/service-use"
+import { serviceUse } from "@toxicwind/core/effect/service-use"
 import { HttpClient, HttpClientRequest, HttpClientResponse } from "effect/http"
 import { withTransientReadRetry } from "@/util/effect-http-client"
 import { errorMessage } from "@/util/error"
 import { ChildProcess } from "effect/process"
-import { AppProcess } from "@opencode-ai/core/process"
+import { AppProcess } from "@toxicwind/core/process"
 import path from "path"
-import { makeRuntime } from "@opencode-ai/core/effect/runtime"
+import { makeRuntime } from "@toxicwind/core/effect/runtime"
 import semver from "semver"
-import { InstallationChannel, InstallationVersion } from "@opencode-ai/core/installation/version"
-import { NpmConfig } from "@opencode-ai/core/npm-config"
+import { InstallationChannel, InstallationVersion } from "@toxicwind/core/installation/version"
+import { NpmConfig } from "@toxicwind/core/npm-config"
 // kappacode_change start
 import {
   Brew as KappaBrew,
@@ -23,7 +23,7 @@ import {
 } from "@/kappacode/installation"
 import { latest as kappaLatest } from "@/kappacode/installation/latest"
 // kappacode_change end
-import { InstallationEvent } from "@opencode-ai/schema/installation-event"
+import { InstallationEvent } from "@toxicwind/schema/installation-event"
 
 export type Method = "curl" | "npm" | "yarn" | "pnpm" | "bun" | "brew" | "scoop" | "choco" | "unknown"
 

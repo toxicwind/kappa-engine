@@ -1248,6 +1248,95 @@ describe("TreeSitterClient Edge Cases", () => {
     await client.destroy()
   })
 
+  test("should retry initialization after a failed attempt and succeed", async () => {
+    const client = new TreeSitterClient({
+      dataPath,
+      initTimeout: 2000,
+      initRetries: 2,
+      initRetryDelayMs: 50,
+    })
+
+    const internals = client as unknown as {
+      worker?: {
+        onmessage: ((event: { data: { type?: string; error?: string } }) => void) | null
+        postMessage: (message: { type?: string }) => void
+      }
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 50))
+
+    const firstWorker = internals.worker
+    expect(firstWorker).toBeDefined()
+    if (!firstWorker) {
+      throw new Error("Expected worker to be created")
+    }
+
+    let initCount = 0
+    const originalPostMessage = firstWorker.postMessage.bind(firstWorker)
+    firstWorker.postMessage = (message) => {
+      if (message.type === "INIT") {
+        initCount++
+        if (initCount === 1) {
+          firstWorker.onmessage?.({ data: { type: "INIT_RESPONSE", error: "synthetic init failure" } })
+          return
+        }
+        originalPostMessage(message)
+        return
+      }
+      originalPostMessage(message)
+    }
+
+    try {
+      await client.initialize()
+      expect(client.isInitialized()).toBe(true)
+      expect(initCount).toBe(2)
+    } finally {
+      await client.destroy()
+    }
+  }, 15000)
+
+  test("should reject after exhausting initialization retries", async () => {
+    const client = new TreeSitterClient({
+      dataPath,
+      initTimeout: 2000,
+      initRetries: 1,
+      initRetryDelayMs: 50,
+    })
+
+    const internals = client as unknown as {
+      worker?: {
+        onmessage: ((event: { data: { type?: string; error?: string } }) => void) | null
+        postMessage: (message: { type?: string }) => void
+      }
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 50))
+
+    const firstWorker = internals.worker
+    expect(firstWorker).toBeDefined()
+    if (!firstWorker) {
+      throw new Error("Expected worker to be created")
+    }
+
+    let initCount = 0
+    const originalPostMessage = firstWorker.postMessage.bind(firstWorker)
+    firstWorker.postMessage = (message) => {
+      if (message.type === "INIT") {
+        initCount++
+        firstWorker.onmessage?.({ data: { type: "INIT_RESPONSE", error: "synthetic init failure" } })
+        return
+      }
+      originalPostMessage(message)
+    }
+
+    try {
+      await expect(client.initialize()).rejects.toThrow("synthetic init failure")
+      expect(initCount).toBe(2)
+    } finally {
+      await client.destroy()
+    }
+  }, 15000)
+
   test("should handle operations before initialization", async () => {
     const client = new TreeSitterClient({ dataPath })
 

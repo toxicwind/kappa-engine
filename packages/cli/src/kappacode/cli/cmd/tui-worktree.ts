@@ -5,7 +5,7 @@
 // created in.
 import path from "path"
 import type { Effect } from "effect"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import { UI } from "@/cli/ui"
 import { Filesystem } from "@/util/filesystem"
 import { errorMessage } from "@/util/error"
@@ -182,8 +182,8 @@ export async function resolveWorktree(name: string, root: string, timeoutMs = 10
 async function resolveSessionWorktree(sessionID: string, fallback: string) {
   try {
     const { Effect, Schema } = await import("effect")
-    const { Database } = await import("@opencode-ai/core/database/database")
-    const { SessionTable } = await import("@opencode-ai/core/session/sql")
+    const { Database } = await import("@toxicwind/core/database/database")
+    const { SessionTable } = await import("@toxicwind/core/session/sql")
     const { eq } = await import("drizzle-orm")
     const { SessionID } = await import("@/session/schema")
     const id = Schema.decodeUnknownSync(SessionID)(sessionID)

@@ -1,8 +1,8 @@
 import { describe, expect, test } from "bun:test"
 import path from "path"
 import { Effect } from "effect"
-import { Global } from "@opencode-ai/core/global"
-import { InstallationChannel, safeChannelToken } from "@opencode-ai/core/installation/version" // kappacode_change
+import { Global } from "@toxicwind/core/global"
+import { InstallationChannel, safeChannelToken } from "@toxicwind/core/installation/version" // kappacode_change
 import { RuntimeFlags } from "@/effect/runtime-flags"
 import { Database } from "@/storage/db"
 import { it } from "../lib/effect.ts"

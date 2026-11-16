@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/sticky-accordion-header"
+export * from "@toxicwind/ui/sticky-accordion-header"

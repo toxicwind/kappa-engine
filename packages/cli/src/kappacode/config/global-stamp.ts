@@ -1,5 +1,5 @@
 import path from "path"
-import type { FSUtil } from "@opencode-ai/core/fs-util"
+import type { FSUtil } from "@toxicwind/core/fs-util"
 import { Effect } from "effect"
 
 export namespace KappacodeGlobalConfigStamp {

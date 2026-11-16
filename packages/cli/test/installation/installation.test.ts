@@ -1,13 +1,13 @@
 import { describe, expect } from "bun:test"
-import { makeGlobalNode } from "@opencode-ai/core/effect/app-node"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { httpClient } from "@opencode-ai/core/effect/app-node-platform"
+import { makeGlobalNode } from "@toxicwind/core/effect/app-node"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
+import { httpClient } from "@toxicwind/core/effect/app-node-platform"
 import { Effect, Layer, Stream } from "effect"
 import { HttpClient, HttpClientRequest, HttpClientResponse } from "effect/http"
 import { ChildProcess, ChildProcessSpawner } from "effect/process"
 import { Installation } from "../../src/installation/index.ts"
-import { InstallationChannel } from "@opencode-ai/core/installation/version"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { InstallationChannel } from "@toxicwind/core/installation/version"
+import { CrossSpawnSpawner } from "@toxicwind/core/cross-spawn-spawner"
 import { testEffect } from "../lib/effect.ts"
 
 const encoder = new TextEncoder()

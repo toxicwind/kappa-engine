@@ -13,23 +13,23 @@
  */
 import { expect } from "bun:test"
 import { Effect, Layer } from "effect"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import fs from "fs/promises"
 import path from "path"
 import { Session } from "@/session/session"
 import { SessionPrompt } from "../../src/session/prompt.ts"
 import { SessionSummary } from "../../src/session/summary.ts"
 import { MessageV2 } from "../../src/session/message-v2.ts"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
-import { Database } from "@opencode-ai/core/database/database"
-import { SessionProjector } from "@opencode-ai/core/session/projector"
+import { SessionV1 } from "@toxicwind/core/v1/session"
+import { Database } from "@toxicwind/core/database/database"
+import { SessionProjector } from "@toxicwind/core/session/projector"
 import { provideTmpdirServer } from "../fixture/fixture.ts"
 import { testEffect } from "../lib/effect.ts"
 import { TestLLMServer } from "../lib/llm-server.ts"
 
 import { LSP } from "@/lsp/lsp"
 import { MCP } from "../../src/mcp/index.ts"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { CrossSpawnSpawner } from "@toxicwind/core/cross-spawn-spawner"
 import { RuntimeFlags } from "@/effect/runtime-flags"
 
 const mcp = Layer.succeed(

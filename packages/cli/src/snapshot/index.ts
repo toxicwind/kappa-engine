@@ -1,27 +1,27 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kappacode_change
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder" // kappacode_change
 import { Cause, Duration, Effect, Layer, Schedule, Schema, Semaphore, Context } from "effect"
 import { Struct, Fiber } from "effect" // kappacode_change
 import { ChildProcess, ChildProcessSpawner } from "effect/process"
 import { formatPatch, structuredPatch } from "diff"
 import path from "path"
-import { AppProcess } from "@opencode-ai/core/process"
+import { AppProcess } from "@toxicwind/core/process"
 import { InstanceState } from "@/effect/instance-state"
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import { Hash } from "@opencode-ai/core/util/hash"
-import { EffectFlock } from "@opencode-ai/core/util/effect-flock" // kappacode_change
+import { FSUtil } from "@toxicwind/core/fs-util"
+import { Hash } from "@toxicwind/core/util/hash"
+import { EffectFlock } from "@toxicwind/core/util/effect-flock" // kappacode_change
 import { Config } from "@/config/config"
-import { Global } from "@opencode-ai/core/global"
-import { Info } from "@opencode-ai/schema/file-diff"
+import { Global } from "@toxicwind/core/global"
+import { Info } from "@toxicwind/schema/file-diff"
 // kappacode_change start
-import { Flag } from "@opencode-ai/core/flag/flag"
+import { Flag } from "@toxicwind/core/flag/flag"
 import { DiffFull } from "../kappacode/snapshot/diff-full.ts"
 import { KappaSnapshotTrack } from "../kappacode/snapshot/track.ts"
 import { KappaSnapshotPrepare } from "../kappacode/snapshot/prepare.ts"
 import { KappaSnapshotMaterialize } from "../kappacode/snapshot/materialize.ts"
 import type { MessageID, SessionID } from "../session/schema.ts"
-import { withStatics } from "@opencode-ai/core/schema"
-import { zod } from "@opencode-ai/core/effect-zod"
+import { withStatics } from "@toxicwind/core/schema"
+import { zod } from "@toxicwind/core/effect-zod"
 import { KappaSnapshotLock } from "../kappacode/snapshot/lock.ts"
 // kappacode_change end
 

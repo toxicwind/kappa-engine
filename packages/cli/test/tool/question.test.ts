@@ -1,5 +1,5 @@
 import { describe, expect } from "bun:test"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import { Effect, Fiber, Queue } from "effect"
 import { QuestionTool } from "../../src/tool/question.ts"
 import { Question } from "../../src/question/index.ts"

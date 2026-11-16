@@ -1,7 +1,7 @@
 import * as Tool from "./tool.ts"
 import DESCRIPTION from "./task.txt"
 import { ToolJsonSchema } from "./json-schema.ts"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import { SessionV1 } from "@toxicwind/core/v1/session"
 import { BackgroundJob } from "@/background/job"
 import { Session } from "@/session/session"
 import { SessionID, MessageID } from "../session/schema.ts"
@@ -28,7 +28,7 @@ import { Effect, Exit, Schema, Scope } from "effect"
 import { Cause } from "effect" // kappacode_change
 import { RuntimeFlags } from "@/effect/runtime-flags"
 import * as SandboxPolicy from "@/kappacode/sandbox/policy" // kappacode_change
-import { Database } from "@opencode-ai/core/database/database"
+import { Database } from "@toxicwind/core/database/database"
 
 export interface TaskPromptOps {
   cancel(sessionID: SessionID): Effect.Effect<void>

@@ -1,6 +1,6 @@
 import { SessionID, MessageID } from "./schema.ts"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { SessionV1 } from "@toxicwind/core/v1/session"
+import { ProviderV2 } from "@toxicwind/core/provider"
 import {
   APIError,
   AbortedError,
@@ -14,13 +14,13 @@ import {
   SubtaskPart,
   User,
   WithParts,
-} from "@opencode-ai/core/v1/session"
+} from "@toxicwind/core/v1/session"
 
 export { EditorContext } from "@/kappacode/editor-context" // kappacode_change
-import { NamedError } from "@opencode-ai/core/util/error"
+import { NamedError } from "@toxicwind/core/util/error"
 import { APICallError, convertToModelMessages, LoadAPIKeyError, type ModelMessage, type UIMessage } from "ai"
-import { Database } from "@opencode-ai/core/database/database"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { Database } from "@toxicwind/core/database/database"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import { NotFoundError } from "@/storage/storage"
 import { and } from "drizzle-orm"
 import { desc } from "drizzle-orm"
@@ -28,7 +28,7 @@ import { eq } from "drizzle-orm"
 import { inArray } from "drizzle-orm"
 import { lt } from "drizzle-orm"
 import { or } from "drizzle-orm"
-import { MessageTable, PartTable, SessionTable } from "@opencode-ai/core/session/sql"
+import { MessageTable, PartTable, SessionTable } from "@toxicwind/core/session/sql"
 import { ProviderError } from "@/provider/error"
 import { iife } from "@/util/iife"
 import { errorMessage } from "@/util/error"
@@ -77,7 +77,7 @@ export {
   ToolPart,
   User,
   WithParts,
-} from "@opencode-ai/core/v1/session"
+} from "@toxicwind/core/v1/session"
 
 function truncateToolOutput(text: string, maxChars?: number) {
   if (!maxChars || text.length <= maxChars) return text

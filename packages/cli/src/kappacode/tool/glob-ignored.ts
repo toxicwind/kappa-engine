@@ -1,6 +1,6 @@
 import path from "path"
 import { Effect } from "effect"
-import type { Ripgrep } from "@opencode-ai/core/ripgrep"
+import type { Ripgrep } from "@toxicwind/core/ripgrep"
 import type { Config } from "@/config/config"
 
 /**

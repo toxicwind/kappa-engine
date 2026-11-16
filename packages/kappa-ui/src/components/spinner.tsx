@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/spinner"
+export * from "@toxicwind/ui/spinner"

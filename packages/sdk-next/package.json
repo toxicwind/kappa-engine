@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "@opencode-ai/sdk-next",
+  "name": "@toxicwind/sdk-next",
   "private": true,
   "type": "module",
   "license": "MIT",
@@ -13,9 +13,9 @@
     "test:ci": "mkdir -p .artifacts/unit && bun test --timeout 30000 --reporter=junit --reporter-outfile=.artifacts/unit/junit.xml"
   },
   "dependencies": {
-    "@opencode-ai/client": "workspace:*",
-    "@opencode-ai/core": "workspace:*",
-    "@opencode-ai/server": "workspace:*",
+    "@toxicwind/client": "workspace:*",
+    "@toxicwind/core": "workspace:*",
+    "@toxicwind/server": "workspace:*",
     "effect": "catalog:"
   },
   "devDependencies": {

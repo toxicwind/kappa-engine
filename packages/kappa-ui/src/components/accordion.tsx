@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/accordion"
+export * from "@toxicwind/ui/accordion"

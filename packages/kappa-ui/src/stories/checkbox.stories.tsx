@@ -1,6 +1,6 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { Checkbox } from "@opencode-ai/ui/checkbox"
+import { Checkbox } from "@toxicwind/ui/checkbox"
 
 const meta: Meta<typeof Checkbox> = {
   title: "Components/Checkbox",

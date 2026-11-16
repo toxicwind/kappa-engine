@@ -1,6 +1,6 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { Typewriter } from "@opencode-ai/ui/typewriter"
+import { Typewriter } from "@toxicwind/ui/typewriter"
 
 const meta: Meta = {
   title: "Components/Typewriter",

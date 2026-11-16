@@ -1,4 +1,4 @@
-import type { ProviderUsage } from "@opencode-ai/schema/kappacode/provider-usage"
+import type { ProviderUsage } from "@toxicwind/schema/kappacode/provider-usage"
 import { Effect } from "effect"
 import { createHash } from "node:crypto"
 import { Integration } from "../../integration"

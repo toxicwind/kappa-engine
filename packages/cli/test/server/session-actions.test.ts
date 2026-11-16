@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, mock } from "bun:test"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import { ConfigProvider, Effect, Fiber, Layer } from "effect" // kappacode_change
 import { BackgroundJob } from "@/background/job" // kappacode_change
 import { Session as SessionNs } from "@/session/session"

@@ -1,35 +1,35 @@
 import { expect, test } from "bun:test"
 import { Schema } from "effect"
-import { AgentV2 } from "@opencode-ai/core/agent"
-import { ModelV2 } from "@opencode-ai/core/model"
-import { SessionV2 } from "@opencode-ai/core/session"
-import { Agent } from "@opencode-ai/schema/agent"
-import { Location } from "@opencode-ai/schema/location"
-import { Model } from "@opencode-ai/schema/model"
-import { AgentAttachment, FileAttachment, Prompt, Source } from "@opencode-ai/schema/prompt"
-import { Provider } from "@opencode-ai/schema/provider"
-import { Project } from "@opencode-ai/schema/project"
-import { ProjectDirectories } from "@opencode-ai/schema/project-directories"
-import { PermissionV1 } from "@opencode-ai/schema/permission-v1"
-import { Session } from "@opencode-ai/schema/session"
-import { SessionInput } from "@opencode-ai/schema/session-input"
-import { SessionMessage } from "@opencode-ai/schema/session-message"
-import { Workspace } from "@opencode-ai/schema/workspace"
-import { Command } from "@opencode-ai/schema/command"
-import { Connection } from "@opencode-ai/schema/connection"
-import { Credential } from "@opencode-ai/schema/credential"
-import { FileSystem } from "@opencode-ai/schema/filesystem"
-import { Integration } from "@opencode-ai/schema/integration"
-import { LLM } from "@opencode-ai/schema/llm"
-import { Permission } from "@opencode-ai/schema/permission"
-import { Plugin } from "@opencode-ai/schema/plugin"
-import { Pty } from "@opencode-ai/schema/pty"
-import { Reference } from "@opencode-ai/schema/reference"
-import { SessionTodo } from "@opencode-ai/schema/session-todo"
-import { Skill } from "@opencode-ai/schema/skill"
-import { AbsolutePath, DateTimeUtcFromMillis, optional, statics } from "@opencode-ai/schema/schema"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { PluginV2 } from "@opencode-ai/core/plugin"
+import { AgentV2 } from "@toxicwind/core/agent"
+import { ModelV2 } from "@toxicwind/core/model"
+import { SessionV2 } from "@toxicwind/core/session"
+import { Agent } from "@toxicwind/schema/agent"
+import { Location } from "@toxicwind/schema/location"
+import { Model } from "@toxicwind/schema/model"
+import { AgentAttachment, FileAttachment, Prompt, Source } from "@toxicwind/schema/prompt"
+import { Provider } from "@toxicwind/schema/provider"
+import { Project } from "@toxicwind/schema/project"
+import { ProjectDirectories } from "@toxicwind/schema/project-directories"
+import { PermissionV1 } from "@toxicwind/schema/permission-v1"
+import { Session } from "@toxicwind/schema/session"
+import { SessionInput } from "@toxicwind/schema/session-input"
+import { SessionMessage } from "@toxicwind/schema/session-message"
+import { Workspace } from "@toxicwind/schema/workspace"
+import { Command } from "@toxicwind/schema/command"
+import { Connection } from "@toxicwind/schema/connection"
+import { Credential } from "@toxicwind/schema/credential"
+import { FileSystem } from "@toxicwind/schema/filesystem"
+import { Integration } from "@toxicwind/schema/integration"
+import { LLM } from "@toxicwind/schema/llm"
+import { Permission } from "@toxicwind/schema/permission"
+import { Plugin } from "@toxicwind/schema/plugin"
+import { Pty } from "@toxicwind/schema/pty"
+import { Reference } from "@toxicwind/schema/reference"
+import { SessionTodo } from "@toxicwind/schema/session-todo"
+import { Skill } from "@toxicwind/schema/skill"
+import { AbsolutePath, DateTimeUtcFromMillis, optional, statics } from "@toxicwind/schema/schema"
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { PluginV2 } from "@toxicwind/core/plugin"
 
 test("Core reuses the canonical shared schemas", async () => {
   const [
@@ -55,27 +55,27 @@ test("Core reuses the canonical shared schemas", async () => {
     coreSchema,
     coreWorkspace,
   ] = await Promise.all([
-    import("@opencode-ai/core/command"),
-    import("@opencode-ai/core/integration/connection"),
-    import("@opencode-ai/core/credential"),
-    import("@opencode-ai/core/filesystem"),
-    import("@opencode-ai/core/integration"),
-    import("@opencode-ai/core/location"),
-    import("@opencode-ai/llm"),
-    import("@opencode-ai/core/permission"),
-    import("@opencode-ai/core/v1/permission"),
-    import("@opencode-ai/core/project/copy"),
-    import("@opencode-ai/core/pty"),
-    import("@opencode-ai/core/project/schema"),
-    import("@opencode-ai/core/reference"),
-    import("@opencode-ai/core/session/input"),
-    import("@opencode-ai/core/session/message"),
-    import("@opencode-ai/core/session/todo"),
-    import("@opencode-ai/core/session/prompt"),
-    import("@opencode-ai/core/skill"),
-    import("@opencode-ai/core/v2-schema"),
-    import("@opencode-ai/core/schema"),
-    import("@opencode-ai/core/workspace"),
+    import("@toxicwind/core/command"),
+    import("@toxicwind/core/integration/connection"),
+    import("@toxicwind/core/credential"),
+    import("@toxicwind/core/filesystem"),
+    import("@toxicwind/core/integration"),
+    import("@toxicwind/core/location"),
+    import("@toxicwind/llm"),
+    import("@toxicwind/core/permission"),
+    import("@toxicwind/core/v1/permission"),
+    import("@toxicwind/core/project/copy"),
+    import("@toxicwind/core/pty"),
+    import("@toxicwind/core/project/schema"),
+    import("@toxicwind/core/reference"),
+    import("@toxicwind/core/session/input"),
+    import("@toxicwind/core/session/message"),
+    import("@toxicwind/core/session/todo"),
+    import("@toxicwind/core/session/prompt"),
+    import("@toxicwind/core/skill"),
+    import("@toxicwind/core/v2-schema"),
+    import("@toxicwind/core/schema"),
+    import("@toxicwind/core/workspace"),
   ])
 
   const schemas = [

@@ -1,5 +1,5 @@
 {
-  "name": "@opencode-ai/ui",
+  "name": "@toxicwind/ui",
   "version": "7.8.10",
   "type": "module",
   "license": "MIT",
@@ -112,7 +112,7 @@
     "strip-ansi": "7.1.2",
     "virtua": "catalog:",
     "@typescript/native-preview": "catalog:",
-    "@opencode-ai/core": "workspace:*",
+    "@toxicwind/core": "workspace:*",
     "@shikijs/transformers": "3.9.2",
     "@solid-primitives/bounds": "0.1.3",
     "luxon": "catalog:",

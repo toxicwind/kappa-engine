@@ -1,6 +1,6 @@
 import { afterEach, describe, expect } from "bun:test"
 import { Effect, Layer } from "effect"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import { Session } from "../../../src/session/session.ts"
 import { Server } from "../../../src/server/server.ts"
 import { ExperimentalPaths } from "../../../src/server/routes/instance/httpapi/groups/experimental.ts"

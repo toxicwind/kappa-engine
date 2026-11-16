@@ -44,7 +44,7 @@ import { dict as appIt } from "../../webview-ui/src/i18n/it"
 import { dict as appFa } from "../../webview-ui/src/i18n/fa"
 import { REVERT_ERROR_CODE } from "../../src/shared/revert-error"
 
-// Layer 2: upstream UI (@opencode-ai/ui re-exported via @kappacode/kappa-ui)
+// Layer 2: upstream UI (@toxicwind/ui re-exported via @kappacode/kappa-ui)
 import { dict as uiEn } from "../../../ui/src/i18n/en"
 import { dict as uiZh } from "../../../ui/src/i18n/zh"
 import { dict as uiZht } from "../../../ui/src/i18n/zht"

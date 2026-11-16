@@ -12,7 +12,7 @@ import type { MessageID, PartID, SessionV1 } from "../v1/session"
 import { WorkspaceV2 } from "../workspace"
 import { Timestamps } from "../database/schema.sql"
 import type { SystemContext } from "../system-context/index"
-import type { Revert } from "@opencode-ai/schema/revert"
+import type { Revert } from "@toxicwind/schema/revert"
 import { RecallPartIndex } from "../kappacode/session/recall-part-index" // kappacode_change
 import { RecallMessageIndex } from "../kappacode/session/recall-message-index" // kappacode_change
 import { sql } from "drizzle-orm" // kappacode_change

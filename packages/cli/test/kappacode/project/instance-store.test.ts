@@ -1,6 +1,6 @@
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
 import { describe, expect } from "bun:test"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { CrossSpawnSpawner } from "@toxicwind/core/cross-spawn-spawner"
 import { Deferred, Effect, Exit, Fiber, Layer, Scope } from "effect"
 import { GlobalBus } from "../../../src/bus/global.ts"
 import { registerDisposer } from "../../../src/effect/instance-registry.ts"

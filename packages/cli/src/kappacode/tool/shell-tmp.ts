@@ -7,7 +7,7 @@
 // within the permitted set.
 import fs from "node:fs"
 import path from "path"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@toxicwind/core/global"
 
 // The allowlist root is the literal `/tmp`, not `os.tmpdir()`: `os.tmpdir()`
 // follows `TMPDIR`, so deriving from it could point the model back at a denied
@@ -15,7 +15,7 @@ import { Global } from "@opencode-ai/core/global"
 const ALLOWLIST_ROOT = "/tmp"
 
 export function sessionTmp() {
-  const cloud = process.env["KAPPA_CLOUD_AGENT"]?.toLowerCase()
+  const cloud = kiloEnv("CLOUD_AGENT")?.toLowerCase()
   if (cloud !== "true" && cloud !== "1") return Global.Path.tmp
   const session = process.env.SESSION_ID
   if (!session || !/^[A-Za-z0-9_-]+$/.test(session)) return Global.Path.tmp

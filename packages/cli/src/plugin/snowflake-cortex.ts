@@ -1,7 +1,7 @@
 import type { Hooks, PluginInput } from "@kappacode/plugin"
 import { OAUTH_DUMMY_KEY } from "../auth/index.ts"
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
-import { KappaOauthCallbackPage as OauthCallbackPage } from "@opencode-ai/core/kappacode/oauth/page" // kappacode_change - Kappa-branded callback page
+import { InstallationVersion } from "@toxicwind/core/installation/version"
+import { KappaOauthCallbackPage as OauthCallbackPage } from "@toxicwind/core/kappacode/oauth/page" // kappacode_change - Kappa-branded callback page
 import { createServer } from "http"
 import open from "open"
 

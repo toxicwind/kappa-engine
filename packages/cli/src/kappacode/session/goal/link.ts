@@ -1,5 +1,5 @@
 import { Effect } from "effect"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import { SessionV1 } from "@toxicwind/core/v1/session"
 import { BackgroundProcess } from "@/kappacode/background-process"
 import type { SessionID } from "@/session/schema"
 import { GoalState } from "./state.ts"

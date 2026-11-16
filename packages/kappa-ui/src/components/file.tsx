@@ -1,8 +1,8 @@
-import { File as Base, type FileProps } from "@opencode-ai/ui/file"
+import { File as Base, type FileProps } from "@toxicwind/ui/file"
 import { type JSX, mergeProps } from "solid-js"
 import { createDefaultOptions, virtualize } from "../pierre"
 
-export * from "@opencode-ai/ui/file"
+export * from "@toxicwind/ui/file"
 
 // Keep inline file diffs on the same Pierre defaults as the dedicated diff
 // viewer: gutter bars, word-level highlighting, and Kappa surface colors.

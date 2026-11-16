@@ -1,20 +1,20 @@
 import { drizzle, type SQLiteBunDatabase } from "drizzle-orm/bun-sqlite"
 import type { NodeSQLiteDatabase } from "drizzle-orm/node-sqlite"
 import { Database as BunDatabase } from "bun:sqlite"
-import { Global } from "@opencode-ai/core/global"
-import { Database } from "@opencode-ai/core/database/database"
-import * as Log from "@opencode-ai/core/util/log"
-import { ProjectTable } from "@opencode-ai/core/project/sql"
-import { SessionTable, MessageTable, PartTable, TodoTable } from "@opencode-ai/core/session/sql"
-import { SessionShareTable } from "@opencode-ai/core/share/sql"
+import { Global } from "@toxicwind/core/global"
+import { Database } from "@toxicwind/core/database/database"
+import * as Log from "@toxicwind/core/util/log"
+import { ProjectTable } from "@toxicwind/core/project/sql"
+import { SessionTable, MessageTable, PartTable, TodoTable } from "@toxicwind/core/session/sql"
+import { SessionShareTable } from "@toxicwind/core/share/sql"
 import path from "path"
 import { existsSync } from "fs"
 import { Filesystem } from "@/util/filesystem"
-import { Glob } from "@opencode-ai/core/util/glob"
+import { Glob } from "@toxicwind/core/util/glob"
 import { EOL } from "os"
 import { Effect } from "effect"
 import { errorMessage } from "@/util/error"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kappacode_change
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder" // kappacode_change
 
 const log = Log.create({ service: "json-migration" })
 

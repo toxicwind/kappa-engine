@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/dock-surface"
+export * from "@toxicwind/ui/dock-surface"

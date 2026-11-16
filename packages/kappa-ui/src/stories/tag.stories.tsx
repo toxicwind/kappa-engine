@@ -1,6 +1,6 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { Tag } from "@opencode-ai/ui/tag"
+import { Tag } from "@toxicwind/ui/tag"
 
 const meta: Meta<typeof Tag> = {
   title: "Components/Tag",

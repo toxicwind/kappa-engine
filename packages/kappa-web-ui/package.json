@@ -137,7 +137,7 @@
   "dependencies": {
     "@kobalte/core": "catalog:",
     "@kappacode/kappa-ui": "workspace:*",
-    "@opencode-ai/ui": "workspace:*",
+    "@toxicwind/ui": "workspace:*",
     "@pierre/diffs": "catalog:",
     "solid-js": "catalog:"
   },

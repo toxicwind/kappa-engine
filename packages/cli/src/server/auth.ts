@@ -1,7 +1,7 @@
 export * as ServerAuth from "./auth.ts"
 
 import { ConfigService } from "@/effect/config-service"
-import { Flag } from "@opencode-ai/core/flag/flag"
+import { Flag } from "@toxicwind/core/flag/flag"
 import { Config as EffectConfig, Context, Option, Redacted, Schema } from "effect" // kappacode_change - effect4: Config.string -> Config.schema(Schema.String)
 
 export type Credentials = {

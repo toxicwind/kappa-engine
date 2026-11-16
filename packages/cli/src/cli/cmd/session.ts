@@ -9,13 +9,13 @@ import { futureDueFor, mergeScheduled } from "@/kappacode/session/scheduled" // 
 import { SessionID } from "../../session/schema.ts"
 import { UI } from "../ui.ts"
 import { Locale } from "@/util/locale"
-import { Flag } from "@opencode-ai/core/flag/flag"
+import { Flag } from "@toxicwind/core/flag/flag"
 import { Filesystem } from "@/util/filesystem"
 import { Process } from "@/util/process"
 import { NotFoundError } from "@/storage/storage"
 import { EOL } from "os"
 import path from "path"
-import { which } from "@opencode-ai/core/util/which"
+import { which } from "@toxicwind/core/util/which"
 
 function pagerCmd(): string[] {
   const lessOptions = ["-R", "-S"]

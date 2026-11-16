@@ -1,6 +1,6 @@
 import { Effect, Schema } from "effect"
-import type { EventV2 } from "@opencode-ai/core/event"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import type { EventV2 } from "@toxicwind/core/event"
+import { SessionV1 } from "@toxicwind/core/v1/session"
 import type { Session } from "@/session/session"
 import { MessageV2 } from "@/session/message-v2"
 import { MessageID, PartID, SessionID } from "@/session/schema"

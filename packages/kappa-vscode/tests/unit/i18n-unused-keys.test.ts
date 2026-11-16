@@ -16,7 +16,7 @@
  *   cli-backend   extension server/remote dict
  *   host          extension host dict (autocomplete)
  *
- * The upstream @opencode-ai/ui dict (packages/ui/src/i18n) is intentionally
+ * The upstream @toxicwind/ui dict (packages/ui/src/i18n) is intentionally
  * NOT covered: it is upstream-owned code where removals create merge
  * conflicts, and its keys may be consumed by upstream surfaces outside
  * this repo.

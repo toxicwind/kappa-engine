@@ -1,5 +1,5 @@
 import { Effect } from "effect"
-import { Database } from "@opencode-ai/core/database/database"
+import { Database } from "@toxicwind/core/database/database"
 import type { Config } from "@/config/config"
 import type { RuntimeFlags } from "@/effect/runtime-flags"
 import type { SessionID } from "@/session/schema"

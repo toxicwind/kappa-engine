@@ -1,5 +1,5 @@
 import { Schema, SchemaGetter } from "effect" // kappacode_change
-import { ToolContent, ToolFileContent, ToolTextContent } from "@opencode-ai/schema/llm"
+import { ToolContent, ToolFileContent, ToolTextContent } from "@toxicwind/schema/llm"
 import { JsonSchema, MessageRole, ProviderMetadata } from "./ids"
 import { CacheHint, CachePolicy, GenerationOptions, HttpOptions, ModelSchema, ProviderOptions } from "./options"
 import { isRecord } from "../utils/record"
@@ -49,7 +49,7 @@ export type MediaPart = Schema.Schema.Type<typeof MediaPart>
 
 export { ToolContent, ToolFileContent, ToolTextContent }
 
-export { StoredToolContent } from "@opencode-ai/schema/llm" // kappacode_change - shared with the durable event schema
+export { StoredToolContent } from "@toxicwind/schema/llm" // kappacode_change - shared with the durable event schema
 
 // kappacode_change start - Kappa keeps a tolerant tool-result value union
 const toolResultValueSchema = Schema.Union([

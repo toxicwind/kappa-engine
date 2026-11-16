@@ -9,7 +9,7 @@ import { Effect } from "effect"
 import { HttpApiBuilder } from "effect/http-api"
 import { RootHttpApi } from "../api.ts"
 import { LogInput } from "../groups/control.ts"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { ProviderV2 } from "@toxicwind/core/provider"
 import { remove as removeAuth } from "@/kappacode/auth/remove" // kappacode_change
 
 export const controlHandlers = HttpApiBuilder.group(RootHttpApi, "control", (handlers) =>

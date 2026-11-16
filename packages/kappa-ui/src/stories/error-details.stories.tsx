@@ -1,10 +1,10 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
 import type { AssistantMessage } from "@kappacode/sdk/v2"
-import type { UiI18nKey, UiI18nParams } from "@opencode-ai/ui/context/i18n"
-import { I18nProvider } from "@opencode-ai/ui/context/i18n"
-import { Card } from "@opencode-ai/ui/card"
-import { Collapsible } from "@opencode-ai/ui/collapsible"
+import type { UiI18nKey, UiI18nParams } from "@toxicwind/ui/context/i18n"
+import { I18nProvider } from "@toxicwind/ui/context/i18n"
+import { Card } from "@toxicwind/ui/card"
+import { Collapsible } from "@toxicwind/ui/collapsible"
 import { ErrorDetails } from "../components/error-details"
 
 type ErrorType = NonNullable<AssistantMessage["error"]>

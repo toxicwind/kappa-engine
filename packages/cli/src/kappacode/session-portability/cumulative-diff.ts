@@ -1,9 +1,9 @@
 import { Effect } from "effect"
 import { Snapshot } from "@/snapshot"
 import { Storage } from "@/storage/storage"
-import { makeRuntime } from "@opencode-ai/core/effect/runtime"
+import { makeRuntime } from "@toxicwind/core/effect/runtime"
 import type { SessionID } from "@/session/schema"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kappacode_change
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder" // kappacode_change
 
 export type PortableDiff = Snapshot.FileDiff & {
   after?: string

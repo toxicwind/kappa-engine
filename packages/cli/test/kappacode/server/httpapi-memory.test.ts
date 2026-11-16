@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, test } from "bun:test"
 import { ConfigProvider, Effect, Layer } from "effect"
 import { HttpRouter } from "effect/http"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import { MemoryPaths } from "../../../src/kappacode/server/httpapi/groups/memory.ts"
 import { KappaToolRegistry } from "../../../src/kappacode/tool/registry.ts"
 import * as HttpApiServer from "../../../src/server/routes/instance/httpapi/server.ts"

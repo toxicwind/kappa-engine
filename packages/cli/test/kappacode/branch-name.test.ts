@@ -1,8 +1,8 @@
 import { describe, expect, test } from "bun:test"
 import { messages, parse } from "../../src/kappacode/branch-name.ts"
 import { MessageV2 } from "../../src/session/message-v2.ts"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
 import { MessageID, PartID, SessionID } from "../../src/session/schema.ts"
 
 function user(text: string, synthetic = false): MessageV2.WithParts {

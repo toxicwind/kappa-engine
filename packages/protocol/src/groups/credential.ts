@@ -1,4 +1,4 @@
-import { Credential } from "@opencode-ai/schema/credential"
+import { Credential } from "@toxicwind/schema/credential"
 import { Schema } from "effect"
 import { HttpApiEndpoint, HttpApiGroup, HttpApiSchema, OpenApi } from "effect/http-api"
 import { LocationQuery, locationQueryOpenApi } from "./location"

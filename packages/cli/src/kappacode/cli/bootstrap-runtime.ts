@@ -2,7 +2,7 @@ import { Account } from "@/account/account"
 import { Auth } from "@/auth"
 import { Config } from "@/config/config"
 import { makeRuntime } from "@/effect/run-service"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
 import { Effect, Layer, Option } from "effect"
 
 const account = Layer.mock(Account.Service)({

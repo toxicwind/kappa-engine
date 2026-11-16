@@ -2,7 +2,7 @@ import { Auth } from "@/auth"
 import { Config } from "@/config/config"
 import { makeRuntime } from "@/effect/run-service"
 import { resolveKappaIndexingAuth } from "@/kappacode/indexing-auth"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kappacode_change
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder" // kappacode_change
 
 export type OrgState = { type: "personal" } | { type: "org"; id: string } | { type: "unknown" }
 export type OrgSource = () => Promise<OrgState>

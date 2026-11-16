@@ -1,6 +1,6 @@
 import { existsSync } from "fs"
 import path from "path"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@toxicwind/core/fs-util"
 import { Effect } from "effect"
 import { Git } from "../git/index.ts"
 

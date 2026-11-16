@@ -1,5 +1,5 @@
 import { Config } from "../config/config.ts"
-import { ConfigPermissionV1 as ConfigPermission } from "@opencode-ai/core/v1/config/permission"
+import { ConfigPermissionV1 as ConfigPermission } from "@toxicwind/core/v1/config/permission"
 import { ModesMigrator } from "./modes-migrator.ts"
 import { RulesMigrator } from "./rules-migrator.ts"
 import { WorkflowsMigrator } from "./workflows-migrator.ts"

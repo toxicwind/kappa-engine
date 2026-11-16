@@ -6,7 +6,7 @@ import { tmpdir } from "../../fixture/fixture.ts"
 import { createTuiPluginApi } from "../../fixture/tui-plugin.ts"
 import { createTuiResolvedConfig } from "../../fixture/tui-runtime.ts"
 import { TuiConfig } from "../../../src/config/tui.ts"
-import { Npm } from "@opencode-ai/core/npm"
+import { Npm } from "@toxicwind/core/npm"
 
 const { TuiPluginRuntime } = await import("../../../src/plugin/tui/runtime")
 

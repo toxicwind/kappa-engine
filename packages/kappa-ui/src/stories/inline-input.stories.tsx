@@ -1,7 +1,7 @@
 /** @jsxImportSource solid-js */
 import { createSignal } from "solid-js"
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { InlineInput } from "@opencode-ai/ui/inline-input"
+import { InlineInput } from "@toxicwind/ui/inline-input"
 
 const meta: Meta<typeof InlineInput> = {
   title: "Components/InlineInput",

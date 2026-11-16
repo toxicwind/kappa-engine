@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/markdown"
+export * from "@toxicwind/ui/markdown"

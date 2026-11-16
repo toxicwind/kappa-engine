@@ -1,6 +1,6 @@
 import { type ComponentProps, splitProps } from "solid-js"
 
-export * from "@opencode-ai/ui/card"
+export * from "@toxicwind/ui/card"
 
 export function CardHeader(props: ComponentProps<"div">) {
   const [local, rest] = splitProps(props, ["children", "class", "classList"])

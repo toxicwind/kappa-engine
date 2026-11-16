@@ -2,7 +2,7 @@ import { Effect, Schema } from "effect"
 import { Tool } from "@/tool/tool"
 import * as ToolJsonSchema from "@/tool/json-schema"
 import { aggregateSessionStats } from "@/cli/cmd/stats"
-import { Database } from "@opencode-ai/core/database/database"
+import { Database } from "@toxicwind/core/database/database"
 import { Session } from "@/session/session"
 import { InstanceState } from "@/effect/instance-state"
 

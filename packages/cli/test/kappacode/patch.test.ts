@@ -6,7 +6,7 @@
 // These round-trip through the apply_patch tool so the Kappa encoding layer is
 // exercised with the upstream patch parser.
 
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
 import { afterEach, beforeEach, describe, expect, test } from "bun:test"
 import fs from "fs/promises"
 import path from "path"
@@ -23,7 +23,7 @@ import { ApplyPatchTool } from "../../src/tool/apply_patch.ts"
 import { Tool } from "../../src/tool/tool.ts"
 import { Truncate } from "../../src/tool/truncate.ts"
 import { provideInstance, testInstanceStoreLayer } from "../fixture/fixture.ts"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@toxicwind/core/fs-util"
 
 const layer = Layer.mergeAll(
   AppNodeBuilder.build(Agent.node),

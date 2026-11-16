@@ -1,15 +1,15 @@
 export * as ConfigCommand from "./command.ts"
 
 import path from "path"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import { Cause, Exit, Schema } from "effect"
 import { SchemaIssue } from "effect" // kappacode_change - preserve Effect issue details in Kappa warnings
-import { Glob } from "@opencode-ai/core/util/glob"
-import { ConfigCommandV1 } from "@opencode-ai/core/v1/config/command"
+import { Glob } from "@toxicwind/core/util/glob"
+import { ConfigCommandV1 } from "@toxicwind/core/v1/config/command"
 import { configEntryNameFromPath } from "./entry-name.ts"
 import * as ConfigMarkdown from "./markdown.ts"
 // kappacode_change start
-import { FrontmatterError } from "@opencode-ai/core/v1/config/error"
+import { FrontmatterError } from "@toxicwind/core/v1/config/error"
 import { KappacodeConfig } from "@/kappacode/config/config"
 import { report } from "@/kappacode/config/report"
 import type { Warning } from "./config.ts"

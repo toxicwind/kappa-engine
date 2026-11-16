@@ -389,7 +389,7 @@ const retryStatusFailures = <A, R>(
 // Policy (2026-10-19): the default overlay is HONEST client identification —
 // `kappa/<version> (+https://github.com/toxicwind/kappa-code)` — because
 // providers like freeinference ban fake user agents ("Account using fake user
-// agent will be banned."). Live probes (estate/docs/freeinference-provider.md,
+// agent will be banned."). Live probes (Pens/docs/freeinference-provider.md,
 // 2026-10-19) show honest UA passes: the historic Cloudflare 1010 gate no
 // longer fires. The Chrome-aligned set remains available ONLY via an explicit
 // `fingerprint: chrome` opt-in for providers that re-enable header gating.

@@ -1,10 +1,10 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import { InstanceState } from "@/effect/instance-state"
 import { registerDisposer } from "@/effect/instance-registry" // kappacode_change
 import { SessionID } from "./schema.ts"
 import { Effect, Layer, Context } from "effect"
 import { EventV2Bridge } from "@/event-v2-bridge"
-import { SessionStatusEvent } from "@opencode-ai/schema/session-status-event"
+import { SessionStatusEvent } from "@toxicwind/schema/session-status-event"
 
 export const Info = SessionStatusEvent.Info
 export type Info = SessionStatusEvent.Info

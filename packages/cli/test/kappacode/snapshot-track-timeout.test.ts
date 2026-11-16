@@ -5,8 +5,8 @@
 // touch the real Question module or write to the filesystem.
 
 import { describe, expect, test } from "bun:test"
-import { ModelV2 } from "@opencode-ai/core/model"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
+import { ProviderV2 } from "@toxicwind/core/provider"
 import { Deferred, Duration, Effect, Fiber } from "effect"
 import * as TestClock from "effect/testing/TestClock"
 import path from "path"

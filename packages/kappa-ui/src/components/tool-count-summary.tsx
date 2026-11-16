@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/tool-count-summary"
+export * from "@toxicwind/ui/tool-count-summary"

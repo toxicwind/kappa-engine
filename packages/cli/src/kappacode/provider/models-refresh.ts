@@ -1,5 +1,5 @@
 import { ScopedCache } from "effect"
-import * as Refresh from "@opencode-ai/core/kappacode/models-refresh"
+import * as Refresh from "@toxicwind/core/kappacode/models-refresh"
 import type { InstanceState } from "@/effect/instance-state"
 
 export const watch = <A, E, R>(state: InstanceState<A, E, R>) =>

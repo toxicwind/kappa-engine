@@ -7,11 +7,11 @@ let err: unknown
 let drainCalls = 0
 let exit: string | number | null | undefined
 
-mock.module("@opencode-ai/core/global", () => ({
+mock.module("@toxicwind/core/global", () => ({
   Global: { Path: { data: "/tmp/kappa-test" } },
 }))
 
-mock.module("@opencode-ai/core/installation/version", () => ({
+mock.module("@toxicwind/core/installation/version", () => ({
   InstallationBuildKind: "release",
   InstallationVersion: "test",
 }))

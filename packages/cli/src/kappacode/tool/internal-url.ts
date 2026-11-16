@@ -3,8 +3,8 @@
  *
  * Supports reading and writing virtual schemes directly through Kappa's `read` and `write` tools:
  *   - `xd://` and `xd://<device>` (AST grep, AST edit, LSP, tri-search, ffs, github, memory)
- *   - `mcp://` and `mcp://<server>/<tool>` (Thresher :25127/mcp, estate-tools, read-trio-audit)
- *   - `skill://<name>` (Estate skills in ~/.tau/skills / azurite and managed-skills)
+ *   - `mcp://` and `mcp://<server>/<tool>` (Thresher :25127/mcp, Pens-tools, read-trio-audit)
+ *   - `skill://<name>` (Pens skills in ~/.tau/skills / azurite and managed-skills)
  *   - `rule://<name>` (Standing domain rules)
  *   - `memory://<id>` (Long-term memory store)
  */
@@ -128,7 +128,7 @@ export async function resolveInternalUri(rawUri: string, cwd: string): Promise<{
       return {
         title: "mcp://",
         content: [
-          `mcp:// Federated Thresher Gateway (:25127/mcp) + Local Estate MCP (${tools.length} top-level tools):`,
+          `mcp:// Federated Thresher Gateway (:25127/mcp) + Local Pens MCP (${tools.length} top-level tools):`,
           ...lines,
           "",
           "Read mcp://<tool> for inputSchema; write JSON arguments to mcp://<tool> to invoke.",

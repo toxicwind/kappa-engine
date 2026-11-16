@@ -1,6 +1,6 @@
 #!/usr/bin/env bun
 
-import { Script } from "@opencode-ai/script"
+import { Script } from "@toxicwind/script"
 import path from "path"
 import { fileURLToPath } from "url"
 
@@ -27,7 +27,9 @@ await Bun.build({
   external: ["jsonc-parser", "@lydell/node-pty"],
   define: {
     KAPPA_MODELS_DEV: generated.modelsData,
-    KAPPA_VERSION: `'${Script.version}'`, // kappacode_change
+    // Green-blue convention: the version carries the origin/main commit id
+    // (the deployed commit), so you can tell which commit a running kappa is.
+    KAPPA_VERSION: `'${Script.version}+kappa.main.${(await Bun.$`git rev-parse --short=8 origin/main 2>/dev/null || git rev-parse --short=8 HEAD`.text()).trim()}'`, // kappacode_change
     KAPPA_SANDBOX_MUTATION_WORKER_PATH: `'./kappa-sandbox-mutation-worker.js'`, // kappacode_change
     KAPPA_SANDBOX_NETWORK_RELAY_PATH: `'./kappa-sandbox-network-relay.js'`, // kappacode_change
     KAPPA_SANDBOX_SECCOMP_PATH: "undefined", // kappacode_change

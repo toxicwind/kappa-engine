@@ -4,8 +4,8 @@ import { registerDisposer } from "@/effect/instance-registry"
 import { Identifier } from "@/id/id"
 import { capture } from "@/kappacode/instance"
 import { Context, Deferred, Duration, Effect, Layer, LayerMap, Schema } from "effect"
-import * as Log from "@opencode-ai/core/util/log"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import * as Log from "@toxicwind/core/util/log"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import { ErrorCode, Event, type Failure, type Request, RequestID, type Result } from "./protocol.ts"
 
 const log = Log.create({ service: "notebook-host" })

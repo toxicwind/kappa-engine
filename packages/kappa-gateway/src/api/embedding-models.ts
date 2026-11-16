@@ -21,11 +21,16 @@ export type KappaEmbeddingModelCatalogIssue = {
   status?: number
 }
 
-export const EMPTY_KILO_EMBEDDING_MODEL_CATALOG: KappaEmbeddingModelCatalog = {
+export const EMPTY_KAPPA_EMBEDDING_MODEL_CATALOG: KappaEmbeddingModelCatalog = {
   defaultModel: "",
   models: [],
   aliases: {},
 }
+
+// Kilo backwards-compat alias: kappa is a fork of Kilo; downstream consumers
+// that still import the upstream `EMPTY_KILO_*` name keep resolving.
+export const EMPTY_KILO_EMBEDDING_MODEL_CATALOG: KappaEmbeddingModelCatalog =
+  EMPTY_KAPPA_EMBEDDING_MODEL_CATALOG
 
 const model = z.object({
   id: z.string(),

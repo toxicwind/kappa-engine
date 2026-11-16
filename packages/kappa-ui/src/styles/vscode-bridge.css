@@ -1,7 +1,7 @@
 /*
  * VS Code Bridge CSS
  *
- * Maps @opencode-ai/ui semantic design tokens to VS Code's --vscode-* CSS variables.
+ * Maps @toxicwind/ui semantic design tokens to VS Code's --vscode-* CSS variables.
  * This file is used by the kilo-vscode theme to make the UI adapt to whatever
  * VS Code theme the user has active. The DesktopTheme JSON provides fallback
  * values; this CSS overrides them at runtime when --vscode-* vars are present.

@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/inline-input"
+export * from "@toxicwind/ui/inline-input"

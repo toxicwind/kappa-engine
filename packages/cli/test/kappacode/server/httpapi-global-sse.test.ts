@@ -16,7 +16,7 @@ import { controlPlaneHandlers } from "../../../src/server/routes/instance/httpap
 import { globalHandlers } from "../../../src/server/routes/instance/httpapi/handlers/global.ts"
 import { authorizationLayer } from "../../../src/server/routes/instance/httpapi/middleware/authorization.ts"
 import { schemaErrorLayer } from "../../../src/server/routes/instance/httpapi/middleware/schema-error.ts"
-import { MoveSession } from "@opencode-ai/core/control-plane/move-session"
+import { MoveSession } from "@toxicwind/core/control-plane/move-session"
 import { pollWithTimeout, testEffect } from "../../lib/effect.ts"
 
 const apiLayer = HttpRouter.serve(

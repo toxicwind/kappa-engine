@@ -1,6 +1,6 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kappacode_change
-import { Ripgrep } from "@opencode-ai/core/ripgrep"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder" // kappacode_change
+import { Ripgrep } from "@toxicwind/core/ripgrep"
 import { PlanExitTool } from "./plan.ts"
 import { Session } from "@/session/session"
 import { SessionCompaction } from "@/session/compaction" // kappacode_change - compaction service for the experimental compact tool
@@ -15,7 +15,7 @@ import { GlobTool } from "./glob.ts"
 import { GrepTool } from "./grep.ts"
 import { ReadTool } from "./read.ts"
 import { TaskTool } from "./task.ts"
-import { Database } from "@opencode-ai/core/database/database"
+import { Database } from "@toxicwind/core/database/database"
 import { TodoWriteTool } from "./todo.ts"
 import { WebFetchTool } from "./webfetch.ts"
 import { WriteTool } from "./write.ts"
@@ -41,19 +41,19 @@ import { SessionDrain } from "@/kappacode/session/drain" // kappacode_change
 import { RepoOverviewTool } from "@/kappacode/tool/repo-overview" // kappacode_change
 import { ContextInfoTool, CompactTool } from "@/kappacode/tool/context" // kappacode_change
 import { RepoCloneTool } from "./repo_clone.ts" // kappacode_change
-import { Flag } from "@opencode-ai/core/flag/flag" // kappacode_change
+import { Flag } from "@toxicwind/core/flag/flag" // kappacode_change
 import { Auth } from "@/auth" // kappacode_change
 import { Env } from "@/env" // kappacode_change - websearch resolves its config via Env.Service
 import { LspTool } from "./lsp.ts"
 import * as Truncate from "./truncate.ts"
 import { ApplyPatchTool } from "./apply_patch.ts"
-import { Glob } from "@opencode-ai/core/util/glob"
+import { Glob } from "@toxicwind/core/util/glob"
 import path from "path"
 import { pathToFileURL } from "url"
 import { Effect, Layer, Context, Option } from "effect" // kappacode_change
 import { ChildProcessSpawner } from "effect/process/ChildProcessSpawner"
 import { HttpClient } from "effect/http" // kappacode_change
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { CrossSpawnSpawner } from "@toxicwind/core/cross-spawn-spawner"
 import { Format } from "../format/index.ts"
 import { InstanceState } from "@/effect/instance-state"
 import { EffectBridge } from "@/effect/bridge"
@@ -61,7 +61,7 @@ import { Question } from "../question/index.ts"
 import { Todo } from "../session/todo.ts"
 import { LSP } from "@/lsp/lsp"
 import { Instruction } from "../session/instruction.ts"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@toxicwind/core/fs-util"
 import { EventV2Bridge } from "@/event-v2-bridge"
 import { Bus } from "../bus/index.ts"
 import { Agent } from "../agent/agent.ts"
@@ -74,13 +74,13 @@ import { BackgroundJob } from "@/background/job"
 import { RuntimeFlags } from "@/effect/runtime-flags"
 import * as ToolNetwork from "@/kappacode/sandbox/network" // kappacode_change
 import { MemoryService } from "@kappacode/kappa-memory/effect/service" // kappacode_change
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
-import { RepositoryCache } from "@opencode-ai/core/repository-cache" // kappacode_change
-import { RipgrepBinary } from "@opencode-ai/core/ripgrep/binary" // kappacode_change
-import { AppProcess } from "@opencode-ai/core/process" // kappacode_change
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
+import { RepositoryCache } from "@toxicwind/core/repository-cache" // kappacode_change
+import { RipgrepBinary } from "@toxicwind/core/ripgrep/binary" // kappacode_change
+import { AppProcess } from "@toxicwind/core/process" // kappacode_change
 import { MCP } from "@/mcp"
-import { PermissionV1 } from "@opencode-ai/core/v1/permission"
+import { PermissionV1 } from "@toxicwind/core/v1/permission"
 import { McpCatalog } from "@/mcp/catalog"
 import { InstanceRef } from "@/effect/instance-ref" // kappacode_change
 

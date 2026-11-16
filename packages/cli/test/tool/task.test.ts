@@ -1,15 +1,15 @@
 import { afterEach, describe, expect } from "bun:test"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
-import { Database } from "@opencode-ai/core/database/database"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { SessionProjector } from "@opencode-ai/core/session/projector"
+import { SessionV1 } from "@toxicwind/core/v1/session"
+import { Database } from "@toxicwind/core/database/database"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
+import { SessionProjector } from "@toxicwind/core/session/projector"
 import { Cause, Deferred, Effect, Exit, Fiber, Layer } from "effect" // kappacode_change - Cause for resume-hint coverage
 import { Agent } from "../../src/agent/agent.ts"
 import { BackgroundJob } from "@/background/job"
 import { EventV2Bridge } from "@/event-v2-bridge"
 import { Config } from "@/config/config"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
-import { Ripgrep } from "@opencode-ai/core/ripgrep"
+import { CrossSpawnSpawner } from "@toxicwind/core/cross-spawn-spawner"
+import { Ripgrep } from "@toxicwind/core/ripgrep"
 import { Session } from "@/session/session"
 import { MessageV2 } from "@/session/message-v2" // kappacode_change
 import type { SessionPrompt } from "../../src/session/prompt.ts"
@@ -25,8 +25,8 @@ import { ToolRegistry } from "@/tool/registry"
 import { RuntimeFlags } from "@/effect/runtime-flags"
 import { disposeAllInstances, provideTmpdirInstance } from "../fixture/fixture.ts"
 import { testEffect } from "../lib/effect.ts"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
 
 afterEach(async () => {
   await disposeAllInstances()

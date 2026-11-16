@@ -1,6 +1,6 @@
 /** Strict project/resource ownership for Agent Manager multi-project routing. */
 
-import { zeroID as key } from "@opencode-ai/core/kappacode/zero-id"
+import { zeroID as key } from "@toxicwind/core/kappacode/zero-id"
 
 export interface ProjectRef {
   projectId: string

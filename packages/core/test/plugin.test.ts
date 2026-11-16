@@ -1,8 +1,8 @@
 import { describe, expect } from "bun:test"
 import { Effect, Exit, Fiber } from "effect"
 import { define } from "@kappacode/plugin/v2/effect"
-import { AgentV2 } from "@opencode-ai/core/agent"
-import { PluginV2 } from "@opencode-ai/core/plugin"
+import { AgentV2 } from "@toxicwind/core/agent"
+import { PluginV2 } from "@toxicwind/core/plugin"
 import { testEffect } from "./lib/effect"
 import { PluginTestLayer } from "./plugin/fixture"
 

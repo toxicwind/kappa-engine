@@ -1,6 +1,6 @@
 import { expect } from "bun:test"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { CrossSpawnSpawner } from "@toxicwind/core/cross-spawn-spawner"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import { Deferred, Effect, Fiber, Layer } from "effect"
 import { InstanceState } from "@/effect/instance-state"
 import { provideInstanceEffect, testInstanceStoreLayer, tmpdirScoped } from "../fixture/fixture.ts"

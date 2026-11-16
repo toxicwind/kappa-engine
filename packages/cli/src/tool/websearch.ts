@@ -4,8 +4,8 @@ import * as Tool from "./tool.ts"
 import * as McpWebSearch from "./mcp-websearch.ts"
 import * as KappaExa from "@/kappacode/tool/websearch-kappa-exa" // kappacode_change - Kappa-REST Exa transport
 import DESCRIPTION from "./websearch.txt"
-import { checksum } from "@opencode-ai/core/util/encode"
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
+import { checksum } from "@toxicwind/core/util/encode"
+import { InstallationVersion } from "@toxicwind/core/installation/version"
 import { RuntimeFlags } from "@/effect/runtime-flags"
 import { Auth } from "@/auth" // kappacode_change - source Kappa bearer for Kappa-REST transport
 import { Env } from "@/env" // kappacode_change - config via Env.Service instead of process.env reads

@@ -12,7 +12,7 @@ import type {
   FilePartInput,
   Config,
 } from "@kappacode/sdk/v2/client"
-import { MaxCostNudge, type MaxCostChoice } from "@opencode-ai/core/kappacode/cost/max-cost-nudge"
+import { MaxCostNudge, type MaxCostChoice } from "@toxicwind/core/kappacode/cost/max-cost-nudge"
 import { type KappaConnectionService, ServerStartupError } from "./services/cli-backend"
 import { previewSound, testOSNotification } from "./services/attention"
 import type { EditorContext, IndexingStatus } from "./services/cli-backend/types"

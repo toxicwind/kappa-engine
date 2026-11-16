@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "@opencode-ai/server",
+  "name": "@toxicwind/server",
   "version": "7.8.10",
   "private": true,
   "type": "module",
@@ -12,10 +12,10 @@
     "typecheck": "tsgo --noEmit"
   },
   "dependencies": {
-    "@opencode-ai/core": "workspace:*",
+    "@toxicwind/core": "workspace:*",
     "drizzle-orm": "catalog:",
     "effect": "catalog:",
-    "@opencode-ai/protocol": "workspace:*"
+    "@toxicwind/protocol": "workspace:*"
   },
   "devDependencies": {
     "@tsconfig/bun": "catalog:",

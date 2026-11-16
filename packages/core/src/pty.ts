@@ -2,7 +2,7 @@ export * as Pty from "./pty"
 
 import { makeGlobalNode, makeLocationNode } from "./effect/app-node" // kappacode_change
 import { Context, Effect, Layer, Schema, Types } from "effect"
-import { Pty } from "@opencode-ai/schema/pty"
+import { Pty } from "@toxicwind/schema/pty"
 import { Config } from "./config"
 import { EventV2 } from "./event"
 import { Location } from "./location"

@@ -9,9 +9,9 @@ if (process.platform === "win32" && !("type" in process)) {
 
 import path from "node:path"
 import { pathToFileURL } from "node:url"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { ConfigV1 } from "@opencode-ai/core/v1/config/config"
-import { serviceUse } from "@opencode-ai/core/effect/service-use"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
+import { ConfigV1 } from "@toxicwind/core/v1/config/config"
+import { serviceUse } from "@toxicwind/core/effect/service-use"
 import { Client, type ClientOptions } from "@modelcontextprotocol/sdk/client/index.js"
 import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js"
 import { SSEClientTransport } from "@modelcontextprotocol/sdk/client/sse.js"
@@ -25,11 +25,11 @@ import {
   ToolListChangedNotificationSchema,
 } from "@modelcontextprotocol/sdk/types.js"
 import { Config } from "@/config/config"
-import { ConfigMCPV1 } from "@opencode-ai/core/v1/config/mcp"
-import { NamedError } from "@opencode-ai/core/util/error"
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
+import { ConfigMCPV1 } from "@toxicwind/core/v1/config/mcp"
+import { NamedError } from "@toxicwind/core/util/error"
+import { InstallationVersion } from "@toxicwind/core/installation/version"
 import { withTimeout } from "@/util/timeout"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@toxicwind/core/fs-util"
 import { McpOAuthPendingProvider, McpOAuthProvider, OAUTH_CALLBACK_PATH } from "./oauth-provider.ts"
 import { McpOAuthCallback } from "./oauth-callback.ts"
 import { McpAuth } from "./auth.ts"
@@ -43,10 +43,10 @@ import { EffectBridge } from "@/effect/bridge"
 import { model as modelEnv } from "@/kappacode/process/env" // kappacode_change
 import { InstanceState } from "@/effect/instance-state"
 import { ChildProcess, ChildProcessSpawner } from "effect/process"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { CrossSpawnSpawner } from "@toxicwind/core/cross-spawn-spawner"
 import * as SandboxNetwork from "@/kappacode/sandbox/network" // kappacode_change
 import { McpCatalog } from "./catalog.ts"
-import { McpEvent } from "@opencode-ai/schema/mcp-event"
+import { McpEvent } from "@toxicwind/schema/mcp-event"
 import { McpBrowser } from "./browser.ts"
 import { authFailure } from "@/kappacode/mcp/auth-failure" // kappacode_change
 

@@ -1,6 +1,6 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { Progress } from "@opencode-ai/ui/progress"
+import { Progress } from "@toxicwind/ui/progress"
 
 const meta: Meta<typeof Progress> = {
   title: "Components/Progress",

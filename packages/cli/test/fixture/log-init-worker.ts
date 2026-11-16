@@ -16,7 +16,7 @@ process.env.XDG_CONFIG_HOME = path.join(dir, "config")
 process.env.XDG_STATE_HOME = path.join(dir, "state")
 process.env.KAPPA_TEST_HOME = path.join(dir, "home")
 
-const Log = await import("@opencode-ai/core/util/log")
+const Log = await import("@toxicwind/core/util/log")
 
 async function bytes(file: string) {
   return fs

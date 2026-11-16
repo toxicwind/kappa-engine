@@ -1,6 +1,6 @@
-import { Flag } from "@opencode-ai/core/flag/flag"
-import { ConfigV1 } from "@opencode-ai/core/v1/config/config"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import { Flag } from "@toxicwind/core/flag/flag"
+import { ConfigV1 } from "@toxicwind/core/v1/config/config"
+import { SessionV1 } from "@toxicwind/core/v1/session"
 import { Cause, Duration, Effect, Layer, Scope } from "effect"
 import { TestLLMServer } from "../../lib/llm-server.ts"
 import type { Config } from "../../../src/config/config.ts"
@@ -11,8 +11,8 @@ import { call, callAuthProbe, disposeApps } from "./backend.ts"
 import { original } from "./environment.ts"
 import { runtime } from "./runtime.ts"
 import type { ActiveScenario, Options, ProjectOptions, Result, Scenario, ScenarioContext, SeededContext } from "./types.ts"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
 
 export function runScenario(options: Options) {
   return (scenario: Scenario) => {

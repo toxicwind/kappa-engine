@@ -4,8 +4,8 @@ import { asc, desc, eq } from "drizzle-orm" // kappacode_change
 // kappacode_change start
 import { Context, Effect, Layer, Option, Schema, Semaphore } from "effect"
 // kappacode_change end
-import { Credential } from "@opencode-ai/schema/credential"
-import { Integration } from "@opencode-ai/schema/integration"
+import { Credential } from "@toxicwind/schema/credential"
+import { Integration } from "@toxicwind/schema/integration"
 import { Database } from "./database/database"
 import { makeGlobalNode } from "./effect/app-node"
 import { CredentialTable } from "./credential/sql"

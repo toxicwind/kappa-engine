@@ -1,7 +1,7 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { Popover } from "@opencode-ai/ui/popover"
-import { Button } from "@opencode-ai/ui/button"
+import { Popover } from "@toxicwind/ui/popover"
+import { Button } from "@toxicwind/ui/button"
 
 const meta: Meta = {
   title: "Components/Popover",

@@ -1,7 +1,7 @@
 import { createConnection } from "net"
 import { createServer } from "http"
 import { escapeHtml } from "@/util/html"
-import * as Log from "@opencode-ai/core/util/log" // kappacode_change
+import * as Log from "@toxicwind/core/util/log" // kappacode_change
 import { OAUTH_CALLBACK_PORT, OAUTH_CALLBACK_PATH, parseRedirectUri } from "./oauth-provider.ts"
 import * as KappaOAuthCallback from "../kappacode/mcp-oauth-callback.ts" // kappacode_change
 

@@ -1,7 +1,7 @@
 import { FileDiff, type FileDiffOptions } from "@pierre/diffs"
 import type { WorkerPoolManager } from "@pierre/diffs/worker"
 import { createEffect, createMemo, on, onCleanup, splitProps, untrack, type ComponentProps, type JSX } from "solid-js"
-import { File as BaseFile } from "@opencode-ai/ui/file"
+import { File as BaseFile } from "@toxicwind/ui/file"
 import { createDefaultOptions, styleVariables } from "@kappacode/kappa-ui/pierre"
 import { getWorkerPool } from "../pierre/worker"
 

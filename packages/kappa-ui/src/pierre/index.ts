@@ -6,7 +6,7 @@ import {
   type SelectedLineRange,
 } from "@pierre/diffs"
 import { ComponentProps } from "solid-js"
-import { createDefaultOptions as defaults, styleVariables } from "@opencode-ai/ui/pierre"
+import { createDefaultOptions as defaults, styleVariables } from "@toxicwind/ui/pierre"
 
 export { styleVariables }
 

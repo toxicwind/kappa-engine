@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test"
 import * as PowerShell from "@/kappacode/shell/shell"
-import { Shell } from "@opencode-ai/core/shell"
+import { Shell } from "@toxicwind/core/shell"
 
 const command = `Write-Output "こんにちは 😀"; Write-Output '$value'; Write-Output \`tick\`
 Write-Output "done"`

@@ -1,5 +1,5 @@
 import { Config } from "@/config/config"
-import { ConfigPluginV1 } from "@opencode-ai/core/v1/config/plugin"
+import { ConfigPluginV1 } from "@toxicwind/core/v1/config/plugin"
 import { KappacodeKeybinds } from "@/kappacode/tui/keybinds"
 import { KappaTitleIcon } from "@/kappacode/cli/cmd/tui/title-icon"
 import { Authorization } from "@/server/routes/instance/httpapi/middleware/authorization"

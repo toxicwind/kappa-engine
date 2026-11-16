@@ -1,6 +1,6 @@
 import { Notebook, HostError } from "@/kappacode/notebook/service"
 import { Path } from "@/kappacode/notebook/protocol"
-import { NonNegativeInt } from "@opencode-ai/core/schema"
+import { NonNegativeInt } from "@toxicwind/core/schema"
 import * as Tool from "@/tool/tool"
 import { Effect, Schema } from "effect"
 import { runner } from "./host.ts"

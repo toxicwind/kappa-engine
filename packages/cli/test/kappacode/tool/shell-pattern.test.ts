@@ -6,12 +6,12 @@
 // real ShellPermission scanner so quoting is decided by the parser, not by a
 // second hand-written lexer.
 
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
 import { afterEach, describe, expect, test } from "bun:test"
 import { Effect, Layer } from "effect"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import type { PermissionV1 } from "@opencode-ai/core/v1/permission"
+import { CrossSpawnSpawner } from "@toxicwind/core/cross-spawn-spawner"
+import { FSUtil } from "@toxicwind/core/fs-util"
+import type { PermissionV1 } from "@toxicwind/core/v1/permission"
 import { hardenExplore, patchAgents } from "../../../src/kappacode/agent/index.ts"
 import { Permission } from "../../../src/permission/index.ts"
 import { ShellPermission } from "../../../src/tool/shell.ts"

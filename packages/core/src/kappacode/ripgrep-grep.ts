@@ -1,5 +1,5 @@
 import { Schema, SchemaGetter } from "effect"
-import type { Match } from "@opencode-ai/schema/filesystem"
+import type { Match } from "@toxicwind/schema/filesystem"
 
 // ripgrep emits base64 `bytes` instead of `text` when the data is not valid UTF-8.
 // Decode with lossy UTF-8 so valid multi-byte sequences survive intact and only

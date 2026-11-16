@@ -1,5 +1,5 @@
 import type { IndexingStatus } from "@kappacode/kappa-indexing/status"
-import { zeroID } from "@opencode-ai/core/kappacode/zero-id"
+import { zeroID } from "@toxicwind/core/kappacode/zero-id"
 
 export const INDEXING_WARNING_CODES = ["qdrant.version-incompatible", "qdrant.version-unavailable"] as const
 

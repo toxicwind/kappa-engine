@@ -1,12 +1,12 @@
-// Copy of @opencode-ai/ui/theme/context.tsx with two changes:
+// Copy of @toxicwind/ui/theme/context.tsx with two changes:
 // 1. Imports DEFAULT_THEMES from our local default-themes (which includes Kappa themes)
 // 2. Default theme changed from "oc-1" to "kappa"
 import { onMount, onCleanup, createEffect } from "solid-js"
 import { createStore } from "solid-js/store"
-import type { DesktopTheme } from "@opencode-ai/ui/theme/types"
-import { resolveThemeVariant, themeToCss } from "@opencode-ai/ui/theme/resolve"
+import type { DesktopTheme } from "@toxicwind/ui/theme/types"
+import { resolveThemeVariant, themeToCss } from "@toxicwind/ui/theme/resolve"
 import { DEFAULT_THEMES } from "./default-themes"
-import { createSimpleContext } from "@opencode-ai/ui/context/helper"
+import { createSimpleContext } from "@toxicwind/ui/context/helper"
 
 export type ColorScheme = "light" | "dark" | "system"
 

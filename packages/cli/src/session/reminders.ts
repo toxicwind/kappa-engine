@@ -1,4 +1,4 @@
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import { SessionV1 } from "@toxicwind/core/v1/session"
 import { Effect } from "effect"
 import { Agent } from "@/agent/agent"
 import { KappaModeReminders } from "@/kappacode/session/mode-reminders" // kappacode_change

@@ -7,8 +7,8 @@
 // reviewing a PR is never evidence, and a link is never inherited from the
 // worktree, a branch name, or a previous session.
 import { Storage } from "@/storage/storage"
-import { Flag } from "@opencode-ai/core/flag/flag"
-import * as Log from "@opencode-ai/core/util/log"
+import { Flag } from "@toxicwind/core/flag/flag"
+import * as Log from "@toxicwind/core/util/log"
 import { simpleGit } from "simple-git"
 
 export type PrLink = {

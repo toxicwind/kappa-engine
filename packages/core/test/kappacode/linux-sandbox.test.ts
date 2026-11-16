@@ -9,8 +9,8 @@ import { Effect, Stream } from "effect"
 import { ChildProcess, ChildProcessSpawner } from "effect/process"
 import { backendSupport, run, type Profile } from "@kappacode/sandbox"
 import { CurrentProxyFactory, startProxy, type ProxyFactory } from "@kappacode/sandbox"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { CrossSpawnSpawner } from "@toxicwind/core/cross-spawn-spawner"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
 
 const linux = process.platform === "linux" ? test : test.skip
 const linuxIPv6 = process.platform === "linux" && supportsIPv6() ? test : test.skip
@@ -833,7 +833,7 @@ linux("rejects a Bubblewrap helper inside a writable root", async () => {
     'import { Effect } from "effect"',
     'import { ChildProcess, ChildProcessSpawner } from "effect/process"',
     'import { backendSupport, run } from "@kappacode/sandbox"',
-    'import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"',
+    'import { CrossSpawnSpawner } from "@toxicwind/core/cross-spawn-spawner"',
     "if (!backendSupport().available) process.exit(2)",
     `const profile = { filesystem: { allowWrite: [{ path: ${JSON.stringify(root.project)}, kind: "subtree" }], denyWrite: [], denyNames: [] }, network: { mode: "allow", allowedHosts: [] }, environment: { deny: [], set: {} } }`,
     'const effect = Effect.scoped(run(profile, ChildProcessSpawner.ChildProcessSpawner.use((spawner) => spawner.spawn(ChildProcess.make(process.execPath, ["-e", "process.exit(0)"])))).pipe(Effect.provide(CrossSpawnSpawner.defaultLayer)))',
@@ -872,7 +872,7 @@ linux("reports network namespace support separately and fails deny mode closed",
     'import { Effect } from "effect"',
     'import { ChildProcess, ChildProcessSpawner } from "effect/process"',
     'import { backendSupport, run } from "@kappacode/sandbox"',
-    'import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"',
+    'import { CrossSpawnSpawner } from "@toxicwind/core/cross-spawn-spawner"',
     'const allow = backendSupport({ mode: "allow", allowedHosts: [] })',
     'const deny = backendSupport({ mode: "deny", allowedHosts: [] })',
     "if (!allow.available) process.exit(2)",
@@ -899,7 +899,7 @@ linux("fails closed when Bubblewrap is unavailable", () => {
     'import { Effect } from "effect"',
     'import { ChildProcess, ChildProcessSpawner } from "effect/process"',
     'import { backendSupport, run } from "@kappacode/sandbox"',
-    'import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"',
+    'import { CrossSpawnSpawner } from "@toxicwind/core/cross-spawn-spawner"',
     "if (backendSupport().available) process.exit(2)",
     'const profile = { filesystem: { allowWrite: [], denyWrite: [], denyNames: [] }, network: { mode: "allow", allowedHosts: [] }, environment: { deny: [], set: {} } }',
     'const effect = Effect.scoped(run(profile, ChildProcessSpawner.ChildProcessSpawner.use((spawner) => spawner.spawn(ChildProcess.make(process.execPath, ["-e", "process.exit(0)"])))).pipe(Effect.provide(CrossSpawnSpawner.defaultLayer)))',

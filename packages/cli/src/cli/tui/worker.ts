@@ -11,8 +11,8 @@ import { AppRuntime } from "@/effect/app-runtime"
 import { Effect } from "effect"
 import { disposeAllInstancesAndEmitGlobalDisposed } from "@/server/global-lifecycle"
 import { KappaLog } from "@/kappacode/log" // kappacode_change
-import * as Log from "@opencode-ai/core/util/log" // kappacode_change
-import { ensureProcessMetadata } from "@opencode-ai/core/util/opencode-process" // kappacode_change
+import * as Log from "@toxicwind/core/util/log" // kappacode_change
+import { ensureProcessMetadata } from "@toxicwind/core/util/opencode-process" // kappacode_change
 import { createWorkerRemoteExit } from "@/kappacode/cli/cmd/tui/remote-exit-worker" // kappacode_change
 import { createWorkerShutdown } from "@/cli/tui/worker-shutdown" // kappacode_change
 import { KappaSessions } from "@/kappa-sessions/kappa-sessions" // kappacode_change

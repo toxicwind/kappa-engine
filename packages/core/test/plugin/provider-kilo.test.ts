@@ -1,13 +1,13 @@
 import { describe, expect } from "bun:test"
 import { Effect } from "effect"
-import { AISDK } from "@opencode-ai/core/aisdk" // kappacode_change
-import { Catalog } from "@opencode-ai/core/catalog"
-import { ModelV2 } from "@opencode-ai/core/model" // kappacode_change
-import { PluginV2 } from "@opencode-ai/core/plugin"
-import { PluginHost } from "@opencode-ai/core/plugin/host"
-import { ProviderPlugins } from "@opencode-ai/core/plugin/provider"
-import { KappaPlugin } from "@opencode-ai/core/plugin/provider/kappa"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { AISDK } from "@toxicwind/core/aisdk" // kappacode_change
+import { Catalog } from "@toxicwind/core/catalog"
+import { ModelV2 } from "@toxicwind/core/model" // kappacode_change
+import { PluginV2 } from "@toxicwind/core/plugin"
+import { PluginHost } from "@toxicwind/core/plugin/host"
+import { ProviderPlugins } from "@toxicwind/core/plugin/provider"
+import { KappaPlugin } from "@toxicwind/core/plugin/provider/kappa"
+import { ProviderV2 } from "@toxicwind/core/provider"
 import { testEffect } from "../lib/effect"
 import { PluginTestLayer } from "./fixture"
 

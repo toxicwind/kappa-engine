@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test"
 import { Effect, Stream } from "effect"
-import { LLMEvent } from "@opencode-ai/llm"
+import { LLMEvent } from "@toxicwind/llm"
 import { KappaLLM } from "@/kappacode/session/llm"
 
 describe("kappacode.session.llm.timeout", () => {

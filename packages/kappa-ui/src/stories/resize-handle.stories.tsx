@@ -1,7 +1,7 @@
 /** @jsxImportSource solid-js */
 import { createSignal } from "solid-js"
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { ResizeHandle } from "@opencode-ai/ui/resize-handle"
+import { ResizeHandle } from "@toxicwind/ui/resize-handle"
 
 const meta: Meta = {
   title: "Components/ResizeHandle",

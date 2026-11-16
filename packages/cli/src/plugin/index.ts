@@ -1,4 +1,4 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import type {
   Hooks,
   PluginInput,
@@ -11,7 +11,7 @@ import { createKappaClient } from "@kappacode/sdk"
 import { ServerAuth } from "@/server/auth"
 import { CodexAuthPlugin } from "./openai/codex.ts"
 import { Session } from "@/session/session"
-import { NamedError } from "@opencode-ai/core/util/error"
+import { NamedError } from "@toxicwind/core/util/error"
 import { CopilotAuthPlugin } from "./github-copilot/copilot.ts"
 import { ModalPlugin } from "./modal/modal.ts"
 import { gitlabAuthPlugin as GitlabAuthPlugin } from "opencode-gitlab-auth"
@@ -35,7 +35,7 @@ import { registerAdapter } from "@/control-plane/adapters"
 import type { WorkspaceAdapter } from "@/control-plane/types"
 import { RuntimeFlags } from "@/effect/runtime-flags"
 import { EventV2Bridge } from "@/event-v2-bridge"
-import { InstallationChannel } from "@opencode-ai/core/installation/version"
+import { InstallationChannel } from "@toxicwind/core/installation/version"
 
 type State = {
   hooks: Hooks[]
@@ -80,7 +80,7 @@ function internalPlugins(flags: RuntimeFlags.Info): PluginInstance[] {
     CopilotAuthPlugin,
     ModalPlugin,
     // kappacode_change start
-    // kappacode_change - external auth plugins ship against @opencode-ai/plugin; bridge to our @kappacode/plugin types
+    // kappacode_change - external auth plugins ship against @toxicwind/plugin; bridge to our @kappacode/plugin types
     GitlabAuthPlugin as unknown as PluginInstance,
     PoeAuthPlugin as unknown as PluginInstance,
     // kappacode_change end

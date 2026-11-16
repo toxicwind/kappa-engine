@@ -1,5 +1,5 @@
 import { LocalContext } from "@/util/local-context"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@toxicwind/core/fs-util"
 import type * as Project from "./project.ts"
 
 export interface InstanceContext {

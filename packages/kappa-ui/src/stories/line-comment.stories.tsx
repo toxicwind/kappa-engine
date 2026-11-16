@@ -1,7 +1,7 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
 import { createSignal } from "solid-js"
-import { LineCommentAnchor, LineComment, LineCommentEditor } from "@opencode-ai/ui/line-comment"
+import { LineCommentAnchor, LineComment, LineCommentEditor } from "@toxicwind/ui/line-comment"
 
 const meta: Meta = {
   title: "Components/LineComment",

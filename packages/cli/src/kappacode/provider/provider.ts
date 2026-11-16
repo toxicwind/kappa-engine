@@ -8,9 +8,9 @@
 
 import { createKappa, type KappaProvider, AI_SDK_PROVIDERS, PROMPTS } from "@kappacode/kappa-gateway"
 import { DEFAULT_HEADERS } from "@/kappacode/const"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
-import { optionalOmitUndefined } from "@opencode-ai/core/schema"
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
+import { optionalOmitUndefined } from "@toxicwind/core/schema"
 import { ProviderError } from "@/provider/error"
 import { Effect, Schema } from "effect"
 import type { LanguageModelV3 } from "@ai-sdk/provider"

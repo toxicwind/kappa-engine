@@ -9,11 +9,11 @@ import { Spinner } from "@kappacode/kappa-ui/spinner"
 import { StickyAccordionHeader } from "@kappacode/kappa-ui/sticky-accordion-header"
 import { useI18n } from "@kappacode/kappa-ui/context/i18n"
 import { normalize } from "@kappacode/kappa-ui/session-diff"
-import type { SessionReviewProps } from "@opencode-ai/ui/session-review"
+import type { SessionReviewProps } from "@toxicwind/ui/session-review"
 import { Diff } from "./diff"
 import { ScrollView } from "./scroll-view"
 
-export * from "@opencode-ai/ui/session-review"
+export * from "@toxicwind/ui/session-review"
 
 const EXTREME_DIFF_CHANGED_LINES = 2_000
 

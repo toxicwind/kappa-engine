@@ -5,8 +5,8 @@ import { useDialog } from "../ui/dialog"
 import { useSync } from "../context/sync"
 import { useProject } from "@tui/context/project"
 import { For, Match, Switch, Show, createMemo } from "solid-js"
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
-import { Global } from "@opencode-ai/core/global" // kappacode_change
+import { InstallationVersion } from "@toxicwind/core/installation/version"
+import { Global } from "@toxicwind/core/global" // kappacode_change
 
 export type DialogStatusProps = {}
 

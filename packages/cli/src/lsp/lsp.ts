@@ -1,5 +1,5 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
+import { FSUtil } from "@toxicwind/core/fs-util"
 import { EventV2Bridge } from "@/event-v2-bridge"
 import * as LSPClient from "./client.ts"
 import path from "path"
@@ -14,9 +14,9 @@ import { InstanceState } from "@/effect/instance-state"
 const DIAGNOSTICS_TIMEOUT_MS = 2000 // kilocode_change
 import { containsPath } from "@/project/instance-context"
 import { TsClient } from "../kappacode/ts-client.ts" // kappacode_change
-import { NonNegativeInt } from "@opencode-ai/core/schema"
+import { NonNegativeInt } from "@toxicwind/core/schema"
 import { RuntimeFlags } from "@/effect/runtime-flags"
-import { LspEvent } from "@opencode-ai/schema/lsp-event"
+import { LspEvent } from "@toxicwind/schema/lsp-event"
 
 export const Event = LspEvent
 

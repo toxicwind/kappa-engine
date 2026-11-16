@@ -1,4 +1,4 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import path from "path"
 import { InstanceState } from "@/effect/instance-state"
 import { EffectBridge } from "@/effect/bridge"
@@ -11,7 +11,7 @@ import { reviewCommand } from "@/kappacode/review/command" // kappacode_change
 import { apply as applyOverride, type Override } from "@/kappacode/command/override" // kappacode_change
 import * as Reserved from "@/kappacode/command/reserved" // kappacode_change
 import PROMPT_INITIALIZE from "./template/initialize.txt"
-import { LegacyEvent } from "@opencode-ai/schema/legacy-event"
+import { LegacyEvent } from "@toxicwind/schema/legacy-event"
 import { SessionResume } from "@/kappacode/session-resume" // kappacode_change
 
 type State = {

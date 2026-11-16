@@ -1,14 +1,14 @@
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
 import { describe, expect, test } from "bun:test"
 import { Effect, Layer } from "effect"
 import type { Agent } from "../../src/agent/agent.ts"
-import { NamedError } from "@opencode-ai/core/util/error"
+import { NamedError } from "@toxicwind/core/util/error"
 import { Skill } from "../../src/skill/index.ts"
 import { Permission } from "../../src/permission/index.ts"
 import type { Provider } from "../../src/provider/provider.ts"
 import { SystemPrompt } from "../../src/session/system.ts"
 import { MCP } from "../../src/mcp/index.ts" // kappacode_change - restore upstream MCP coverage in Kappa's AppNodeBuilder harness
-import { LocationServiceMap } from "@opencode-ai/core/location-services"
+import { LocationServiceMap } from "@toxicwind/core/location-services"
 import { testEffect } from "../lib/effect.ts"
 import { Config } from "../../src/config/config.ts" // kappacode_change
 

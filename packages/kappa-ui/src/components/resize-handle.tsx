@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/resize-handle"
+export * from "@toxicwind/ui/resize-handle"

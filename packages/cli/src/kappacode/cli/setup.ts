@@ -1,7 +1,7 @@
 import type { Argv } from "yargs"
 import type { Auth } from "@/auth"
-import * as Log from "@opencode-ai/core/util/log"
-import { InstallationBuildKind, InstallationVersion } from "@opencode-ai/core/installation/version"
+import * as Log from "@toxicwind/core/util/log"
+import { InstallationBuildKind, InstallationVersion } from "@toxicwind/core/installation/version"
 import { KappaShutdown } from "@/kappacode/cli/shutdown"
 import { createHelpCommand } from "@/kappacode/help-command"
 import { hasLazyCommandSelection } from "@/kappacode/cli/lazy-commands"
@@ -92,7 +92,7 @@ export namespace KappaCli {
       ? await runtime.KappaCliBootstrapRuntime.getGlobal()
       : await app!.AppRuntime.runPromise((await import("@/config/config")).Config.Service.use((c) => c.getGlobal()))
 
-    const { Global } = await import("@opencode-ai/core/global")
+    const { Global } = await import("@toxicwind/core/global")
     const { Telemetry } = await import("@kappacode/kappa-telemetry")
     await Telemetry.init({
       dataPath: Global.Path.data,

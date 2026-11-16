@@ -4,7 +4,7 @@ import path from "node:path"
 import { expect, test } from "bun:test"
 import { ConfigVariable } from "@/config/variable"
 import { ConfigVariableGuard } from "@/kappacode/config/variable"
-import { InvalidError } from "@opencode-ai/core/v1/config/error"
+import { InvalidError } from "@toxicwind/core/v1/config/error"
 
 const source = { type: "virtual" as const, source: "test", dir: process.cwd() }
 const trusted = { ...source, trusted: true }

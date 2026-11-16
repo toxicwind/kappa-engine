@@ -25,7 +25,7 @@ export type Retryable = {
   // kappacode_change start — model-switch optimization: when the provider lane
   // is overloaded ("Provider is overloaded (freeinference)"), the retry loop
   // holds a stale model ref and retries the SAME overloaded lane with backoff.
-  // Instead, signal the caller to SWITCH to a less-loaded model (the estate has
+  // Instead, signal the caller to SWITCH to a less-loaded model (the Pens has
   // 3: qwen3.6-35b / glm-5.3-flash / deepseek-v4-flash) — breaking the backoff
   // loop and using the freeinference lane maximally.
   switchModel?: boolean

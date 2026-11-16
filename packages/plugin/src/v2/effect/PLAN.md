@@ -7,7 +7,7 @@ This document describes the agreed target design for the V2 plugin system. It is
 ## Goals
 
 - Internal and external plugins use the same public plugin API.
-- Effect plugins import `@kappacode/plugin/v2/effect`, not `@opencode-ai/core`.
+- Effect plugins import `@kappacode/plugin/v2/effect`, not `@toxicwind/core`.
 - Public domain values use generated `@kappacode/sdk` types.
 - Core may retain branded IDs, decoded Effect schemas, and internal service types.
 - Plugins may register replayable domain transforms and runtime hooks imperatively during setup.

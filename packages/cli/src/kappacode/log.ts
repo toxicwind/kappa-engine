@@ -1,5 +1,5 @@
-import * as Log from "@opencode-ai/core/util/log"
-import { InstallationBuildKind } from "@opencode-ai/core/installation/version"
+import * as Log from "@toxicwind/core/util/log"
+import { InstallationBuildKind } from "@toxicwind/core/installation/version"
 
 export namespace KappaLog {
   export function init() {

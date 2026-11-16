@@ -12,7 +12,7 @@
 //   3. A concurrent setInterval keeps ticking — i.e. the event loop keeps
 //      breathing and ESC would be delivered.
 
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
 import { test, expect, afterEach, mock } from "bun:test"
 import { $ } from "bun"
 import { Effect, Fiber, Layer } from "effect"
@@ -21,10 +21,10 @@ import { Server } from "../../src/server/server.ts"
 import { Session } from "../../src/session/session.ts"
 import { Snapshot } from "../../src/snapshot/index.ts"
 import { Filesystem } from "../../src/util/filesystem.ts"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import { disposeAllInstances, tmpdir } from "../fixture/fixture.ts"
 import { seedProject } from "../fixture/fixture.ts"
-import { Database } from "@opencode-ai/core/database/database"
+import { Database } from "@toxicwind/core/database/database"
 import { InstanceRef } from "../../src/effect/instance-ref.ts"
 import type { InstanceContext } from "../../src/project/instance-context.ts"
 

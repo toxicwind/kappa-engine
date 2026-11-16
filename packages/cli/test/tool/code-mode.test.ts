@@ -1,7 +1,7 @@
 import { afterAll, describe, expect, test } from "bun:test" // kappacode_change
 import { CODE_MODE_TOOL, CodeModeTool, Parameters, describeCatalog } from "@/tool/code-mode"
 import type { Tool as MCPToolDef } from "@modelcontextprotocol/sdk/types.js"
-import type { PermissionV1 } from "@opencode-ai/core/v1/permission"
+import type { PermissionV1 } from "@toxicwind/core/v1/permission"
 import { Agent } from "@/agent/agent"
 import { MCP } from "@/mcp"
 import { Permission } from "@/permission"
@@ -13,8 +13,8 @@ import { MessageID, SessionID } from "@/session/schema"
 import { Cause, Effect, Exit, Layer, ManagedRuntime, Schema } from "effect" // kappacode_change
 import { InstanceRef } from "@/effect/instance-ref" // kappacode_change
 import { TestConfig } from "../fixture/config.ts" // kappacode_change
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kappacode_change
-import { Database } from "@opencode-ai/core/database/database" // kappacode_change
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder" // kappacode_change
+import { Database } from "@toxicwind/core/database/database" // kappacode_change
 import * as SandboxNetwork from "@/kappacode/sandbox/network" // kappacode_change
 
 const ctx: Tool.Context = {

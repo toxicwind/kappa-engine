@@ -1,13 +1,13 @@
 import { ProviderAuth } from "@/provider/auth"
 import { Config } from "@/config/config"
-import { ModelsDev } from "@opencode-ai/core/models-dev"
+import { ModelsDev } from "@toxicwind/core/models-dev"
 import { Provider } from "@/provider/provider"
 
 import { mapValues, pickBy } from "remeda" // kappacode_change
 import { ModelCache } from "@/provider/model-cache" // kappacode_change
 import { Auth } from "@/auth" // kappacode_change
 import { organization, recommend } from "@/kappacode/provider/catalog" // kappacode_change
-import { ModelV2 } from "@opencode-ai/core/model" // kappacode_change
+import { ModelV2 } from "@toxicwind/core/model" // kappacode_change
 import { Option } from "effect" // kappacode_change
 import {
   disposeAllInstancesAfterProviderAuthCallback,
@@ -21,7 +21,7 @@ import { HttpServerRequest, HttpServerResponse } from "effect/http"
 import { HttpApiBuilder } from "effect/http-api"
 import { InstanceHttpApi } from "../api.ts"
 import { ProviderAuthApiError } from "../groups/provider.ts"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { ProviderV2 } from "@toxicwind/core/provider"
 
 function mapProviderAuthError<A, R>(self: Effect.Effect<A, ProviderAuth.Error, R>) {
   return self.pipe(

@@ -5,7 +5,7 @@
   },
   "name": "secretsmith",
   "version": "2.0.0-bun",
-  "description": "Bun drop-in for the estate secretsmith \u2014 freedesktop Secret Service client with full CRUD, token resolution, and a CLI mirror. Importable from any Bun caller (forge, agents).",
+  "description": "Bun drop-in for the Pens secretsmith \u2014 freedesktop Secret Service client with full CRUD, token resolution, and a CLI mirror. Importable from any Bun caller (forge, agents).",
   "type": "module",
   "module": "./src/index.ts",
   "types": "./src/index.ts",

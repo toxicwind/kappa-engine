@@ -1,5 +1,5 @@
 import { NodeFileSystem, NodePath } from "@effect/platform-node"
-import { LLMClient, RequestExecutor } from "@opencode-ai/llm/route"
+import { LLMClient, RequestExecutor } from "@toxicwind/llm/route"
 import { FileSystem, Path } from "effect"
 import { FetchHttpClient } from "effect/http"
 import { HttpClient } from "effect/http"

@@ -1,5 +1,5 @@
-import type { DesktopTheme } from "@opencode-ai/ui/theme/types"
-import { DEFAULT_THEMES as UPSTREAM_THEMES } from "@opencode-ai/ui/theme/default-themes"
+import type { DesktopTheme } from "@toxicwind/ui/theme/types"
+import { DEFAULT_THEMES as UPSTREAM_THEMES } from "@toxicwind/ui/theme/default-themes"
 import kappaJson from "./themes/kappa.json"
 import kappaVscodeJson from "./themes/kappa-vscode.json"
 
@@ -20,7 +20,7 @@ export {
   carbonfoxTheme,
   gruvboxTheme,
   auraTheme,
-} from "@opencode-ai/ui/theme/default-themes"
+} from "@toxicwind/ui/theme/default-themes"
 
 export const kappaTheme = kappaJson as DesktopTheme
 export const kappaVscodeTheme = kappaVscodeJson as DesktopTheme

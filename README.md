@@ -44,7 +44,7 @@ Everything runs where you're already working:
 
 Upstream and the fork share the same core ideas — before touching a file, inspect the
 repo; attach files, tools, MCP servers; stream every token. The fork layers on
-resilience and estate-specific muscle that upstream deliberately keeps out:
+resilience and Pens-specific muscle that upstream deliberately keeps out:
 
 - **Flail Gate** — model-agnostic loop detection. At runtime it catches tool-call
   loops, "narrated but didn't do it" turns, and re-derivations of already-rejected

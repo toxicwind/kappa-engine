@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, test } from "bun:test"
-import { EventV2 } from "@opencode-ai/core/event"
-import { Location } from "@opencode-ai/core/location"
+import { EventV2 } from "@toxicwind/core/event"
+import { Location } from "@toxicwind/core/location"
 import { Context, Schema } from "effect"
 import { HttpApiApp } from "../../src/server/routes/instance/httpapi/server.ts"
 import { resetDatabase } from "../fixture/db.ts"

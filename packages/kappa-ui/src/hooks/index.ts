@@ -1,2 +1,2 @@
-export { useFilteredList } from "@opencode-ai/ui/hooks"
+export { useFilteredList } from "@toxicwind/ui/hooks"
 export * from "./create-auto-scroll"

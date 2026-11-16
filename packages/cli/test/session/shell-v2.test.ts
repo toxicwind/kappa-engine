@@ -3,10 +3,10 @@ import { describe, expect, test } from "bun:test"
 import { Effect } from "effect"
 import * as DateTime from "effect/DateTime"
 import { SessionID } from "../../src/session/schema.ts"
-import { EventV2 } from "@opencode-ai/core/event"
-import { SessionEvent } from "@opencode-ai/core/session/event"
-import { SessionMessageUpdater } from "@opencode-ai/core/session/message-updater"
-import { SessionMessage } from "@opencode-ai/core/session/message"
+import { EventV2 } from "@toxicwind/core/event"
+import { SessionEvent } from "@toxicwind/core/session/event"
+import { SessionMessageUpdater } from "@toxicwind/core/session/message-updater"
+import { SessionMessage } from "@toxicwind/core/session/message"
 
 describe("v2 shell event correlation", () => {
   test("an unmatched end is ignored before a matching start and end complete one record", () => {

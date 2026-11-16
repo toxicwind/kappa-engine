@@ -1,7 +1,7 @@
 export * as ProviderV2 from "./provider"
 
 import { Types } from "effect"
-import { Provider } from "@opencode-ai/schema/provider"
+import { Provider } from "@toxicwind/schema/provider"
 
 // kappacode_change - preserve Kappa's well-known routing ID without forking the shared schema
 export const ID = Object.assign(Provider.ID, { kappa: Provider.ID.make("kappa") })

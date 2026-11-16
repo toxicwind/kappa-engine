@@ -1,6 +1,6 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { Button } from "@opencode-ai/ui/button"
+import { Button } from "@toxicwind/ui/button"
 
 const meta: Meta<typeof Button> = {
   title: "Components/Button",

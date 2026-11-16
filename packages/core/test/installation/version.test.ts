@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test"
-import { InstallationChannel, safeChannelToken } from "@opencode-ai/core/installation/version"
+import { InstallationChannel, safeChannelToken } from "@toxicwind/core/installation/version"
 
 describe("safeChannelToken", () => {
   // kappacode_change start

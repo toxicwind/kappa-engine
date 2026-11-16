@@ -15,7 +15,7 @@ import { useToast } from "@tui/ui/toast"
 import { createEffect, createMemo, createResource, createSignal, Show } from "solid-js"
 import { reconcile } from "solid-js/store"
 import type { IndexingConfig, Config } from "@kappacode/sdk/v2"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import { hasKappaIndexingAuth, resolveKappaIndexingAuth, shouldDefaultIndexingToKappa } from "../indexing-auth.ts"
 import {
   createIndexingDialogState,

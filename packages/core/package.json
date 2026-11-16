@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "version": "7.8.10",
-  "name": "@opencode-ai/core",
+  "name": "@toxicwind/core",
   "type": "module",
   "license": "MIT",
   "private": true,
@@ -59,7 +59,7 @@
     "@parcel/watcher-linux-x64-musl": "2.5.1",
     "@parcel/watcher-win32-arm64": "2.5.1",
     "@parcel/watcher-win32-x64": "2.5.1",
-    "@opencode-ai/http-recorder": "workspace:*",
+    "@toxicwind/http-recorder": "workspace:*",
     "drizzle-kit": "catalog:"
   },
   "dependencies": {
@@ -114,9 +114,9 @@
     "jsonc-parser": "3.3.1",
     "@effect/sql-sqlite-bun": "catalog:",
     "@lydell/node-pty": "catalog:",
-    "@opencode-ai/effect-drizzle-sqlite": "workspace:*",
-    "@opencode-ai/effect-sqlite-node": "workspace:*",
-    "@opencode-ai/llm": "workspace:*",
+    "@toxicwind/effect-drizzle-sqlite": "workspace:*",
+    "@toxicwind/effect-sqlite-node": "workspace:*",
+    "@toxicwind/llm": "workspace:*",
     "@parcel/watcher": "2.5.1",
     "bun-pty": "0.4.8",
     "drizzle-orm": "catalog:",
@@ -128,7 +128,7 @@
     "which": "6.0.1",
     "@ff-labs/fff-bun": "0.9.4",
     "@silvia-odwyer/photon-node": "0.3.4",
-    "@opencode-ai/schema": "workspace:*",
+    "@toxicwind/schema": "workspace:*",
     "@kappacode/plugin": "workspace:*",
     "diff": "catalog:"
   },

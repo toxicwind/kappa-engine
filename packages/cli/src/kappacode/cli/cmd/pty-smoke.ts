@@ -32,8 +32,8 @@ async function logs(dataHome: string) {
 }
 
 export async function render(file: string, args: string[] = ["--pure"], timeout = 60_000) {
-  const { spawn } = await import("@opencode-ai/core/pty/driver")
-  const { KappaPtyTermination } = await import("@opencode-ai/core/kappacode/pty/termination")
+  const { spawn } = await import("@toxicwind/core/pty/driver")
+  const { KappaPtyTermination } = await import("@toxicwind/core/kappacode/pty/termination")
   const dir = await mkdtemp(path.join(os.tmpdir(), "kappa-pty-render-"))
   const env: Record<string, string> = {}
   for (const key of ["PATH", "SystemRoot", "SYSTEMROOT", "ComSpec", "LANG", "LC_ALL", "LC_CTYPE", "LANGUAGE"]) {
@@ -193,7 +193,7 @@ export const PtySmokeCommand = cmd({
   describe: false,
   async handler() {
     if (process.env.KAPPA_PTY_SMOKE !== "1") throw new Error("PTY smoke command is release-only")
-    const { PtySmoke } = await import("@opencode-ai/core/kappacode/pty/smoke")
+    const { PtySmoke } = await import("@toxicwind/core/kappacode/pty/smoke")
     await PtySmoke.smoke()
     await render(process.execPath)
     console.log("Compiled TUI startup smoke test passed")

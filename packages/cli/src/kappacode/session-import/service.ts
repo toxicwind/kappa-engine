@@ -1,9 +1,9 @@
-import { Database } from "@opencode-ai/core/database/database"
-import { SessionTable, MessageTable, PartTable } from "@opencode-ai/core/session/sql"
+import { Database } from "@toxicwind/core/database/database"
+import { SessionTable, MessageTable, PartTable } from "@toxicwind/core/session/sql"
 import { SessionID, MessageID, PartID } from "../../session/schema.ts"
-import { SessionMessage } from "@opencode-ai/core/session/message" // kappacode_change - shared Revert.State brand
-import { ProjectV2 } from "@opencode-ai/core/project"
-import { WorkspaceV2 } from "@opencode-ai/core/workspace"
+import { SessionMessage } from "@toxicwind/core/session/message" // kappacode_change - shared Revert.State brand
+import { ProjectV2 } from "@toxicwind/core/project"
+import { WorkspaceV2 } from "@toxicwind/core/workspace"
 import { SessionImportType } from "./types.ts"
 import { Project } from "../../project/project.ts"
 import { AppRuntime } from "../../effect/app-runtime.ts"

@@ -1,7 +1,7 @@
 /**
  * argos-grep.ts — route broad /home/toxic/pens greps through the argos
  * pens-corpus index (fast, ranked, sees private-skills raw rg misses) instead
- * of a raw ripgrep filesystem scan. Permanent estate search doctrine: argos
+ * of a raw ripgrep filesystem scan. Permanent Pens search doctrine: argos
  * first (:25254, ES-wire), ffs/ripgrep only as the fallback lane.
  *
  * Returns null when argos is unreachable or the search is not a plain-text

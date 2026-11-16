@@ -1,5 +1,5 @@
 import { describe, expect, spyOn, test } from "bun:test"
-import { Npm } from "@opencode-ai/core/npm"
+import { Npm } from "@toxicwind/core/npm"
 import type { ConfigPlugin } from "@/config/plugin"
 import { hasAtomicChatPlugin } from "@/kappacode/atomic-chat-feature"
 import { KappacodeDefaultPlugins } from "@/kappacode/config/default-plugins"

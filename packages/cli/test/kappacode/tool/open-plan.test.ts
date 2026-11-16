@@ -1,5 +1,5 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { SessionProjector } from "@opencode-ai/core/session/projector"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
+import { SessionProjector } from "@toxicwind/core/session/projector"
 import { describe, expect } from "bun:test"
 import { Effect } from "effect"
 import path from "path"

@@ -1,6 +1,6 @@
-import { SessionV1 } from "@opencode-ai/core/v1/session"
-import { Database } from "@opencode-ai/core/database/database"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { SessionV1 } from "@toxicwind/core/v1/session"
+import { Database } from "@toxicwind/core/database/database"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import { EventV2Bridge } from "@/event-v2-bridge"
 import { expect } from "bun:test"
 import { tool } from "ai"
@@ -19,15 +19,15 @@ import { SessionStatus } from "../../src/session/status.ts"
 import { SessionSummary } from "../../src/session/summary.ts"
 import { SessionNetwork } from "../../src/session/network.ts" // kappacode_change
 import { Bus } from "../../src/bus/index.ts" // kappacode_change
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { CrossSpawnSpawner } from "@toxicwind/core/cross-spawn-spawner"
 import { provideTmpdirInstance, provideTmpdirServer } from "../fixture/fixture.ts"
 import { testEffect } from "../lib/effect.ts"
 import { raw, reply, TestLLMServer } from "../lib/llm-server.ts"
 import { RuntimeFlags } from "@/effect/runtime-flags"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
-import { SessionProjector } from "@opencode-ai/core/session/projector"
-import { LLMEvent } from "@opencode-ai/llm"
+import { ProviderV2 } from "@toxicwind/core/provider"
+import { ModelV2 } from "@toxicwind/core/model"
+import { SessionProjector } from "@toxicwind/core/session/projector"
+import { LLMEvent } from "@toxicwind/llm"
 
 const summary = Layer.succeed(
   SessionSummary.Service,

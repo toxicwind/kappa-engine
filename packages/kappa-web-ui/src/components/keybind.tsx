@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/keybind"
+export * from "@toxicwind/ui/keybind"

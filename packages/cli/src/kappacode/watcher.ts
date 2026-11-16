@@ -1,11 +1,11 @@
 import { InstanceState } from "@/effect/instance-state"
 import { registerDisposer } from "@/effect/instance-registry"
 import type { InstanceContext } from "@/project/instance-context"
-import * as Log from "@opencode-ai/core/util/log"
-import { Flag } from "@opencode-ai/core/flag/flag"
-import { Location } from "@opencode-ai/core/location"
-import { LocationServiceMap, locationServiceMapLayer } from "@opencode-ai/core/location-services"
-import { AbsolutePath } from "@opencode-ai/core/schema"
+import * as Log from "@toxicwind/core/util/log"
+import { Flag } from "@toxicwind/core/flag/flag"
+import { Location } from "@toxicwind/core/location"
+import { LocationServiceMap, locationServiceMapLayer } from "@toxicwind/core/location-services"
+import { AbsolutePath } from "@toxicwind/core/schema"
 import { Cause, Context, Effect, Exit, Layer, Scope } from "effect"
 
 const log = Log.create({ service: "kappacode-watcher" })

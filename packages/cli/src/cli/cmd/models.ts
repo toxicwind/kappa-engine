@@ -1,9 +1,9 @@
 import { EOL } from "os"
 import { Effect } from "effect"
-import { ModelsDev } from "@opencode-ai/core/models-dev"
+import { ModelsDev } from "@toxicwind/core/models-dev"
 import { effectCmd, fail } from "../effect-cmd.ts"
 import { UI } from "../ui.ts"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { ProviderV2 } from "@toxicwind/core/provider"
 
 export const ModelsCommand = effectCmd({
   command: "models [provider]",

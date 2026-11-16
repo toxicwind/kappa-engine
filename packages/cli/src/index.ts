@@ -3,15 +3,15 @@ import { hideBin } from "yargs/helpers"
 // kappacode_change - upstream account console intentionally omitted; KappaCli registers `kappa console` for local settings
 import { UI } from "./cli/ui.ts"
 import { TuiThreadCommand } from "./cli/cmd/tui.ts" // kappacode_change - yargs requires the default command builder eagerly
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
+import { InstallationVersion } from "@toxicwind/core/installation/version"
 import { FormatError } from "./cli/error.ts"
 import { EOL } from "os"
 // kappacode_change - upstream web command intentionally omitted; Kappa does not ship an embedded web UI
 import { errorMessage } from "./util/error.ts"
 import { Heap } from "./cli/heap.ts"
 import { KappaCli } from "@/kappacode/cli/setup" // kappacode_change
-import * as Log from "@opencode-ai/core/util/log" // kappacode_change
-import { ensureProcessMetadata } from "@opencode-ai/core/util/opencode-process" // kappacode_change
+import * as Log from "@toxicwind/core/util/log" // kappacode_change
+import { ensureProcessMetadata } from "@toxicwind/core/util/opencode-process" // kappacode_change
 // kappacode_change start - defer heavy command implementations until yargs selects them
 import {
   AcpCommand,

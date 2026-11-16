@@ -7,7 +7,7 @@ export type {
   ResolvedTheme,
   ColorValue,
   CssVarRef,
-} from "@opencode-ai/ui/theme/types"
+} from "@toxicwind/ui/theme/types"
 
 export {
   hexToRgb,
@@ -23,10 +23,10 @@ export {
   lighten,
   darken,
   withAlpha,
-} from "@opencode-ai/ui/theme/color"
+} from "@toxicwind/ui/theme/color"
 
-export { resolveThemeVariant, resolveTheme, themeToCss } from "@opencode-ai/ui/theme/resolve"
-export { applyTheme, loadThemeFromUrl, getActiveTheme, removeTheme, setColorScheme } from "@opencode-ai/ui/theme/loader"
+export { resolveThemeVariant, resolveTheme, themeToCss } from "@toxicwind/ui/theme/resolve"
+export { applyTheme, loadThemeFromUrl, getActiveTheme, removeTheme, setColorScheme } from "@toxicwind/ui/theme/loader"
 
 // Override: use our context with kappa default
 export { ThemeProvider, useTheme, type ColorScheme } from "./context"

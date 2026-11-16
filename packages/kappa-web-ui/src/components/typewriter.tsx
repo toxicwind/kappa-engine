@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/typewriter"
+export * from "@toxicwind/ui/typewriter"

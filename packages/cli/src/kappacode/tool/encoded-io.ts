@@ -1,7 +1,7 @@
 import { dirname } from "node:path"
 import { Effect } from "effect"
 import { batchMutations, enabled, ensureDirectory } from "@kappacode/sandbox"
-import type { FSUtil } from "@opencode-ai/core/fs-util"
+import type { FSUtil } from "@toxicwind/core/fs-util"
 import * as Encoding from "../encoding.ts"
 import * as Bom from "@/util/bom"
 

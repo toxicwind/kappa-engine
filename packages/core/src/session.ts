@@ -2,7 +2,7 @@ export * as SessionV2 from "./session"
 export * from "./session/schema"
 
 import { DateTime, Effect, Layer, Schema, Context, Stream } from "effect"
-import { ListAnchor } from "@opencode-ai/schema/session"
+import { ListAnchor } from "@toxicwind/schema/session"
 import { and, asc, desc, eq, gt, isNotNull, like, lt, or, type SQL } from "drizzle-orm" // kappacode_change
 import { ProjectV2 } from "./project"
 import { WorkspaceV2 } from "./workspace"
@@ -10,7 +10,7 @@ import { ModelV2 } from "./model"
 import { Location } from "./location"
 import { SessionMessage } from "./session/message"
 import { Prompt } from "./session/prompt"
-import { PromptInput } from "@opencode-ai/schema/prompt-input"
+import { PromptInput } from "@toxicwind/schema/prompt-input"
 import { EventV2 } from "./event"
 import { Database } from "./database/database"
 import { SessionProjector } from "./session/projector"
@@ -36,9 +36,9 @@ import { SessionInput } from "./session/input"
 import { normalize } from "./kappacode/session-message" // kappacode_change
 import { Snapshot } from "./snapshot"
 import { SessionRevert } from "./session/revert"
-import { Revert } from "@opencode-ai/schema/revert"
+import { Revert } from "@toxicwind/schema/revert"
 import { FSUtil } from "./fs-util"
-import { SessionDurable, type SessionDurableEvent } from "@opencode-ai/schema/durable-event-manifest" // kappacode_change
+import { SessionDurable, type SessionDurableEvent } from "@toxicwind/schema/durable-event-manifest" // kappacode_change
 
 export const RevertState = Revert.State
 export type RevertState = Revert.State

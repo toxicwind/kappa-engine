@@ -2,7 +2,7 @@ export * as ConfigVariable from "./variable.ts"
 
 import path from "path"
 import os from "os"
-import { InvalidError } from "@opencode-ai/core/v1/config/error"
+import { InvalidError } from "@toxicwind/core/v1/config/error"
 import { ConfigVariableGuard } from "@/kappacode/config/variable" // kappacode_change
 
 type ParseSource =

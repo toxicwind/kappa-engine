@@ -1,6 +1,6 @@
 import path from "path"
 import { realpathSync, statSync } from "fs"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@toxicwind/core/global"
 import { KappacodeConfigOverlay } from "@/kappacode/config/overlay"
 import type { Scope } from "./schema.ts"
 

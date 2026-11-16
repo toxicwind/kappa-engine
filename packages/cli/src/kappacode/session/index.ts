@@ -9,13 +9,13 @@ import { InstanceState } from "@/effect/instance-state"
 import { Session } from "@/session/session"
 import { MessageID, SessionID } from "@/session/schema"
 import { and, desc, eq, gte, inArray, isNull, like, lt, or, type SQL } from "drizzle-orm"
-import { Database } from "@opencode-ai/core/database/database"
-import { ProjectTable } from "@opencode-ai/core/project/sql"
-import { ProjectV2 } from "@opencode-ai/core/project"
+import { Database } from "@toxicwind/core/database/database"
+import { ProjectTable } from "@toxicwind/core/project/sql"
+import { ProjectV2 } from "@toxicwind/core/project"
 import { Filesystem } from "@/util/filesystem"
-import { SessionTable } from "@opencode-ai/core/session/sql"
-import * as Log from "@opencode-ai/core/util/log"
-import type { ProviderMetadata, Usage } from "@opencode-ai/llm"
+import { SessionTable } from "@toxicwind/core/session/sql"
+import * as Log from "@toxicwind/core/util/log"
+import type { ProviderMetadata, Usage } from "@toxicwind/llm"
 import type { Provider } from "@/provider/provider"
 import { ENV_FEATURE } from "@kappacode/kappa-gateway"
 import { existsSync } from "fs"
@@ -125,7 +125,7 @@ export namespace KappaSession {
 
   export function attribution(id: string): { rootID: string; feature?: string } {
     const rootID = resolveRoot(id)
-    const platform = resolvePlatform(rootID) ?? process.env["KAPPA_PLATFORM"]
+    const platform = resolvePlatform(rootID) ?? kiloEnv("PLATFORM")
     const feature = featureForPlatform(platform) ?? process.env[ENV_FEATURE]
     return { rootID, ...(feature ? { feature } : {}) }
   }

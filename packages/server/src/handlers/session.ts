@@ -1,8 +1,8 @@
-import { SessionV2 } from "@opencode-ai/core/session"
+import { SessionV2 } from "@toxicwind/core/session"
 import { DateTime, Effect, Stream } from "effect"
 import { HttpApiBuilder, HttpApiSchema } from "effect/http-api"
 import { Api } from "../api"
-import { SessionsCursor, makeSessionsCursor } from "@opencode-ai/protocol/groups/session" // kilocode_change
+import { SessionsCursor, makeSessionsCursor } from "@toxicwind/protocol/groups/session" // kilocode_change
 import {
   ConflictError,
   InvalidCursorError,
@@ -10,8 +10,8 @@ import {
   ServiceUnavailableError,
   SessionNotFoundError,
   UnknownError,
-} from "@opencode-ai/protocol/errors"
-import { Location } from "@opencode-ai/core/location" // kappacode_change
+} from "@toxicwind/protocol/errors"
+import { Location } from "@toxicwind/core/location" // kappacode_change
 
 const DefaultSessionsLimit = 50
 const DefaultSessionHistoryLimit = 50

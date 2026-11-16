@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/i18n/nl"
+export * from "@toxicwind/ui/i18n/nl"

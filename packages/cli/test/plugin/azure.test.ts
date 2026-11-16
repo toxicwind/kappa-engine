@@ -8,7 +8,7 @@ import type { Auth, Provider } from "@kappacode/sdk/v2"
 import { OAUTH_DUMMY_KEY } from "../../src/auth/index.ts"
 import { AzureAuthPlugin, createAzureAuthHooks } from "../../src/plugin/azure.ts"
 import { Process } from "../../src/util/process.ts"
-import { which } from "@opencode-ai/core/util/which"
+import { which } from "@toxicwind/core/util/which"
 
 const resourceName = process.env.AZURE_RESOURCE_NAME
 const originalPath = process.env.PATH

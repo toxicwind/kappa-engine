@@ -1,14 +1,14 @@
 import path from "node:path"
 import { Cause, Effect, Schema } from "effect"
 import { Auth } from "@/auth"
-import { Database } from "@opencode-ai/core/database/database"
+import { Database } from "@toxicwind/core/database/database"
 import { Storage } from "@/storage/storage"
 import { EventV2Bridge } from "@/event-v2-bridge"
 import { WorkspaceRef } from "@/effect/instance-ref"
 import { Session } from "@/session/session"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
-import type { DeepMutable } from "@opencode-ai/core/schema"
-import { MessageTable, PartTable } from "@opencode-ai/core/session/sql"
+import { SessionV1 } from "@toxicwind/core/v1/session"
+import type { DeepMutable } from "@toxicwind/core/schema"
+import { MessageTable, PartTable } from "@toxicwind/core/session/sql"
 import { Instance } from "@/kappacode/instance"
 import { Identifier } from "@/id/id"
 import {
@@ -19,7 +19,7 @@ import {
 } from "@kappacode/kappa-gateway"
 import { baseKey } from "@/kappacode/session-portability/cumulative-diff"
 import { extractSessionDiffs, restoreSessionDiffs } from "@/kappacode/session-portability/session-diff-restore"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 
 const log = Log.create({ service: "import-cloud-session" })
 

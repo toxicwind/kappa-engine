@@ -3,13 +3,13 @@ import { Context, Config as EffectConfig, Effect, Layer, Queue, Schema } from "e
 import { NodeHttpServer, NodeServices } from "@effect/platform-node"
 import { HttpClient, HttpClientRequest, HttpRouter, HttpServer } from "effect/http"
 import * as Socket from "effect/socket/Socket"
-import { runRaw } from "@opencode-ai/core/util/socket-run-raw" // kilocode_change
+import { runRaw } from "@toxicwind/core/util/socket-run-raw" // kilocode_change
 import path from "path"
 import { pathToFileURL } from "url"
 import { mkdir } from "fs/promises"
-import { Location } from "@opencode-ai/core/location"
-import { Pty } from "@opencode-ai/core/pty"
-import { PtyTicket } from "@opencode-ai/core/pty/ticket"
+import { Location } from "@toxicwind/core/location"
+import { Pty } from "@toxicwind/core/pty"
+import { PtyTicket } from "@toxicwind/core/pty/ticket"
 import { HttpApiApp } from "../../src/server/routes/instance/httpapi/server.ts"
 import { resetDatabase } from "../fixture/db.ts"
 import { disposeAllInstances, tmpdir, tmpdirScoped } from "../fixture/fixture.ts"

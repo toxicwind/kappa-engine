@@ -5,10 +5,10 @@ import { KappaSessionHttpApi } from "@/kappacode/server/httpapi/session-fork" //
 import { KappaSessionPromptQueue } from "@/kappacode/session/prompt-queue" // kappacode_change
 import { mergeScheduled } from "@/kappacode/session/scheduled" // kappacode_change
 import { Wakeup } from "@/kappacode/wakeup" // kappacode_change
-import { PermissionV1 } from "@opencode-ai/core/v1/permission"
+import { PermissionV1 } from "@toxicwind/core/v1/permission"
 import { KappaViewers } from "@/kappacode/presence/service" // kappacode_change
 import { Agent } from "@/agent/agent"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import { SessionV1 } from "@toxicwind/core/v1/session"
 import { EventV2Bridge } from "@/event-v2-bridge"
 import { Command } from "@/command"
 import { Permission } from "@/permission"
@@ -23,7 +23,7 @@ import { SessionStatus } from "@/session/status"
 import { SessionSummary } from "@/session/summary"
 import { Todo } from "@/session/todo"
 import { MessageID, PartID, SessionID } from "@/session/schema"
-import { NamedError } from "@opencode-ai/core/util/error"
+import { NamedError } from "@toxicwind/core/util/error"
 import { Cause, Effect, Option, Schema, Scope } from "effect"
 import * as Stream from "effect/Stream"
 import { InstanceState } from "@/effect/instance-state"

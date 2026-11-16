@@ -4,7 +4,7 @@
 // a fork, a reused branch name, a PR merely checked out, or a PR merely
 // mentioned/listed/viewed must never attach.
 import { afterAll, afterEach, beforeEach, describe, expect, mock, spyOn, test } from "bun:test"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@toxicwind/core/global"
 import fs from "node:fs/promises"
 import os from "node:os"
 import path from "node:path"

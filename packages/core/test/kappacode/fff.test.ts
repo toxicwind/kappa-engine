@@ -1,17 +1,17 @@
 import { describe, expect, test } from "bun:test"
 import { FileFinder, type InitOptions } from "@ff-labs/fff-bun"
-import "@opencode-ai/core/filesystem"
-import { Fff } from "@opencode-ai/core/filesystem/fff.bun"
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { Flag } from "@opencode-ai/core/flag/flag"
-import { Ripgrep } from "@opencode-ai/core/ripgrep"
+import "@toxicwind/core/filesystem"
+import { Fff } from "@toxicwind/core/filesystem/fff.bun"
+import { FSUtil } from "@toxicwind/core/fs-util"
+import { LayerNode } from "@toxicwind/core/effect/layer-node"
+import { Flag } from "@toxicwind/core/flag/flag"
+import { Ripgrep } from "@toxicwind/core/ripgrep"
 import fs from "node:fs/promises"
 import path from "path"
 import { Cause, Context, Effect, Layer, Scope } from "effect"
-import { allowed, message, notices } from "@opencode-ai/core/kappacode/fff"
-import { Location } from "@opencode-ai/core/location"
-import { AbsolutePath, RelativePath } from "@opencode-ai/core/schema"
+import { allowed, message, notices } from "@toxicwind/core/kappacode/fff"
+import { Location } from "@toxicwind/core/location"
+import { AbsolutePath, RelativePath } from "@toxicwind/core/schema"
 import { location } from "../fixture/location"
 import { tmpdir } from "../fixture/tmpdir"
 
@@ -46,7 +46,7 @@ describe("FFF scanning boundaries", () => {
       expect(notices(project)).toEqual([])
       await Effect.runPromise(
         Effect.gen(function* () {
-          const { FileSystemSearch } = yield* Effect.promise(() => import("@opencode-ai/core/filesystem/search"))
+          const { FileSystemSearch } = yield* Effect.promise(() => import("@toxicwind/core/filesystem/search"))
           const native = yield* Ripgrep.Service
           const source = FileSystemSearch.locationLayer.pipe(
             Layer.provide(
@@ -144,7 +144,7 @@ describe("FFF lifecycle", () => {
           Scope.make(),
           (scope) =>
             Effect.gen(function* () {
-              const { FileSystemSearch } = yield* Effect.promise(() => import("@opencode-ai/core/filesystem/search"))
+              const { FileSystemSearch } = yield* Effect.promise(() => import("@toxicwind/core/filesystem/search"))
               const layer = FileSystemSearch.fffLayer.pipe(
                 Layer.provide(FSUtil.defaultLayer),
                 Layer.provide(

@@ -1,6 +1,6 @@
 import { afterEach, expect, test } from "bun:test"
-import { Flag } from "@opencode-ai/core/flag/flag"
-import * as Log from "@opencode-ai/core/util/log"
+import { Flag } from "@toxicwind/core/flag/flag"
+import * as Log from "@toxicwind/core/util/log"
 import { Effect } from "effect"
 import { AppRuntime } from "../../../src/effect/app-runtime.ts"
 import { InstanceRef } from "../../../src/effect/instance-ref.ts"

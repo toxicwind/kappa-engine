@@ -1,4 +1,4 @@
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
 import { afterEach, beforeEach, describe, expect, spyOn } from "bun:test"
 import { Effect, Fiber, Layer } from "effect"
 import { Command } from "../../../src/command/index.ts"

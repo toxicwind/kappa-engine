@@ -2,7 +2,7 @@
 import { describe, expect, test } from "bun:test"
 import { mkdir, rm } from "fs/promises"
 import path from "path"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@toxicwind/core/global"
 import { parse as parseJsonc } from "jsonc-parser"
 import { RemoveError, remove } from "../../src/kappacode/agent/index.ts"
 import type { Info as AgentInfo } from "../../src/agent/agent.ts"

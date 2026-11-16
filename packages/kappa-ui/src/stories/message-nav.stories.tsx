@@ -1,6 +1,6 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { MessageNav } from "@opencode-ai/ui/message-nav"
+import { MessageNav } from "@toxicwind/ui/message-nav"
 import type { UserMessage } from "@kappacode/sdk/v2"
 
 const meta: Meta = {

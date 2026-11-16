@@ -1,7 +1,7 @@
 import type { TuiPlugin, TuiPluginApi, TuiPluginModule } from "@kappacode/plugin/tui"
 import { createEffect, createMemo, createSignal, onCleanup, onMount, Show } from "solid-js"
 import type { IndexingStatus, IndexingStatusState } from "@kappacode/kappa-indexing/status"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import { useSync } from "@tui/context/sync"
 import { formatIndexingLabel } from "../indexing-label.ts"
 import { indexingEnabled } from "../indexing-feature.ts"

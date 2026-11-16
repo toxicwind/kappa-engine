@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/animated-number"
+export * from "@toxicwind/ui/animated-number"

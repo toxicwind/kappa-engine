@@ -1,5 +1,5 @@
 import type { MessageV2 } from "@/session/message-v2"
-import type { SessionV1 } from "@opencode-ai/core/v1/session"
+import type { SessionV1 } from "@toxicwind/core/v1/session"
 import { resumeHint } from "../task-resume"
 
 type AnyMessage = SessionV1.WithParts
@@ -10,7 +10,7 @@ type AnyMessage = SessionV1.WithParts
  * Contract: the parent session receives the subagent's report through THIS
  * extraction. It must never return an empty string silently — an empty
  * <task_result> leaves the parent blind. The final assistant message can carry
- * no text (reasoning-budget starvation: finish=length, empty content — estate
+ * no text (reasoning-budget starvation: finish=length, empty content — Pens
  * anomaly #1) while an earlier message holds the actual report, so the walk
  * back over recent messages is part of the contract, not a heuristic.
  */

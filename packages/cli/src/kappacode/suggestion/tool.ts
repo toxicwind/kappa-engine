@@ -1,5 +1,5 @@
 import { Command } from "../../command/index.ts"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import { Effect, Schema } from "effect"
 import DESCRIPTION from "./tool.txt"
 import { Tool } from "../../tool/tool.ts"

@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/session-review"
+export * from "@toxicwind/ui/session-review"

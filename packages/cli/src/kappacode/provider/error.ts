@@ -1,5 +1,5 @@
 import type { APICallError } from "ai"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { ProviderV2 } from "@toxicwind/core/provider"
 import { isRecord } from "@/util/record"
 import { z } from "zod"
 

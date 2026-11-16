@@ -1,6 +1,6 @@
 import { Deferred, Effect } from "effect"
 import { InstanceState } from "@/effect/instance-state"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@toxicwind/core/util/log"
 import { SessionID } from "@/session/schema"
 import { KappaSessionPromptQueue } from "@/kappacode/session/prompt-queue"
 import type { Info } from "@/question"

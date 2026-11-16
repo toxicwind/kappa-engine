@@ -2,7 +2,7 @@ export * as ProviderUsage from "./provider-usage"
 
 import { Context, Effect, Layer, Schema } from "effect"
 import { createHash } from "node:crypto"
-import { ProviderUsage as Contract } from "@opencode-ai/schema/kappacode/provider-usage"
+import { ProviderUsage as Contract } from "@toxicwind/schema/kappacode/provider-usage"
 import { Catalog } from "../catalog"
 import { makeGlobalNode, makeLocationNode } from "../effect/app-node"
 import { Integration } from "../integration"

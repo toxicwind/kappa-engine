@@ -1,8 +1,8 @@
 import { eq } from "drizzle-orm"
 import { Effect } from "effect"
 import type { SessionID } from "@/session/schema"
-import { SessionTable } from "@opencode-ai/core/session/sql"
-import { Database } from "@opencode-ai/core/database/database"
+import { SessionTable } from "@toxicwind/core/session/sql"
+import { Database } from "@toxicwind/core/database/database"
 
 export const key = "kappacode.sandbox"
 
