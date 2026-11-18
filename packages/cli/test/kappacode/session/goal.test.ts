@@ -169,6 +169,9 @@ for (const status of ["complete", "blocked"] as const) {
       yield* run.command("clear")
       expect(yield* run.metadata).toEqual(retained)
     }),
+    // The paused poll alone allows 10s; the 5s bun default is structurally
+    // insufficient under load (the complete variant runs ~5.1s in a full file).
+    30_000,
   )
 }
 
@@ -2069,6 +2072,9 @@ for (const override of [
       expect(aliasHits).toHaveLength(2)
       expect(JSON.stringify(aliasHits.at(-1)?.body.messages)).toContain("Custom workflow: ship it")
     }),
+    // The paused poll alone allows 10s; the 5s bun default is structurally
+    // insufficient under load.
+    30_000,
   )
 }
 
