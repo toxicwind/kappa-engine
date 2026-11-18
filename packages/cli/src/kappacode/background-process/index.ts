@@ -727,23 +727,25 @@ export async function probeLinux(
 ): Promise<"owned" | "foreign" | "gone" | "unknown"> {
   if (!token) return "unknown"
   const leader = await io.readStat(`/proc/${pid}/stat`)
-  if (!leader) {
-    cache.delete(pid)
-    return "gone"
-  }
-  // Hot-path cache: a verified leader keeps its ownership while starttime is
-  // unchanged, so the 35KB /proc/<pid>/environ read happens once per process
-  // instead of every PUBLISH_MS tick (12 watchers x 2Hz was ~840KB/s of
-  // /proc churn). PID reuse changes starttime -> re-verification.
-  const cached = cache.lookup(pid, leader)
-  if (cached !== undefined) return cached ? "owned" : "foreign"
-  if (pgrp(leader) === pid) {
-    const data = await io.readEnviron(`/proc/${pid}/environ`)
-    if (data?.split("\0").includes(`KAPPA_BACKGROUND_PROCESS_TOKEN=${token}`)) {
-      cache.set(pid, leader, true)
-      return "owned"
+  if (leader) {
+    // Hot-path cache: a verified leader keeps its ownership while starttime is
+    // unchanged, so the 35KB /proc/<pid>/environ read happens once per process
+    // instead of every PUBLISH_MS tick (12 watchers x 2Hz was ~840KB/s of
+    // /proc churn). PID reuse changes starttime -> re-verification.
+    const cached = cache.lookup(pid, leader)
+    if (cached !== undefined) return cached ? "owned" : "foreign"
+    if (pgrp(leader) === pid) {
+      const data = await io.readEnviron(`/proc/${pid}/environ`)
+      if (data?.split("\0").includes(`KAPPA_BACKGROUND_PROCESS_TOKEN=${token}`)) {
+        cache.set(pid, leader, true)
+        return "owned"
+      }
     }
   }
+  // The leader may be gone while its process group survives: a persistent
+  // descendant keeps the group alive after the leader exits, so a missing
+  // /proc/<pid>/stat must fall through to the member scan instead of
+  // reporting "gone" outright.
   const names = await io.readdir("/proc")
   if (!names) return "unknown"
   const members: number[] = []
@@ -754,8 +756,10 @@ export async function probeLinux(
   }
   if (members.length === 0) {
     // Leader is gone: cache the negative so the next tick short-circuits
-    // instead of re-scanning /proc.
-    cache.set(pid, leader, false)
+    // instead of re-scanning /proc. Without a leader stat there is nothing
+    // to key the cache on, so drop any stale entry instead.
+    if (leader) cache.set(pid, leader, false)
+    else cache.delete(pid)
     return "gone"
   }
   let read = false
@@ -764,13 +768,14 @@ export async function probeLinux(
     if (!data) continue
     read = true
     if (data.split("\0").includes(`KAPPA_BACKGROUND_PROCESS_TOKEN=${token}`)) {
-      cache.set(pid, leader, true)
+      if (leader) cache.set(pid, leader, true)
       return "owned"
     }
   }
   // Cache negative results too: a foreign pid keeps a stable starttime, so
   // the full /proc scan runs once per pid, not once per tick.
-  cache.set(pid, leader, false)
+  if (leader) cache.set(pid, leader, false)
+  else cache.delete(pid)
   return read ? "foreign" : "unknown"
 }
 
