@@ -36,6 +36,7 @@ import { Agent } from "@/agent/agent"
 import * as Truncate from "@/tool/truncate"
 import { InstanceState } from "@/effect/instance-state"
 import { MemoryPaths } from "@kappacode/kappa-memory/effect/paths"
+import { KappaMemory } from "@kappacode/kappa-memory/effect"
 
 const log = Log.create({ service: "kappacode-tool-registry" })
 type Deps = { agent: Agent.Interface; truncate: Truncate.Interface; indexing?: boolean }
@@ -411,20 +412,37 @@ export namespace KappaToolRegistry {
     memoryEnabledCache.delete(root)
   }
 
-  /** Per-turn cache of memory-tool availability.
-   * Core memory (Phase 2) is always available — no per-project enable/disable gate.
-   * Cache is invalidated on state mutations for consistency. */
-  export function memoryToolsEnabled(_input: { ctx: MemoryPaths.Ctx }) {
-    return Effect.sync(() => {
-      const root = MemoryPaths.root({ ctx: _input.ctx })
+  /** Per-turn cache of `KappaMemory.toolEnabled` keyed by root string, with a short TTL so the
+   * step-loop coalesces probes inside a single turn. Cache is invalidated immediately on enable /
+   * disable / purge / rebuild via the MemoryEvents bus (subscribed in kappacode/bootstrap.ts).
+   * NOTE: Phase 2 (7d076201) stubbed this to always-true on the grounds that core memory is
+   * always available — but the kappa_memory tools' visibility and the prompt's memory injection
+   * both read FILE/project memory, whose enable/disable gate is alive (state, HTTP endpoints,
+   * MemoryDisabledError, and this cache's own invalidation all still implement it). The stub
+   * broke the toggle contract: disable no longer hid the tools, and the prompt's pinned-memory
+   * cache could never rebuild on toggle because its `enabled` key never changed. */
+  export function memoryToolsEnabled(input: { ctx: MemoryPaths.Ctx }) {
+    return Effect.gen(function* () {
+      const root = MemoryPaths.root({ ctx: input.ctx })
       const cached = memoryEnabledCache.get(root)
       if (cached && cached.deadline > Date.now()) return cached.enabled
-      memoryEnabledCache.set(root, { enabled: true, deadline: Date.now() + MEMORY_ENABLED_TTL_MS })
+      const enabled = yield* Effect.tryPromise({
+        try: () => KappaMemory.toolEnabled({ ctx: input.ctx }),
+        catch: (err) => err,
+      }).pipe(
+        Effect.catch((err) =>
+          Effect.sync(() => {
+            log.warn("memory tools unavailable", { error: String(err) })
+            return false
+          }),
+        ),
+      )
+      memoryEnabledCache.set(root, { enabled, deadline: Date.now() + MEMORY_ENABLED_TTL_MS })
       if (memoryEnabledCache.size > MEMORY_ENABLED_CACHE_MAX) {
         const oldest = memoryEnabledCache.keys().next().value
         if (oldest !== undefined) memoryEnabledCache.delete(oldest)
       }
-      return true
+      return enabled
     })
   }
   /** Hide Kappa memory tools from the model when project memory is disabled. */
