@@ -289,11 +289,14 @@ describe("session processor retry limit", () => {
     }),
   )
 
-  it.effect("preserves the upstream provider cap across mixed reconnects", () =>
+  // The fork raised the upstream cap 5 -> 10 in 951eda59 ("treat provider
+  // overload as retryable"), so this pins the fork's cap of 10 provider
+  // attempts: 11 provider/offline pairs, stopping on the 11th provider.
+  it.effect("preserves the provider cap across mixed reconnects", () =>
     Effect.gen(function* () {
-      const result = yield* policy(Array.from({ length: 6 }, () => ["provider", "offline"] as const).flat())
-      expect(result.offline).toBe(5)
-      expect(result.attempts).toEqual([1, 0, 2, 0, 3, 0, 4, 0, 5, 0])
+      const result = yield* policy(Array.from({ length: 11 }, () => ["provider", "offline"] as const).flat())
+      expect(result.offline).toBe(10)
+      expect(result.attempts).toEqual([1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0])
       expect(result.stopped).toBe(true)
     }),
   )

@@ -437,9 +437,12 @@ export namespace KappaSessionProcessor {
     if (event.type === "text-delta" && event.text.trim()) attempt.text = true
     if (event.type === "reasoning-delta" && event.text.trim()) {
       attempt.reasoning = true
-      // Reasoning content IS output text for models like glm-5.3-flash and
-      // nemotron-3-super that return content: null with reasoning_content
-      attempt.text = true
+      // NOTE: reasoning is deliberately NOT promoted to text here. Promoting
+      // it made replayable()'s reasoning branch unreachable (text blocks the
+      // retry), so reasoning-only unknown responses never retried. Models
+      // like glm-5.3-flash / nemotron-3-super that return reasoning as their
+      // only content are still protected: they finish with reason "stop",
+      // and replayable() only retries unknown finishes.
     }
     if (event.type === "tool-call" || event.type === "tool-result" || event.type === "tool-error") attempt.tool = true
     if (event.type === "step-finish") {
@@ -470,9 +473,13 @@ export namespace KappaSessionProcessor {
     return !input.usage
   }
 
-  export function blockRetry(error: ReturnType<typeof MessageV2.fromError>) {
-    const message = MessageV2.APIError.isInstance(error) ? error.data.message : "Response interrupted after output"
-    return new MessageV2.APIError({ message, isRetryable: false }).toObject()
+  export function blockRetry(_error: ReturnType<typeof MessageV2.fromError>) {
+    // The message must not match any retryable pattern: retryable() rescues
+    // errors whose message mentions 429/rate-limit even when isRetryable is
+    // false, which defeated this block for 429s after final output. This
+    // error is only consumed by the retry policy's decision (halt surfaces
+    // the original error), so the fixed message is never user-visible.
+    return new MessageV2.APIError({ message: "Response interrupted after output", isRetryable: false }).toObject()
   }
 
   export function recover(input: {

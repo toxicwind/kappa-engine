@@ -1023,6 +1023,11 @@ const layer = Layer.effect(
             Effect.gen(function* () {
               ctx.currentText = undefined
               ctx.reasoningMap = {}
+              // kappacode_change - a new stream attempt must not coalesce into
+              // a previous attempt's finished reasoning part: each dropped
+              // attempt's reasoning item (with its own provider itemId) must
+              // persist as its own part.
+              ctx.lastFinishedReasoningPart = undefined
               yield* status.set(ctx.sessionID, { type: "busy" })
               ctx.step = { reasoning: false, text: false, tool: false }
               // kappacode_change start - fail the attempt when the provider stalls on a dead network
