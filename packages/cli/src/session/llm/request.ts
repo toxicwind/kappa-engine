@@ -243,7 +243,7 @@ export const prepare = Effect.fn("LLMRequestPrep.prepare")(function* (input: Pre
     headers: {
       ...(input.model.providerID.startsWith("opencode")
         ? {
-            ...openCodeClientHeaders({}, input.sessionID, input.user.id),
+            ...openCodeClientHeaders({}, input.sessionID, input.user.id, input.flags.client),
             ...(opencodeProjectID ? { "x-opencode-project": opencodeProjectID } : {}),
           }
         : {

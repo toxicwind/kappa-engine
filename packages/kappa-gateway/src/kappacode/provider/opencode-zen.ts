@@ -107,6 +107,7 @@ export function openCodeClientHeaders(
   headers: Record<string, string>,
   session: string,
   requestId: string,
+  client = "cli",
 ): Record<string, string> {
   const h: Record<string, string> = { ...headers }
   delete h["x-session-affinity"]
@@ -115,7 +116,7 @@ export function openCodeClientHeaders(
   h["x-opencode-session"] = session
   h["x-opencode-session-id"] = session
   h["x-opencode-request"] = requestId
-  h["x-opencode-client"] = "cli"
+  h["x-opencode-client"] = client
   h["x-opencode-project"] = "global"
   return h
 }
