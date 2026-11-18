@@ -1,4 +1,4 @@
-import { Effect, Deferred, Option, Scope } from "effect"
+import { Effect, Deferred } from "effect"
 import type { BackgroundJob } from "@/background/job"
 import type { SessionID } from "@/session/schema"
 
@@ -61,28 +61,34 @@ export namespace KappaBackgrounder {
           const settledDeferred = yield* Deferred.make<Effect.Success<typeof settledOrTimeout>>()
 
           const sub = () => {
-            void Deferred.succeed(steerDeferred, true).pipe(Effect.ignore)
+            // Deferred.succeed is a lazy Effect: it must be RUN, not discarded.
+            void Effect.runPromise(Deferred.succeed(steerDeferred, true).pipe(Effect.ignore))
           }
 
           steerSignal.addEventListener("abort", sub, { once: true })
 
-          void settledOrTimeout.pipe(
+          // NOTE: forkScoped is an Effect — it must be yielded, not voided.
+          // The old `void ... forkScoped` never ran, so settledDeferred was
+          // never completed and any await on it hung forever.
+          yield* settledOrTimeout.pipe(
             Effect.tap((result) => Deferred.succeed(settledDeferred, result).pipe(Effect.ignore)),
             Effect.forkScoped,
           )
 
           const cleanup = Effect.sync(() => steerSignal.removeEventListener("abort", sub))
 
-          const steerWinner = yield* Deferred.await(steerDeferred).pipe(
-            Effect.timeoutOption("1 millis"),
-            Effect.map((opt) => {
-              if (Option.isSome(opt) && steerSignal.aborted) return { kind: "steer" as const }
-              return { kind: "settled" as const }
-            }),
-            Effect.tap(() => cleanup),
-          )
-
-          void steerWinner
+          // Race the steer signal against the job settlement: whichever fires
+          // first wins. The old code awaited the steer with a 1ms timeout and
+          // returned a bare { kind: "settled" } with no info, dropping the job's
+          // real result (status/output/error) — every foreground task reported
+          // "completed" with empty output the moment the steer signal existed.
+          const steerWinner = yield* Effect.gen(function* () {
+            if (steerSignal.aborted) return { kind: "steer" as const }
+            return yield* Effect.raceFirst(
+              Deferred.await(steerDeferred).pipe(Effect.as({ kind: "steer" as const })),
+              Deferred.await(settledDeferred),
+            )
+          }).pipe(Effect.tap(() => cleanup))
 
           return steerWinner
         })

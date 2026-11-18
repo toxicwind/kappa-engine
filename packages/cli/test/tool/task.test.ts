@@ -1160,9 +1160,12 @@ describe("tool.task", () => {
       expect(result.output).toContain("Background task updated")
       first.resolve()
       expect((yield* jobs.get(started.metadata.sessionId))?.status).toBe("running")
-      expect((yield* Effect.promise(() => updated.promise)).parts).toEqual([
-        { type: "text", text: "also inspect cancellation" },
-      ])
+      // The precompaction seed (c62096b4) is prepended to every child prompt,
+      // so the resumed prompt carries the seed first and the user's text last.
+      expect((yield* Effect.promise(() => updated.promise)).parts.at(-1)).toEqual({
+        type: "text",
+        text: "also inspect cancellation",
+      })
 
       second.resolve()
       const waited = yield* jobs.wait({ id: started.metadata.sessionId, timeout: 1_000 })

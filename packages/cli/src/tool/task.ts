@@ -24,7 +24,7 @@ import { resumeHint } from "../kappacode/task-resume.ts" // kappacode_change
 import { TaskResult } from "../kappacode/tool/task-result.ts" // kappacode_change
 import { errorMessage } from "@/util/error" // kappacode_change
 import { generateSeed, formatSeed } from "../kappacode/orchestrator-seed.ts" // kappacode_change: precompaction seed
-import { Effect, Exit, Schema, Scope } from "effect"
+import { Deferred, Effect, Exit, Schema, Scope } from "effect"
 import { Cause } from "effect" // kappacode_change
 import { RuntimeFlags } from "@/effect/runtime-flags"
 import * as SandboxPolicy from "@/kappacode/sandbox/policy" // kappacode_change
@@ -547,6 +547,26 @@ export const TaskTool = Tool.define(
       const deadline = KappaBackgrounder.getDeadline(flags.foregroundSubagentDeadlineMs)
       const steerSignal = flags.experimentalBackgroundSubagents ? KappaSessionSoftSteering.steer() : undefined
 
+      // kappacode change - wire the parent abort signal BEFORE the race:
+      // the child prompt blocks inside the job, so an abort during the wait
+      // must reach ops.cancel or the tool hangs until the test deadline.
+      // The cancel runs in a watcher fiber forked from this fiber (which
+      // carries the instance context jobs.get needs); the DOM listener only
+      // completes a Deferred via runPromise, which is context-free. The old
+      // shape ran the whole cancel through runPromise, where jobs.get died
+      // on a missing InstanceRef and the abort was silently lost.
+      const cancelJob = KappaTask.cancelForeground(background, nextSession.id, ops.cancel(nextSession.id))
+      const abortDeferred = yield* Deferred.make<void>()
+      function onAbort() {
+        void Effect.runPromise(Deferred.succeed(abortDeferred, undefined).pipe(Effect.ignore))
+      }
+      ctx.abort.addEventListener("abort", onAbort)
+      if (ctx.abort.aborted) yield* Deferred.succeed(abortDeferred, undefined).pipe(Effect.ignore)
+      yield* Deferred.await(abortDeferred).pipe(
+        Effect.andThen(cancelJob),
+        Effect.forkIn(scope),
+      )
+
       const raceResult = yield* KappaBackgrounder.raceWithSteering({
         jobs: background,
         id: nextSession.id,
@@ -565,14 +585,10 @@ export const TaskTool = Tool.define(
       }).pipe(Effect.scoped)
       // kappacode_change end
 
-      if (raceResult.type === "promoted") return backgroundResult()
-
-      if (raceResult.info.status === "error")
-        return yield* Effect.fail(new Error(raceResult.info.error ?? "Task failed"))
-
-      // kappacode change - only an explicit stop/delete cancels a task its parent still awaits
-      if (raceResult.info.status === "cancelled") return yield* Effect.fail(new Error("Task cancelled by the user"))
-      // kappacode change end
+      if (raceResult.type === "promoted") {
+        ctx.abort.removeEventListener("abort", onAbort)
+        return backgroundResult()
+      }
 
       const completed = {
         title: params.description,
@@ -580,16 +596,25 @@ export const TaskTool = Tool.define(
         output: renderOutput({ sessionID: nextSession.id, state: "completed", text: raceResult.info.output ?? "" }),
       }
 
-      // kappacode change - propagate subagent cost delta on exit
-      const cancelJob = KappaTask.cancelForeground(background, nextSession.id, ops.cancel(nextSession.id))
-      function onAbort() {
-        void Effect.runPromise(cancelJob.pipe(Effect.forkIn(scope, { startImmediately: true })))
-      }
-      ctx.abort.addEventListener("abort", onAbort)
+      // kappacode change - propagate subagent cost delta on exit, including
+      // the error/cancelled paths: partial cost billed before the failure
+      // must still reach the parent (the error/cancel checks live inside the
+      // use so the release always runs).
       const costBeforeVal = foregroundCost ?? 0
       const result = yield* Effect.acquireUseRelease(
         Effect.succeed(costBeforeVal),
-        () => Effect.succeed(completed),
+        () =>
+          Effect.gen(function* () {
+            if (raceResult.info.status === "error")
+              return yield* Effect.fail(new Error(raceResult.info.error ?? "Task failed"))
+
+            // kappacode change - only an explicit stop/delete cancels a task its parent still awaits
+            if (raceResult.info.status === "cancelled")
+              return yield* Effect.fail(new Error("Task cancelled by the user"))
+            // kappacode change end
+
+            return completed
+          }),
         (cv, exit) =>
           Effect.gen(function* () {
             if (Exit.hasInterrupts(exit))
