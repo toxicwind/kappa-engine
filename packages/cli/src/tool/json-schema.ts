@@ -49,8 +49,14 @@ function normalize(value: unknown, options: { stripNull?: boolean } = {}): unkno
   if (schema.additionalProperties === true) delete schema.additionalProperties
 
   if (options.stripNull && Array.isArray(schema.anyOf)) {
+    // Effect 4 adds a null arm for every optional field, which decode
+    // rejects for plain-optional fields — strip that spurious arm. But a
+    // genuinely nullable field (optional + NullOr) carries TWO null arms;
+    // keep exactly one so the wire shape stays truthful about null.
+    const nullCount = schema.anyOf.filter((item) => isRecord(item) && item.type === "null").length
     const withoutNull = schema.anyOf.filter((item) => !isRecord(item) || item.type !== "null")
-    if (withoutNull.length !== schema.anyOf.length) return normalize({ ...schema, anyOf: withoutNull })
+    if (nullCount === 1) return normalize({ ...schema, anyOf: withoutNull })
+    if (nullCount > 1) return normalize({ ...schema, anyOf: [...withoutNull, { type: "null" }] })
   }
 
   if (Array.isArray(schema.anyOf)) {

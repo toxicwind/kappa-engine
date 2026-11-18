@@ -72,9 +72,12 @@ describe("tool parameters", () => {
     test("keeps repeated allOf constraints instead of dropping duplicates", () => {
       expect(
         toJsonSchema(
-          Schema.Struct({ value: Schema.String.check(Schema.isPattern(/^a/)).check(Schema.isPattern(/z$/)) }),
+          Schema.Struct({ value: Schema.String.check(Schema.isPattern(/^a/u)).check(Schema.isPattern(/z$/u)) }),
         ),
-      ).toMatchObject({ properties: { value: { allOf: [{ pattern: "^a" }, { pattern: "z$" }] } } })
+        // Effect 4 exports patterns only for unicode-flagged regexes, and
+        // emits the first pattern inline with the rest in allOf; both
+        // constraints must survive, neither dropped nor clobbered.
+      ).toMatchObject({ properties: { value: { pattern: "^a", allOf: [{ pattern: "z$" }] } } })
     })
 
     test("bounds bare integer fields to safe integer range", () => {

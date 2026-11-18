@@ -45,7 +45,6 @@ Output: Creates directory 'foo'"
       "description": "Optional timeout in milliseconds",
       "exclusiveMinimum": 0,
       "maximum": 9007199254740991,
-      "minimum": -9007199254740991,
       "type": "integer",
     },
     "workdir": {
@@ -132,7 +131,6 @@ exports[`tool parameters JSON Schema (wire shape) grep 1`] = `
       "description": "Maximum matching lines to return (default 100)",
       "exclusiveMinimum": 0,
       "maximum": 9007199254740991,
-      "minimum": -9007199254740991,
       "type": "integer",
     },
     "literal": {
@@ -206,6 +204,7 @@ exports[`tool parameters JSON Schema (wire shape) lsp 1`] = `
         "prepareCallHierarchy",
         "incomingCalls",
         "outgoingCalls",
+        "diagnostics",
       ],
       "type": "string",
     },
@@ -216,9 +215,6 @@ exports[`tool parameters JSON Schema (wire shape) lsp 1`] = `
   },
   "required": [
     "operation",
-    "filePath",
-    "line",
-    "character",
   ],
   "type": "object",
 }
