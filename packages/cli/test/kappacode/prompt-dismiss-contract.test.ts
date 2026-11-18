@@ -13,6 +13,9 @@ import fs from "node:fs"
 import path from "node:path"
 
 const PROMPT_FILE = path.resolve(import.meta.dir, "../../src/session/prompt.ts")
+// runLoop was extracted from prompt.ts into run-loop.ts; the hasFollowup
+// invariant lives with the loop now.
+const RUN_LOOP_FILE = path.resolve(import.meta.dir, "../../src/session/run-loop.ts")
 
 describe("prompt.ts Kappa-specific invariants", () => {
   test("imports Suggestion from kappacode/suggestion", () => {
@@ -43,7 +46,7 @@ describe("prompt.ts Kappa-specific invariants", () => {
   })
 
   test("runLoop breaks out between LLM steps when a newer prompt was enqueued", () => {
-    const content = fs.readFileSync(PROMPT_FILE, "utf-8")
+    const content = fs.readFileSync(RUN_LOOP_FILE, "utf-8")
     // hasFollowup has to be checked inside runLoop so the current handle.process
     // finishes naturally (tokens + inline tool calls) and the next LLM step is
     // skipped when a follow-up is already queued.
