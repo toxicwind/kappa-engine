@@ -21,7 +21,7 @@ import { BoardReadTool, BoardPostTool } from "../../src/kappacode/tool/board.ts"
 import { BoardStore } from "../../src/kappacode/board/store.ts"
 import { KappaTask } from "../../src/kappacode/tool/task.ts"
 import { KappaSessionPrompt } from "../../src/kappacode/session/prompt.ts"
-import { disposeAllInstances, provideTmpdirInstance } from "../fixture/fixture.ts"
+import { bootstrapReplacement, disposeAllInstances, provideTmpdirInstance } from "../fixture/fixture.ts"
 import { testEffect } from "../lib/effect.ts"
 
 const it = testEffect(
@@ -40,6 +40,7 @@ const it = testEffect(
       Truncate.node,
       CrossSpawnSpawner.node,
     ]),
+    [bootstrapReplacement],
   ),
 )
 const options = { config: { shared_agent_board: true, snapshot: false } }

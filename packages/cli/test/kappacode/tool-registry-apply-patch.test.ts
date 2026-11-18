@@ -7,11 +7,11 @@ import { KappaToolRegistry } from "../../src/kappacode/tool/registry.ts"
 import { ProviderV2 } from "@toxicwind/core/provider"
 import { ModelV2 } from "@toxicwind/core/model"
 import { ToolRegistry } from "../../src/tool/registry.ts"
-import { disposeAllInstances, provideTmpdirInstance } from "../fixture/fixture.ts"
+import { bootstrapReplacement, disposeAllInstances, provideTmpdirInstance } from "../fixture/fixture.ts"
 import { testEffect } from "../lib/effect.ts"
 
-const node = AppNodeBuilder.build(CrossSpawnSpawner.node)
-const it = testEffect(Layer.mergeAll(AppNodeBuilder.build(Agent.node), AppNodeBuilder.build(ToolRegistry.node), node))
+const node = AppNodeBuilder.build(CrossSpawnSpawner.node, [bootstrapReplacement])
+const it = testEffect(Layer.mergeAll(AppNodeBuilder.build(Agent.node, [bootstrapReplacement]), AppNodeBuilder.build(ToolRegistry.node, [bootstrapReplacement]), node))
 
 afterEach(async () => {
   await disposeAllInstances()

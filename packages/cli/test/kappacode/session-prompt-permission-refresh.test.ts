@@ -55,7 +55,7 @@ import { KappaSessionPrompt } from "../../src/kappacode/session/prompt.ts"
 import { KappaReadObject } from "../../src/kappacode/tool/read-object.ts"
 import { KappaSessions } from "../../src/kappa-sessions/kappa-sessions.ts"
 import { MemoryService } from "@kappacode/kappa-memory/effect/service"
-import { provideTmpdirServer } from "../fixture/fixture.ts"
+import { bootstrapReplacement, provideTmpdirServer } from "../fixture/fixture.ts"
 import { awaitWithTimeout, pollWithTimeout, testEffect } from "../lib/effect.ts"
 import { reply, TestLLMServer } from "../lib/llm-server.ts"
 
@@ -182,6 +182,7 @@ function makeHttp() {
     [LSP.node, lsp],
     [MCP.node, mcp],
     [KappaSessions.node, KappaSessions.testLayer],
+    bootstrapReplacement,
   ])
 }
 const it = testEffect(makeHttp())

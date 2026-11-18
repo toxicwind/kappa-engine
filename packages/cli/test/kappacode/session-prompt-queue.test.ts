@@ -16,7 +16,7 @@ import { ModelV2 } from "@toxicwind/core/model"
 import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import { SessionProjector } from "@toxicwind/core/session/projector"
 import { InstanceStore } from "../../src/project/instance-store.ts"
-import { provideTestInstance } from "../fixture/fixture.ts"
+import { bootstrapReplacement, provideTestInstance } from "../fixture/fixture.ts"
 import { Session } from "../../src/session/session.ts"
 import { MessageV2 } from "../../src/session/message-v2.ts"
 import { SessionCompaction } from "../../src/session/compaction.ts"
@@ -33,8 +33,8 @@ setDefaultTimeout(15_000)
 
 const previous = Flag.KAPPA_DB
 const dbfile = path.join(os.tmpdir(), `kappa-prompt-queue-${process.pid}-${crypto.randomUUID()}.db`)
-const layer = LayerNode.compile(LayerNode.group([Session.node, SessionProjector.node]))
-const prompt = LayerNode.compile(LayerNode.group([SessionPrompt.node, SessionProjector.node]))
+const layer = LayerNode.compile(LayerNode.group([Session.node, SessionProjector.node]), [bootstrapReplacement])
+const prompt = LayerNode.compile(LayerNode.group([SessionPrompt.node, SessionProjector.node]), [bootstrapReplacement])
 const runtime = makeRuntime(Session.Service, layer)
 
 beforeAll(async () => {

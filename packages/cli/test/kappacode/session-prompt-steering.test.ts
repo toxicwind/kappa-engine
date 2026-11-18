@@ -13,6 +13,7 @@ import { Session } from "../../src/session/session.ts"
 import { SessionPrompt } from "../../src/session/prompt.ts"
 import { SessionID } from "../../src/session/schema.ts"
 import {
+  bootstrapReplacement,
   provideTestInstance,
   disposeTestRuntime,
   provideInstance,
@@ -23,8 +24,8 @@ import { remove as cleanup } from "./cleanup.ts"
 
 const previous = Flag.KAPPA_DB
 const dbfile = path.join(os.tmpdir(), `kappa-prompt-steering-${process.pid}-${crypto.randomUUID()}.db`)
-const layer = LayerNode.compile(LayerNode.group([Session.node, SessionProjector.node]))
-const prompt = LayerNode.compile(LayerNode.group([SessionPrompt.node, SessionProjector.node]))
+const layer = LayerNode.compile(LayerNode.group([Session.node, SessionProjector.node]), [bootstrapReplacement])
+const prompt = LayerNode.compile(LayerNode.group([SessionPrompt.node, SessionProjector.node]), [bootstrapReplacement])
 const runtime = makeRuntime(Session.Service, layer)
 
 beforeAll(async () => {

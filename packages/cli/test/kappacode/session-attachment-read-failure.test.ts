@@ -13,13 +13,13 @@ import * as Log from "@toxicwind/core/util/log"
 import { Session } from "../../src/session/session.ts"
 import { SessionPrompt } from "../../src/session/prompt.ts"
 import { MessageV2 } from "../../src/session/message-v2.ts"
-import { disposeTestRuntime, provideInstance, provideTestInstance, testInstanceStoreLayer, tmpdir } from "../fixture/fixture.ts"
+import { bootstrapReplacement, disposeTestRuntime, provideInstance, provideTestInstance, testInstanceStoreLayer, tmpdir } from "../fixture/fixture.ts"
 
 Log.init({ print: false })
 setDefaultTimeout(15_000)
 
 // One graph for session storage and prompting, so both read and write the same database.
-const layer = LayerNode.compile(LayerNode.group([Session.node, SessionPrompt.node, SessionProjector.node]))
+const layer = LayerNode.compile(LayerNode.group([Session.node, SessionPrompt.node, SessionProjector.node]), [bootstrapReplacement])
 
 afterAll(async () => {
   await disposeTestRuntime()

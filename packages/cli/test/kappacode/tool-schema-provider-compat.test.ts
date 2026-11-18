@@ -4,12 +4,12 @@ import { Effect, Layer } from "effect"
 import { Agent } from "../../src/agent/agent.ts"
 import { ToolRegistry } from "../../src/tool/registry.ts"
 import * as ToolJsonSchema from "../../src/tool/json-schema.ts"
-import { disposeAllInstances, provideTmpdirInstance } from "../fixture/fixture.ts"
+import { bootstrapReplacement, disposeAllInstances, provideTmpdirInstance } from "../fixture/fixture.ts"
 import * as CrossSpawnSpawner from "@toxicwind/core/cross-spawn-spawner"
 import { testEffect } from "../lib/effect.ts"
 
-const node = AppNodeBuilder.build(CrossSpawnSpawner.node)
-const it = testEffect(Layer.mergeAll(AppNodeBuilder.build(Agent.node), AppNodeBuilder.build(ToolRegistry.node), node))
+const node = AppNodeBuilder.build(CrossSpawnSpawner.node, [bootstrapReplacement])
+const it = testEffect(Layer.mergeAll(AppNodeBuilder.build(Agent.node, [bootstrapReplacement]), AppNodeBuilder.build(ToolRegistry.node, [bootstrapReplacement]), node))
 
 afterEach(async () => {
   await disposeAllInstances()

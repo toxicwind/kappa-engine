@@ -17,7 +17,7 @@ import { KappaSessions } from "../../src/kappa-sessions/kappa-sessions.ts"
 import { BoardStore } from "../../src/kappacode/board/store.ts"
 import { BoardNotice } from "../../src/kappacode/board/notice.ts"
 import { BoardContext } from "../../src/kappacode/board/context.ts"
-import { provideTmpdirServer } from "../fixture/fixture.ts"
+import { bootstrapReplacement, provideTmpdirServer } from "../fixture/fixture.ts"
 import { awaitWithTimeout, pollWithTimeout, testEffect } from "../lib/effect.ts"
 import { reply, TestLLMServer } from "../lib/llm-server.ts"
 
@@ -103,6 +103,7 @@ const it = testEffect(
     [LSP.node, lsp],
     [MCP.node, mcp],
     [KappaSessions.node, KappaSessions.testLayer],
+    bootstrapReplacement,
   ]),
 )
 

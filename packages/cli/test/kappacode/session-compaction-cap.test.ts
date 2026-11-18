@@ -53,7 +53,7 @@ import { ToolRegistry } from "../../src/tool/registry.ts"
 import { Truncate } from "../../src/tool/truncate.ts"
 import * as Log from "@toxicwind/core/util/log"
 import { MemoryService } from "@kappacode/kappa-memory/effect/service"
-import { provideTmpdirServer } from "../fixture/fixture.ts"
+import { bootstrapReplacement, provideTmpdirServer } from "../fixture/fixture.ts"
 import { testEffect } from "../lib/effect.ts"
 import { reply, TestLLMServer } from "../lib/llm-server.ts"
 
@@ -183,6 +183,7 @@ function makeHttp() {
     [MCP.node, mcp],
     [RuntimeFlags.node, RuntimeFlags.layer()],
     [KappaSessions.node, KappaSessions.testLayer],
+    bootstrapReplacement,
   ])
 }
 

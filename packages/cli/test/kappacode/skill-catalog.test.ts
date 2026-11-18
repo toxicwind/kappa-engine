@@ -12,11 +12,11 @@ import { Permission } from "../../src/permission/index.ts"
 import { SystemPrompt } from "../../src/session/system.ts"
 import { SkillTool } from "../../src/tool/skill.ts"
 import { ToolRegistry } from "../../src/tool/registry.ts"
-import { TestInstance } from "../fixture/fixture.ts"
+import { bootstrapReplacement, TestInstance } from "../fixture/fixture.ts"
 import { testEffect } from "../lib/effect.ts"
 
 const it = testEffect(
-  LayerNode.compile(LayerNode.group([ToolRegistry.node, SystemPrompt.node, CrossSpawnSpawner.node, Ripgrep.node])),
+  LayerNode.compile(LayerNode.group([ToolRegistry.node, SystemPrompt.node, CrossSpawnSpawner.node, Ripgrep.node]), [bootstrapReplacement]),
 )
 
 const agent = {

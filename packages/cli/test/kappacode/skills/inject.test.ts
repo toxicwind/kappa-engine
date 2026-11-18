@@ -11,7 +11,7 @@ import type { Tool } from "@/tool/tool"
 import { SkillTool } from "@/tool/skill"
 import { SkillInject } from "@/kappacode/skills/inject"
 import { ToolRegistry } from "@/tool/registry"
-import { disposeAllInstances, TestInstance } from "../../fixture/fixture.ts"
+import { bootstrapReplacement, disposeAllInstances, TestInstance } from "../../fixture/fixture.ts"
 import { SessionID, MessageID } from "@/session/schema"
 import { testEffect } from "../../lib/effect.ts"
 
@@ -36,7 +36,7 @@ afterEach(async () => {
 })
 
 const it = testEffect(
-  Layer.mergeAll(AppNodeBuilder.build(ToolRegistry.node), AppNodeBuilder.build(CrossSpawnSpawner.node)),
+  Layer.mergeAll(AppNodeBuilder.build(ToolRegistry.node, [bootstrapReplacement]), AppNodeBuilder.build(CrossSpawnSpawner.node, [bootstrapReplacement])),
 )
 
 // Shell injection spawns real processes; skip on windows CI like the sibling suite.

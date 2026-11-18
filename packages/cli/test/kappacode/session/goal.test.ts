@@ -31,7 +31,7 @@ import { SessionDrain } from "@/kappacode/session/drain"
 import { KappaSessionContinuation } from "@/kappacode/session/continuation"
 import { KappaSessionPromptQueue } from "@/kappacode/session/prompt-queue"
 import { Suggestion } from "@/kappacode/suggestion"
-import { TestInstance } from "../../fixture/fixture.ts"
+import { bootstrapReplacement, TestInstance } from "../../fixture/fixture.ts"
 import { awaitWithTimeout, pollWithTimeout, testEffect } from "../../lib/effect.ts"
 import { httpError, reply, TestLLMServer } from "../../lib/llm-server.ts"
 
@@ -55,6 +55,7 @@ const it = testEffect(
       Wakeup.node,
       LayerNode.make({ service: TestLLMServer, layer: TestLLMServer.layer, deps: [] }),
     ]),
+    [bootstrapReplacement],
   ),
 )
 

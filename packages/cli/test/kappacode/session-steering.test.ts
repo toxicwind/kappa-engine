@@ -15,7 +15,7 @@ import { SessionSummary } from "../../src/session/summary.ts"
 import { KappaSessions } from "../../src/kappa-sessions/kappa-sessions.ts"
 import { BoardStore } from "../../src/kappacode/board/store.ts"
 import { KappaSessionSteering } from "../../src/kappacode/session/steering.ts"
-import { provideTmpdirServer } from "../fixture/fixture.ts"
+import { bootstrapReplacement, provideTmpdirServer } from "../fixture/fixture.ts"
 import { testEffect } from "../lib/effect.ts"
 import { reply, TestLLMServer } from "../lib/llm-server.ts"
 
@@ -101,6 +101,7 @@ const it = testEffect(
     [LSP.node, lsp],
     [MCP.node, mcp],
     [KappaSessions.node, KappaSessions.testLayer],
+    bootstrapReplacement,
   ]),
 )
 

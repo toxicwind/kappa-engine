@@ -63,7 +63,7 @@ import { Truncate } from "@/tool/truncate"
 import { CrossSpawnSpawner } from "@toxicwind/core/cross-spawn-spawner"
 import { Ripgrep } from "@toxicwind/core/ripgrep"
 import { Format } from "../../src/format/index.ts"
-import { TestInstance } from "../fixture/fixture.ts"
+import { bootstrapReplacement, TestInstance } from "../fixture/fixture.ts"
 import { awaitWithTimeout, pollWithTimeout, testEffect } from "../lib/effect.ts"
 import { reply, TestLLMServer } from "../lib/llm-server.ts"
 import { RuntimeFlags } from "@/effect/runtime-flags"
@@ -258,6 +258,7 @@ function makePrompt(input?: { mcpInstructions?: MCP.ServerInstructions[]; proces
     [MCP.node, makeMcp(input?.mcpInstructions)],
     [RuntimeFlags.node, runtimeFlags],
     [KappaSessions.node, KappaSessions.testLayer],
+    bootstrapReplacement,
   ] as const
   if (input?.processor === "blocking") {
     return LayerNode.compile(promptRoot, [
@@ -277,6 +278,7 @@ function makeHttp(input?: { mcpInstructions?: MCP.ServerInstructions[]; processo
     [MCP.node, makeMcp(input?.mcpInstructions)],
     [RuntimeFlags.node, runtimeFlags],
     [KappaSessions.node, KappaSessions.testLayer],
+    bootstrapReplacement,
   ] as const
   if (input?.processor === "blocking") {
     return LayerNode.compile(root, [

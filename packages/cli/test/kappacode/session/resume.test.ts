@@ -12,7 +12,7 @@ import { SessionPrompt } from "@/session/prompt"
 import { SessionStatus } from "@/session/status"
 import { MessageV2 } from "@/session/message-v2"
 import { PartID } from "@/session/schema"
-import { TestInstance } from "../../fixture/fixture.ts"
+import { bootstrapReplacement, TestInstance } from "../../fixture/fixture.ts"
 import { awaitWithTimeout, testEffect } from "../../lib/effect.ts"
 import { reply, TestLLMServer } from "../../lib/llm-server.ts"
 
@@ -27,6 +27,7 @@ const it = testEffect(
       FSUtil.node,
       LayerNode.make({ service: TestLLMServer, layer: TestLLMServer.layer, deps: [] }),
     ]),
+    [bootstrapReplacement],
   ),
 )
 

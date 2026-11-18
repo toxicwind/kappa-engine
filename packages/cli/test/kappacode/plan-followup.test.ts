@@ -11,6 +11,7 @@ import { SessionID, MessageID, PartID } from "../../src/session/schema.ts"
 import { ProviderV2 } from "@toxicwind/core/provider"
 import { ModelV2 } from "@toxicwind/core/model"
 import { EventV2 } from "@toxicwind/core/event"
+import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
 import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import { SessionProjector } from "@toxicwind/core/session/projector"
 import { formatTodos, generateHandover, PlanFollowup, PlanFollowupRuntime } from "../../src/kappacode/plan-followup.ts"
@@ -26,7 +27,7 @@ import { SessionStatus } from "../../src/session/status.ts"
 import { Todo } from "../../src/session/todo.ts"
 import path from "path"
 import fs from "fs/promises"
-import { provideTestInstance, tmpdir, withTestInstance } from "../fixture/fixture.ts"
+import { bootstrapReplacement, provideTestInstance, tmpdir, withTestInstance } from "../fixture/fixture.ts"
 
 Log.init({ print: false })
 process.env.KAPPA_CLIENT = "cli"
@@ -71,7 +72,7 @@ const todo = {
 
 const session = makeRuntime(
   Session.Service,
-  LayerNode.compile(LayerNode.group([Session.node, SessionProjector.node])),
+  LayerNode.compile(LayerNode.group([Session.node, SessionProjector.node]), [bootstrapReplacement]),
 )
 const store = {
   create: (input?: Parameters<Session.Interface["create"]>[0]) => session.runPromise((svc) => svc.create(input)),
@@ -1628,7 +1629,11 @@ describe("plan follow-up", () => {
       const { SessionPrompt } = await import("../../src/session/prompt")
       await Effect.runPromise(
         SessionPrompt.Service.use((svc) => svc.cancel(sid)).pipe(
-          Effect.provide(SessionPrompt.defaultLayer),
+          // defaultLayer builds the SessionPrompt node with no replacements,
+          // so its transitive InstanceStore leaves InstanceBootstrap unbound
+          // (same root cause as the raw-compile sites above); build the node
+          // with the shared noop bootstrap replacement instead.
+          Effect.provide(AppNodeBuilder.build(SessionPrompt.node, [bootstrapReplacement])),
           Effect.scoped,
         ),
       )
