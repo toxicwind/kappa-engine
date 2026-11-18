@@ -23,7 +23,7 @@ import { MessageV2 } from "../../src/session/message-v2.ts"
 import { SessionV1 } from "@toxicwind/core/v1/session"
 import { Database } from "@toxicwind/core/database/database"
 import { SessionProjector } from "@toxicwind/core/session/projector"
-import { provideTmpdirServer } from "../fixture/fixture.ts"
+import { bootstrapReplacement, provideTmpdirServer } from "../fixture/fixture.ts"
 import { testEffect } from "../lib/effect.ts"
 import { TestLLMServer } from "../lib/llm-server.ts"
 
@@ -93,6 +93,7 @@ const it = testEffect(
     [MCP.node, mcp],
     [LSP.node, lsp],
     [RuntimeFlags.node, RuntimeFlags.layer({ experimentalEventSystem: true })],
+    bootstrapReplacement,
   ]),
 )
 

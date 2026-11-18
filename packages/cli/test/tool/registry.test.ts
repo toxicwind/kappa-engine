@@ -6,7 +6,7 @@ import { Effect, Exit, Layer, Result, Schema } from "effect" // kappacode_change
 import { LayerNode } from "@toxicwind/core/effect/layer-node"
 import { ToolRegistry } from "@/tool/registry"
 import { Tool } from "@/tool/tool"
-import { disposeAllInstances, TestInstance } from "../fixture/fixture.ts"
+import { bootstrapReplacement, disposeAllInstances, TestInstance } from "../fixture/fixture.ts"
 import { testEffect } from "../lib/effect.ts"
 import { TestConfig } from "../fixture/config.ts"
 import { Config } from "@/config/config"
@@ -69,7 +69,7 @@ const registryLayer = (opts: RegistryLayerOptions = {}) => {
     ...(opts.plugin ? ([[Plugin.node, opts.plugin]] as const) : []),
     ...(opts.mcp ? ([[MCP.node, opts.mcp]] as const) : []),
   ]
-  return LayerNode.compile(root, [...replacements, ...extra])
+  return LayerNode.compile(root, [...replacements, bootstrapReplacement, ...extra])
 }
 
 const it = testEffect(registryLayer())

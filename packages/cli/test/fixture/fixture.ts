@@ -25,6 +25,12 @@ import { TestLLMServer } from "../lib/llm-server.ts"
 import { remove as cleanup } from "../kappacode/cleanup.ts" // kappacode_change
 
 const noopBootstrap = Layer.succeed(InstanceBootstrap.Service, InstanceBootstrap.Service.of({ run: Effect.void }))
+// Shared replacement for tests that raw-compile a node graph pulling in
+// InstanceStore (via ToolRegistry -> Worktree). Without it LayerNode.compile
+// throws "Unbound layer node: @opencode/InstanceBootstrap" at import time.
+// Noop (not the real node): the real bootstrap runs plugin init + project
+// indexing on instance load, which is slow and timing-sensitive in unit tests.
+export const bootstrapReplacement: LayerNode.Replacement = [InstanceStore.bootstrapNode, noopBootstrap]
 export const testInstanceStoreLayer = LayerNode.compile(InstanceStore.node, [
   [InstanceStore.bootstrapNode, noopBootstrap],
 ])

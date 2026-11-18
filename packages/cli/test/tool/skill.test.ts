@@ -10,7 +10,7 @@ import type { Tool } from "@/tool/tool"
 import { SkillTool } from "../../src/tool/skill.ts"
 import { ToolRegistry } from "@/tool/registry"
 import { ToolJsonSchema } from "@/tool/json-schema"
-import { disposeAllInstances, provideTmpdirInstance, TestInstance } from "../fixture/fixture.ts" // kappacode_change
+import { bootstrapReplacement, disposeAllInstances, provideTmpdirInstance, TestInstance } from "../fixture/fixture.ts" // kappacode_change
 import { SessionID, MessageID } from "../../src/session/schema.ts"
 import { testEffect } from "../lib/effect.ts"
 
@@ -28,7 +28,7 @@ afterEach(async () => {
   await disposeAllInstances()
 })
 
-const it = testEffect(LayerNode.compile(LayerNode.group([ToolRegistry.node, CrossSpawnSpawner.node, Ripgrep.node])))
+const it = testEffect(LayerNode.compile(LayerNode.group([ToolRegistry.node, CrossSpawnSpawner.node, Ripgrep.node]), [bootstrapReplacement]))
 
 // kappacode_change - skip on windows: address windows ci failures #9496
 const unix = process.platform !== "win32" ? it.instance : it.instance.skip

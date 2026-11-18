@@ -30,7 +30,7 @@ import { KappaSessionPrompt } from "../../src/kappacode/session/prompt.ts"
 import * as SandboxPolicy from "../../src/kappacode/sandbox/policy.ts"
 import { Truncate } from "../../src/tool/truncate.ts"
 import { ToolRegistry } from "../../src/tool/registry.ts"
-import { disposeAllInstances, provideTmpdirInstance } from "../fixture/fixture.ts"
+import { bootstrapReplacement, disposeAllInstances, provideTmpdirInstance } from "../fixture/fixture.ts"
 import { testEffect } from "../lib/effect.ts"
 
 const ref = {
@@ -58,6 +58,7 @@ const it = testEffect(
       ToolRegistry.node,
       Database.node,
     ]),
+    [bootstrapReplacement],
   ),
 )
 

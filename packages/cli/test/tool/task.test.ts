@@ -23,7 +23,7 @@ import { TaskTool, type TaskPromptOps } from "../../src/tool/task.ts"
 import { Truncate } from "@/tool/truncate"
 import { ToolRegistry } from "@/tool/registry"
 import { RuntimeFlags } from "@/effect/runtime-flags"
-import { disposeAllInstances, provideTmpdirInstance } from "../fixture/fixture.ts"
+import { bootstrapReplacement, disposeAllInstances, provideTmpdirInstance } from "../fixture/fixture.ts"
 import { testEffect } from "../lib/effect.ts"
 import { ProviderV2 } from "@toxicwind/core/provider"
 import { ModelV2 } from "@toxicwind/core/model"
@@ -57,7 +57,7 @@ const layer = (flags: Partial<RuntimeFlags.Info> = {}) =>
       RuntimeFlags.node,
       Ripgrep.node,
     ]),
-    [[RuntimeFlags.node, RuntimeFlags.layer(flags)]],
+    [[RuntimeFlags.node, RuntimeFlags.layer(flags)], bootstrapReplacement],
   )
 
 const it = testEffect(layer())
