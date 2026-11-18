@@ -112,7 +112,15 @@ export const Flag = {
 
   KAPPA_EXPERIMENTAL_FILEWATCHER: kiloTruthy("EXPERIMENTAL_FILEWATCHER"), // kappacode_change
 
-  KAPPA_EXPERIMENTAL_DISABLE_FILEWATCHER: kiloTruthy("EXPERIMENTAL_DISABLE_FILEWATCHER"),
+  // Getter, not a snapshot: test/preload.ts disables the watcher process-wide
+  // (KAPPA_EXPERIMENTAL_DISABLE_FILEWATCHER=true) and watcher tests opt back
+  // in by setting the env var at module scope before their layer builds. A
+  // snapshot taken at import time made that opt-in impossible — the
+  // ConfigProvider override the watcher test used never reached this flag,
+  // so the watcher stayed off and the test timed out.
+  get KAPPA_EXPERIMENTAL_DISABLE_FILEWATCHER() {
+    return kiloTruthy("EXPERIMENTAL_DISABLE_FILEWATCHER")
+  },
 
   KAPPA_EXPERIMENTAL_ICON_DISCOVERY: KAPPA_EXPERIMENTAL || kiloTruthy("EXPERIMENTAL_ICON_DISCOVERY"), // kappacode_change
 

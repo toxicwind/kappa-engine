@@ -1,7 +1,7 @@
 import { AppNodeBuilder } from "@toxicwind/core/effect/app-node-builder"
-import { describe, expect, test } from "bun:test"
+import { afterAll, describe, expect, test } from "bun:test"
 import { CrossSpawnSpawner } from "@toxicwind/core/cross-spawn-spawner"
-import { ConfigProvider, Context, Deferred, Effect, Fiber, Layer, LayerMap } from "effect"
+import { Context, Deferred, Effect, Fiber, Layer, LayerMap } from "effect"
 import * as TestConsole from "effect/testing/TestConsole"
 import { GlobalBus, type GlobalEvent } from "../../src/bus/global.ts"
 import { InstanceRef } from "../../src/effect/instance-ref.ts"
@@ -21,10 +21,19 @@ const layer = Layer.mergeAll(
   AppNodeBuilder.build(Git.node),
   AppNodeBuilder.build(CrossSpawnSpawner.node),
 )
-const config = ConfigProvider.layerAdd(ConfigProvider.fromUnknown({ KAPPA_EXPERIMENTAL_DISABLE_FILEWATCHER: "false" }), {
-  asPrimary: true,
+// Opt back into the file watcher for this file: test/preload.ts disables it
+// process-wide, and Flag reads the env var (not ConfigProvider — a
+// ConfigProvider override here was a no-op and the test timed out with the
+// watcher never starting). Flag.KAPPA_EXPERIMENTAL_DISABLE_FILEWATCHER is a
+// getter, so this takes effect when the layer builds. Restore afterwards so
+// later files in this process keep the watcher-free unit-test profile.
+const previousDisableFilewatcher = process.env["KAPPA_EXPERIMENTAL_DISABLE_FILEWATCHER"]
+process.env["KAPPA_EXPERIMENTAL_DISABLE_FILEWATCHER"] = "false"
+afterAll(() => {
+  if (previousDisableFilewatcher === undefined) delete process.env["KAPPA_EXPERIMENTAL_DISABLE_FILEWATCHER"]
+  else process.env["KAPPA_EXPERIMENTAL_DISABLE_FILEWATCHER"] = previousDisableFilewatcher
 })
-const it = testEffect(layer.pipe(Layer.provideMerge(config)))
+const it = testEffect(layer)
 
 // The watcher is unreliable on Windows CI, so this test only runs on unix.
 const live = process.platform === "win32" ? it.live.skip : it.live
@@ -70,13 +79,17 @@ live(
 
       // The watcher exposes no readiness signal (its .git subscription is forked
       // during instance warm-up), so keep generating HEAD churn in the background
-      // and synchronize on the event itself with the full test budget.
+      // and synchronize on the event itself with the full test budget. Each side
+      // holds for 600ms: the native watcher coalesces rapid HEAD rewrites, so
+      // sub-100ms churn produces ~no events at all (verified: 50/100ms holds
+      // delivered 1 HEAD event in 15s; 600ms holds land the branch event on the
+      // first switch).
       const churn = yield* Effect.gen(function* () {
         while (true) {
           yield* git.run(["switch", current], { cwd: dir })
-          yield* Effect.sleep("50 millis")
+          yield* Effect.sleep("600 millis")
           yield* git.run(["switch", branch], { cwd: dir })
-          yield* Effect.sleep("100 millis")
+          yield* Effect.sleep("600 millis")
         }
       }).pipe(Effect.forkScoped)
 
