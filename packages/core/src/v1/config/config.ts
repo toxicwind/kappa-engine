@@ -220,7 +220,7 @@ export const Info = Schema.Struct({
       "Controls whether MCP and generic tool blocks are expanded or collapsed by default in the VS Code chat UI",
   }),
   hide_prompt_training_models: Schema.optional(Schema.Boolean).annotate({
-    description: "Hide Kappa Gateway models that may train on your prompts from model listings",
+    description: "Hide Kilo Gateway models that may train on your prompts from model listings",
   }),
   privacy_mode: Schema.optional(Schema.Boolean).annotate({
     description:
@@ -408,7 +408,7 @@ export const Info = Schema.Struct({
       }),
       speech_to_text_base_url: Schema.optional(Schema.String).annotate({
         description:
-          "Base URL of an OpenAI-compatible transcription API to use instead of the Kappa Gateway, for example https://api.openai.com/v1",
+          "Base URL of an OpenAI-compatible transcription API to use instead of the Kilo Gateway, for example https://api.openai.com/v1",
       }),
       speech_to_text_api_key: Schema.optional(Schema.String).annotate({
         description: "API key sent as a bearer token to the custom speech-to-text base URL",

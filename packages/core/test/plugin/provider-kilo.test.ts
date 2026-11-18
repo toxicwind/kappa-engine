@@ -123,7 +123,7 @@ describe("KappaPlugin", () => {
   )
 
   // kappacode_change start
-  it.effect("routes the Kappa catalog through the Kappa Gateway SDK", () =>
+  it.effect("routes the Kappa catalog through the Kilo Gateway SDK", () =>
     withEnv({ KAPPA_API_KEY: undefined, KAPPA_ORG_ID: undefined }, () =>
       Effect.gen(function* () {
         const aisdk = yield* AISDK.Service
