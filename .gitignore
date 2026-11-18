@@ -75,6 +75,7 @@ packages/*/.kilo/tui.json
 packages/*/.kilo/tui.jsonc
 
 # Test Artifacts
+.artifacts/
 packages/*/.artifacts/
 .kappa/
 .kappacode/

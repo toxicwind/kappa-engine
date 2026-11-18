@@ -1,4 +1,5 @@
 import { OpenApi } from "effect/http-api"
+import { ServerDefinitions } from "@toxicwind/schema/event-manifest"
 // kappacode_change start
 import { matchLegacyKappaOpenApi } from "@/kappacode/server/httpapi/public"
 import * as KappaServer from "@/kappacode/server/server"
@@ -38,6 +39,8 @@ type OpenApiSchema = {
   additionalProperties?: OpenApiSchema | boolean
   allOf?: OpenApiSchema[]
   anyOf?: OpenApiSchema[]
+  contentMediaType?: string
+  contentSchema?: OpenApiSchema
   description?: string
   enum?: Array<string | boolean>
   items?: OpenApiSchema
@@ -121,6 +124,8 @@ function matchLegacyOpenApi(input: Record<string, unknown>) {
   applyLegacySchemaOverrides(spec)
   normalizeComponentDescriptions(spec)
   addLegacyErrorSchemas(spec)
+  restoreV2EventUnion(spec)
+  stripEncodedSuffix(spec)
   delete spec.components?.securitySchemes
 
   for (const [path, item] of Object.entries(spec.paths ?? {})) {
@@ -201,6 +206,80 @@ function matchLegacyOpenApi(input: Record<string, unknown>) {
 
 function isV2ApiPath(path: string) {
   return path === "/api" || path.startsWith("/api/")
+}
+
+// Effect 4's OpenAPI generator renders the SSE data union only as its
+// encoded side (a JSON string) and never emits the union itself, leaving
+// the /api/event response pointing at a component that does not exist.
+// Rebuild the union from the legacy Event union's server members and keep
+// the string wrapper as V2EventStream, as the public SDK expects.
+function restoreV2EventUnion(spec: OpenApiSpec) {
+  const schemas = spec.components?.schemas
+  if (!schemas) return
+  const encoded = schemas.V2EventEncoded
+  const eventUnion = schemas.Event
+  if (!encoded || !eventUnion?.anyOf) return
+  // The protocol schema adds server.connected synthetically when the
+  // manifest lacks it; ServerDefinitions does not include it.
+  const serverTypes = new Set([...ServerDefinitions.map((definition) => definition.type), "server.connected"])
+  const members: OpenApiSchema[] = []
+  const seen = new Set<string>()
+  for (const member of eventUnion.anyOf) {
+    const name = member.$ref?.replace("#/components/schemas/", "")
+    const component = name ? schemas[name] : undefined
+    const type = component?.properties?.type?.enum?.[0]
+    if (typeof type !== "string" || !serverTypes.has(type) || seen.has(type)) continue
+    // The Event union carries both the v2 member (id pattern ^evt_) and the
+    // legacy member (plain string id) per event type; keep the v2 one.
+    if (component?.properties?.id?.pattern !== "^evt_") continue
+    seen.add(type)
+    members.push({ ...member })
+  }
+  if (members.length === 0) return
+  schemas.V2Event = { anyOf: members }
+  schemas.V2EventStream = {
+    ...encoded,
+    contentSchema: { $ref: "#/components/schemas/V2Event" },
+  }
+  rewriteRefs(spec, "V2EventEncoded", "V2EventStream")
+  delete schemas.V2EventEncoded
+}
+
+// Effect 4's representation generator names encoded-side components
+// `<Name>Encoded` (plus a `_<n>` dedup suffix when the name collides), but
+// the public SDK surface pins the clean names. Strip the suffix; when the
+// clean name already exists with a different schema (e.g. the legacy
+// `{name, data}` UnknownError vs the TaggedError one), fall back to the
+// dedup number instead of colliding. Runs after addLegacyErrorSchemas so
+// the legacy error shapes are present for the comparison.
+function stripEncodedSuffix(spec: OpenApiSpec) {
+  const schemas = spec.components?.schemas
+  if (!schemas) return
+  for (const name of Object.keys(schemas)) {
+    const match = /^(.*)Encoded(_(\d+))?$/.exec(name)
+    if (!match) continue
+    const base = match[1]
+    const dedup = match[3]
+    if (!base) continue
+    if (!schemas[base]) {
+      schemas[base] = schemas[name]
+      rewriteRefs(spec, name, base)
+      delete schemas[name]
+      continue
+    }
+    if (stableSchema(schemas[name], schemas) === stableSchema(schemas[base], schemas)) {
+      rewriteRefs(spec, name, base)
+      delete schemas[name]
+      continue
+    }
+    const numbered = `${base}${dedup ?? "1"}`
+    if (numbered !== name && !schemas[numbered]) {
+      schemas[numbered] = schemas[name]
+      rewriteRefs(spec, name, numbered)
+      delete schemas[name]
+    }
+    // Otherwise keep the Encoded name — every clean target is taken.
+  }
 }
 
 function addLegacyErrorSchemas(spec: OpenApiSpec) {

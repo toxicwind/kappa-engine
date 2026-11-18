@@ -53,7 +53,9 @@ export const makeQuestionGroup = <
         params: { sessionID: Session.ID, requestID: Question.ID },
         payload: Question.Reply,
         success: HttpApiSchema.NoContent,
-        error: [SessionNotFoundError, QuestionNotFoundError],
+        // Question-first: the public OpenAPI surface pins this error-union
+        // order (effect 4 emits declaration order; effect 3 sorted it).
+        error: [QuestionNotFoundError, SessionNotFoundError],
       })
         .middleware(sessionLocationMiddleware)
         .annotateMerge(
@@ -68,7 +70,9 @@ export const makeQuestionGroup = <
       HttpApiEndpoint.post("session.question.reject", "/api/session/:sessionID/question/:requestID/reject", {
         params: { sessionID: Session.ID, requestID: Question.ID },
         success: HttpApiSchema.NoContent,
-        error: [SessionNotFoundError, QuestionNotFoundError],
+        // Question-first: the public OpenAPI surface pins this error-union
+        // order (effect 4 emits declaration order; effect 3 sorted it).
+        error: [QuestionNotFoundError, SessionNotFoundError],
       })
         .middleware(sessionLocationMiddleware)
         .annotateMerge(
