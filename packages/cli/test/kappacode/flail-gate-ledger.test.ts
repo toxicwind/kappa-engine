@@ -23,8 +23,7 @@ describe("kappa ledger integration", () => {
       state: "active",
     })
     expect(ledger).toHaveLength(1)
-    expect(ledger[0]?.kind).toBe("obligation")
-    expect(ledger[0]?.subject).toBe("head")
+    expect(ledger[0]).toMatchObject({ kind: "obligation", subject: "head" })
   })
 
   it("appends a budget reading to the ledger", () => {
@@ -36,8 +35,7 @@ describe("kappa ledger integration", () => {
       floor: 0.05,
       verdict: "redirect",
     })
-    expect(ledger[0]?.kind).toBe("budget")
-    expect(ledger[0]?.noveltyRate).toBe(0.02)
+    expect(ledger[0]).toMatchObject({ kind: "budget", noveltyRate: 0.02 })
   })
 
   it("keeps the entries in order", () => {
@@ -60,7 +58,7 @@ describe("kappa ledger integration", () => {
     for (let i = 0; i < 250; i++) {
       appendLedgerEntry(ledger, { kind: "budget", toolCalls: i, noveltyRate: 1, floor: 0.05, verdict: "continue" })
     }
-    expect(ledger[0]?.toolCalls).toBe(50)
+    expect(ledger[0]).toMatchObject({ kind: "budget", toolCalls: 50 })
   })
 
   it("stamps the entry with a time", () => {

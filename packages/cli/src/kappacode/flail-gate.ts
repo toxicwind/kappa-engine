@@ -283,10 +283,13 @@ export type LedgerEntry =
 /** The most entries the ledger keeps. Older ones are dropped. */
 export const MAX_LEDGER_ENTRIES = 200
 
+/** Omit that distributes over a union, so each LedgerEntry variant keeps its own fields. */
+type DistributiveOmit<T, K extends PropertyKey> = T extends unknown ? Omit<T, K> : never
+
 /** Appends an entry to the ledger, stamping it and bounding the list. */
 export function appendLedgerEntry(
   ledger: LedgerEntry[],
-  entry: Omit<LedgerEntry, "at"> & { at?: number },
+  entry: DistributiveOmit<LedgerEntry, "at"> & { at?: number },
 ): void {
   ledger.push({ ...entry, at: entry.at ?? Date.now() } as LedgerEntry)
   while (ledger.length > MAX_LEDGER_ENTRIES) {
