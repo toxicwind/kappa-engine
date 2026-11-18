@@ -10,11 +10,13 @@ import { HttpApi, HttpApiEndpoint, HttpApiError, HttpApiGroup, OpenApi } from "e
 
 const Scope = Schema.Literals(["global", "project"])
 const Mode = Schema.Literals(["primary", "subagent", "all"])
-const Prompt = Schema.String.check(Schema.isPattern(/\S/))
+const Prompt = Schema.String.check(Schema.isPattern(/\S/u))
 export const AgentBuilderID = Schema.String.check(
   Schema.isMinLength(1),
   Schema.isMaxLength(64),
-  Schema.isPattern(/^[a-zA-Z0-9][a-zA-Z0-9._-]*$/),
+  // Unicode flag: effect 4 exports isPattern to OpenAPI/JSON Schema only
+  // for unicode-flagged regexes.
+  Schema.isPattern(/^[a-zA-Z0-9][a-zA-Z0-9._-]*$/u),
 )
 const Body = {
   scope: Schema.optional(Scope),
