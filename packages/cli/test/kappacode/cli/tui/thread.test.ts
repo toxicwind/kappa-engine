@@ -276,6 +276,9 @@ describe("kappa tui thread", () => {
     mock.module("@/kappacode/daemon/client", () => ({
       DaemonClient: {
         maybe: async () => ({ url: "http://127.0.0.1:4096", headers: {} }),
+        // No explicit network flags are passed, so attach() boots the daemon
+        // via start(), not maybe().
+        start: async () => ({ url: "http://127.0.0.1:4096", headers: {} }),
       },
     }))
     mock.module("@/cli/ui", () => ({
@@ -286,7 +289,7 @@ describe("kappa tui thread", () => {
     }))
 
     const key = JSON.stringify({ time: Date.now(), rand: Math.random() })
-    const mod = await import(`../../../../../src/kappacode/cli/cmd/tui/thread?${key}`)
+    const mod = await import(`../../../../src/kappacode/cli/cmd/tui/thread?${key}`)
 
     const handled = await mod.KappaTuiThreadDaemon.attach({
       args: { session: "ses_cloud", cloudFork: true },
