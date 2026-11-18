@@ -60,5 +60,5 @@ runs:
     - name: Build bubblewrap helper
       run: |
         bun packages/cli/script/kappacode/bubblewrap.ts --arch x64 --output "$RUNNER_TEMP/bwrap"
-        echo "KILO_BWRAP_PATH=$RUNNER_TEMP/bwrap" >> "$GITHUB_ENV"
+        echo "KAPPA_BWRAP_PATH=$RUNNER_TEMP/bwrap" >> "$GITHUB_ENV"
       shell: bash

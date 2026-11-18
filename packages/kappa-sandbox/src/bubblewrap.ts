@@ -179,7 +179,13 @@ export function generate(
   if (worker) validate(allow, process.execPath, mounts)
   const args = [
     "--unshare-user",
-    "--disable-userns",
+    // Proxy mode must NOT pass --disable-userns: bwrap implements it by
+    // writing max_user_namespaces=1 inside the sandbox, which makes the
+    // nested user-namespace creation apply-seccomp needs fail with ENOSPC
+    // ("No space left on device"). The target's nested namespaces are
+    // still blocked — apply-seccomp drops CAP_SYS_ADMIN before exec, which
+    // is what the proxy tests assert.
+    ...(profile.network.mode === "proxy" ? [] : ["--disable-userns"]),
     "--unshare-pid",
     ...(profile.network.mode !== "allow" ? ["--unshare-net"] : []),
     ...(profile.network.mode === "proxy" ? ["--cap-add", "cap_sys_admin"] : []),
