@@ -602,6 +602,8 @@ it.instance("loop calls LLM and returns assistant message", () =>
     expect(parts.some((p) => p.type === "text" && p.text === "world")).toBe(true)
     expect(yield* llm.hits).toHaveLength(1)
   }),
+  // The loop + full service graph takes ~18s under load; the 5s bun default is too tight.
+  30_000,
 )
 
 withMcpInstructions.instance(
@@ -619,7 +621,7 @@ withMcpInstructions.instance(
       yield* user(chat.id, "hello")
 
       const fiber = yield* prompt.loop({ sessionID: chat.id }).pipe(Effect.forkChild)
-      yield* awaitWithTimeout(llm.wait(1), "timed out waiting for MCP instruction request", "10 seconds")
+      yield* awaitWithTimeout(llm.wait(1), "timed out waiting for MCP instruction request", "45 seconds")
 
       const hits = yield* llm.hits
       const body = JSON.stringify(hits[0]?.body)
@@ -627,7 +629,7 @@ withMcpInstructions.instance(
       expect(body).toContain("Use lookup before mutate.")
       yield* Fiber.interrupt(fiber)
     }),
-  15_000,
+  60_000,
 )
 
 // kappacode_change start - guard provider-compatible max-step request shape
@@ -1437,7 +1439,8 @@ it.instance(
       expect(hits).toHaveLength(3)
       expect(JSON.stringify(hits.at(-1)?.body)).toContain("child prompt failed")
     }),
-  10_000,
+  // Three LLM round trips through the task machinery take ~12s under load.
+  30_000,
 )
 
 // kappacode_change start - TUI subagent-view Esc and the VS Code task-card Stop both abort the child as a tree
@@ -1471,7 +1474,7 @@ it.instance(
           return (yield* llm.calls) >= 2 ? id : undefined
         }),
         "child task never started",
-        "10 seconds",
+        "30 seconds",
       )
 
       yield* prompt.cancel(child, "tree")
@@ -1494,7 +1497,8 @@ it.instance(
       expect(JSON.stringify((yield* llm.hits).at(-1)?.body)).toContain("Task cancelled by the user")
       expect((yield* status.get(child)).type).toBe("idle")
     }),
-  30_000,
+  // The 30s child-start poll plus the 15s join wait can exceed the old 30s limit.
+  60_000,
 )
 // kappacode_change end
 
