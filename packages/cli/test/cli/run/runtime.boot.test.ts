@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, mock, spyOn, test } from "bun:test"
 import { KappaClient, type Provider } from "@kappacode/sdk/v2"
-import type { Resolved } from "@toxicwind/tui/config"
+import { LeaderTimeoutDefault, type Resolved } from "@toxicwind/tui/config"
 import { TuiConfig } from "@/config/tui"
 import { resolveDiffStyle, resolveModelInfo, resolveRunTuiConfig } from "@/cli/cmd/run/runtime.boot"
 import { createTuiResolvedConfig } from "../../fixture/tui-runtime.ts"
@@ -114,7 +114,7 @@ describe("run runtime boot", () => {
     const result = await resolveRunTuiConfig()
 
     expect(result.keybinds.get("leader")?.[0]?.key).toBe("ctrl+g")
-    expect(result.leader_timeout).toBe(2000)
+    expect(result.leader_timeout).toBe(LeaderTimeoutDefault)
     expect(result.keybinds.get("command.palette.show")?.[0]?.key).toBe("ctrl+p")
     expect(result.keybinds.get("variant.cycle").map((item) => item.key)).toEqual(["ctrl+t", "alt+t"])
     expect(result.keybinds.get("session.interrupt")?.[0]?.key).toBe("ctrl+c")
@@ -131,7 +131,7 @@ describe("run runtime boot", () => {
     const result = await resolveRunTuiConfig()
 
     expect(result.keybinds.get("leader")?.[0]?.key).toBe("ctrl+x")
-    expect(result.leader_timeout).toBe(2000)
+    expect(result.leader_timeout).toBe(LeaderTimeoutDefault)
     expect(result.diff_style).toBe("auto")
     expect(result.keybinds.get("command.palette.show")?.[0]?.key).toBe("ctrl+p")
     expect(result.keybinds.get("variant.cycle")?.[0]?.key).toBe("ctrl+t")

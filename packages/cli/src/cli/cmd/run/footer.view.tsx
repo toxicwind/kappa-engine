@@ -481,11 +481,6 @@ export function RunFooterView(props: RunFooterViewProps) {
     if (foregroundSubagents() && backgroundShortcut()) {
       items.push({ kind: "background", key: backgroundShortcut(), label: "background" })
     }
-    // kappacode_change start - show Ctrl+Enter hint for submit+background
-    if (foregroundSubagents()) {
-      items.push({ kind: "background-submit", key: "ctrl+enter", label: "submit+bg" })
-    }
-    // kappacode_change end
     if (queuedPrompts().length > 0 && queuedShortcut()) {
       items.push({ kind: "queued", key: queuedShortcut(), label: `${queue()} queued` })
     }
@@ -585,7 +580,7 @@ export function RunFooterView(props: RunFooterViewProps) {
         },
       },
     ],
-    bindings: [[{ key: "enter", meta: true, ctrl: true }]],
+    bindings: [{ key: { name: "enter", ctrl: true } }],
   }))
   // kappacode_change end
 

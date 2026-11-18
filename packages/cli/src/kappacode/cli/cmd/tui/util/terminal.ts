@@ -35,7 +35,7 @@ export function sequences() {
     "\x1b[?1007l", // disable alternate scroll mode
     "\x1b[?1015l", // disable RXVT mouse mode
     "\x1b[?1016l", // disable SGR pixel mouse mode
-    "\x1b[?2004h", // enable bracketed paste for Gboard/SSH paste support
+    "\x1b[?2004l", // disable bracketed paste
     "\x1b[?1004l", // disable focus tracking
     "\x1b[?1l", // disable application cursor keys
     "\x1b>", // disable application keypad mode
