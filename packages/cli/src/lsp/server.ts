@@ -123,7 +123,7 @@ export const Deno: Info = {
 // through to the lightweight TsClient that shells out to tsgo --noEmit on demand.
 export const Typescript: Info = {
   id: "typescript",
-  root: NearestRoot(
+  root: StrictNearestRoot(
     ["package-lock.json", "bun.lockb", "bun.lock", "pnpm-lock.yaml", "yarn.lock"],
     ["deno.json", "deno.jsonc"],
   ),

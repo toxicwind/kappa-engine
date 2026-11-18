@@ -251,6 +251,17 @@ export async function* up(options: { targets: string[]; start: string; stop?: st
   let current = start
   while (true) {
     for (const target of targets) {
+      // Targets with glob metacharacters (e.g. "*.tf", "*.xcodeproj") match
+      // entries in the directory; literal targets keep the exact lookup.
+      if (/[*?[\]{}!]/.test(target)) {
+        try {
+          const matches = await Glob.scan(target, { cwd: current, absolute: true, dot: true })
+          for (const match of matches) yield match
+        } catch {
+          // Skip invalid glob patterns
+        }
+        continue
+      }
       const search = join(current, target)
       if (await exists(search)) yield search
     }
