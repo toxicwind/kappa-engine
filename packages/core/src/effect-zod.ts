@@ -1,4 +1,4 @@
-import { Effect, Option, Schema, SchemaAST } from "effect"
+import { Effect, Option, Schema, SchemaAST, SchemaGetter } from "effect"
 import z from "zod"
 
 /**
@@ -113,28 +113,17 @@ function encoded(ast: SchemaAST.AST): z.ZodTypeAny {
 // Transformations built via pure `SchemaGetter.transform(fn)` (the common
 // decodeTo case) resolve synchronously, so running with no services is safe.
 // Effectful / middleware-based transforms will surface as Effect defects.
-// Effect 4 getters expose `transform(value, options)` taking the raw value
-// (the Effect 3 `.run` entry point took an Option and is gone), and sync
-// getters return the decoded value directly while effectful ones return an
-// Effect — so resolve either shape, unwrapping Options when present.
+// Run every getter through the public `SchemaGetter.run` API — it handles all
+// five Effect 4 getter variants (Passthrough, Transform, TransformOptional,
+// TransformEffect, TransformOptionalEffect). The previous hand-rolled dispatch
+// called a nonexistent instance `.run` on Passthrough getters (attached by
+// `Schema.optional` et al.), crashing with "getter.run is not a function".
 function decode(transformation: SchemaAST.Link["transformation"], value: unknown): unknown {
-  const getter = transformation.decode as {
-    readonly run?: (input: Option.Option<unknown>, options: SchemaAST.ParseOptions) => Effect.Effect<Option.Option<unknown>>
-    readonly transform?: (input: unknown, options: SchemaAST.ParseOptions) => unknown
-  }
-  const unwrap = (resolved: unknown) => (Option.isOption(resolved) ? Option.getOrElse(resolved, () => value) : resolved)
-  if (typeof getter.transform === "function") {
-    const result = getter.transform(value, EMPTY_PARSE_OPTIONS)
-    if (Effect.isEffect(result)) {
-      const exit = Effect.runSyncExit(result as Effect.Effect<unknown>)
-      if (exit._tag === "Failure") throw new Error(`effect-zod: transform failed: ${String(exit.cause)}`)
-      return unwrap(exit.value)
-    }
-    return unwrap(result)
-  }
-  const exit = Effect.runSyncExit(getter.run!(Option.some(value), EMPTY_PARSE_OPTIONS))
+  const getter = transformation.decode as SchemaGetter.Getter<unknown, unknown>
+  const exit = Effect.runSyncExit(SchemaGetter.run(getter, Option.some(value), EMPTY_PARSE_OPTIONS))
   if (exit._tag === "Failure") throw new Error(`effect-zod: transform failed: ${String(exit.cause)}`)
-  return unwrap(exit.value)
+  const resolved = exit.value
+  return Option.isOption(resolved) ? Option.getOrElse(resolved, () => value) : resolved
 }
 // kilocode_change end
 
