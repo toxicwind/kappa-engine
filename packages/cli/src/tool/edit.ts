@@ -61,16 +61,28 @@ function convertToLineEnding(text: string, ending: "\n" | "\r\n"): string {
   return text.replaceAll("\n", "\r\n")
 }
 
-const locks = new Map<string, Semaphore.Semaphore>()
+// Per-file edit locks, refcounted like SandboxPolicy.locked: an entry is
+// created on first use and deleted when its last holder releases, so a
+// long-lived server does not accumulate one semaphore per distinct file
+// ever edited.
+const locks = new Map<string, { semaphore: Semaphore.Semaphore; refs: number }>()
 
-function lock(filePath: string) {
-  const resolvedFilePath = FSUtil.resolve(filePath)
-  const hit = locks.get(resolvedFilePath)
-  if (hit) return hit
-
-  const next = Semaphore.makeUnsafe(1)
-  locks.set(resolvedFilePath, next)
-  return next
+function locked<A, E, R>(filePath: string, effect: Effect.Effect<A, E, R>) {
+  const key = FSUtil.resolve(filePath)
+  return Effect.acquireUseRelease(
+    Effect.sync(() => {
+      const entry = locks.get(key) ?? { semaphore: Semaphore.makeUnsafe(1), refs: 0 }
+      entry.refs++
+      locks.set(key, entry)
+      return entry
+    }),
+    (entry) => entry.semaphore.withPermits(1)(effect),
+    (entry) =>
+      Effect.sync(() => {
+        entry.refs--
+        if (entry.refs === 0 && locks.get(key) === entry) locks.delete(key)
+      }),
+  )
 }
 
 export const Parameters = Schema.Struct({
@@ -116,7 +128,7 @@ export const EditTool = Tool.define(
           let contentOld = ""
           let contentNew = ""
           let cachedFilediff: Snapshot.FileDiff | undefined // kappacode_change
-          yield* lock(filePath).withPermits(1)(
+          yield* locked(filePath,
             Effect.gen(function* () {
               if (params.oldString === "") {
                 const existed = yield* afs.existsSafe(filePath)
