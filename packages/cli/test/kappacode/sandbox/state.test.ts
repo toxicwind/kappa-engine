@@ -165,10 +165,10 @@ linux("reports configured network namespace availability", async () => {
     "const status = (restrict) => SandboxPolicy.status(SessionID.make(`ses_sandbox_status_${restrict}`)).pipe(Effect.provide(Layer.mock(Config.Service, { get: () => Effect.succeed({ sandbox: { enabled: true, network: restrict ? 'deny' : 'allow' } }) })), Effect.provide(AppNodeBuilder.build(Database.node)), Effect.provideService(InstanceRef, context), Effect.runPromise)",
     "const deny = await status(true)",
     "const allow = await status(false)",
-    'if (deny.available || deny.enabled || !deny.reason?.includes("Linux network sandbox")) process.exit(2)',
-    "if (!allow.available || !allow.enabled) process.exit(3)",
+    'if (deny.available || deny.enabled || !deny.reason?.includes("Linux network sandbox")) { console.error("sandbox-status deny=" + JSON.stringify(deny)); process.exit(2) }',
+    "if (!allow.available || !allow.enabled) { console.error(\"sandbox-status allow=\" + JSON.stringify(allow)); process.exit(3) }",
     'const blocked = await SandboxPolicy.executeTool(SessionID.make("ses_sandbox_status_true"), { id: "read" }, Effect.succeed("escaped")).pipe(Effect.provide(Layer.mock(Config.Service, { get: () => Effect.succeed({ sandbox: { enabled: true, network: "deny" } }) })), Effect.provideService(InstanceRef, context), Effect.exit, Effect.runPromise)',
-    "if (blocked._tag !== 'Failure') process.exit(4)",
+    "if (blocked._tag !== 'Failure') { console.error(\"sandbox-status blocked=\" + JSON.stringify(blocked)); process.exit(4) }",
   ].join("\n")
 
   try {
