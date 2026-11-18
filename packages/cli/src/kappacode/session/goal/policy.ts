@@ -2,6 +2,7 @@ import { Effect, Exit } from "effect"
 import type { SessionV1 } from "@toxicwind/core/v1/session"
 import type { PromptInput } from "@/session/prompt"
 import type { MessageID, SessionID } from "@/session/schema"
+import { KappaSession } from "../index.ts"
 import { KappaSessionPromptQueue } from "../prompt-queue.ts"
 import { GoalState } from "./state.ts"
 
@@ -57,6 +58,12 @@ export namespace GoalPolicy {
     if (GoalState.curbed(id) && !WAIT.has(tool)) return false
     if (tool !== "question" && tool !== "goal") return true
     if (GoalState.hold(id)) return false
+    // A goal delegate inherits its root's hold: the working model in a
+    // delegated child session must not ask questions (no human watches that
+    // session), even though the goal run is registered on the root. The
+    // ancestry is the task tool's in-memory registry, so this stays sync.
+    // `goal` control is intentionally excluded — see the comment below.
+    if (tool === "question" && GoalState.hold(KappaSession.resolveRoot(id))) return false
     const owner = ownerFor(id)
     // `goal` control (start/change/pause/clear/resume) must stay available to
     // the working model even while a goal is active, so it can `change` the
