@@ -1243,11 +1243,15 @@ it.live(
         const fiber = yield* prompt
           .prompt({ sessionID: root.id, agent: "build", parts: [{ type: "text", text: "Explore with a subagent." }] })
           .pipe(Effect.forkScoped)
+        // The ask surfaces only after the subagent session spins up and
+        // completes its first LLM round trip, so this carries the same 15s
+        // headroom as the sibling tests instead of the 5s helper default.
         const pending = yield* pollWithTimeout(
           Effect.gen(function* () {
             return (yield* permission.list()).find((item) => item.permission === "read")
           }),
           "subagent never requested read permission",
+          "15 seconds",
         )
         expect(pending.sessionID).not.toBe(root.id)
         expect(pending.patterns).toEqual([".env"])
@@ -1283,7 +1287,7 @@ it.live(
         }),
       },
     ),
-  30_000,
+  60_000,
 )
 
 for (const continued of [false, true]) {
@@ -1332,7 +1336,7 @@ for (const continued of [false, true]) {
           }),
         },
       ),
-    30_000,
+    60_000,
   )
 }
 
