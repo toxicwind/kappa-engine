@@ -20,7 +20,10 @@ export namespace KappaBackgrounder {
     | { readonly type: "promoted"; info: { background: true; jobId: SessionID } }
 
   export type RaceInput = {
-    readonly jobs: Pick<BackgroundJob.Interface, "start" | "wait" | "promote" | "get" | "cancel">
+    readonly jobs: Pick<
+      BackgroundJob.Interface,
+      "start" | "wait" | "promote" | "get" | "cancel" | "waitForPromotion"
+    >
     readonly id: SessionID
     readonly run: Effect.Effect<string>
     readonly deadline: number
@@ -31,6 +34,16 @@ export namespace KappaBackgrounder {
 
   export function raceWithSteering(input: RaceInput): Effect.Effect<Settlement> {
     const { jobs, id, deadline, steerSignal, onPromote } = input
+
+    // The race's own promote calls (steer, timeout) run the job's onPromote
+    // hook inline. promote records the promotion BEFORE the hook runs, so a
+    // failing hook must not kill the task — swallow typed errors and defects,
+    // but let interruption propagate so a cancelled tool call still cancels.
+    const promote = (jobId: SessionID) =>
+      jobs.promote(jobId).pipe(
+        Effect.catch(() => Effect.succeed(undefined)),
+        Effect.catchDefect(() => Effect.succeed(undefined)),
+      )
 
     const settled = jobs.wait({ id }).pipe(
       Effect.map(
@@ -49,10 +62,17 @@ export namespace KappaBackgrounder {
 
     const timedOut = Effect.sleep(`${deadline} millis`).pipe(Effect.as({ kind: "timeout" as const }))
 
-    const settledOrTimeout = settled.pipe(Effect.raceFirst(timedOut))
+    // An external promotion (user or another fiber calling jobs.promote) must
+    // return the task immediately — not after the deadline. waitForPromotion
+    // resolves the moment promote records the promotion, before the job's
+    // onPromote hook runs, so the task never waits on a slow metadata hook.
+    // It never-resolves when the job is not running, so it cannot win spuriously.
+    const promoted = jobs.waitForPromotion(id).pipe(Effect.as({ kind: "promoted" as const }))
+
+    const settledOrTimeout = settled.pipe(Effect.raceFirst(timedOut), Effect.raceFirst(promoted))
 
     const settledOrTimeoutOrSteer: Effect.Effect<
-      { kind: "settled" | "timeout"; info?: unknown } | { kind: "steer" },
+      { kind: "settled" | "timeout" | "promoted"; info?: unknown } | { kind: "steer" },
       never,
       never
     > = steerSignal
@@ -102,7 +122,18 @@ export namespace KappaBackgrounder {
       const result = yield* settledOrTimeoutOrSteer
 
       if (result.kind === "steer") {
-        yield* jobs.promote(id).pipe(Effect.orDie)
+        yield* promote(id)
+        yield* onPromote ?? Effect.void
+        return {
+          type: "promoted",
+          info: { background: true, jobId: id },
+        } as Settlement
+      }
+
+      // External promotion: the promoter's fiber runs the job's onPromote
+      // (notify + metadata hook); the race only installs the delivery cleanup
+      // itself as belt-and-braces (notify is idempotent) and returns.
+      if (result.kind === "promoted") {
         yield* onPromote ?? Effect.void
         return {
           type: "promoted",
@@ -127,7 +158,7 @@ export namespace KappaBackgrounder {
             info: { background: true, jobId: id },
           } as Settlement
         }
-        const promoted = yield* jobs.promote(id).pipe(Effect.orDie)
+        const promoted = yield* promote(id)
         return {
           type: "promoted",
           info: { background: true, jobId: promoted?.id ?? id },

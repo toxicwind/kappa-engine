@@ -516,6 +516,20 @@ export const TaskTool = Tool.define(
         type: id,
         title: params.description,
         metadata,
+        // kappacode_change - job-level onPromote runs inside background.promote:
+        // notify installs the delivery cleanup, then the metadata hook records
+        // the promotion. No catch: a dying hook must fail the promote call
+        // (Effect.ignore in promote swallows typed errors but not defects),
+        // while the task itself returns the moment promotion lands — the race
+        // never awaits this hook, so a slow hook cannot deadlock the task.
+        onPromote: notify(nextSession.id).pipe(
+          Effect.andThen(
+            ctx.metadata({
+              title: params.description,
+              metadata: { ...metadata, background: true, jobId: nextSession.id },
+            }),
+          ),
+        ),
         // kappacode_change - the foreground/promoted path below uses the backgrounder wrapper
         run: runInBackground ? backgroundRun : runTask().pipe(Effect.onInterrupt(() => ops.cancel(nextSession.id))),
       })
@@ -573,15 +587,14 @@ export const TaskTool = Tool.define(
         run: runTask().pipe(Effect.orDie),
         deadline,
         steerSignal,
-        onPromote: notify(jobInfo.id).pipe(
-          Effect.andThen(
-            ctx.metadata({
-              title: params.description,
-              metadata: { ...metadata, background: true, jobId: nextSession.id },
-            }),
-          ),
-          Effect.catch(() => Effect.void),
-        ),
+        // kappacode_change - the race installs ONLY the delivery cleanup on
+        // promotion: the metadata update lives in the job's onPromote (it
+        // runs inside the promote call). Awaiting the metadata hook here
+        // deadlocked the task on a slow hook — the task must return the
+        // moment promotion lands, while the hook still runs in the
+        // promoter's fiber. notify is idempotent, so the double install
+        // (job hook + race) is safe.
+        onPromote: notify(jobInfo.id),
       }).pipe(Effect.scoped)
       // kappacode_change end
 
