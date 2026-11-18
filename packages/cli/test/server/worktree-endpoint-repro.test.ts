@@ -225,7 +225,13 @@ describe("worktree endpoint reproduction", () => {
   )
 
   worktreeTest(
-    "direct HttpApi worktree create rejects explicit null payload",
+    // Effect 4's JSON codec maps JSON null to void: an explicit null body is
+    // indistinguishable from an empty body at the decode layer (both decode
+    // to the NoContent branch), so null is treated as an absent payload and
+    // creates a worktree with a generated name — the same as a bodyless POST.
+    // This pins that behavior; the session-create and fork endpoints share
+    // the same [NoContent, Input] union and behave identically.
+    "direct HttpApi worktree create treats explicit null payload as absent",
     () =>
       Effect.gen(function* () {
         const test = yield* TestInstance
@@ -241,7 +247,10 @@ describe("worktree endpoint reproduction", () => {
           },
         )
 
-        expect(response.status).toBe(400)
+        expect(response.status).toBe(200)
+        const info = yield* json<Worktree.Info>(response)
+        expect(info.name.length).toBeGreaterThan(0)
+        expect(info.branch).toBe(`opencode/${info.name}`)
       }),
     { git: true },
   )
