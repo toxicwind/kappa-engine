@@ -42,7 +42,8 @@ export namespace RoutedModelMeta {
   function routed(model: StepFinishPart["model"], message: Message) {
     if (!model) return undefined
     if (message.providerID !== "kappa") return undefined
-    if (!message.modelID.startsWith("kappa-auto/")) return undefined
+    // kilo-auto/ is kilo.ai's real gateway model ID prefix (see routed-model.ts).
+    if (!message.modelID.startsWith("kilo-auto/")) return undefined
     if (model.providerID === message.providerID && model.modelID === message.modelID) return undefined
     return model
   }
