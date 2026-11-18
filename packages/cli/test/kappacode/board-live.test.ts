@@ -134,6 +134,13 @@ const cfg = {
       options: {
         apiKey: "test-key",
         baseURL: "http://localhost:1/v1",
+        // The live choreography parks two streams at once (main held on its
+        // boundary reply, worker A held on its first reply) while worker B
+        // must still start: the default per-provider ceiling of 2 deadlocks
+        // it — B's acquire never resolves because the gates that would free
+        // a permit wait on B's own first request. 10 keeps the queue out of
+        // this test's way; the queue itself is covered by llm-queue.test.ts.
+        maxConcurrency: 10,
       },
     },
   },
