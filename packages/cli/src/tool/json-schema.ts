@@ -84,6 +84,24 @@ function normalize(value: unknown, options: { stripNull?: boolean } = {}): unkno
     return { minimum: Number.MIN_SAFE_INTEGER, ...schema, maximum: Number.MAX_SAFE_INTEGER }
   }
 
+  // Effect 4 encodes an empty Struct as `{not: {type: "null"}}` — no `type`
+  // at all. Providers (Anthropic especially) require an explicit object
+  // root, so restore the object shape an empty Struct actually means.
+  if (
+    schema.type === undefined &&
+    schema.$ref === undefined &&
+    !Array.isArray(schema.anyOf) &&
+    !Array.isArray(schema.oneOf) &&
+    !Array.isArray(schema.allOf) &&
+    isRecord(schema.not) &&
+    schema.not.type === "null" &&
+    Object.keys(schema.not).length === 1 &&
+    Object.keys(schema).every((key) => key === "not" || key === "$schema" || key === "description")
+  ) {
+    const { not: _, ...rest } = schema
+    return normalize({ type: "object", properties: {}, ...rest })
+  }
+
   return schema
 }
 
