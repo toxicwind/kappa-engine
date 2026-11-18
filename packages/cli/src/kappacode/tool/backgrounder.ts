@@ -56,7 +56,11 @@ export namespace KappaBackgrounder {
       never,
       never
     > = steerSignal
-      ? Effect.gen(function* () {
+      // forkScoped below needs a Scope; Effect.scoped discharges it so this
+      // stays Effect<..., never, never>. The scope closes when the race
+      // resolves, interrupting the forked settler — its result is already
+      // delivered via settledDeferred by then (or the steer won).
+      ? Effect.scoped(Effect.gen(function* () {
           const steerDeferred = yield* Deferred.make<true>()
           const settledDeferred = yield* Deferred.make<Effect.Success<typeof settledOrTimeout>>()
 
@@ -91,7 +95,7 @@ export namespace KappaBackgrounder {
           }).pipe(Effect.tap(() => cleanup))
 
           return steerWinner
-        })
+        }))
       : settledOrTimeout
 
     return Effect.gen(function* () {
