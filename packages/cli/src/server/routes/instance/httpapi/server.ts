@@ -393,7 +393,15 @@ export const routes = createRoutes()
 export const webHandler = lazy(() =>
   HttpRouter.toWebHandler(routes, {
     disableLogger: true,
-    memoMap,
+    // Fork, don't share: building the routes against the process-wide memoMap
+    // memoizes the auth middleware layers there (including the
+    // ServerAuth.required decision baked in at build time), and later
+    // Server.listen() calls reuse those entries instead of rebuilding them —
+    // so a no-auth listener started after any Server.Default() use keeps
+    // enforcing the first listener's auth. The fork still reads shared
+    // AppRuntime services from the parent, but route-layer builds stay
+    // isolated to this handler.
+    memoMap: Layer.forkMemoMapUnsafe(memoMap),
     middleware: disposeMiddleware,
   }),
 )
