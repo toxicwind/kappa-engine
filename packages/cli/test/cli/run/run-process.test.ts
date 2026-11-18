@@ -81,11 +81,16 @@ describe("opencode run (non-interactive subprocess)", () => {
     30_000,
   )
 
-  // The test provider's SSE error item is interpreted by the SDK as an unknown
-  // finish, not a fatal provider/session error. Lock that distinction in so it
-  // is not accidentally used as the failure compatibility oracle.
+  // The test provider's SSE error item kills the response stream mid-turn, which
+  // the AI SDK surfaces as a transport error (ECONNRESET: "socket connection was
+  // closed") — a transient failure the provider retry policy recovers from with
+  // a fresh request. Lock that distinction in: a stream error is retried and the
+  // run still exits 0 with its partial output intact, NOT a fatal provider /
+  // session error (compare the HTTP-400 tests below, which exit 1). The
+  // recovery reply is queued explicitly so the retried turn's content is
+  // pinned, not the mock server's auto "ok" fallback.
   cliIt.concurrent(
-    "unknown stream finish preserves partial output and exits 0",
+    "stream error mid-turn retries and preserves partial output with exit 0",
     ({ llm, opencode }) =>
       Effect.gen(function* () {
         yield* llm.push(
@@ -95,6 +100,7 @@ describe("opencode run (non-interactive subprocess)", () => {
           }),
         )
         yield* llm.fail("upstream provider exploded mid-stream")
+        yield* llm.text("recovered after stream error")
         // kappacode_change - settle bash up front so the run exercises the stream finish rather than
         // Kappa's auto-reject exit contract, which a plain headless run would trip first.
         const result = yield* opencode.run("trigger midstream error", {
@@ -102,7 +108,7 @@ describe("opencode run (non-interactive subprocess)", () => {
           permission: { bash: "deny" },
         })
         expect(result.exitCode).toBe(0)
-        expect(result.stdout).toBe("partial response\n")
+        expect(result.stdout).toBe("partial response\nrecovered after stream error\n")
         expect(result.stderr).not.toContain("upstream provider exploded mid-stream")
       }),
     60_000,
@@ -286,7 +292,7 @@ describe("opencode run (non-interactive subprocess)", () => {
   )
 
   cliIt.concurrent(
-    "--format json records partial output for an unknown stream finish",
+    "--format json records partial output and the retried turn after a stream error",
     ({ llm, opencode }) =>
       Effect.gen(function* () {
         yield* llm.push(
@@ -296,23 +302,29 @@ describe("opencode run (non-interactive subprocess)", () => {
           }),
         )
         yield* llm.fail("provider failed")
+        yield* llm.text("recovered json")
         // kappacode_change - settle bash up front; see the note on the reason assertion below
         const result = yield* opencode.run("fail after output", { format: "json", permission: { bash: "deny" } })
 
         const events = opencode.parseJsonEvents(result.stdout)
         expect(result.exitCode).toBe(0)
-        expect(events.map((event) => event.type)).toEqual([
-          "step_start",
+        // The failed attempt may or may not emit its own step_start before the
+        // connection dies (a race between the role chunk and the socket
+        // teardown), so step_start is excluded: the pinned sequence is the
+        // content and completion events. The retried turn's text lands in the
+        // second step after the first step's finish.
+        expect(events.filter((event) => event.type !== "step_start").map((event) => event.type)).toEqual([
           "tool_use",
           "text", // kappacode_change - a pre-denied tool settles before the SDK closes its preceding text part
           "step_finish",
-          "step_start",
+          "text", // the provider retry re-issues the failed turn and its text lands in the second step
           "step_finish",
         ])
         // kappacode_change start - the pre-denied tool completes before text-end
-        expect(events.find((event) => event.type === "text")?.part).toEqual(
+        expect(events.filter((event) => event.type === "text").map((event) => event.part)).toEqual([
           expect.objectContaining({ type: "text", text: "partial json" }),
-        )
+          expect.objectContaining({ type: "text", text: "recovered json" }),
+        ])
         // kappacode_change end
         // kappacode_change - upstream asserts reason "unknown" here. Reaching that requires the bash call
         // to proceed without permission friction, which a Kappa headless run never does: left alone the ask
