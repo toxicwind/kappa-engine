@@ -87,6 +87,6 @@ export function session(
   env = process.env,
   platform = process.platform,
 ) {
-  const lines = LOGO_MODERN
+  const lines = supports(env, platform) ? LOGO_MODERN : LOGO_PLAIN
   return [``, `${lines[0]}${dim}${title}${normal}`, `${lines[1]}${dim}kappa -s ${id}${normal}`, lines[2]].join("\n")
 }
