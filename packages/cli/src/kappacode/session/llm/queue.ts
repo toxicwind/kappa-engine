@@ -40,6 +40,12 @@ function entry(id: string, cap: number) {
   })
 }
 
+// The semaphore already registered for a provider, if any — without
+// creating one and without reading config.
+function existing(id: string) {
+  return Ref.get(globalRef).pipe(Effect.map((map) => map.get(id)))
+}
+
 export class LLMQueue extends Context.Service<
   LLMQueue,
   {
@@ -78,11 +84,15 @@ export const live = LayerNode.make({
           yield* s.take(1)
         })
 
+      // Release against the already-registered semaphore, not via the
+      // config: a release must succeed even if the config is momentarily
+      // unreadable (a failed config read here used to drop the permit
+      // entirely), and a release without a prior acquire must not mint
+      // a fresh semaphore with an inflated permit count.
       const release = (providerID: string) =>
         Effect.gen(function* () {
-          const cap = yield* count(providerID)
-          const s = yield* sem(providerID, cap)
-          yield* s.release(1)
+          const s = yield* existing(providerID)
+          if (s) yield* s.release(1)
         })
 
       const withPermit = (providerID: string, effect: Effect.Effect<unknown, unknown>) =>

@@ -358,13 +358,13 @@ const cfg = {
         apiKey: "test-key",
         baseURL: "http://localhost:1/v1",
         // The mock provider has no real rate limit, so the production cap of 2
-        // only creates artificial starvation here: LLMQueue permits are
-        // process-global and leak across tests in this file (proven: cap 2
-        // starves the cancel tests after the task tests, cap 100 passes
-        // 80/81). The underlying leak — a stream whose scope never closes
-        // and never releases its permit — is a production bug that needs
-        // its own instrumented follow-up; this cap only keeps the mock
-        // file green meanwhile.
+        // is raised to 100 here to keep the file fast. The permit leak that
+        // used to starve this file at cap 2 is fixed: the MCP-instructions
+        // test stopped its loop with a raw Fiber.interrupt, which only kills
+        // the caller — the turn runs in a Runner work fiber that kept the
+        // hanging LLM stream (and its queue permit) forever. It now cancels
+        // through prompt.cancel, and the file passes at cap 2 (verified
+        // 2026-11-18: 80 pass / 0 fail / 1 skip in 185s).
         maxConcurrency: 100,
       },
     },
@@ -655,6 +655,13 @@ withMcpInstructions.instance(
       const body = JSON.stringify(hits[0]?.body)
       expect(body).toContain('<server name=\\"guide-server\\">')
       expect(body).toContain("Use lookup before mutate.")
+      // Cancel through the session, not by interrupting the loop fiber:
+      // the turn runs in a Runner work fiber forked into the session's
+      // scope, so a raw Fiber.interrupt only kills the caller — the work
+      // fiber keeps the hanging LLM stream (and its queue permit) forever.
+      // prompt.cancel interrupts the work fiber; the interrupt below only
+      // unblocks the caller's awaitDone.
+      yield* prompt.cancel(chat.id)
       yield* Fiber.interrupt(fiber)
     }),
   60_000,
