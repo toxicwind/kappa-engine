@@ -6,7 +6,7 @@ import { Effect, Fiber, Semaphore, Stream } from "effect"
 // The single-unwrap shape releases on interrupt (llm-permit-minimal). Does
 // the NESTED shape?
 
-const nested = (sem: Semaphore.Semaphore, inner: Stream.Stream<number, never, never>) =>
+const nested = (sem: Semaphore.Semaphore, inner: Stream.Stream<number, Error, never>) =>
   Stream.scoped(
     Stream.unwrap(
       Effect.acquireRelease(sem.take(1), () => sem.release(1)).pipe(
@@ -35,7 +35,9 @@ describe("nested Stream.unwrap (llm.ts shape)", () => {
     await Effect.runPromise(
       Effect.gen(function* () {
         const sem = yield* Semaphore.make(1)
-        const hanging = Stream.fromAsyncIterable(neverResolving())
+        const hanging = Stream.fromAsyncIterable(neverResolving(), (e) =>
+          e instanceof Error ? e : new Error(String(e)),
+        )
         const fiber = yield* Stream.runDrain(nested(sem, hanging)).pipe(Effect.forkChild)
         yield* Effect.sleep("200 millis")
         expect(yield* sem.takeIfAvailable(1)).toBe(false)
@@ -51,7 +53,14 @@ describe("nested Stream.unwrap (llm.ts shape)", () => {
         const sem = yield* Semaphore.make(1)
         const guard = Effect.sleep("100 millis").pipe(Effect.andThen(Effect.fail(new Error("DisconnectedError"))))
         const outcome = yield* Effect.raceFirst(
-          Stream.runDrain(nested(sem, Stream.fromAsyncIterable(neverResolving()))),
+          Stream.runDrain(
+            nested(
+              sem,
+              Stream.fromAsyncIterable(neverResolving(), (e) =>
+                e instanceof Error ? e : new Error(String(e)),
+              ),
+            ),
+          ),
           guard,
         ).pipe(Effect.exit)
         expect(outcome._tag).toBe("Failure")

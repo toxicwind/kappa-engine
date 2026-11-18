@@ -55,7 +55,7 @@ function config(url: string) {
 // Faithful copy of the permit-holding shape in packages/cli/src/session/llm.ts
 // (Stream.scoped + Stream.unwrap + Effect.acquireRelease around queue.acquire).
 // The inner stream stands in for the LLM event stream produced by run().
-const gatedStream = (queue: LLMQueue, inner: Stream.Stream<number, never, never>) =>
+const gatedStream = (queue: LLMQueue["Service"], inner: Stream.Stream<number, never, never>) =>
   Stream.scoped(
     Stream.unwrap(
       Effect.acquireRelease(queue.acquire("test"), () => queue.release("test")).pipe(
@@ -66,7 +66,7 @@ const gatedStream = (queue: LLMQueue, inner: Stream.Stream<number, never, never>
 
 // Behavioral probe: true when a permit is free right now. A successful probe
 // acquire is released immediately so the probe itself holds nothing.
-const permitFree = (queue: LLMQueue) =>
+const permitFree = (queue: LLMQueue["Service"]) =>
   Effect.gen(function* () {
     const exit = yield* queue.acquire("test").pipe(Effect.timeout("500 millis"), Effect.exit)
     if (Exit.isSuccess(exit)) {
