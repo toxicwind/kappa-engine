@@ -348,7 +348,13 @@ const layer = Layer.effect(
           }
 
           // Race gate: narration guard + semantic brake check
-          const assistantMsgId = yield* publisher.startAssistant()
+          // A contentless turn has no assistant message; forcing
+          // startAssistant() here would persist an empty assistant row for
+          // every empty turn (and every tool-call continuation). With no
+          // assistant the guard lookup below matches nothing and is skipped.
+          const assistantMsgId = publisher.hasAssistantStarted()
+            ? yield* publisher.startAssistant()
+            : undefined
           const history = yield* SessionHistory.entriesForRunner(db, session.id, 0)
           const lastAssistant = history
             .filter((e) => e.message.id === assistantMsgId && e.message.type === "assistant")
