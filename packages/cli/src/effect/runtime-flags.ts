@@ -55,8 +55,8 @@ export class Service extends ConfigService.Service<Service>()("@opencode/Runtime
   }).pipe(Config.map((flags) => flags.enabled || flags.legacy)),
   enableExperimentalModels: bool("KAPPA_ENABLE_EXPERIMENTAL_MODELS"),
   enableQuestionTool: bool("KAPPA_ENABLE_QUESTION_TOOL"),
-  experimentalScout: enabledByExperimental("EXPERIMENTAL_SCOUT"), // kappacode_change
-  experimentalReferences: enabledByExperimental("EXPERIMENTAL_REFERENCES"),
+  experimentalScout: enabledByExperimental("KAPPA_EXPERIMENTAL_SCOUT"), // kappacode_change
+  experimentalReferences: enabledByExperimental("KAPPA_EXPERIMENTAL_REFERENCES"),
   // kappacode_change start - enabled by default, with an opt-out kill switch
   experimentalBackgroundSubagents: boolDefaultTrue("KAPPA_EXPERIMENTAL_BACKGROUND_SUBAGENTS"),
   // kappacode_change - auto-promote a foreground subagent to background after this deadline (ms);
@@ -66,20 +66,20 @@ export class Service extends ConfigService.Service<Service>()("@opencode/Runtime
   foregroundSubagentDeadlineMs: positiveInteger("KAPPA_FOREGROUND_TASK_DEADLINE_MS").pipe(Config.withDefault(4_000)),
   // kappacode_change end
   experimentalLspTy: bool("KAPPA_EXPERIMENTAL_LSP_TY"),
-  experimentalLspTool: enabledByExperimental("EXPERIMENTAL_LSP_TOOL"),
+  experimentalLspTool: enabledByExperimental("KAPPA_EXPERIMENTAL_LSP_TOOL"),
   // kappacode_change start - self-context tools
-  experimentalContextTools: enabledByExperimental("EXPERIMENTAL_CONTEXT_TOOLS"),
+  experimentalContextTools: enabledByExperimental("KAPPA_EXPERIMENTAL_CONTEXT_TOOLS"),
   // kappacode_change end
-  experimentalOxfmt: enabledByExperimental("EXPERIMENTAL_OXFMT"),
-  experimentalCodeMode: enabledByExperimental("EXPERIMENTAL_CODE_MODE"),
-  experimentalEventSystem: enabledByExperimental("EXPERIMENTAL_EVENT_SYSTEM"),
-  experimentalSessionSwitcher: enabledByExperimental("EXPERIMENTAL_SESSION_SWITCHER"), // kappacode_change
+  experimentalOxfmt: enabledByExperimental("KAPPA_EXPERIMENTAL_OXFMT"),
+  experimentalCodeMode: enabledByExperimental("KAPPA_EXPERIMENTAL_CODE_MODE"),
+  experimentalEventSystem: enabledByExperimental("KAPPA_EXPERIMENTAL_EVENT_SYSTEM"),
+  experimentalSessionSwitcher: enabledByExperimental("KAPPA_EXPERIMENTAL_SESSION_SWITCHER"), // kappacode_change
   // kappacode_change start - enabled by default, with an opt-out kill switch
   experimentalSharedAgentBoard: boolDefaultTrue("KAPPA_EXPERIMENTAL_SHARED_AGENT_BOARD"),
   // kappacode_change end
-  experimentalWorkspaces: enabledByExperimental("EXPERIMENTAL_WORKSPACES"),
-  experimentalIconDiscovery: enabledByExperimental("EXPERIMENTAL_ICON_DISCOVERY"),
-  experimentalMcpApps: enabledByExperimental("EXPERIMENTAL_MCP_APPS"), // kappacode_change
+  experimentalWorkspaces: enabledByExperimental("KAPPA_EXPERIMENTAL_WORKSPACES"),
+  experimentalIconDiscovery: enabledByExperimental("KAPPA_EXPERIMENTAL_ICON_DISCOVERY"),
+  experimentalMcpApps: enabledByExperimental("KAPPA_EXPERIMENTAL_MCP_APPS"), // kappacode_change
   outputTokenMax: positiveInteger("KAPPA_EXPERIMENTAL_OUTPUT_TOKEN_MAX"),
   bashDefaultTimeoutMs: positiveInteger("KAPPA_EXPERIMENTAL_BASH_DEFAULT_TIMEOUT_MS"),
   experimentalNativeLlm: bool("KAPPA_EXPERIMENTAL_NATIVE_LLM"),
